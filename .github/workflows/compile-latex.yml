@@ -1,0 +1,22 @@
+name: Compile Revision Guide
+on: [push]
+
+jobs:
+  build_latex:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Git repository
+        uses: actions/checkout@v4
+
+      - name: Compile LaTeX document
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: main.tex
+          # This ensures all your custom boxes and colors compile correctly
+          args: "-pdf -file-line-error -halt-on-error -interaction=nonstopmode"
+
+      - name: Upload PDF Result
+        uses: actions/upload-artifact@v4
+        with:
+          name: Revision-Guide-PDF
+          path: main.pdf
