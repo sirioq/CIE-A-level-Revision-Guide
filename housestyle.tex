@@ -1,0 +1,210 @@
+% =============================================================================
+% housestyle.tex — CIE A Level Physics Revision Booklets
+% House style preamble: input this file at the top of every topic booklet
+% =============================================================================
+
+% ── Core packages ─────────────────────────────────────────────────────────────
+\usepackage[a4paper, top=2.2cm, bottom=2.2cm, left=2.2cm, right=2.2cm]{geometry}
+\usepackage{amsmath, amssymb}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{microtype}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{parskip}
+\usepackage{multicol}
+\usepackage{tocloft}
+
+% ── Colour palette ────────────────────────────────────────────────────────────
+\definecolor{cieprimary}{HTML}{003366}      % dark blue — headings, banner
+\definecolor{ciepink}{HTML}{F77E9D}         % mid pink — formula frame, accent rule
+\definecolor{ciepinkbg}{HTML}{FDE5EB}       % pale pink — formula box fill
+\definecolor{ciedefnbg}{HTML}{DCE8FA}       % light blue — definition box fill
+\definecolor{cietipbg}{HTML}{DCF5E6}        % pale green — exam tip fill
+\definecolor{cietipframe}{HTML}{006040}     % dark green — exam tip frame
+\definecolor{ciewarnbg}{HTML}{FFE6E6}       % pale red — common mistake fill
+\definecolor{ciewarnframe}{HTML}{961E1E}    % dark red — common mistake frame
+\definecolor{cieexbg}{HTML}{F5F5F5}         % light grey — worked example fill
+\definecolor{cieexframe}{HTML}{AAAAAA}      % mid grey — worked example frame
+
+% ── Page style ────────────────────────────────────────────────────────────────
+\setlength{\headheight}{15pt}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textcolor{cieprimary}{\textbf{CIE A Level Physics}}}
+\fancyhead[R]{\small\textcolor{cieprimary}{\bookletheader}}   % defined per topic
+\fancyfoot[C]{\small\thepage}
+\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{cieprimary}\leaders\hrule height \headrulewidth\hfill}}
+
+% ── Section / subsection formatting ──────────────────────────────────────────
+% Section: dark blue, bold, with a pink rule beneath
+\titleformat{\section}
+  {\large\bfseries\color{cieprimary}}
+  {\thesection}{0.6em}{}
+  [\vspace{2pt}{\color{ciepink}\titlerule[1.5pt]}]
+
+\titleformat{\subsection}
+  {\normalsize\bfseries\color{cieprimary}}
+  {\thesubsection}{0.5em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries}
+  {}{0pt}{}
+
+% ── TOC formatting (tocloft) ──────────────────────────────────────────────────
+\renewcommand{\cftsecfont}{\bfseries\color{cieprimary}}
+\renewcommand{\cftsecpagefont}{\bfseries\color{cieprimary}}
+\renewcommand{\cftsubsecfont}{\color{cieprimary}}
+\renewcommand{\cftsubsecpagefont}{\color{cieprimary}}
+\setlength{\cftbeforesecskip}{4pt}
+
+% ── tcolorbox environments ────────────────────────────────────────────────────
+\tcbuselibrary{skins, breakable}
+
+% Definition box — blue
+\newtcolorbox{defnbox}[1]{
+  enhanced, breakable,
+  colback=ciedefnbg, colframe=cieprimary,
+  fonttitle=\bfseries\color{white},
+  title={Definition: #1},
+  attach boxed title to top left={yshift=-2mm, xshift=4mm},
+  boxed title style={colback=cieprimary, colframe=cieprimary, arc=2pt},
+  arc=3pt, boxrule=1pt,
+  top=6pt
+}
+
+% Formula box — pink
+\newtcolorbox{formulabox}[1]{
+  enhanced, breakable,
+  colback=ciepinkbg, colframe=ciepink,
+  fonttitle=\bfseries\color{cieprimary},
+  title={#1},
+  attach boxed title to top left={yshift=-2mm, xshift=4mm},
+  boxed title style={colback=ciepink, colframe=ciepink, arc=2pt,
+                     fontupper=\bfseries\color{white}},
+  arc=3pt, boxrule=1pt,
+  top=6pt
+}
+
+% Exam tip box — green
+\newtcolorbox{tipbox}{
+  enhanced, breakable,
+  colback=cietipbg, colframe=cietipframe,
+  fonttitle=\bfseries\color{white},
+  title={$\checkmark$\; Exam Tip},
+  attach boxed title to top left={yshift=-2mm, xshift=4mm},
+  boxed title style={colback=cietipframe, colframe=cietipframe, arc=2pt},
+  arc=3pt, boxrule=1pt,
+  top=6pt
+}
+
+% Common mistake box — red
+\newtcolorbox{warnbox}{
+  enhanced, breakable,
+  colback=ciewarnbg, colframe=ciewarnframe,
+  fonttitle=\bfseries\color{white},
+  title={!\; Common Mistake},
+  attach boxed title to top left={yshift=-2mm, xshift=4mm},
+  boxed title style={colback=ciewarnframe, colframe=ciewarnframe, arc=2pt},
+  arc=3pt, boxrule=1pt,
+  top=6pt
+}
+
+% Worked example box — grey
+\newtcolorbox{examplebox}[1]{
+  enhanced, breakable,
+  colback=cieexbg, colframe=cieexframe,
+  fonttitle=\bfseries\color{cieprimary},
+  title={Example #1},
+  attach boxed title to top left={yshift=-2mm, xshift=4mm},
+  boxed title style={colback=cieexframe, colframe=cieexframe, arc=2pt,
+                     fontupper=\bfseries\color{white}},
+  arc=3pt, boxrule=1pt,
+  top=6pt
+}
+
+% Formula summary box — pink frame, used around the summary table
+\newtcolorbox{summarybox}{
+  enhanced, breakable,
+  colback=ciepinkbg, colframe=ciepink,
+  fonttitle=\bfseries\color{white},
+  title={Formula Summary Sheet},
+  attach boxed title to top left={yshift=-2mm, xshift=4mm},
+  boxed title style={colback=ciepink, colframe=ciepink, arc=2pt},
+  arc=3pt, boxrule=1.5pt,
+  top=8pt
+}
+
+% Mark scheme box — subtle blue tint
+\newtcolorbox{markbox}{
+  enhanced, breakable,
+  colback=ciedefnbg!40, colframe=cieprimary!60,
+  arc=3pt, boxrule=0.8pt,
+  top=4pt, bottom=4pt
+}
+
+% Checklist box — pink accent
+\newtcolorbox{checklistbox}{
+  enhanced, breakable,
+  colback=ciepinkbg!50, colframe=ciepink,
+  fonttitle=\bfseries\color{white},
+  title={Revision Checklist},
+  attach boxed title to top left={yshift=-2mm, xshift=4mm},
+  boxed title style={colback=ciepink, colframe=ciepink, arc=2pt},
+  arc=3pt, boxrule=1.5pt,
+  top=8pt
+}
+
+% ── Hyperlinks ────────────────────────────────────────────────────────────────
+\hypersetup{
+  colorlinks=true,
+  linkcolor=cieprimary,
+  urlcolor=cieprimary
+}
+
+% ── Utility: mark allocation right-aligned ────────────────────────────────────
+% Usage: \markalloc{2}  produces a right-aligned [2 marks]
+\newcommand{\markalloc}[1]{\hfill\textit{[#1 marks]}}
+
+% ── Title page command ────────────────────────────────────────────────────────
+% Usage: \maketitlepage{Topic 13}{Gravitational Fields}{sub-line}{bullet list body}
+\newcommand{\maketitlepage}[4]{%
+  \begin{titlepage}
+  \thispagestyle{empty}
+  % Banner
+  \noindent\colorbox{cieprimary}{%
+    \begin{minipage}{\textwidth}
+      \vspace{10pt}
+      \centering
+      {\fontsize{16}{20}\selectfont\bfseries\color{white}
+        CIE International A Level Physics (9702)}\\[6pt]
+      {\fontsize{22}{28}\selectfont\bfseries\color{white} #1}\\[4pt]
+      {\fontsize{26}{32}\selectfont\bfseries\color{white} #2}\\[6pt]
+      {\fontsize{13}{18}\selectfont\color{white!80!cieprimary} #3}\\[10pt]
+    \end{minipage}%
+  }
+  % Pink accent rule
+  \noindent{\color{ciepink}\rule{\textwidth}{4pt}}
+  \vspace{1.2cm}
+  \begin{center}
+    {\large\bfseries\color{cieprimary} Revision Booklet}\\[0.3cm]
+    {\normalsize Syllabus 9702 \quad|\quad A Level (A2) \quad|\quad 2025--2027}
+  \end{center}
+  \vspace{0.8cm}
+  \noindent\colorbox{ciepinkbg}{%
+    \begin{minipage}{0.96\textwidth}
+      \vspace{6pt}
+      {\bfseries\color{cieprimary} This booklet covers:}
+      \vspace{2pt}
+      #4
+      \vspace{4pt}
+    \end{minipage}%
+  }
+  \end{titlepage}%
+}
+% =============================================================================
