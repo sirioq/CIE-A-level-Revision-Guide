@@ -1,4 +1,5 @@
 name: Build and Deploy PDF
+
 on: [push]
 
 env:
@@ -16,7 +17,7 @@ jobs:
         with:
           root_file: main.tex
 
-    - name: Prepare PDF for deployment
+      - name: Prepare PDF for deployment
         run: |
           mkdir -p public
           cp main.pdf public/
