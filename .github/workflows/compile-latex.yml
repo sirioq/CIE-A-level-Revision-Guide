@@ -16,10 +16,11 @@ jobs:
         with:
           root_file: main.tex
 
-      - name: Prepare PDF for deployment
+    - name: Prepare PDF for deployment
         run: |
           mkdir -p public
           cp main.pdf public/
+          cp index.html public/
 
       - name: Deploy PDF to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
