@@ -1,7 +1,6 @@
-name: Build LaTeX Document
+name: Build and Deploy PDF
 on: [push]
 
-# This sets the environment variable to stop the Node.js 20 warnings
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
@@ -16,11 +15,10 @@ jobs:
         uses: xu-cheng/latex-action@v3
         with:
           root_file: main.tex
-          # This ensures it uses the most modern TeX Live distribution
-          args: "-pdf -interaction=nonstopmode -halt-on-error"
 
-      - name: Upload PDF
-        uses: actions/upload-artifact@v4
+      - name: Deploy PDF to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
         with:
-          name: Physics-Revision-Guide
-          path: main.pdf
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./
+          publish_files: main.pdf # Only publish the final PDF
