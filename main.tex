@@ -1,12 +1,21 @@
 \documentclass[12pt,a4paper]{report}
 \input{housestyle}
 
-% This command was in your chapter file, move it here so headers work!
-\newcommand{\bookletheader}{Topics 14, 15 \& 16 — Thermal Physics}
+% =============================================================================
+% main.tex — Master file: compiles ALL topic booklets into one document.
+% To add a new topic:
+%   1. Create topics_XX/topics_XX.tex  (content only, no \documentclass)
+%   2. Add \renewcommand and \include lines below.
+% =============================================================================
 
 \begin{document}
 
-% This now pulls in the "Clean" content
-\include{topics_14_15_16_v2}
+% ── Topics 14, 15 & 16 — Thermal Physics ─────────────────────────────────────
+\renewcommand{\bookletheader}{Topics 14, 15 \& 16 — Thermal Physics}
+\include{topics_14_15_16/topics_14_15_16}
+
+% ── Add further topics below as they are created ─────────────────────────────
+% \renewcommand{\bookletheader}{Topic 17 — Oscillations}
+% \include{topic_17/topic_17}
 
 \end{document}
