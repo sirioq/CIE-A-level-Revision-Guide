@@ -20,6 +20,7 @@
 \usepackage{multicol}
 \usepackage{tocloft}
 \usepackage{tikz}
+\usepackage{needspace}
 
 % ── Colour palette ────────────────────────────────────────────────────────────
 \definecolor{cieprimary}{HTML}{003366}      % dark blue  — headings, banner
@@ -71,6 +72,10 @@
 \titleformat{\subsubsection}
   {\normalsize\bfseries}
   {}{0pt}{}
+
+% ── Prevent orphan headings ──────────────────────────────────────────────────
+\newcommand{\sectionbreak}{\needspace{6cm}}
+\newcommand{\subsectionbreak}{\needspace{4cm}}
 
 % ── TOC formatting (tocloft) ──────────────────────────────────────────────────
 \renewcommand{\cftsecfont}{\bfseries\color{cieprimary}}
@@ -140,14 +145,14 @@
   arc=4pt, boxrule=1pt, top=6pt
 }
 
-% ── Solution box — pale pink, used inside worked-example questions ────────────
+% ── Solution box — grey, used for solutions in worked examples ───────────────
 \newtcolorbox{solutionbox}{
   enhanced, breakable,
-  colback=ciepinkbg, colframe=ciepink,
+  colback=cieexbg, colframe=cieexframe,
   fonttitle=\bfseries\color{white},
   title={Solution},
   attach boxed title to top left={yshift=-2mm, xshift=4mm},
-  boxed title style={colback=ciepink, colframe=ciepink, arc=2pt},
+  boxed title style={colback=cieexframe, colframe=cieexframe, arc=2pt},
   arc=4pt, boxrule=1pt, top=6pt
 }
 
@@ -174,6 +179,7 @@
 \newcommand{\answerbox}[1]{%
   \begin{tcolorbox}[
     enhanced,
+    breakable=false,
     colback=white, colframe=ciepink,
     arc=6pt, boxrule=1pt,
     left=4pt, right=4pt,
@@ -214,15 +220,15 @@
       rectangle
       ([xshift=0cm, yshift=-7.5cm]current page.north east);
   \end{tikzpicture}%
-  \vspace*{0.3cm}
+  \vspace*{0.1cm}
   \begin{center}
-    {\fontsize{14}{18}\selectfont\bfseries\color{white}
-      CIE International A Level Physics (9702)}\\[8pt]
-    {\fontsize{20}{26}\selectfont\bfseries\color{white} #1}\\[6pt]
-    {\fontsize{28}{34}\selectfont\bfseries\color{white} #2}\\[8pt]
-    {\fontsize{13}{18}\selectfont\color{white!85!cieprimary} #3}
+    {\fontsize{16}{20}\selectfont\bfseries\color{white}
+      CIE International A Level Physics (9702)}\\[10pt]
+    {\fontsize{24}{30}\selectfont\bfseries\color{white} #1}\\[8pt]
+    {\fontsize{34}{40}\selectfont\bfseries\color{white} #2}\\[10pt]
+    {\fontsize{15}{20}\selectfont\color{white!85!cieprimary} #3}
   \end{center}
-  \vspace{4.8cm}
+  \vspace{2.8cm}
   % Pink accent rule
   {\color{ciepink}\rule{\textwidth}{4pt}}
   \vspace{0.6cm}
