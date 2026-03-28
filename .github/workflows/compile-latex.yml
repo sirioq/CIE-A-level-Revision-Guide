@@ -2,7 +2,7 @@ name: Build and Deploy PDF
 on: [push]
 
 env:
-   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
   build_latex:
@@ -16,9 +16,13 @@ jobs:
         with:
           root_file: main.tex
 
+      - name: Prepare PDF for deployment
+        run: |
+          mkdir -p public
+          cp main.pdf public/
+
       - name: Deploy PDF to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./
-          publish_files: main.pdf # Only publish the final PDF
+          publish_dir: ./public
