@@ -1,254 +1,144 @@
-% =============================================================================
-% housestyle.tex — CIE A Level Physics Revision Booklets
-% Shared preamble: \input{housestyle} at the top of every wrapper file.
-% Do NOT add \documentclass here — that lives in the wrapper.
-% =============================================================================
+% ============================================================
+%  housestyle.tex
+%  Shared preamble for CIE A-Level Physics (9702) revision booklets.
+%  Usage in each booklet:
+%    \newcommand{\bookletsubtitle}{Topic 13: Gravitational Fields}
+%    \input{housestyle}
+% ============================================================
 
-% ── Core packages ─────────────────────────────────────────────────────────────
-\usepackage[a4paper, top=2.2cm, bottom=2.2cm, left=2.2cm, right=2.2cm]{geometry}
+% ── Packages ─────────────────────────────────────────────────
+\usepackage[a4paper, top=2.5cm, bottom=2.5cm, left=2cm, right=2cm]{geometry}
 \usepackage{amsmath, amssymb}
-\usepackage{booktabs}
-\usepackage{array}
 \usepackage{xcolor}
-\usepackage[most]{tcolorbox}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta, calc}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins, breakable, theorems}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
 \usepackage{enumitem}
-\usepackage{hyperref}
-\usepackage{microtype}
 \usepackage{fancyhdr}
 \usepackage{titlesec}
-\usepackage{parskip}
-\usepackage{multicol}
-\usepackage{tocloft}
-\usepackage{tikz}
-\usepackage{needspace}
+\usepackage{minipage-marginpar}
+\usepackage{hyperref}  % must be last
 
-% ── Colour palette ────────────────────────────────────────────────────────────
-\definecolor{cieprimary}{HTML}{003366}      % dark blue  — headings, banner
-\definecolor{ciepink}{HTML}{F77E9D}         % mid pink   — formula frame, accent rule
-\definecolor{ciepinkbg}{HTML}{FDE5EB}       % pale pink  — formula box fill
-\definecolor{ciedefnbg}{HTML}{DCE8FA}       % light blue — definition box fill
-\definecolor{cietipbg}{HTML}{DCF5E6}        % pale green — exam tip fill
-\definecolor{cietipframe}{HTML}{006040}     % dark green — exam tip frame
-\definecolor{ciewarnbg}{HTML}{FFE6E6}       % pale red   — common mistake fill
-\definecolor{ciewarnframe}{HTML}{961E1E}    % dark red   — common mistake frame
-\definecolor{cieexbg}{HTML}{F5F5F5}         % light grey — worked example fill
-\definecolor{cieexframe}{HTML}{AAAAAA}      % mid grey   — worked example frame
+% ── Colours ──────────────────────────────────────────────────
+\definecolor{darkblue}{RGB}{0,51,102}
+\definecolor{midblue}{RGB}{0,102,204}
+\definecolor{lightblue}{RGB}{220,235,255}
+\definecolor{accentgold}{RGB}{180,140,0}
+\definecolor{lightgold}{RGB}{255,248,220}
+\definecolor{darkgray}{RGB}{80,80,80}
+\definecolor{midgray}{RGB}{130,130,130}
+\definecolor{lightsilver}{RGB}{235,235,235}
+\definecolor{examgreen}{RGB}{0,120,60}
+\definecolor{examgreenlight}{RGB}{220,245,230}
+\definecolor{warningorange}{RGB}{200,80,0}
+\definecolor{warninglight}{RGB}{255,235,220}
 
-% ── Page style ────────────────────────────────────────────────────────────────
-\providecommand{\bookletheader}{CIE A Level Physics}
-\setlength{\headheight}{15pt}
+% ── Box environments ─────────────────────────────────────────
+%  definitionbox  — light silver / mid-grey  (definitions)
+%  formulabox     — gold                     (formulae)
+%  keybox         — light blue / dark blue   (key points)
+%  warningbox     — orange                   (common mistakes)
+%  examplebox     — light silver / mid-grey  (worked solutions)
+%  markscheme     — green                    (mark scheme)
+%  motivationbox  — gold, no title           (closing message)
+
+\newtcolorbox{definitionbox}[1]{
+  colback=lightsilver, colframe=midgray, fonttitle=\bfseries,
+  title=#1, breakable, arc=3pt, boxrule=1pt}
+
+\newtcolorbox{formulabox}[1]{
+  colback=lightgold, colframe=accentgold, fonttitle=\bfseries,
+  title=#1, breakable, arc=3pt, boxrule=1pt}
+
+\newtcolorbox{keybox}[1]{
+  colback=lightblue, colframe=darkblue, fonttitle=\bfseries,
+  title=#1, breakable, arc=3pt, boxrule=1pt}
+
+\newtcolorbox{warningbox}[1]{
+  colback=warninglight, colframe=warningorange, fonttitle=\bfseries,
+  title=#1, breakable, arc=3pt, boxrule=1pt}
+
+\newtcolorbox{examplebox}[1]{
+  colback=lightsilver, colframe=midgray, fonttitle=\bfseries\color{darkgray},
+  title=#1, breakable, arc=3pt, boxrule=1pt}
+
+\newtcolorbox{markscheme}{
+  colback=examgreenlight, colframe=examgreen,
+  fonttitle=\bfseries\color{examgreen},
+  title=Answers and Mark Scheme, breakable, arc=3pt, boxrule=1pt}
+
+\newtcolorbox{motivationbox}{
+  colback=lightgold, colframe=accentgold,
+  breakable, arc=4pt, boxrule=1.5pt}
+
+% ── TOC depth ────────────────────────────────────────────────
+\setcounter{tocdepth}{1}
+
+% ── Section formatting ───────────────────────────────────────
+\newcommand{\sectionbox}[1]{%
+  \colorbox{lightblue}{\parbox{\dimexpr\textwidth-2\fboxsep}{%
+    \ifnum\value{section}=0\relax\else\thesection\quad\fi#1}}}
+\titleformat{\section}{\large\bfseries\color{darkblue}}{}{0em}{\sectionbox}
+\titleformat{\subsection}{\bfseries\color{midblue}}{\thesubsection}{0.5em}{}
+\titleformat{\subsubsection}{\bfseries\color{darkgray}}{}{0em}{}
+
+% ── Headers / Footers ────────────────────────────────────────
+%  \bookletsubtitle must be defined before \input{housestyle}
 \pagestyle{fancy}
 \fancyhf{}
-\fancyhead[L]{\small\textcolor{cieprimary}{\textbf{CIE A Level Physics}}}
-\fancyhead[R]{\small\textcolor{cieprimary}{\bookletheader}}
-\fancyfoot[C]{\small\thepage}
+\fancyhead[L]{\color{darkblue}\small\bfseries CIE A-Level Physics (9702)}
+\fancyhead[R]{\color{darkblue}\small\bfseries \bookletsubtitle}
+\fancyfoot[C]{\small\textcolor{darkgray}{\thepage}}
 \renewcommand{\headrulewidth}{0.5pt}
-\renewcommand{\headrule}{%
-  \hbox to\headwidth{\color{cieprimary}\leaders\hrule height\headrulewidth\hfill}}
+\renewcommand{\headrule}{\hbox to\headwidth{%
+  \color{darkblue}\leaders\hrule height \headrulewidth\hfill}}
 
-% ── Suppress chapter headings (report class, chapter-free layout) ─────────────
-\renewcommand{\chaptername}{}
-\renewcommand{\thechapter}{}
-
-% ── Section numbering: sections as 1, 2, 3 — subsections as 1.1, 1.2 ─────────
-% Sections count within the chapter; chapter number suppressed in display.
-\renewcommand{\thesection}{\arabic{section}}
-\renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}}
-\renewcommand{\thesubsubsection}{\arabic{section}.\arabic{subsection}.\arabic{subsubsection}}
-
-% ── Section / subsection formatting ──────────────────────────────────────────
-\titleformat{\chapter}[block]{\relax}{}{0pt}{}   % suppress chapter title entirely
-\titlespacing{\chapter}{0pt}{0pt}{0pt}
-
-\titleformat{\section}
-  {\large\bfseries\color{cieprimary}}
-  {\thesection}{0.6em}{}
-  [\vspace{2pt}{\color{ciepink}\titlerule[1.5pt]}]
-
-\titleformat{\subsection}
-  {\normalsize\bfseries\color{cieprimary}}
-  {\thesubsection}{0.5em}{}
-
-\titleformat{\subsubsection}
-  {\normalsize\bfseries}
-  {}{0pt}{}
-
-% ── Prevent orphan headings ──────────────────────────────────────────────────
-\newcommand{\sectionbreak}{\needspace{6cm}}
-\newcommand{\subsectionbreak}{\needspace{4cm}}
-
-% ── TOC formatting (tocloft) ──────────────────────────────────────────────────
-\renewcommand{\cftsecfont}{\bfseries\color{cieprimary}}
-\renewcommand{\cftsecpagefont}{\bfseries\color{cieprimary}}
-\renewcommand{\cftsubsecfont}{\color{cieprimary}}
-\renewcommand{\cftsubsecpagefont}{\color{cieprimary}}
-\setlength{\cftbeforesecskip}{4pt}
-% Hide chapter level from TOC
-\setcounter{tocdepth}{2}
-
-% ── tcolorbox library ─────────────────────────────────────────────────────────
-\tcbuselibrary{skins, breakable}
-
-% ── Definition box — blue ─────────────────────────────────────────────────────
-\newtcolorbox{defnbox}[1]{
-  enhanced, breakable,
-  colback=ciedefnbg, colframe=cieprimary,
-  fonttitle=\bfseries\color{white},
-  title={Definition: #1},
-  attach boxed title to top left={yshift=-2mm, xshift=4mm},
-  boxed title style={colback=cieprimary, colframe=cieprimary, arc=2pt},
-  arc=4pt, boxrule=1pt, top=6pt
-}
-
-% ── Formula box — pink ────────────────────────────────────────────────────────
-\newtcolorbox{formulabox}[1]{
-  enhanced, breakable,
-  colback=ciepinkbg, colframe=ciepink,
-  fonttitle=\bfseries\color{white},
-  title={#1},
-  attach boxed title to top left={yshift=-2mm, xshift=4mm},
-  boxed title style={colback=ciepink, colframe=ciepink, arc=2pt},
-  arc=4pt, boxrule=1pt, top=6pt
-}
-
-% ── Exam tip box — green ──────────────────────────────────────────────────────
-\newtcolorbox{tipbox}{
-  enhanced, breakable,
-  colback=cietipbg, colframe=cietipframe,
-  fonttitle=\bfseries\color{white},
-  title={$\checkmark$\; Exam Tip},
-  attach boxed title to top left={yshift=-2mm, xshift=4mm},
-  boxed title style={colback=cietipframe, colframe=cietipframe, arc=2pt},
-  arc=4pt, boxrule=1pt, top=6pt
-}
-
-% ── Common mistake box — red ──────────────────────────────────────────────────
-\newtcolorbox{warnbox}{
-  enhanced, breakable,
-  colback=ciewarnbg, colframe=ciewarnframe,
-  fonttitle=\bfseries\color{white},
-  title={!\; Common Mistake},
-  attach boxed title to top left={yshift=-2mm, xshift=4mm},
-  boxed title style={colback=ciewarnframe, colframe=ciewarnframe, arc=2pt},
-  arc=4pt, boxrule=1pt, top=6pt
-}
-
-% ── Worked example box — grey ─────────────────────────────────────────────────
-\newtcolorbox{examplebox}[1]{
-  enhanced, breakable,
-  colback=cieexbg, colframe=cieexframe,
-  fonttitle=\bfseries\color{cieprimary},
-  title={Example #1},
-  attach boxed title to top left={yshift=-2mm, xshift=4mm},
-  boxed title style={colback=cieexframe, colframe=cieexframe, arc=2pt,
-                     fontupper=\bfseries\color{white}},
-  arc=4pt, boxrule=1pt, top=6pt
-}
-
-% ── Solution box — grey, used for solutions in worked examples ───────────────
-\newtcolorbox{solutionbox}{
-  enhanced, breakable,
-  colback=cieexbg, colframe=cieexframe,
-  fonttitle=\bfseries\color{white},
-  title={Solution},
-  attach boxed title to top left={yshift=-2mm, xshift=4mm},
-  boxed title style={colback=cieexframe, colframe=cieexframe, arc=2pt},
-  arc=4pt, boxrule=1pt, top=6pt
-}
-
-% ── Formula summary box — pink ────────────────────────────────────────────────
-\newtcolorbox{summarybox}{
-  enhanced, breakable,
-  colback=ciepinkbg, colframe=ciepink,
-  fonttitle=\bfseries\color{white},
-  title={Formula Summary Sheet},
-  attach boxed title to top left={yshift=-2mm, xshift=4mm},
-  boxed title style={colback=ciepink, colframe=ciepink, arc=2pt},
-  arc=4pt, boxrule=1.5pt, top=8pt
-}
-
-% ── Mark scheme box — subtle blue tint ───────────────────────────────────────
-\newtcolorbox{markbox}{
-  enhanced, breakable,
-  colback=ciedefnbg!40, colframe=cieprimary!60,
-  arc=4pt, boxrule=0.8pt, top=4pt, bottom=4pt
-}
-
-% ── Answer space box — white fill, pink outline, rounded corners ──────────────
-% Usage: \answerbox{4cm}  — argument sets the minimum height
-\newcommand{\answerbox}[1]{%
-  \begin{tcolorbox}[
-    enhanced,
-    breakable=false,
-    colback=white, colframe=ciepink,
-    arc=6pt, boxrule=1pt,
-    left=4pt, right=4pt,
-    top=4pt, bottom=4pt,
-    height=#1
-  ]
-  \vspace{#1}
-  \end{tcolorbox}%
-}
-
-% ── Checklist box — pink ──────────────────────────────────────────────────────
-\newtcolorbox{checklistbox}{
-  enhanced, breakable,
-  colback=ciepinkbg!50, colframe=ciepink,
-  fonttitle=\bfseries\color{white},
-  title={Revision Checklist},
-  attach boxed title to top left={yshift=-2mm, xshift=4mm},
-  boxed title style={colback=ciepink, colframe=ciepink, arc=2pt},
-  arc=4pt, boxrule=1.5pt, top=8pt
-}
-
-% ── Hyperlinks ────────────────────────────────────────────────────────────────
-\hypersetup{colorlinks=true, linkcolor=cieprimary, urlcolor=cieprimary}
-
-% ── Mark allocation (right-aligned) ──────────────────────────────────────────
-% Usage: \markalloc{2}
-\newcommand{\markalloc}[1]{\hfill\textit{[#1 marks]}}
-
-% ── Title page ────────────────────────────────────────────────────────────────
-% Usage: \maketitlepage{Topic 13}{Gravitational Fields}{subtitle}{bullet body}
-\newcommand{\maketitlepage}[4]{%
-  \begin{titlepage}
+% ── Title page command ───────────────────────────────────────
+%  \maketitlepage{Topic number}{Topic title}{Bullet list of contents}
+%  Example:
+%    \maketitlepage{13}{Gravitational Fields}{
+%      \item Newton's Law of Gravitation
+%      \item Gravitational Potential
+%    }
+\newcommand{\maketitlepage}[3]{%
   \thispagestyle{empty}
-  % Full-width banner using tikz to break out of margins
   \begin{tikzpicture}[remember picture, overlay]
-    \fill[cieprimary]
-      ([xshift=0cm, yshift=0cm]current page.north west)
-      rectangle
-      ([xshift=0cm, yshift=-7.5cm]current page.north east);
-  \end{tikzpicture}%
-  \vspace*{0.1cm}
+    \fill[darkblue] (current page.north west)
+      rectangle ([yshift=-6cm]current page.north east);
+    \fill[midblue] ([yshift=-6cm]current page.north west)
+      rectangle ([yshift=-6.3cm]current page.north east);
+    \fill[accentgold] ([yshift=-6.3cm]current page.north west)
+      rectangle ([yshift=-6.55cm]current page.north east);
+    \node[anchor=north, text=white, font=\fontsize{16}{20}\selectfont]
+      at ([yshift=-1.5cm]current page.north) {CIE International A Level Physics};
+    \node[anchor=north, text=white, font=\fontsize{28}{34}\selectfont\bfseries]
+      at ([yshift=-3.2cm]current page.north) {Topic #1};
+  \end{tikzpicture}
+  \vspace*{3cm}
   \begin{center}
-    {\fontsize{16}{20}\selectfont\bfseries\color{white}
-      CIE International A Level Physics (9702)}\\[10pt]
-    {\fontsize{24}{30}\selectfont\bfseries\color{white} #1}\\[8pt]
-    {\fontsize{34}{40}\selectfont\bfseries\color{white} #2}\\[10pt]
-    {\fontsize{15}{20}\selectfont\color{white!85!cieprimary} #3}
+    {\color{accentgold}\fontsize{32}{38}\selectfont\bfseries #2}\\[0.3cm]
+    {\color{darkgray}\fontsize{14}{18}\selectfont Revision Booklet}
+    \vspace{3cm}
+
+    \begin{tcolorbox}[colback=white, colframe=accentgold,
+        width=0.8\textwidth, arc=5pt, boxrule=1.5pt]
+      \centering
+      \textbf{\color{darkblue}This booklet covers:}\\[0.3cm]
+      \begin{itemize}[leftmargin=1.5em, itemsep=2pt]
+        #3
+      \end{itemize}
+    \end{tcolorbox}
   \end{center}
-  \vspace{2.8cm}
-  % Pink accent rule
-  {\color{ciepink}\rule{\textwidth}{4pt}}
-  \vspace{0.6cm}
-  \begin{center}
-    {\large\bfseries\color{cieprimary} Revision Booklet}\\[0.25cm]
-    {\normalsize\color{cieprimary}
-      Syllabus 9702 \quad|\quad A Level (A2) \quad|\quad 2025--2027}
-  \end{center}
-  \vspace{0.7cm}
-  % Pink outlined rounded box for "This booklet covers"
-  \begin{tcolorbox}[
-    enhanced,
-    colback=white, colframe=ciepink,
-    arc=8pt, boxrule=1.5pt,
-    left=8pt, right=8pt, top=6pt, bottom=6pt
-  ]
-    {\bfseries\color{cieprimary} This booklet covers:}
-    \vspace{2pt}
-    #4
-  \end{tcolorbox}
-  \end{titlepage}%
+  \newpage
 }
-% =============================================================================
+
+% ── TOC with house-style heading ─────────────────────────────
+\renewcommand{\contentsname}{%
+  \colorbox{lightblue}{\parbox{\dimexpr\textwidth-2\fboxsep}{Contents}}}
