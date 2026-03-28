@@ -1,0 +1,569 @@
+\documentclass[12pt,a4paper]{article}
+
+% ── Booklet-specific header text ─────────────────────────────
+\newcommand{\bookletsubtitle}{Topic 13: Gravitational Fields}
+
+% ── Shared house style ───────────────────────────────────────
+\input{housestyle}
+
+% ══════════════════════════════════════════════════════════════════════════════
+\begin{document}
+
+% ===== TITLE PAGE =====
+\maketitlepage{13}{Gravitational Fields}{
+  \item Newton's Law of Gravitation
+  \item Gravitational Field Strength
+  \item Gravitational Potential
+  \item Orbits and Satellites
+  \item Escape Velocity
+  \item Exam Technique \& Practice Questions
+}
+
+% ===== TABLE OF CONTENTS =====
+\tableofcontents
+\newpage
+
+% ===== SECTION 1: KEY CONCEPTS =====
+\section{Core Concepts and Definitions}
+
+\begin{definitionbox}{Gravitational Field}
+A \textbf{gravitational field} is a region of space in which a mass experiences a force due to the gravitational attraction of another mass.
+\begin{itemize}[itemsep=2pt]
+  \item Gravitational fields are always \textbf{attractive} — there is no gravitational repulsion.
+  \item Any mass creates a gravitational field in the space around it.
+  \item A \textbf{test mass} placed in the field will experience a force towards the source mass.
+\end{itemize}
+\end{definitionbox}
+
+\begin{definitionbox}{Radial vs Uniform Fields}
+\begin{itemize}[itemsep=2pt]
+  \item \textbf{Radial field} (e.g., around a planet): field lines point towards the centre; $g$ decreases with distance.
+  \item \textbf{Uniform field} (e.g., near Earth's surface over small distances): field lines are parallel and equally spaced; $g$ is approximately constant at $9.81\ \text{N kg}^{-1}$.
+\end{itemize}
+\end{definitionbox}
+
+\vspace{0.5em}
+\begin{center}
+\begin{tikzpicture}[scale=0.85]
+  % Radial field diagram
+  \begin{scope}[xshift=-4cm]
+    \draw[fill=darkblue!70] (0,0) circle (0.4);
+    \node[white, font=\small\bfseries] at (0,0) {M};
+    \foreach \angle in {0,45,90,135,180,225,270,315}{
+      \draw[->,>=stealth,color=midblue,thick]
+        ({1.8*cos(\angle)},{1.8*sin(\angle)}) -- ({0.6*cos(\angle)},{0.6*sin(\angle)});
+    }
+    \node[darkblue, font=\small\bfseries] at (0,-2.4) {Radial Field};
+  \end{scope}
+  % Uniform field diagram
+  \begin{scope}[xshift=3.5cm]
+    \foreach \x in {-1.2,-0.4,0.4,1.2}{
+      \draw[->,>=stealth,color=midblue,thick] (\x,1.5) -- (\x,-1.7);
+    }
+    \fill[darkgray!40] (-1.8,-2.0) rectangle (1.8,-1.7);
+    \draw[darkgray,thick] (-1.8,-1.7) -- (1.8,-1.7);
+    \node[darkgray, font=\small] at (0,-2.2) {surface};
+    \node[darkblue, font=\small\bfseries] at (0,-2.7) {Uniform Field};
+    \node[midblue,font=\scriptsize] at (2.1,0) {$g$};
+  \end{scope}
+\end{tikzpicture}
+\end{center}
+
+% ===== SECTION 2: NEWTON'S LAW =====
+\section{Newton's Law of Gravitation}
+
+\begin{formulabox}{Newton's Law of Gravitation}
+\begin{center}
+\Large $F = \dfrac{Gm_1 m_2}{r^2}$
+\end{center}
+\vspace{0.3em}
+\begin{tabular}{@{}ll@{}}
+$F$ & = gravitational force between the two masses (N) \\
+$G$ & = gravitational constant $= 6.67 \times 10^{-11}\ \text{N m}^2 \text{kg}^{-2}$ \\
+$m_1, m_2$ & = the two point masses (or uniform spheres) (kg) \\
+$r$ & = separation between centres of mass (m) \\
+\end{tabular}
+\end{formulabox}
+
+\begin{keybox}{Key Points}
+\begin{itemize}[itemsep=2pt]
+  \item The force is always \textbf{attractive}.
+  \item It applies strictly to \textbf{point masses}, but also works for uniform spheres if $r$ is measured from the centre.
+  \item $r$ is the \textbf{centre-to-centre} distance — not surface to surface.
+  \item The force obeys an \textbf{inverse-square law}: double the distance, quarter the force.
+\end{itemize}
+\end{keybox}
+
+% ===== SECTION 3: GRAVITATIONAL FIELD STRENGTH =====
+\section{Gravitational Field Strength}
+
+\begin{definitionbox}{Definition of Gravitational Field Strength $g$}
+The \textbf{gravitational field strength} at a point is the gravitational force exerted per unit mass on a small test mass placed at that point.
+$$g = \frac{F}{m} \qquad \text{units: N kg}^{-1} \equiv \text{m s}^{-2}$$
+$g$ is a \textbf{vector} quantity, directed towards the source mass.
+\end{definitionbox}
+
+\begin{formulabox}{Field Strength Formulae}
+\begin{center}
+\Large $g = \dfrac{GM}{r^2}$
+\end{center}
+\vspace{0.3em}
+\begin{tabular}{@{}ll@{}}
+$g$ & = gravitational field strength at distance $r$ (N kg$^{-1}$) \\
+$G$ & = gravitational constant (N m$^2$ kg$^{-2}$) \\
+$M$ & = mass of body creating the field (kg) \\
+$r$ & = distance from centre of $M$ (m) \\
+\end{tabular}
+\end{formulabox}
+
+\subsubsection*{Variation of $g$ with distance $r$}
+
+\begin{center}
+\begin{tikzpicture}[xscale=1.6, yscale=1.0]
+  % Axes — both starting from origin (0,0)
+  \draw[->, darkblue, thick] (0,0) -- (5.5,0);
+  \draw[->, darkblue, thick] (0,0) -- (0,5.2);
+
+  % Axis labels
+  \node[darkblue, font=\small, anchor=north] at (2.75,-0.25) {Distance from centre, $r$};
+  \node[darkblue, font=\small, rotate=90, anchor=south] at (-0.35,1.8) {Field strength, $g$};
+
+  % Origin label
+  \node[darkgray, font=\small, anchor=north east] at (0,0) {$0$};
+
+  % x tick: R
+  \draw[darkblue, thin] (1, 0.06) -- (1, -0.06);
+  \node[darkgray, font=\small, anchor=north] at (1,-0.08) {$R$};
+
+  % y tick: g_surface
+  \draw[darkblue, thin] (-0.06, 4) -- (0.06, 4);
+  \node[darkgray, font=\small, anchor=east] at (-0.08, 4) {$g_\text{surface}$};
+
+  % Inside sphere: g increases linearly from 0 to g_surface at r=R
+  \draw[midblue, thick] (0,0) -- (1,4);
+
+  % Outside sphere: g = 4/r^2
+  \draw[darkblue, thick, domain=1:5.2, samples=150, smooth]
+    plot (\x, {4/\x^2});
+
+  % Dashed guide lines to surface point
+  \draw[dashed, darkgray, thin] (1,0) -- (1,4);
+  \draw[dashed, darkgray, thin] (0,4) -- (1,4);
+
+  % Dot at surface
+  \fill[darkblue] (1,4) circle (2pt);
+
+  % Labels
+  \node[darkblue, font=\small] at (3.2,1.6) {$g \propto \dfrac{1}{r^2}$};
+  \node[midblue, font=\small, anchor=north] at (0.5,-0.08) {inside};
+\end{tikzpicture}
+\end{center}
+
+\begin{warningbox}{Common Mistake}
+Do not confuse $g$ (field strength, N kg$^{-1}$) with $G$ (the universal gravitational constant, N m$^2$ kg$^{-2}$). They are completely different quantities!
+\end{warningbox}
+
+% ===== SECTION 4: GRAVITATIONAL POTENTIAL =====
+\section{Gravitational Potential}
+
+\begin{definitionbox}{Definition of Gravitational Potential $\phi$}
+The \textbf{gravitational potential} at a point is the work done per unit mass to move a small test mass from infinity to that point.
+
+$$\phi = \frac{W}{m} \qquad \text{units: J kg}^{-1}$$
+
+Gravitational potential is always \textbf{negative} (zero at infinity; work is done \emph{by} gravity as mass moves inwards, so the system loses potential energy).
+\end{definitionbox}
+
+\begin{formulabox}{Gravitational Potential Formulae}
+\begin{center}
+\Large $\phi = -\dfrac{GM}{r}$ \qquad $E_p = m\phi = -\dfrac{GMm}{r}$
+\end{center}
+\vspace{0.3em}
+\begin{tabular}{@{}ll@{}}
+$\phi$ & = gravitational potential at distance $r$ (J kg$^{-1}$) \\
+$E_p$ & = gravitational potential energy (J) \\
+$G$ & = $6.67 \times 10^{-11}$ N m$^2$ kg$^{-2}$ \\
+$M$ & = mass of body creating the field (kg) \\
+$r$ & = distance from centre of $M$ (m) \\
+\end{tabular}
+\end{formulabox}
+
+\subsection{Relationship Between $g$ and $\phi$}
+
+The gravitational field strength $g$ is related to the potential $\phi$ by:
+
+\begin{center}
+\large $g = -\dfrac{\Delta\phi}{\Delta r}$
+\end{center}
+
+$g$ is the \textbf{negative gradient} of the potential–distance graph. On a potential graph, steeper gradient $\Rightarrow$ stronger field.
+
+\subsubsection*{Graph of $\phi$ against $r$}
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+  width=11cm, height=7cm,
+  xlabel={},
+  ylabel={},
+  xmin=0, xmax=6.2,
+  ymin=-5.5, ymax=0.8,
+  xtick={1,2,3,4,5},
+  xticklabels={$R$,$2R$,$3R$,$4R$,$5R$},
+  ytick={0,-4},
+  yticklabels={$0$,$\phi_\text{surface}$},
+  axis lines=center,
+  axis line style={darkblue},
+  color=darkblue,
+  tick style={color=darkblue},
+  label style={color=darkblue, font=\small},
+  tick label style={color=darkgray, font=\small},
+  clip=false,
+]
+\addplot[thick, darkblue, domain=1:5.9, samples=200] {-4/x};
+% Manual x-axis label
+\node[darkblue, font=\small] at (axis cs:3.1,0.5) {Distance from centre};
+% Manual y-axis label to the left
+\node[darkblue, font=\small, rotate=90, anchor=south] at (axis cs:-0.85,-2.75) {Gravitational potential};
+% Dashed guide lines to surface point
+\draw[dashed, darkgray, thin] (axis cs:1,-5.5) -- (axis cs:1,-4);
+\draw[dashed, darkgray, thin] (axis cs:0,-4)   -- (axis cs:1,-4);
+% Dot at surface
+\fill[darkblue] (axis cs:1,-4) circle (2pt);
+% Asymptote annotation
+\node[darkblue, font=\small, anchor=north] at (axis cs:3.1,-5.9) {$\phi \to 0$ as $r \to \infty$};
+% Formula label
+\node[darkblue, font=\small] at (axis cs:3.8,-1.8) {$\phi = -\dfrac{GM}{r}$};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\begin{keybox}{Equipotential Surfaces}
+An \textbf{equipotential surface} is a surface on which the gravitational potential is the same everywhere.
+\begin{itemize}[itemsep=2pt]
+  \item No work is done moving a mass along an equipotential surface.
+  \item Equipotentials are always \textbf{perpendicular} to field lines.
+  \item For a point mass (or uniform sphere), equipotentials are concentric spheres.
+\end{itemize}
+\end{keybox}
+
+% ===== SECTION 5: ORBITS =====
+\section{Circular Orbits and Satellites}
+
+For an object of mass $m$ in a circular orbit of radius $r$ around a mass $M$, the gravitational force provides the centripetal force:
+
+\begin{formulabox}{Orbital Mechanics}
+\begin{align*}
+\frac{GMm}{r^2} &= \frac{mv^2}{r} = mr\omega^2 = mr\left(\frac{2\pi}{T}\right)^2 \\[1em]
+\therefore\quad v &= \sqrt{\frac{GM}{r}} \qquad \text{(orbital speed)}\\[0.8em]
+T^2 &= \frac{4\pi^2}{GM}\,r^3 \qquad \text{(Kepler's Third Law)}
+\end{align*}
+\end{formulabox}
+
+\begin{keybox}{Kepler's Third Law}
+$$T^2 \propto r^3$$
+The square of the orbital period is proportional to the cube of the orbital radius. The constant of proportionality is $\dfrac{4\pi^2}{GM}$.
+\end{keybox}
+
+\subsection{Energy in Circular Orbits}
+
+\begin{formulabox}{Energy of a Satellite in Circular Orbit}
+\begin{align*}
+E_k &= \frac{1}{2}mv^2 = \frac{GMm}{2r} \qquad \text{(kinetic energy — always positive)}\\
+E_p &= -\frac{GMm}{r} \qquad \text{(potential energy — always negative)}\\
+E_{total} &= E_k + E_p = -\frac{GMm}{2r} \qquad \text{(total energy — always negative)}
+\end{align*}
+As $r$ increases: $v$ decreases, $E_k$ decreases, $E_p$ increases, $E_{total}$ increases (becomes less negative).
+\end{formulabox}
+
+\subsection{Geostationary Orbits}
+
+\begin{definitionbox}{Geostationary Satellite}
+A \textbf{geostationary} satellite has:
+\begin{itemize}[itemsep=2pt]
+  \item An orbital period of exactly \textbf{24 hours}
+  \item An orbit in the \textbf{equatorial plane}
+  \item Movement in the \textbf{same direction} as Earth's rotation (west to east)
+  \item An orbital radius of approximately $4.2 \times 10^7\ \text{m}$ ($\approx 36\,000\ \text{km}$ altitude)
+\end{itemize}
+It appears \textbf{stationary} relative to a point on Earth's surface.\\[0.3em]
+\textbf{Uses:} satellite TV, telecommunications, weather monitoring.
+\end{definitionbox}
+
+% ===== SECTION 6: ESCAPE VELOCITY =====
+\section{Escape Velocity}
+
+\begin{definitionbox}{Definition of Escape Velocity}
+The \textbf{escape velocity} is the minimum speed at which an object must be projected from the surface of a body so that it can escape to infinity against the gravitational field, without any further energy input.
+\end{definitionbox}
+
+\begin{formulabox}{Escape Velocity}
+Setting total energy $= 0$ at infinity:
+$$\frac{1}{2}mv_{esc}^2 - \frac{GMm}{R} = 0$$
+\begin{center}
+\Large $v_{esc} = \sqrt{\dfrac{2GM}{R}}$
+\end{center}
+\vspace{0.3em}
+Note: $v_{esc} = \sqrt{2}\, v_{orbital}$ at the same radius.
+\end{formulabox}
+
+% ===== SECTION 7: FORMULA SUMMARY =====
+\section{Formula Summary Sheet}
+
+\begin{tcolorbox}[colback=lightgold, colframe=accentgold, breakable]
+\renewcommand{\arraystretch}{1.8}
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Formula} & \textbf{Quantity} & \textbf{Units} \\
+\midrule
+$F = \dfrac{Gm_1 m_2}{r^2}$ & Gravitational force & N \\
+$g = \dfrac{F}{m}$ & Field strength (definition) & N kg$^{-1}$ \\
+$g = \dfrac{GM}{r^2}$ & Field strength (point mass) & N kg$^{-1}$ \\
+$\phi = -\dfrac{GM}{r}$ & Gravitational potential & J kg$^{-1}$ \\
+$E_p = -\dfrac{GMm}{r}$ & Gravitational PE & J \\
+$g = -\dfrac{\Delta\phi}{\Delta r}$ & Field from potential gradient & N kg$^{-1}$ \\
+$v = \sqrt{\dfrac{GM}{r}}$ & Orbital speed & m s$^{-1}$ \\
+$T^2 = \dfrac{4\pi^2 r^3}{GM}$ & Kepler's Third Law & s$^2$, m$^3$ \\
+$v_{esc} = \sqrt{\dfrac{2GM}{R}}$ & Escape velocity & m s$^{-1}$ \\
+\bottomrule
+\end{tabular}
+\end{tcolorbox}
+
+\vspace{0.5em}
+\begin{tcolorbox}[colback=lightblue, colframe=darkblue]
+\textbf{Constants:} $G = 6.67\times10^{-11}\ \text{N m}^2\text{kg}^{-2}$,\quad
+$M_E = 5.97\times10^{24}\ \text{kg}$,\quad $R_E = 6.37\times10^6\ \text{m}$
+\end{tcolorbox}
+
+% ===== SECTION 8: EXAM TECHNIQUE =====
+\section{Exam Technique and Problem-Solving Strategy}
+
+\begin{keybox}{Step-by-Step Strategy for Calculation Questions}
+\begin{enumerate}[itemsep=3pt]
+  \item \textbf{Identify} what you are asked to find.
+  \item \textbf{List} the quantities given; convert units if needed (e.g.\ days $\to$ seconds, km $\to$ m).
+  \item \textbf{Select} the appropriate formula.
+  \item \textbf{Substitute} values carefully, showing all working.
+  \item \textbf{Check} units and significant figures in your answer.
+\end{enumerate}
+\end{keybox}
+
+\begin{warningbox}{Common Errors — Avoid These!}
+\begin{itemize}[itemsep=3pt]
+  \item Using \textbf{diameter} instead of radius in $g = GM/r^2$.
+  \item Forgetting the \textbf{negative sign} in $\phi = -GM/r$.
+  \item Not converting \textbf{hours/days to seconds} before applying Kepler's Law.
+  \item Confusing \textbf{$g$} (field strength, vector) with \textbf{$\phi$} (potential, scalar).
+  \item Saying $\phi = 0$ at the surface — it is zero only \textbf{at infinity}.
+  \item Thinking higher orbit $\Rightarrow$ faster orbital speed — it is \textbf{slower}.
+\end{itemize}
+\end{warningbox}
+
+% ===== SECTION 9: WORKED EXAMPLES =====
+\section{Worked Examples}
+
+\subsection*{Example 1 — Field Strength at Altitude}
+
+\textbf{Question:} Calculate the gravitational field strength at a height of $400\ \text{km}$ above Earth's surface. ($M_E = 5.97\times10^{24}\ \text{kg}$, $R_E = 6.37\times10^6\ \text{m}$)
+
+\begin{examplebox}{Solution}
+\textbf{Solution:}\\
+$r = R_E + h = 6.37\times10^6 + 4.00\times10^5 = 6.77\times10^6\ \text{m}$
+
+$$g = \frac{GM}{r^2} = \frac{6.67\times10^{-11} \times 5.97\times10^{24}}{(6.77\times10^6)^2}$$
+
+$$g = \frac{3.98\times10^{14}}{4.58\times10^{13}} = \mathbf{8.69\ \text{N kg}^{-1}}$$
+
+Note: this is the field strength at the ISS orbit — astronauts are \emph{not} weightless because gravity is zero!
+\end{tcolorbox}
+
+\subsection*{Example 2 — Orbital Period Using Kepler's Third Law}
+
+\textbf{Question:} A satellite orbits Earth at a radius of $4.2\times10^7\ \text{m}$. Calculate its orbital period.
+
+\begin{examplebox}{Solution}
+\textbf{Solution:}\\
+$$T^2 = \frac{4\pi^2 r^3}{GM} = \frac{4\pi^2 \times (4.2\times10^7)^3}{6.67\times10^{-11} \times 5.97\times10^{24}}$$
+
+$$T^2 = \frac{4\pi^2 \times 7.41\times10^{22}}{3.98\times10^{14}} = 7.36\times10^9\ \text{s}^2$$
+
+$$T = \sqrt{7.36\times10^9} = 8.58\times10^4\ \text{s} \approx \mathbf{23.8\ \text{hours}}$$
+
+This is a geostationary orbit ($T \approx 24\ \text{h}$).
+\end{tcolorbox}
+
+\subsection*{Example 3 — Change in Gravitational Potential Energy}
+
+\textbf{Question:} A spacecraft of mass $2500\ \text{kg}$ is moved from the Earth's surface to an altitude of $800\ \text{km}$. Calculate the increase in gravitational potential energy.
+
+\begin{examplebox}{Solution}
+\textbf{Solution:}\\
+$r_1 = 6.37\times10^6\ \text{m}$, \quad $r_2 = 6.37\times10^6 + 8.00\times10^5 = 7.17\times10^6\ \text{m}$
+
+$$\Delta E_p = GMm\left(\frac{1}{r_1} - \frac{1}{r_2}\right)$$
+
+$$\Delta E_p = 6.67\times10^{-11} \times 5.97\times10^{24} \times 2500 \times \left(\frac{1}{6.37\times10^6} - \frac{1}{7.17\times10^6}\right)$$
+
+$$\Delta E_p = 9.95\times10^{17} \times 1.75\times10^{-8} = \mathbf{1.74\times10^{10}\ \text{J}}$$
+\end{tcolorbox}
+
+% ===== SECTION 10: PRACTICE QUESTIONS =====
+\section{Practice Exam Questions}
+
+\subsection*{Section A — Short Answer Questions}
+
+\begin{tcolorbox}[colback=white, colframe=midblue, breakable]
+
+\begin{minipage}{\linewidth}
+\textbf{Q1.} State Newton's Law of Gravitation.
+\par\hfill\textit{[2 marks]}
+\vspace{2.5cm}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+\textbf{Q2.} Define gravitational field strength and state its units.
+\par\hfill\textit{[2 marks]}
+\vspace{2.5cm}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+\textbf{Q3.} Explain why gravitational potential is always a negative quantity.
+\par\hfill\textit{[2 marks]}
+\vspace{3cm}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+\textbf{Q4.} The gravitational field strength at Earth's surface is $9.81\ \text{N kg}^{-1}$. Calculate the field strength at a distance of $3R_E$ from Earth's centre, where $R_E$ is Earth's radius.
+\par\hfill\textit{[2 marks]}
+\vspace{3cm}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+\textbf{Q5.} Two planets, X and Y, orbit the same star. Planet X has an orbital radius twice that of planet Y. Determine the ratio $T_X / T_Y$.
+\par\hfill\textit{[3 marks]}
+\vspace{3.5cm}
+\end{minipage}
+
+\end{tcolorbox}
+
+\subsection*{Section B — Longer Structured Questions}
+
+\begin{tcolorbox}[colback=white, colframe=midblue, breakable]
+
+\begin{minipage}{\linewidth}
+\textbf{Q6.} A satellite of mass $m$ orbits a planet of mass $M$ in a circular orbit of radius $r$.
+\end{minipage}
+
+\begin{enumerate}[label=(\alph*)]
+  \item \begin{minipage}[t]{\linewidth}
+  Show that the orbital speed of the satellite is given by $v = \sqrt{GM/r}$.
+  \par\hfill\textit{[2 marks]}
+  \vspace{3.5cm}
+  \end{minipage}
+
+  \item \begin{minipage}[t]{\linewidth}
+  Show that the period of the orbit satisfies $T^2 = \dfrac{4\pi^2 r^3}{GM}$.
+  \par\hfill\textit{[2 marks]}
+  \vspace{3.5cm}
+  \end{minipage}
+
+  \item \begin{minipage}[t]{\linewidth}
+  The satellite is moved to a lower orbit. Explain what happens to its:
+  \begin{itemize}
+    \item speed
+    \item kinetic energy
+    \item total energy
+  \end{itemize}
+  \par\hfill\textit{[3 marks]}
+  \vspace{4cm}
+  \end{minipage}
+\end{enumerate}
+
+\begin{minipage}{\linewidth}
+\textbf{Q7.} The Moon orbits the Earth with a period of $27.3$ days at a mean orbital radius of $3.84\times10^8\ \text{m}$.
+
+\begin{enumerate}[label=(\alph*)]
+  \item Use this data to calculate the mass of the Earth.
+  \par\hfill\textit{[3 marks]}
+  \vspace{4cm}
+
+  \item Calculate the gravitational potential at the Moon's orbital radius.
+  \par\hfill\textit{[2 marks]}
+  \vspace{3.5cm}
+
+  \item A $75\ \text{kg}$ astronaut travels from Earth's surface to the Moon's orbital radius. Calculate the change in gravitational potential energy.
+  \par\hfill\textit{[3 marks]}
+  \vspace{4cm}
+\end{enumerate}
+\end{minipage}
+
+\end{tcolorbox}
+
+% ===== SECTION 11: MARK SCHEME =====
+\section{Mark Scheme and Answers}
+
+\begin{markscheme}
+
+\textbf{Q1.} Any two masses exert an attractive force on each other [1]; the force is proportional to the product of their masses and inversely proportional to the square of their separation [1].
+
+\vspace{0.5em}\textbf{Q2.} Gravitational field strength is the gravitational force per unit mass acting on a (small test) mass placed at that point [1]; units: N kg$^{-1}$ (or m s$^{-2}$) [1].
+
+\vspace{0.5em}\textbf{Q3.} Gravitational potential is defined as zero at infinity [1]; work is done by gravity as mass moves from infinity inward, so the potential decreases below zero — it is always negative [1].
+
+\vspace{0.5em}\textbf{Q4.} $g \propto 1/r^2$; at $3R_E$, $g = 9.81/3^2 = 9.81/9 = \mathbf{1.09\ \text{N kg}^{-1}}$ [2].
+
+\vspace{0.5em}\textbf{Q5.} By Kepler's Third Law: $T^2 \propto r^3$, so $\left(\dfrac{T_X}{T_Y}\right)^2 = \left(\dfrac{2r_Y}{r_Y}\right)^3 = 8$ [2]; $\dfrac{T_X}{T_Y} = \sqrt{8} = \mathbf{2\sqrt{2} \approx 2.83}$ [1].
+
+\vspace{0.5em}\textbf{Q6(a).} Gravitational force = centripetal force: $\frac{GMm}{r^2} = \frac{mv^2}{r}$ [1]; cancel $m$, rearrange: $v = \sqrt{GM/r}$ [1].
+
+\vspace{0.5em}\textbf{Q6(b).} Substitute $v = 2\pi r/T$ into result from (a) [1]; rearrange to get $T^2 = 4\pi^2 r^3/GM$ [1].
+
+\vspace{0.5em}\textbf{Q6(c).} Speed \textbf{increases} [1]; KE \textbf{increases} [1]; total energy \textbf{decreases} (becomes more negative) [1].
+
+\vspace{0.5em}\textbf{Q7(a).} $T = 27.3 \times 24 \times 3600 = 2.36\times10^6\ \text{s}$; $M = \dfrac{4\pi^2 r^3}{GT^2} = \dfrac{4\pi^2 (3.84\times10^8)^3}{6.67\times10^{-11}(2.36\times10^6)^2}$ [1] $= \mathbf{6.02\times10^{24}\ \text{kg}}$ [2].
+
+\vspace{0.5em}\textbf{Q7(b).} $\phi = -\dfrac{GM}{r} = -\dfrac{6.67\times10^{-11}\times 6.02\times10^{24}}{3.84\times10^8} = \mathbf{-1.05\times10^6\ \text{J kg}^{-1}}$ [2].
+
+\vspace{0.5em}\textbf{Q7(c).} $\Delta E_p = m\Delta\phi = m(\phi_{\text{Moon orbit}} - \phi_{\text{surface}})$ [1]; $\phi_\text{surface} = -GM/R_E = -6.25\times10^7\ \text{J kg}^{-1}$; $\Delta\phi = -1.05\times10^6 - (-6.25\times10^7) = 6.14\times10^7\ \text{J kg}^{-1}$; $\Delta E_p = 75\times 6.14\times10^7 = \mathbf{4.6\times10^9\ \text{J}}$ [2].
+
+\end{tcolorbox}
+
+% ===== SECTION 12: REVISION CHECKLIST =====
+\newpage
+\section{Revision Checklist}
+
+Use this checklist to track your understanding. Tick each box when you are confident:
+
+\begin{tcolorbox}[colback=white, colframe=darkblue, breakable]
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{@{} c p{10.5cm} r @{}}
+\toprule
+ & \textbf{Learning Objective} & \textbf{Confidence (1--3)} \\
+\midrule
+$\square$ & State and apply Newton's Law of Gravitation & \\
+$\square$ & Define gravitational field strength; use $g = F/m$ and $g = GM/r^2$ & \\
+$\square$ & Sketch field line and equipotential diagrams & \\
+$\square$ & Define gravitational potential and explain why it is negative & \\
+$\square$ & Use $\phi = -GM/r$ and $E_p = -GMm/r$ & \\
+$\square$ & Apply the relationship $g = -\Delta\phi/\Delta r$ & \\
+$\square$ & Derive the expression for orbital speed & \\
+$\square$ & State and apply Kepler's Third Law ($T^2 \propto r^3$) & \\
+$\square$ & Analyse energy changes in satellite orbits & \\
+$\square$ & Describe the properties of a geostationary satellite & \\
+$\square$ & Derive and apply the formula for escape velocity & \\
+$\square$ & Interpret graphs of $g$ vs $r$ and $\phi$ vs $r$ & \\
+\bottomrule
+\end{tabular}
+\vspace{0.5em}
+
+\textit{Key: 1 = Need more work \quad 2 = Getting there \quad 3 = Confident}
+\end{tcolorbox}
+
+\vspace{1em}
+\begin{motivationbox}
+\centering
+\textbf{\color{darkblue}Good luck with your revision!}\\[0.2em]
+{\color{darkgray}\small Remember: understanding \emph{why} formulas work is more powerful than memorising them. Practice drawing diagrams and deriving key results from first principles.}
+\end{motivationbox}
+
+\end{document}
