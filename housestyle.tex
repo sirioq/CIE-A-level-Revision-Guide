@@ -8,6 +8,7 @@
 
 % ── Packages ─────────────────────────────────────────────────
 \usepackage[a4paper, top=2.5cm, bottom=2.5cm, left=2cm, right=2cm]{geometry}
+\usepackage{lmodern}  % scalable fonts, avoids font size warnings
 \usepackage{amsmath, amssymb}
 \usepackage{xcolor}
 \usepackage{graphicx}
@@ -88,6 +89,10 @@
 \titleformat{\section}{\large\bfseries\color{darkblue}}{}{0em}{\sectionbox}
 \titleformat{\subsection}{\bfseries\color{midblue}}{\thesubsection}{0.5em}{}
 \titleformat{\subsubsection}{\bfseries\color{darkgray}}{}{0em}{}
+
+% ── Head height fix ─────────────────────────────────────────
+\setlength{\headheight}{24.02pt}
+\addtolength{\topmargin}{-12.02pt}
 
 % ── Booklet header placeholder ───────────────────────────────
 %  Defined here so \renewcommand works in main.tex for every topic.
