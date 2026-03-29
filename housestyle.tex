@@ -2,7 +2,7 @@
 %  housestyle.tex
 %  Shared preamble for CIE A-Level Physics (9702) revision booklets.
 %  Usage in each booklet:
-%    \newcommand{\bookletsubtitle}{Topic 13: Gravitational Fields}
+%    \newcommand{\bookletheader}{Topic 13: Gravitational Fields}
 %    \input{housestyle}
 % ============================================================
 
@@ -89,12 +89,16 @@
 \titleformat{\subsection}{\bfseries\color{midblue}}{\thesubsection}{0.5em}{}
 \titleformat{\subsubsection}{\bfseries\color{darkgray}}{}{0em}{}
 
+% ── Booklet header placeholder ───────────────────────────────
+%  Defined here so \renewcommand works in main.tex for every topic.
+\newcommand{\bookletheader}{}
+
 % ── Headers / Footers ────────────────────────────────────────
-%  \bookletsubtitle must be defined before \input{housestyle}
+%  \bookletheader must be defined before \input{housestyle}
 \pagestyle{fancy}
 \fancyhf{}
 \fancyhead[L]{\color{darkblue}\small\bfseries CIE A-Level Physics (9702)}
-\fancyhead[R]{\color{darkblue}\small\bfseries \bookletsubtitle}
+\fancyhead[R]{\color{darkblue}\small\bfseries \bookletheader}
 \fancyfoot[C]{\small\textcolor{darkgray}{\thepage}}
 \renewcommand{\headrulewidth}{0.5pt}
 \renewcommand{\headrule}{\hbox to\headwidth{%

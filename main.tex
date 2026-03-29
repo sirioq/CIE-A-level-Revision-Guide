@@ -1,25 +1,26 @@
-\documentclass[12pt,a4paper]{report}
+\documentclass[12pt,a4paper]{article}
 \input{housestyle}
 
 % =============================================================================
 % main.tex — Master file: compiles ALL topic booklets into one document.
 % To add a new topic:
-%   1. Create topic_XX/topic_XX.tex  (content only, no \documentclass)
-%   2. Add \renewcommand and \include lines below in syllabus order.
+%   1. Create topic_XX/topic_XX.tex  (content only, no \documentclass,
+%      no \begin{document}, no \end{document})
+%   2. Add \renewcommand{\bookletheader}{...} and \include lines below.
 % =============================================================================
 
 \begin{document}
 
 % ── Topic 13 — Gravitational Fields ──────────────────────────────────────────
-\newcommand{\bookletheader}{Topic 13 — Gravitational Fields}
+\renewcommand{\bookletheader}{Topic 13 — Gravitational Fields}
 \include{topic_13/topic_13}
 
 % ── Topics 14, 15 & 16 — Thermal Physics ─────────────────────────────────────
-%\newcommand{\bookletheader}{Topics 14, 15 \& 16 — Thermal Physics}
+%\renewcommand{\bookletheader}{Topics 14, 15 \& 16 — Thermal Physics}
 %\include{topics_14_15_16/topics_14_15_16}
 
 % ── Add further topics below as they are created ─────────────────────────────
-% \newcommand{\bookletheader}{Topic 17 — Oscillations}
+% \renewcommand{\bookletheader}{Topic 17 — Oscillations}
 % \include{topic_17/topic_17}
 
 \end{document}
