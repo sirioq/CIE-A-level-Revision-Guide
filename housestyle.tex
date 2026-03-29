@@ -39,11 +39,13 @@
 \definecolor{examgreen}{RGB}{0,120,60}
 \definecolor{examgreenlight}{RGB}{220,245,230}
 \definecolor{warningorange}{RGB}{200,80,0}
+\definecolor{pinklight}{RGB}{253,229,235}
+\definecolor{pinkframe}{RGB}{247,126,157}
 \definecolor{warninglight}{RGB}{255,235,220}
 
 % ── Box environments ─────────────────────────────────────────
 %  definitionbox  — light silver / mid-grey  (definitions)
-%  formulabox     — gold                     (formulae)
+%  formulabox     — pink                     (formulae)
 %  keybox         — light blue / dark blue   (key points)
 %  warningbox     — orange                   (common mistakes)
 %  examplebox     — light silver / mid-grey  (worked solutions)
@@ -55,7 +57,7 @@
   title=#1, breakable, arc=3pt, boxrule=1pt}
 
 \newtcolorbox{formulabox}[1]{
-  colback=lightgold, colframe=accentgold, fonttitle=\bfseries,
+  colback=pinklight, colframe=pinkframe, fonttitle=\bfseries,
   title=#1, breakable, arc=3pt, boxrule=1pt}
 
 \newtcolorbox{keybox}[1]{
