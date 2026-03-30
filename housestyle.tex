@@ -25,6 +25,7 @@
 \usepackage{fancyhdr}
 \usepackage{titlesec}
 \usepackage{minipage-marginpar}
+\usepackage{needspace}
 \usepackage{hyperref}  % must be last
 
 % ── Colours ──────────────────────────────────────────────────
@@ -81,6 +82,10 @@
   colback=lightgold, colframe=accentgold,
   breakable, arc=4pt, boxrule=1.5pt}
 
+% ── Non-breaking inline formula ─────────────────────────────
+%  Use \nf{g = GM/r^2} to prevent a formula breaking across lines.
+\newcommand{\nf}[1]{\mbox{$#1$}}
+
 % ── TOC depth ────────────────────────────────────────────────
 \setcounter{tocdepth}{1}
 
@@ -89,8 +94,16 @@
   \colorbox{lightblue}{\parbox{\dimexpr\textwidth-2\fboxsep}{%
     \ifnum\value{section}=0\relax\else\thesection\quad\fi#1}}}
 \titleformat{\section}{\large\bfseries\color{darkblue}}{}{0em}{\sectionbox}
+\titlespacing*{\section}{0pt}{*3}{*1}
 \titleformat{\subsection}{\bfseries\color{midblue}}{\thesubsection}{0.5em}{}
+\titlespacing*{\subsection}{0pt}{*2}{*0.5}
 \titleformat{\subsubsection}{\bfseries\color{darkgray}}{}{0em}{}
+
+% Ensure section/subsection headings never appear alone at page bottom
+\let\oldsection\section
+\renewcommand{\section}{\needspace{6\baselineskip}\oldsection}
+\let\oldsubsection\subsection
+\renewcommand{\subsection}{\needspace{4\baselineskip}\oldsubsection}
 
 % ── Head height fix ─────────────────────────────────────────
 \setlength{\headheight}{24.02pt}
