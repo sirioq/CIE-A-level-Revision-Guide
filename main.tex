@@ -1,4 +1,4 @@
-\documentclass[12pt,a4paper]{article}
+\documentclass[12pt,a4paper]{report}
 \input{housestyle}
 
 % =============================================================================
@@ -11,13 +11,17 @@
 
 \begin{document}
 
+% ── Table of contents ─────────────────────────────────────────────────────────
+\tableofcontents
+\newpage
+
 % ── Topic 13 — Gravitational Fields ──────────────────────────────────────────
 \renewcommand{\bookletheader}{Topic 13 — Gravitational Fields}
 \include{topic_13/topic_13}
 
 % ── Topics 14, 15 & 16 — Thermal Physics ─────────────────────────────────────
-%\renewcommand{\bookletheader}{Topics 14, 15 \& 16 — Thermal Physics}
-%\include{topics_14_15_16/topics_14_15_16}
+\renewcommand{\bookletheader}{Topics 14--16 — Thermal Physics}
+\include{topics_14_15_16/topics_14_15_16}
 
 % ── Add further topics below as they are created ─────────────────────────────
 % \renewcommand{\bookletheader}{Topic 17 — Oscillations}

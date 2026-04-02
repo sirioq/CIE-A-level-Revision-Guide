@@ -89,6 +89,16 @@
 % ── TOC depth ────────────────────────────────────────────────
 \setcounter{tocdepth}{1}
 
+% ── Chapter formatting (report class) ───────────────────────
+%  Suppress default chapter heading — we use \chapteropener instead
+\titleformat{\chapter}[block]{\large\bfseries\color{darkblue}}{}{0em}{\sectionbox}
+\titlespacing*{\chapter}{0pt}{0pt}{20pt}
+
+% ── Chapter formatting (report class) ───────────────────────
+\titleformat{\chapter}[display]
+  {\normalfont\huge\bfseries\color{darkblue}}{}{0pt}{}
+\titlespacing*{\chapter}{0pt}{0pt}{20pt}
+
 % ── Section formatting ───────────────────────────────────────
 \newcommand{\sectionbox}[1]{%
   \colorbox{lightblue}{\parbox{\dimexpr\textwidth-2\fboxsep}{%
@@ -136,9 +146,9 @@
   \begin{tikzpicture}[remember picture, overlay]
     \fill[darkblue] (current page.north west)
       rectangle ([yshift=-6cm]current page.north east);
-    \fill[midblue] ([yshift=-6cm]current page.north west)
+    \fill[lightsilver] ([yshift=-6cm]current page.north west)
       rectangle ([yshift=-6.3cm]current page.north east);
-    \fill[accentgold] ([yshift=-6.3cm]current page.north west)
+    \fill[pinkframe] ([yshift=-6.3cm]current page.north west)
       rectangle ([yshift=-6.55cm]current page.north east);
     \node[anchor=north, text=white, font=\fontsize{16}{20}\selectfont]
       at ([yshift=-1.5cm]current page.north) {CIE International A Level Physics};
@@ -147,7 +157,7 @@
   \end{tikzpicture}
   \vspace*{4.5cm}
   \begin{center}
-    {\color{accentgold}\fontsize{32}{38}\selectfont\bfseries #2}\\[0.2cm]
+    {\color{darkgray}\fontsize{32}{38}\selectfont\bfseries #2}\\[0.2cm]
     {\color{pinkframe}\rule{0.6\textwidth}{1.5pt}}\\[0.3cm]
     {\color{darkgray}\fontsize{14}{18}\selectfont Revision Booklet}
     \vspace{2.5cm}
@@ -161,6 +171,58 @@
       \end{itemize}
     \end{tcolorbox}
   \end{center}
+  \newpage
+}
+
+
+% ── Chapter opener (simpler than title page, for subsequent topics) ───────────
+%  \chapteropener{Topic number}{Topic title}{subtitle line}
+%  Example: \chapteropener{14}{Temperature}{Topics 14, 15 \& 16 — Thermal Physics}
+\newcommand{\chapteropener}[3]{%
+  \newpage
+  \thispagestyle{empty}
+  \begin{tikzpicture}[remember picture, overlay]
+    \fill[darkblue] (current page.north west)
+      rectangle ([yshift=-4cm]current page.north east);
+    \fill[lightsilver] ([yshift=-4cm]current page.north west)
+      rectangle ([yshift=-4.3cm]current page.north east);
+    \fill[pinkframe] ([yshift=-4.3cm]current page.north west)
+      rectangle ([yshift=-4.55cm]current page.north east);
+    \node[anchor=west, text=white, font=\fontsize{11}{14}\selectfont]
+      at ([yshift=-1.2cm, xshift=2cm]current page.north west) {CIE International A Level Physics (9702)};
+    \node[anchor=west, text=white, font=\fontsize{22}{28}\selectfont\bfseries]
+      at ([yshift=-2.3cm, xshift=2cm]current page.north west) {Topic #1 \quad #2};
+    \node[anchor=west, text=midgray, font=\fontsize{12}{16}\selectfont]
+      at ([yshift=-3.3cm, xshift=2cm]current page.north west) {#3};
+  \end{tikzpicture}
+  \vspace*{5cm}
+}
+
+
+% ── Chapter opener command ───────────────────────────────────
+%  \chapteropener{Topic number}{Topic title}{Short description}
+%  Simpler than \maketitlepage — used for topics within the book.
+\newcommand{\chapteropener}[3]{%
+  \newpage
+  \thispagestyle{empty}
+  \begin{tikzpicture}[remember picture, overlay]
+    \fill[darkblue] (current page.north west)
+      rectangle ([yshift=-3.5cm]current page.north east);
+    \fill[pinkframe] ([yshift=-3.5cm]current page.north west)
+      rectangle ([yshift=-3.8cm]current page.north east);
+  \end{tikzpicture}
+  \vspace*{0.8cm}
+  \begin{flushleft}
+    \hspace{1cm}{\color{white}\fontsize{13}{16}\selectfont CIE International A Level Physics (9702)}\\[0.2cm]
+    \hspace{1cm}{\color{white!70!darkblue}\fontsize{11}{14}\selectfont Topic #1}\\[0.1cm]
+    \hspace{1cm}{\color{white}\fontsize{26}{32}\selectfont\bfseries #2}
+  \end{flushleft}
+  \vspace*{1.2cm}
+  \begin{tcolorbox}[colback=pinklight, colframe=pinkframe,
+      width=0.85\textwidth, arc=6pt, boxrule=1.2pt, left=6pt]
+    {\color{darkblue}\small #3}
+  \end{tcolorbox}
+  \vspace{0.5cm}
   \newpage
 }
 
