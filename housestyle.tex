@@ -152,8 +152,10 @@
       rectangle ([yshift=-6.55cm]current page.north east);
     \node[anchor=north, text=white, font=\fontsize{16}{20}\selectfont]
       at ([yshift=-1.5cm]current page.north) {CIE International A Level Physics};
+    \if\relax\detokenize{#1}\relax\else
     \node[anchor=north, text=white, font=\fontsize{28}{34}\selectfont\bfseries]
       at ([yshift=-3.2cm]current page.north) {Topic #1};
+    \fi
   \end{tikzpicture}
   \vspace*{4.5cm}
   \begin{center}
