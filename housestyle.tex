@@ -90,14 +90,13 @@
 \setcounter{tocdepth}{1}
 
 % ── Chapter formatting (report class) ───────────────────────
-%  Suppress default chapter heading — we use \chapteropener instead
-\titleformat{\chapter}[block]{\large\bfseries\color{darkblue}}{}{0em}{\sectionbox}
-\titlespacing*{\chapter}{0pt}{0pt}{20pt}
+%  Suppress the default chapter heading — chapters use \chapteropener
+\titleformat{\chapter}[block]{\normalfont}{}{0pt}{}
+\titlespacing*{\chapter}{0pt}{0pt}{0pt}
 
-% ── Chapter formatting (report class) ───────────────────────
-\titleformat{\chapter}[display]
-  {\normalfont\huge\bfseries\color{darkblue}}{}{0pt}{}
-\titlespacing*{\chapter}{0pt}{0pt}{20pt}
+% ── Section numbering — suppress chapter prefix (avoids "0.1", "1.1" etc.) ──
+\renewcommand{\thesection}{\arabic{section}}
+\renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}}
 
 % ── Section formatting ───────────────────────────────────────
 \newcommand{\sectionbox}[1]{%
@@ -185,17 +184,22 @@
   \thispagestyle{empty}
   \begin{tikzpicture}[remember picture, overlay]
     \fill[darkblue] (current page.north west)
-      rectangle ([yshift=-3.5cm]current page.north east);
-    \fill[pinkframe] ([yshift=-3.5cm]current page.north west)
-      rectangle ([yshift=-3.8cm]current page.north east);
+      rectangle ([yshift=-4cm]current page.north east);
+    \fill[lightsilver] ([yshift=-4cm]current page.north west)
+      rectangle ([yshift=-4.3cm]current page.north east);
+    \fill[pinkframe] ([yshift=-4.3cm]current page.north west)
+      rectangle ([yshift=-4.55cm]current page.north east);
+    \node[anchor=north west, text=white, font=\fontsize{12}{15}\selectfont]
+      at ([yshift=-1.0cm, xshift=2cm]current page.north west)
+      {CIE International A Level Physics (9702)};
+    \node[anchor=north west, text=white!60!lightblue, font=\fontsize{11}{14}\selectfont]
+      at ([yshift=-2.0cm, xshift=2cm]current page.north west)
+      {Topic #1};
+    \node[anchor=north west, text=white, font=\fontsize{28}{34}\selectfont\bfseries]
+      at ([yshift=-2.8cm, xshift=2cm]current page.north west)
+      {#2};
   \end{tikzpicture}
-  \vspace*{0.8cm}
-  \begin{flushleft}
-    \hspace{1cm}{\color{white}\fontsize{13}{16}\selectfont CIE International A Level Physics (9702)}\\[0.2cm]
-    \hspace{1cm}{\color{white!70!darkblue}\fontsize{11}{14}\selectfont Topic #1}\\[0.1cm]
-    \hspace{1cm}{\color{white}\fontsize{26}{32}\selectfont\bfseries #2}
-  \end{flushleft}
-  \vspace*{1.2cm}
+  \vspace*{5.5cm}
   \begin{tcolorbox}[colback=pinklight, colframe=pinkframe,
       width=0.85\textwidth, arc=6pt, boxrule=1.2pt, left=6pt]
     {\color{darkblue}\small #3}
