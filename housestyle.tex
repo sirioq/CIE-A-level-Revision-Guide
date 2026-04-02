@@ -175,30 +175,6 @@
 }
 
 
-% ── Chapter opener (simpler than title page, for subsequent topics) ───────────
-%  \chapteropener{Topic number}{Topic title}{subtitle line}
-%  Example: \chapteropener{14}{Temperature}{Topics 14, 15 \& 16 — Thermal Physics}
-\newcommand{\chapteropener}[3]{%
-  \newpage
-  \thispagestyle{empty}
-  \begin{tikzpicture}[remember picture, overlay]
-    \fill[darkblue] (current page.north west)
-      rectangle ([yshift=-4cm]current page.north east);
-    \fill[lightsilver] ([yshift=-4cm]current page.north west)
-      rectangle ([yshift=-4.3cm]current page.north east);
-    \fill[pinkframe] ([yshift=-4.3cm]current page.north west)
-      rectangle ([yshift=-4.55cm]current page.north east);
-    \node[anchor=west, text=white, font=\fontsize{11}{14}\selectfont]
-      at ([yshift=-1.2cm, xshift=2cm]current page.north west) {CIE International A Level Physics (9702)};
-    \node[anchor=west, text=white, font=\fontsize{22}{28}\selectfont\bfseries]
-      at ([yshift=-2.3cm, xshift=2cm]current page.north west) {Topic #1 \quad #2};
-    \node[anchor=west, text=midgray, font=\fontsize{12}{16}\selectfont]
-      at ([yshift=-3.3cm, xshift=2cm]current page.north west) {#3};
-  \end{tikzpicture}
-  \vspace*{5cm}
-}
-
-
 % ── Chapter opener command ───────────────────────────────────
 %  \chapteropener{Topic number}{Topic title}{Short description}
 %  Simpler than \maketitlepage — used for topics within the book.
