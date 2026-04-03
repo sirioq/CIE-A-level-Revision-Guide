@@ -177,34 +177,39 @@
 
 
 % ── Chapter opener command ───────────────────────────────────
-%  \chapteropener{Topic number}{Topic title}{Short description}
-%  Simpler than \maketitlepage — used for topics within the book.
+%  Same style as \maketitlepage but with \item bullet list for #3.
+%  \chapteropener{Topic number}{Topic title}{Bullet list of contents}
 \newcommand{\chapteropener}[3]{%
   \newpage
   \thispagestyle{empty}
   \begin{tikzpicture}[remember picture, overlay]
     \fill[darkblue] (current page.north west)
-      rectangle ([yshift=-4cm]current page.north east);
-    \fill[lightsilver] ([yshift=-4cm]current page.north west)
-      rectangle ([yshift=-4.3cm]current page.north east);
-    \fill[pinkframe] ([yshift=-4.3cm]current page.north west)
-      rectangle ([yshift=-4.55cm]current page.north east);
-    \node[anchor=north west, text=white, font=\fontsize{12}{15}\selectfont]
-      at ([yshift=-1.0cm, xshift=2cm]current page.north west)
-      {CIE International A Level Physics (9702)};
-    \node[anchor=north west, text=white!60!lightblue, font=\fontsize{11}{14}\selectfont]
-      at ([yshift=-2.0cm, xshift=2cm]current page.north west)
-      {Topic #1};
-    \node[anchor=north west, text=white, font=\fontsize{28}{34}\selectfont\bfseries]
-      at ([yshift=-2.8cm, xshift=2cm]current page.north west)
-      {#2};
+      rectangle ([yshift=-6cm]current page.north east);
+    \fill[lightsilver] ([yshift=-6cm]current page.north west)
+      rectangle ([yshift=-6.3cm]current page.north east);
+    \fill[pinkframe] ([yshift=-6.3cm]current page.north west)
+      rectangle ([yshift=-6.55cm]current page.north east);
+    \node[anchor=north, text=white, font=\fontsize{16}{20}\selectfont]
+      at ([yshift=-1.5cm]current page.north) {CIE International A Level Physics};
+    \node[anchor=north, text=white, font=\fontsize{28}{34}\selectfont\bfseries]
+      at ([yshift=-3.2cm]current page.north) {Topic #1};
   \end{tikzpicture}
-  \vspace*{5.5cm}
-  \begin{tcolorbox}[colback=pinklight, colframe=pinkframe,
-      width=0.85\textwidth, arc=6pt, boxrule=1.2pt, left=6pt]
-    {\color{darkblue}\small #3}
-  \end{tcolorbox}
-  \vspace{0.5cm}
+  \vspace*{4.5cm}
+  \begin{center}
+    {\color{darkgray}\fontsize{32}{38}\selectfont\bfseries #2}\\[0.2cm]
+    {\color{pinkframe}\rule{0.6\textwidth}{1.5pt}}\\[0.3cm]
+    {\color{darkgray}\fontsize{14}{18}\selectfont Revision Booklet}
+    \vspace{2.5cm}
+
+    \begin{tcolorbox}[colback=pinklight, colframe=pinkframe,
+        width=0.75\textwidth, arc=8pt, boxrule=1.5pt]
+      \centering
+      \textbf{\color{darkblue}This booklet covers:}\\[0.3cm]
+      \begin{itemize}[leftmargin=1.5em, itemsep=2pt]
+        #3
+      \end{itemize}
+    \end{tcolorbox}
+  \end{center}
   \newpage
 }
 
