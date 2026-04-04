@@ -1,14 +1,13 @@
 % topic_13_standalone.tex
-% Standalone wrapper — compiles topic_13.tex as an individual PDF.
-% Place this file in the topic_13/ folder alongside topic_13.tex.
+% Standalone wrapper — place in topic_13/ folder.
+% Compiled from the topic_13/ directory so ../housestyle resolves correctly.
 \documentclass[12pt,a4paper]{article}
 
 \newcommand{\bookletheader}{Topic 13 — Gravitational Fields}
 \input{../housestyle}
 
-% Enable standalone mode so topic_13.tex includes its own TOC
 \standalonetrue
 
 \begin{document}
-\input{topic_13/topic_13}
+\input{topic_13}
 \end{document}
