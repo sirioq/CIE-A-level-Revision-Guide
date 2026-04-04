@@ -1,10 +1,423 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>CIE Physics Revision Guide</title>
-    <meta http-equiv="refresh" content="0; url=main.pdf">
-  </head>
-  <body>
-    <p>Loading Revision Guide... If it doesn't load, <a href="main.pdf">click here</a>.</p>
-  </body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CIE A-Level Physics — Westminster School</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --darkblue:   #003366;
+      --midblue:    #0066CC;
+      --lightblue:  #DCF0FF;
+      --pink:       #F77E9D;
+      --pinklight:  #FDE5EB;
+      --gold:       #B48C00;
+      --lightgold:  #FFF8DC;
+      --silver:     #EBEBEB;
+      --darkgray:   #505050;
+      --white:      #FFFFFF;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Source Sans 3', sans-serif;
+      background: var(--darkblue);
+      color: var(--white);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── Banner ── */
+    header {
+      position: relative;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .banner-top {
+      background: var(--darkblue);
+      padding: 3rem 2rem 1.5rem;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .school-name {
+      font-family: 'Source Sans 3', sans-serif;
+      font-weight: 300;
+      font-size: 0.95rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 1rem;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      font-weight: 900;
+      line-height: 1.1;
+      color: var(--white);
+      margin-bottom: 0.4rem;
+    }
+
+    h1 span {
+      color: var(--pink);
+    }
+
+    .subtitle {
+      font-size: 1rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.6);
+      letter-spacing: 0.05em;
+      margin-top: 0.5rem;
+    }
+
+    .banner-stripe {
+      height: 6px;
+      background: var(--silver);
+    }
+    .banner-pink {
+      height: 4px;
+      background: var(--pink);
+    }
+
+    /* ── Main content ── */
+    main {
+      background: #f7f7f7;
+      color: var(--darkgray);
+      padding: 3rem 1.5rem 4rem;
+    }
+
+    .intro {
+      max-width: 640px;
+      margin: 0 auto 3rem;
+      text-align: center;
+    }
+
+    .intro p {
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: #555;
+    }
+
+    /* ── Download cards ── */
+    .cards-section {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--darkblue);
+      margin-bottom: 1.2rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--pink);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .section-label svg {
+      flex-shrink: 0;
+    }
+
+    /* Full guide card */
+    .full-guide-card {
+      background: var(--darkblue);
+      border-radius: 10px;
+      padding: 2rem 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+      box-shadow: 0 4px 20px rgba(0,51,102,0.18);
+      flex-wrap: wrap;
+    }
+
+    .full-guide-info h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      color: var(--white);
+      margin-bottom: 0.3rem;
+    }
+
+    .full-guide-info p {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.6);
+    }
+
+    .pill {
+      display: inline-block;
+      background: var(--pink);
+      color: white;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.6rem;
+      border-radius: 20px;
+      margin-left: 0.5rem;
+      vertical-align: middle;
+    }
+
+    /* Topic cards grid */
+    .topic-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.2rem;
+    }
+
+    .topic-card {
+      background: var(--white);
+      border-radius: 10px;
+      border: 1.5px solid var(--silver);
+      padding: 1.4rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .topic-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--pink);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.2s ease;
+    }
+
+    .topic-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(0,51,102,0.12);
+      border-color: var(--pink);
+    }
+
+    .topic-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .topic-number {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--pink);
+    }
+
+    .topic-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--darkblue);
+      line-height: 1.3;
+    }
+
+    .topic-desc {
+      font-size: 0.82rem;
+      color: #888;
+      line-height: 1.5;
+      flex: 1;
+    }
+
+    .coming-soon {
+      opacity: 0.45;
+      pointer-events: none;
+    }
+
+    .coming-soon .topic-number {
+      color: #aaa;
+    }
+
+    .coming-soon-badge {
+      font-size: 0.7rem;
+      color: #aaa;
+      font-style: italic;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.65rem 1.4rem;
+      border-radius: 6px;
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      border: none;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: var(--pink);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: #e5607f;
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--pink);
+      border: 1.5px solid var(--pink);
+      margin-top: auto;
+      align-self: flex-start;
+    }
+
+    .btn-outline:hover {
+      background: var(--pinklight);
+    }
+
+    /* Footer */
+    footer {
+      background: var(--darkblue);
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.35);
+      letter-spacing: 0.05em;
+    }
+
+    /* Fade-in animation */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .fade-up {
+      animation: fadeUp 0.5s ease both;
+    }
+
+    .fade-up:nth-child(1) { animation-delay: 0.05s; }
+    .fade-up:nth-child(2) { animation-delay: 0.12s; }
+    .fade-up:nth-child(3) { animation-delay: 0.19s; }
+    .fade-up:nth-child(4) { animation-delay: 0.26s; }
+    .fade-up:nth-child(5) { animation-delay: 0.33s; }
+    .fade-up:nth-child(6) { animation-delay: 0.40s; }
+
+    @media (max-width: 600px) {
+      .full-guide-card { flex-direction: column; align-items: flex-start; }
+      .topic-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Header ── -->
+  <header>
+    <div class="banner-top">
+      <p class="school-name">Westminster School Physics Department</p>
+      <h1>CIE A-Level Physics<br><span>Revision Booklets</span></h1>
+      <p class="subtitle">Cambridge International A-Level · 9702 · 2025–2027 Syllabus</p>
+    </div>
+    <div class="banner-stripe"></div>
+    <div class="banner-pink"></div>
+  </header>
+
+  <!-- ── Main ── -->
+  <main>
+    <div class="intro">
+      <p>Complete revision booklets covering the full A-Level syllabus — definitions, formulae, worked examples, exam practice and mark schemes.</p>
+    </div>
+
+    <div class="cards-section">
+
+      <!-- Full guide -->
+      <div class="section-label">
+        <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+        Complete Guide
+      </div>
+
+      <div class="full-guide-card">
+        <div class="full-guide-info">
+          <h2>All Topics — Combined PDF <span class="pill">Recommended</span></h2>
+          <p>All available booklets compiled into a single document — ideal for printing or offline study.</p>
+        </div>
+        <a class="btn btn-primary" href="main.pdf">
+          <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+          Download PDF
+        </a>
+      </div>
+
+      <!-- Individual topics -->
+      <div class="section-label">
+        <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+        Individual Topics
+      </div>
+
+      <div class="topic-grid">
+
+        <div class="topic-card fade-up">
+          <span class="topic-number">Topic 13</span>
+          <div class="topic-title">Gravitational Fields</div>
+          <p class="topic-desc">Newton's law · field strength · gravitational potential · orbital motion · escape velocity</p>
+          <a class="btn btn-outline" href="topic_13/topic_13.pdf">
+            <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+            Download
+          </a>
+        </div>
+
+        <div class="topic-card fade-up">
+          <span class="topic-number">Topics 14, 15 &amp; 16</span>
+          <div class="topic-title">Thermal Physics</div>
+          <p class="topic-desc">Temperature · ideal gases · kinetic theory · internal energy · first law of thermodynamics</p>
+          <a class="btn btn-outline" href="topics_14_15_16/topics_14_15_16.pdf">
+            <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+            Download
+          </a>
+        </div>
+
+        <div class="topic-card fade-up coming-soon">
+          <span class="topic-number">Topic 17</span>
+          <div class="topic-title">Oscillations</div>
+          <p class="topic-desc">Simple harmonic motion · energy · damping · resonance</p>
+          <span class="coming-soon-badge">Coming soon</span>
+        </div>
+
+        <div class="topic-card fade-up coming-soon">
+          <span class="topic-number">Topic 18</span>
+          <div class="topic-title">Electric Fields</div>
+          <p class="topic-desc">Coulomb's law · field strength · electric potential · uniform fields</p>
+          <span class="coming-soon-badge">Coming soon</span>
+        </div>
+
+        <div class="topic-card fade-up coming-soon">
+          <span class="topic-number">Topic 19</span>
+          <div class="topic-title">Capacitance</div>
+          <p class="topic-desc">Capacitors · energy stored · charging and discharging</p>
+          <span class="coming-soon-badge">Coming soon</span>
+        </div>
+
+        <div class="topic-card fade-up coming-soon">
+          <span class="topic-number">Topics 20 &amp; 21</span>
+          <div class="topic-title">Magnetic Fields &amp; AC</div>
+          <p class="topic-desc">Magnetic flux · electromagnetic induction · alternating currents · transformers</p>
+          <span class="coming-soon-badge">Coming soon</span>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    Westminster School Physics Department &nbsp;·&nbsp; CIE A-Level Physics 9702
+  </footer>
+
+</body>
 </html>
