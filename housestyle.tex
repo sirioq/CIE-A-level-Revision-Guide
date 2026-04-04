@@ -86,6 +86,12 @@
 %  Use \nf{g = GM/r^2} to prevent a formula breaking across lines.
 \newcommand{\nf}[1]{\mbox{$#1$}}
 
+% ── Standalone flag ─────────────────────────────────────────
+%  Set to true in standalone wrapper files to include per-topic TOC.
+%  Left false when compiled via main.tex (combined TOC used instead).
+\newif\ifstandalone
+\standalonefalse
+
 % ── TOC depth ────────────────────────────────────────────────
 \setcounter{tocdepth}{1}
 
