@@ -23,20 +23,21 @@ jobs:
           root_file: topic_13_standalone.tex
           working_directory: topic_13
 
-      - name: Compile Topics 14-16 standalone PDF
-        uses: xu-cheng/latex-action@v3
-        with:
-          root_file: topics_14_15_16_standalone.tex
-          working_directory: topics_14_15_16
+      # Uncomment when topics_14_15_16/topics_14_15_16_standalone.tex exists:
+      # - name: Compile Topics 14-16 standalone PDF
+      #   uses: xu-cheng/latex-action@v3
+      #   with:
+      #     root_file: topics_14_15_16_standalone.tex
+      #     working_directory: topics_14_15_16
 
       - name: Prepare files for deployment
         run: |
           mkdir -p public/topic_13
-          mkdir -p public/topics_14_15_16
+          # mkdir -p public/topics_14_15_16
           cp main.pdf public/
           cp index.html public/
           cp topic_13/topic_13_standalone.pdf public/topic_13/topic_13.pdf
-          cp topics_14_15_16/topics_14_15_16_standalone.pdf public/topics_14_15_16/topics_14_15_16.pdf
+          # cp topics_14_15_16/topics_14_15_16_standalone.pdf public/topics_14_15_16/topics_14_15_16.pdf
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
