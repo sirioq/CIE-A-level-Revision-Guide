@@ -1,0 +1,43 @@
+name: Build and Deploy PDF
+
+on: [push]
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+jobs:
+  build_latex:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Git repository
+        uses: actions/checkout@v4
+
+      - name: Compile combined PDF (main.tex)
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: main.tex
+
+      - name: Compile Topic 13 standalone PDF
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: topic_13/topic_13_standalone.tex
+
+      - name: Compile Topics 14-16 standalone PDF
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: topics_14_15_16/topics_14_15_16_standalone.tex
+
+      - name: Prepare files for deployment
+        run: |
+          mkdir -p public/topic_13
+          mkdir -p public/topics_14_15_16
+          cp main.pdf public/
+          cp index.html public/
+          cp topic_13/topic_13_standalone.pdf public/topic_13/topic_13.pdf
+          cp topics_14_15_16/topics_14_15_16_standalone.pdf public/topics_14_15_16/topics_14_15_16.pdf
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
