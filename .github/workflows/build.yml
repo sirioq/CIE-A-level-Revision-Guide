@@ -17,12 +17,16 @@ jobs:
         with:
           root_file: main.tex
 
-      - name: Compile standalone PDFs
+      - name: Compile Topic 13 standalone PDF
         uses: xu-cheng/latex-action@v3
         with:
-          root_file: |
-            topic_13/topic_13_standalone.tex
-            topics_14_15_16/topics_14_15_16_standalone.tex
+          root_file: topic_13/topic_13_standalone.tex
+          work_in_root_file_dir: false
+
+      - name: Compile Topics 14-16 standalone PDF
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: topics_14_15_16/topics_14_15_16_standalone.tex
           work_in_root_file_dir: false
 
       - name: Prepare files for deployment
