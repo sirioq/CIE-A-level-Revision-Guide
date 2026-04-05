@@ -103,9 +103,11 @@
 
 % Remove "Chapter N" prefix from TOC entries — show title only
 % \chaptermark only exists in report/book classes, not article
+\makeatletter
 \@ifundefined{chaptermark}{}{%
   \renewcommand{\chaptermark}[1]{\markboth{#1}{}}%
 }
+\makeatother
 \renewcommand{\thechapter}{}
 
 % ── Section numbering — suppress chapter prefix (avoids "0.1", "1.1" etc.) ──
