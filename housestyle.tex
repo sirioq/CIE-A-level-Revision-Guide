@@ -188,8 +188,12 @@
 %  \chapteropener{Topic number}{Topic title}{Bullet list of contents}
 \newcommand{\chapteropener}[3]{%
   \newpage
-  % Register with TOC as a chapter but suppress the default heading
-  \chapter{#2}
+  % Register with TOC — use \chapter in report class, \addcontentsline in article
+  \ifstandalone
+    \addcontentsline{toc}{section}{#2}%
+  \else
+    \chapter{#2}%
+  \fi
   \thispagestyle{empty}
   \begin{tikzpicture}[remember picture, overlay]
     \fill[darkblue] (current page.north west)
