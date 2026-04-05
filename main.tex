@@ -9,10 +9,9 @@
 %   2. Add \renewcommand{\bookletheader}{...} and \include lines below.
 % =============================================================================
 
-\begin{document}
+\setcounter{tocdepth}{0}  % Combined TOC shows chapter titles only
 
-% Show only chapter titles in the combined TOC
-\setcounter{tocdepth}{0}
+\begin{document}
 
 % ── Title page ────────────────────────────────────────────────────────────────
 \maketitlepage{}{CIE A-Level Physics}{
@@ -29,8 +28,8 @@
 \include{topic_13/topic_13}
 
 % ── Topics 14, 15 & 16 — Thermal Physics ─────────────────────────────────────
-% \renewcommand{\bookletheader}{Topics 14--16 — Thermal Physics}
-% \include{topics_14_15_16/topics_14_15_16}
+\renewcommand{\bookletheader}{Topics 14--16 — Thermal Physics}
+\include{topics_14_15_16/topics_14_15_16}
 
 % ── Add further topics below as they are created ─────────────────────────────
 % \renewcommand{\bookletheader}{Topic 17 — Oscillations}
