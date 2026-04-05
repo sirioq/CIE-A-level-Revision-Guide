@@ -33,7 +33,7 @@
 \usepackage{titlesec}
 \usepackage{minipage-marginpar}
 \usepackage{needspace}
-\usepackage[depth=1]{minitoc}
+\usepackage{etoc}
 \usepackage{hyperref}  % must be last
 
 % ── Colours ──────────────────────────────────────────────────
@@ -136,11 +136,6 @@
 \renewcommand{\headrule}{\hbox to\headwidth{%
   \color{darkblue}\leaders\hrule height \headrulewidth\hfill}}
 
-% ── Minitoc settings ─────────────────────────────────────────
-%  minitoc generates per-chapter mini TOCs in the main PDF.
-%  \dominitoc must be called in main.tex after \tableofcontents.
-\renewcommand{\mtctitle}{}    % no title on the mini TOC
-
 % ── TOC heading style ────────────────────────────────────────
 \renewcommand{\contentsname}{%
   \colorbox{lightblue}{\parbox{\dimexpr\textwidth-2\fboxsep}{Contents}}}
@@ -231,11 +226,18 @@
     \end{tcolorbox}
   \end{center}
   \newpage
-  % TOC: full in standalone, mini-TOC in main PDF
-  \ifstandalone
-    \tableofcontents
-    \newpage
-  \else
-    \minitoc
-  \fi
+  % Per-chapter TOC — works in both article and report class
+  \begingroup
+    \etocsetstyle{section}
+      {}
+      {\leavevmode\leftskip1em}
+      {\bfseries\color{darkblue}\etocnumber\quad\etocname\hfill\etocpage\par}
+      {}
+    \etocsettocstyle
+      {\vspace{0.5em}\color{midgray}\hrule\vspace{0.3em}}
+      {\vspace{0.3em}\color{midgray}\hrule\vspace{1em}}
+    \etocsetnexttocdepth{1}
+    \localtableofcontents
+  \endgroup
+  \newpage
 }
