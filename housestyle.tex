@@ -96,8 +96,9 @@
 \setcounter{tocdepth}{1}
 
 % ── Chapter formatting (report class) ───────────────────────
-%  Suppress the default chapter heading — chapters use \chapteropener
-\titleformat{\chapter}[block]{\normalfont}{}{0pt}{}
+%  Suppress the default chapter heading — chapters use \chapteropener.
+%  \chapter is still called inside \chapteropener for TOC registration.
+\titleformat{\chapter}[block]{\normalfont}{}{0pt}{}[\vspace{-3\baselineskip}]
 \titlespacing*{\chapter}{0pt}{0pt}{0pt}
 
 % ── Section numbering — suppress chapter prefix (avoids "0.1", "1.1" etc.) ──
@@ -187,6 +188,8 @@
 %  \chapteropener{Topic number}{Topic title}{Bullet list of contents}
 \newcommand{\chapteropener}[3]{%
   \newpage
+  % Register with TOC as a chapter but suppress the default heading
+  \chapter{#2}
   \thispagestyle{empty}
   \begin{tikzpicture}[remember picture, overlay]
     \fill[darkblue] (current page.north west)
