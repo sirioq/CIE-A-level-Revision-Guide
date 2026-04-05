@@ -1,14 +1,21 @@
 % ============================================================
 %  housestyle.tex
 %  Shared preamble for CIE A-Level Physics (9702) revision booklets.
-%  Usage in each booklet:
-%    \newcommand{\bookletheader}{Topic 13: Gravitational Fields}
+%
+%  Usage in main.tex (report class):
+%    \documentclass[12pt,a4paper]{report}
+%    \input{housestyle}
+%
+%  Usage in standalone wrapper (article class):
+%    \documentclass[12pt,a4paper]{article}
+%    \newcommand{\bookletheader}{Topic 13 — Gravitational Fields}
+%    \standalonetrue
 %    \input{housestyle}
 % ============================================================
 
 % ── Packages ─────────────────────────────────────────────────
 \usepackage[a4paper, top=2.5cm, bottom=2.5cm, left=2cm, right=2cm]{geometry}
-\usepackage{lmodern}  % scalable fonts, avoids font size warnings
+\usepackage{lmodern}
 \usepackage{amsmath, amssymb}
 \usepackage{xcolor}
 \usepackage{graphicx}
@@ -83,50 +90,29 @@
   breakable, arc=4pt, boxrule=1.5pt}
 
 % ── Non-breaking inline formula ─────────────────────────────
-%  Use \nf{g = GM/r^2} to prevent a formula breaking across lines.
 \newcommand{\nf}[1]{\mbox{$#1$}}
 
 % ── Standalone flag ─────────────────────────────────────────
-%  Set to true in standalone wrapper files to include per-topic TOC.
-%  Left false when compiled via main.tex (combined TOC used instead).
+%  \standalonetrue in wrapper files; \standalonefalse (default) in main.tex
 \newif\ifstandalone
 \standalonefalse
 
-% ── TOC depth ────────────────────────────────────────────────
-\setcounter{tocdepth}{1}
-
-% ── Chapter formatting (report class) ───────────────────────
-%  Suppress the default chapter heading — chapters use \chapteropener.
-%  \chapter is still called inside \chapteropener for TOC registration.
-\titleformat{\chapter}[block]{\normalfont}{}{0pt}{}[\vspace{-3\baselineskip}]
-\titlespacing*{\chapter}{0pt}{0pt}{0pt}
-
-% Remove "Chapter N" prefix from TOC entries — show title only
-% \chaptermark only exists in report/book classes, not article
-\makeatletter
-\@ifundefined{chaptermark}{}{%
-  \renewcommand{\chaptermark}[1]{\markboth{#1}{}}%
-}
-\@ifundefined{thechapter}{}{%
-  \renewcommand{\thechapter}{}%
-}
-\makeatother
-
-% ── Section numbering — suppress chapter prefix (avoids "0.1", "1.1" etc.) ──
+% ── Section numbering ────────────────────────────────────────
+%  Always show plain arabic numbers — no chapter prefix
 \renewcommand{\thesection}{\arabic{section}}
 \renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}}
 
 % ── Section formatting ───────────────────────────────────────
 \newcommand{\sectionbox}[1]{%
   \colorbox{lightblue}{\parbox{\dimexpr\textwidth-2\fboxsep}{%
-    \ifnum\value{section}=0\relax\else\thesection\quad\fi#1}}}
+    \thesection\quad#1}}}
 \titleformat{\section}{\large\bfseries\color{darkblue}}{}{0em}{\sectionbox}
 \titlespacing*{\section}{0pt}{*3}{*1}
 \titleformat{\subsection}{\bfseries\color{midblue}}{\thesubsection}{0.5em}{}
 \titlespacing*{\subsection}{0pt}{*2}{*0.5}
 \titleformat{\subsubsection}{\bfseries\color{darkgray}}{}{0em}{}
 
-% Ensure section/subsection headings never appear alone at page bottom
+% Prevent section/subsection headings at page bottom
 \let\oldsection\section
 \renewcommand{\section}{\needspace{6\baselineskip}\oldsection}
 \let\oldsubsection\subsection
@@ -137,11 +123,9 @@
 \addtolength{\topmargin}{-12.02pt}
 
 % ── Booklet header placeholder ───────────────────────────────
-%  Defined here so \renewcommand works in main.tex for every topic.
 \providecommand{\bookletheader}{}
 
 % ── Headers / Footers ────────────────────────────────────────
-%  \bookletheader must be defined before \input{housestyle}
 \pagestyle{fancy}
 \fancyhf{}
 \fancyhead[L]{\color{darkblue}\small\bfseries CIE A-Level Physics (9702)}
@@ -151,13 +135,13 @@
 \renewcommand{\headrule}{\hbox to\headwidth{%
   \color{darkblue}\leaders\hrule height \headrulewidth\hfill}}
 
+% ── TOC heading style ────────────────────────────────────────
+\renewcommand{\contentsname}{%
+  \colorbox{lightblue}{\parbox{\dimexpr\textwidth-2\fboxsep}{Contents}}}
+
 % ── Title page command ───────────────────────────────────────
-%  \maketitlepage{Topic number}{Topic title}{Bullet list of contents}
-%  Example:
-%    \maketitlepage{13}{Gravitational Fields}{
-%      \item Newton's Law of Gravitation
-%      \item Gravitational Potential
-%    }
+%  \maketitlepage{Topic number}{Topic title}{Bullet list of \items}
+%  Leave Topic number empty for the main book cover page.
 \newcommand{\maketitlepage}[3]{%
   \thispagestyle{empty}
   \begin{tikzpicture}[remember picture, overlay]
@@ -170,8 +154,8 @@
     \node[anchor=north, text=white, font=\fontsize{16}{20}\selectfont]
       at ([yshift=-1.5cm]current page.north) {CIE International A Level Physics};
     \if\relax\detokenize{#1}\relax\else
-    \node[anchor=north, text=white, font=\fontsize{28}{34}\selectfont\bfseries]
-      at ([yshift=-3.2cm]current page.north) {Topic #1};
+      \node[anchor=north, text=white, font=\fontsize{28}{34}\selectfont\bfseries]
+        at ([yshift=-3.2cm]current page.north) {Topic #1};
     \fi
   \end{tikzpicture}
   \vspace*{4.5cm}
@@ -180,7 +164,6 @@
     {\color{pinkframe}\rule{0.6\textwidth}{1.5pt}}\\[0.3cm]
     {\color{darkgray}\fontsize{14}{18}\selectfont Revision Booklet}
     \vspace{2.5cm}
-
     \begin{tcolorbox}[colback=pinklight, colframe=pinkframe,
         width=0.75\textwidth, arc=8pt, boxrule=1.5pt]
       \centering
@@ -193,19 +176,27 @@
   \newpage
 }
 
-
 % ── Chapter opener command ───────────────────────────────────
-%  Same style as \maketitlepage but with \item bullet list for #3.
-%  \chapteropener{Topic number}{Topic title}{Bullet list of contents}
+%  \chapteropener{Topic number}{Topic title}{Bullet list of \items}
+%
+%  In report class (main.tex):   registers a \chapter* for the TOC
+%  In article class (standalone): registers via \addcontentsline
+%
 \newcommand{\chapteropener}[3]{%
-  \newpage
-  % Register with TOC — use \chapter in report class, \addcontentsline in article
-  \ifstandalone
-    \addcontentsline{toc}{section}{#2}%
-  \else
-    \chapter{#2}%
-  \fi
+  \clearpage
   \thispagestyle{empty}
+  % TOC registration
+  \ifstandalone
+    % article class — no \chapter, use addcontentsline at section level
+    \refstepcounter{section}%
+    \addcontentsline{toc}{section}{#2}%
+    \setcounter{section}{0}%
+  \else
+    % report class — starred chapter (no number, no default heading)
+    \chapter*{#2}%
+    \addcontentsline{toc}{chapter}{#2}%
+  \fi
+  % Visual banner
   \begin{tikzpicture}[remember picture, overlay]
     \fill[darkblue] (current page.north west)
       rectangle ([yshift=-6cm]current page.north east);
@@ -224,7 +215,6 @@
     {\color{pinkframe}\rule{0.6\textwidth}{1.5pt}}\\[0.3cm]
     {\color{darkgray}\fontsize{14}{18}\selectfont Revision Booklet}
     \vspace{2.5cm}
-
     \begin{tcolorbox}[colback=pinklight, colframe=pinkframe,
         width=0.75\textwidth, arc=8pt, boxrule=1.5pt]
       \centering
@@ -235,8 +225,9 @@
     \end{tcolorbox}
   \end{center}
   \newpage
+  % Per-topic TOC in standalone mode only
+  \ifstandalone
+    \tableofcontents
+    \newpage
+  \fi
 }
-
-% ── TOC with house-style heading ─────────────────────────────
-\renewcommand{\contentsname}{%
-  \colorbox{lightblue}{\parbox{\dimexpr\textwidth-2\fboxsep}{Contents}}}

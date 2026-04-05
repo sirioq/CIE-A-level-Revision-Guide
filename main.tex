@@ -1,6 +1,9 @@
 \documentclass[12pt,a4paper]{report}
 \input{housestyle}
 
+% Main combined PDF — TOC shows chapter titles only
+\setcounter{tocdepth}{0}
+
 % =============================================================================
 % main.tex — Master file: compiles ALL topic booklets into one document.
 % To add a new topic:
@@ -9,17 +12,15 @@
 %   2. Add \renewcommand{\bookletheader}{...} and \include lines below.
 % =============================================================================
 
-\setcounter{tocdepth}{0}  % Combined TOC shows chapter titles only
-
 \begin{document}
 
-% ── Title page ────────────────────────────────────────────────────────────────
+% ── Book cover page ───────────────────────────────────────────────────────────
 \maketitlepage{}{CIE A-Level Physics}{
   \item Topic 13 — Gravitational Fields
   \item Topics 14, 15 \& 16 — Thermal Physics
 }
 
-% ── Table of contents ─────────────────────────────────────────────────────────
+% ── Combined table of contents ────────────────────────────────────────────────
 \tableofcontents
 \newpage
 
