@@ -33,7 +33,7 @@
 \usepackage{titlesec}
 \usepackage{minipage-marginpar}
 \usepackage{needspace}
-\usepackage{minitoc}
+\usepackage[depth=1]{minitoc}
 \usepackage{hyperref}  % must be last
 
 % ── Colours ──────────────────────────────────────────────────
@@ -139,7 +139,6 @@
 % ── Minitoc settings ─────────────────────────────────────────
 %  minitoc generates per-chapter mini TOCs in the main PDF.
 %  \dominitoc must be called in main.tex after \tableofcontents.
-\setcounter{minitocdepth}{1}  % show sections only
 \renewcommand{\mtctitle}{}    % no title on the mini TOC
 
 % ── TOC heading style ────────────────────────────────────────
