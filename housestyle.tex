@@ -102,7 +102,10 @@
 \titlespacing*{\chapter}{0pt}{0pt}{0pt}
 
 % Remove "Chapter N" prefix from TOC entries — show title only
-\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+% \chaptermark only exists in report/book classes, not article
+\@ifundefined{chaptermark}{}{%
+  \renewcommand{\chaptermark}[1]{\markboth{#1}{}}%
+}
 \renewcommand{\thechapter}{}
 
 % ── Section numbering — suppress chapter prefix (avoids "0.1", "1.1" etc.) ──
