@@ -12,32 +12,107 @@ jobs:
       - name: Set up Git repository
         uses: actions/checkout@v4
 
+      # ── Combined PDF ──────────────────────────────────────────────────────────
       - name: Compile combined PDF (main.tex)
         uses: xu-cheng/latex-action@v3
         with:
           root_file: main.tex
 
+      # ── Topic 13 — Gravitational Fields ──────────────────────────────────────
       - name: Compile Topic 13 standalone PDF
         uses: xu-cheng/latex-action@v3
         with:
           root_file: topic_13_standalone.tex
           working_directory: topic_13
 
-      # Uncomment when topics_14_15_16/topics_14_15_16_standalone.tex exists:
+      # ── Topics 14, 15 & 16 — Thermal Physics ─────────────────────────────────
       # - name: Compile Topics 14-16 standalone PDF
       #   uses: xu-cheng/latex-action@v3
       #   with:
       #     root_file: topics_14_15_16_standalone.tex
       #     working_directory: topics_14_15_16
 
+      # ── Topic 17 — Oscillations ───────────────────────────────────────────────
+      # - name: Compile Topic 17 standalone PDF
+      #   uses: xu-cheng/latex-action@v3
+      #   with:
+      #     root_file: topic_17_standalone.tex
+      #     working_directory: topic_17
+
+      # ── Topic 18 — Electric Fields ────────────────────────────────────────────
+      # - name: Compile Topic 18 standalone PDF
+      #   uses: xu-cheng/latex-action@v3
+      #   with:
+      #     root_file: topic_18_standalone.tex
+      #     working_directory: topic_18
+
+      # ── Topic 19 — Capacitance ────────────────────────────────────────────────
+      # - name: Compile Topic 19 standalone PDF
+      #   uses: xu-cheng/latex-action@v3
+      #   with:
+      #     root_file: topic_19_standalone.tex
+      #     working_directory: topic_19
+
+      # ── Topics 20 & 21 — Magnetic Fields & AC ────────────────────────────────
+      # - name: Compile Topics 20-21 standalone PDF
+      #   uses: xu-cheng/latex-action@v3
+      #   with:
+      #     root_file: topics_20_21_standalone.tex
+      #     working_directory: topics_20_21
+
+      # ── Topic 22 — Quantum Physics ────────────────────────────────────────────
+      # - name: Compile Topic 22 standalone PDF
+      #   uses: xu-cheng/latex-action@v3
+      #   with:
+      #     root_file: topic_22_standalone.tex
+      #     working_directory: topic_22
+
+      # ── Topic 23 — Nuclear Physics ────────────────────────────────────────────
+      # - name: Compile Topic 23 standalone PDF
+      #   uses: xu-cheng/latex-action@v3
+      #   with:
+      #     root_file: topic_23_standalone.tex
+      #     working_directory: topic_23
+
+      # ── Topic 24 — Medical Physics ────────────────────────────────────────────
+      # - name: Compile Topic 24 standalone PDF
+      #   uses: xu-cheng/latex-action@v3
+      #   with:
+      #     root_file: topic_24_standalone.tex
+      #     working_directory: topic_24
+
+      # ── Topic 25 — Astronomy and Cosmology ───────────────────────────────────
+      # - name: Compile Topic 25 standalone PDF
+      #   uses: xu-cheng/latex-action@v3
+      #   with:
+      #     root_file: topic_25_standalone.tex
+      #     working_directory: topic_25
+
+      # ── Deploy ────────────────────────────────────────────────────────────────
       - name: Prepare files for deployment
         run: |
           mkdir -p public/topic_13
           # mkdir -p public/topics_14_15_16
+          # mkdir -p public/topic_17
+          # mkdir -p public/topic_18
+          # mkdir -p public/topic_19
+          # mkdir -p public/topics_20_21
+          # mkdir -p public/topic_22
+          # mkdir -p public/topic_23
+          # mkdir -p public/topic_24
+          # mkdir -p public/topic_25
           cp main.pdf public/
           cp index.html public/
           cp topic_13/topic_13_standalone.pdf public/topic_13/topic_13.pdf
           # cp topics_14_15_16/topics_14_15_16_standalone.pdf public/topics_14_15_16/topics_14_15_16.pdf
+          # cp topic_17/topic_17_standalone.pdf public/topic_17/topic_17.pdf
+          # cp topic_18/topic_18_standalone.pdf public/topic_18/topic_18.pdf
+          # cp topic_19/topic_19_standalone.pdf public/topic_19/topic_19.pdf
+          # cp topics_20_21/topics_20_21_standalone.pdf public/topics_20_21/topics_20_21.pdf
+          # cp topic_22/topic_22_standalone.pdf public/topic_22/topic_22.pdf
+          # cp topic_23/topic_23_standalone.pdf public/topic_23/topic_23.pdf
+          # cp topic_24/topic_24_standalone.pdf public/topic_24/topic_24.pdf
+          # cp topic_25/topic_25_standalone.pdf public/topic_25/topic_25.pdf
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
