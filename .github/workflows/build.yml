@@ -27,10 +27,10 @@ jobs:
 
       # ── Topics 14, 15 & 16 — Thermal Physics ─────────────────────────────────
       - name: Compile Topics 14-16 standalone PDF
-       uses: xu-cheng/latex-action@v3
-       with:
-        root_file: topics_14_15_16_standalone.tex
-        working_directory: topics_14_15_16
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: topics_14_15_16_standalone.tex
+          working_directory: topics_14_15_16
 
       # ── Topic 17 — Oscillations ───────────────────────────────────────────────
       # - name: Compile Topic 17 standalone PDF
