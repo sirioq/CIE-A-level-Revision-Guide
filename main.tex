@@ -9,7 +9,8 @@
 % To add a new topic:
 %   1. Create topic_XX/topic_XX.tex  (content only, no \documentclass,
 %      no \begin{document}, no \end{document})
-%   2. Add \renewcommand{\bookletheader}{...} and \include lines below.
+%   2. Uncomment the relevant \renewcommand and \include lines below.
+%   3. Add a compile step and cp line in build.yml.
 % =============================================================================
 
 \begin{document}
@@ -18,6 +19,14 @@
 \maketitlepage{}{CIE A-Level Physics}{
   \item Topic 13 — Gravitational Fields
   \item Topics 14, 15 \& 16 — Thermal Physics
+  \item Topic 17 — Oscillations
+  \item Topic 18 — Electric Fields
+  \item Topic 19 — Capacitance
+  \item Topics 20 \& 21 — Magnetic Fields \& Alternating Currents
+  \item Topic 22 — Quantum Physics
+  \item Topic 23 — Nuclear Physics
+  \item Topic 24 — Medical Physics
+  \item Topic 25 — Astronomy and Cosmology
 }
 
 % ── Combined table of contents ────────────────────────────────────────────────
@@ -32,8 +41,36 @@
 % \renewcommand{\bookletheader}{Topics 14--16 — Thermal Physics}
 % \include{topics_14_15_16/topics_14_15_16}
 
-% ── Add further topics below as they are created ─────────────────────────────
+% ── Topic 17 — Oscillations ──────────────────────────────────────────────────
 % \renewcommand{\bookletheader}{Topic 17 — Oscillations}
 % \include{topic_17/topic_17}
+
+% ── Topic 18 — Electric Fields ───────────────────────────────────────────────
+% \renewcommand{\bookletheader}{Topic 18 — Electric Fields}
+% \include{topic_18/topic_18}
+
+% ── Topic 19 — Capacitance ───────────────────────────────────────────────────
+% \renewcommand{\bookletheader}{Topic 19 — Capacitance}
+% \include{topic_19/topic_19}
+
+% ── Topics 20 & 21 — Magnetic Fields & Alternating Currents ──────────────────
+% \renewcommand{\bookletheader}{Topics 20 \& 21 — Magnetic Fields \& AC}
+% \include{topics_20_21/topics_20_21}
+
+% ── Topic 22 — Quantum Physics ───────────────────────────────────────────────
+% \renewcommand{\bookletheader}{Topic 22 — Quantum Physics}
+% \include{topic_22/topic_22}
+
+% ── Topic 23 — Nuclear Physics ───────────────────────────────────────────────
+% \renewcommand{\bookletheader}{Topic 23 — Nuclear Physics}
+% \include{topic_23/topic_23}
+
+% ── Topic 24 — Medical Physics ───────────────────────────────────────────────
+% \renewcommand{\bookletheader}{Topic 24 — Medical Physics}
+% \include{topic_24/topic_24}
+
+% ── Topic 25 — Astronomy and Cosmology ───────────────────────────────────────
+% \renewcommand{\bookletheader}{Topic 25 — Astronomy and Cosmology}
+% \include{topic_25/topic_25}
 
 \end{document}
