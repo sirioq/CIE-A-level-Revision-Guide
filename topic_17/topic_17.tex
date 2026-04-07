@@ -3,29 +3,503 @@
 
 \chapteropener{17}{Oscillations}{%
   \item Simple Harmonic Motion
+  \item Displacement, Velocity \& Acceleration
   \item Energy in SHM
-  \item Damping and Resonance
+  \item Damped Oscillations
+  \item Forced Oscillations \& Resonance
 }
 
-% ===== SECTION: SIMPLE HARMONIC MOTION =====
-\section{Simple Harmonic Motion}
+% ===== SECTION 1: KEY CONCEPTS =====
+\section{Core Concepts and Definitions}
 
-% Content to be written.
+\begin{definitionbox}{Oscillatory Motion — Key Terms}
+\begin{itemize}[itemsep=2pt]
+  \item \textbf{Displacement} $x$: the distance from the equilibrium position, with direction (m).
+  \item \textbf{Amplitude} $x_0$: the maximum displacement from equilibrium (m).
+  \item \textbf{Period} $T$: the time for one complete oscillation (s).
+  \item \textbf{Frequency} $f$: the number of complete oscillations per second (Hz); $f = 1/T$.
+  \item \textbf{Angular frequency} $\omega$: $\omega = 2\pi f = 2\pi/T$ (rad s$^{-1}$).
+  \item \textbf{Phase difference} $\phi$: the fraction of a cycle by which one oscillation leads or lags another, expressed in radians.
+\end{itemize}
+\end{definitionbox}
 
+\begin{definitionbox}{Simple Harmonic Motion (SHM)}
+An oscillation is \textbf{simple harmonic} if the acceleration of the object is:
+\begin{itemize}[itemsep=2pt]
+  \item \textbf{proportional} to its displacement from a fixed equilibrium point, and
+  \item always directed \textbf{towards} that equilibrium point (opposite to displacement).
+\end{itemize}
+$$a \propto -x$$
+\end{definitionbox}
 
-% ===== SECTION: ENERGY IN SHM =====
-\section{Energy in SHM}
+% ===== SECTION 2: SHM EQUATIONS =====
+\section{Equations of Simple Harmonic Motion}
 
-% Content to be written.
+\begin{formulabox}{Defining Equation of SHM}
+\begin{center}
+\Large $a = -\omega^2 x$
+\end{center}
+\vspace{0.3em}
+\begin{tabular}{@{}ll@{}}
+$a$ & = acceleration (m s$^{-2}$) \\
+$\omega$ & = angular frequency (rad s$^{-1}$) \\
+$x$ & = displacement from equilibrium (m) \\
+\end{tabular}
+\vspace{0.4em}
 
+The negative sign confirms acceleration is always directed \textbf{opposite} to displacement.
+\end{formulabox}
 
-% ===== SECTION: DAMPING AND RESONANCE =====
-\section{Damping and Resonance}
+\begin{formulabox}{Displacement, Velocity and Acceleration}
+\begin{center}
+\large
+$x = x_0 \sin\omega t$ \qquad (starting from equilibrium)
+\end{center}
+\vspace{0.3em}
+\begin{center}
+\large
+$v = v_0 \cos\omega t$ \qquad where $v_0 = \omega x_0$
+\end{center}
+\vspace{0.3em}
+\begin{center}
+\large
+$v = \pm\,\omega\sqrt{x_0^2 - x^2}$
+\end{center}
+\vspace{0.4em}
+\begin{tabular}{@{}ll@{}}
+$x_0$ & = amplitude (m) \\
+$v_0$ & = maximum speed $= \omega x_0$ (m s$^{-1}$) \\
+$t$ & = time (s) \\
+\end{tabular}
+\end{formulabox}
 
-% Content to be written.
+\begin{keybox}{Maxima and Minima}
+\begin{itemize}[itemsep=2pt]
+  \item Acceleration is \textbf{maximum} at maximum displacement ($x = \pm x_0$): \quad $|a_{\max}| = \omega^2 x_0$
+  \item Speed is \textbf{maximum} at the equilibrium position ($x = 0$): \quad $v_{\max} = \omega x_0$
+  \item Speed is \textbf{zero} at the turning points ($x = \pm x_0$).
+\end{itemize}
+\end{keybox}
 
+\subsubsection*{Graphs of $x$, $v$ and $a$ against time}
+
+\begin{center}
+\begin{tikzpicture}[xscale=1.1, yscale=0.75]
+  \def\T{4.0}
+  % --- Displacement ---
+  \draw[->, darkblue, thick] (-0.2,0) -- (5.2,0);
+  \draw[->, darkblue, thick] (0,-1.4) -- (0,1.6);
+  \draw[midblue, thick, domain=0:5.0, samples=200, smooth]
+    plot (\x, {sin(360*\x/\T r)});
+  \node[darkblue, font=\small, anchor=west] at (5.1,0) {$t$};
+  \node[midblue, font=\small, anchor=east] at (-0.05,1.0) {$x_0$};
+  \node[midblue, font=\small, anchor=west] at (0.1,1.3) {$x$};
+
+  % --- Velocity ---
+  \begin{scope}[yshift=-3.8cm]
+    \draw[->, darkblue, thick] (-0.2,0) -- (5.2,0);
+    \draw[->, darkblue, thick] (0,-1.4) -- (0,1.6);
+    \draw[darkgreen!70!black, thick, domain=0:5.0, samples=200, smooth]
+      plot (\x, {cos(360*\x/\T r)});
+    \node[darkblue, font=\small, anchor=west] at (5.1,0) {$t$};
+    \node[darkgreen!70!black, font=\small, anchor=east] at (-0.05,1.0) {$v_0$};
+    \node[darkgreen!70!black, font=\small, anchor=west] at (0.1,1.3) {$v$};
+  \end{scope}
+
+  % --- Acceleration ---
+  \begin{scope}[yshift=-7.6cm]
+    \draw[->, darkblue, thick] (-0.2,0) -- (5.2,0);
+    \draw[->, darkblue, thick] (0,-1.4) -- (0,1.6);
+    \draw[accentpink, thick, domain=0:5.0, samples=200, smooth]
+      plot (\x, {-sin(360*\x/\T r)});
+    \node[darkblue, font=\small, anchor=west] at (5.1,0) {$t$};
+    \node[accentpink, font=\small, anchor=east] at (-0.05,-1.0) {$-\omega^2 x_0$};
+    \node[accentpink, font=\small, anchor=west] at (0.1,1.3) {$a$};
+  \end{scope}
+
+  % T label on top graph
+  \draw[dashed, darkgray, thin] (\T, 0.05) -- (\T, -0.3);
+  \node[darkgray, font=\small] at (\T,-0.5) {$T$};
+\end{tikzpicture}
+\end{center}
+
+\begin{keybox}{Phase Relationships}
+\begin{itemize}[itemsep=2pt]
+  \item $v$ leads $x$ by $\tfrac{\pi}{2}$ rad (quarter period ahead).
+  \item $a$ leads $v$ by $\tfrac{\pi}{2}$ rad, so $a$ is \textbf{antiphase} ($\pi$ rad ahead) with $x$.
+\end{itemize}
+\end{keybox}
+
+\begin{warningbox}{Common Mistake}
+The equation $x = x_0 \sin\omega t$ assumes the object starts at the \textbf{equilibrium position} at $t = 0$. If it starts at maximum displacement, use $x = x_0 \cos\omega t$ instead. Always check the initial conditions.
+\end{warningbox}
+
+% ===== SECTION 3: ENERGY IN SHM =====
+\section{Energy in Simple Harmonic Motion}
+
+\begin{formulabox}{Total Energy of a SHM System}
+\begin{center}
+\Large $E = \tfrac{1}{2}m\omega^2 x_0^2$
+\end{center}
+\vspace{0.3em}
+\begin{tabular}{@{}ll@{}}
+$E$ & = total mechanical energy (J) \\
+$m$ & = mass of the oscillating object (kg) \\
+$\omega$ & = angular frequency (rad s$^{-1}$) \\
+$x_0$ & = amplitude (m) \\
+\end{tabular}
+\end{formulabox}
+
+\begin{keybox}{Energy Interchange During SHM}
+\begin{itemize}[itemsep=2pt]
+  \item At the \textbf{equilibrium position} ($x = 0$): KE is maximum, PE is zero.
+  \item At the \textbf{turning points} ($x = \pm x_0$): KE is zero, PE is maximum.
+  \item The \textbf{total energy remains constant} throughout (assuming no damping).
+  \item KE $= \tfrac{1}{2}m\omega^2(x_0^2 - x^2)$ \qquad PE $= \tfrac{1}{2}m\omega^2 x^2$
+\end{itemize}
+\end{keybox}
+
+\subsubsection*{Energy–displacement graph}
+
+\begin{center}
+\begin{tikzpicture}[xscale=2.0, yscale=1.8]
+  % Axes
+  \draw[->, darkblue, thick] (-1.4,0) -- (1.4,0)
+    node[anchor=north, font=\small] {$x$};
+  \draw[->, darkblue, thick] (0,-0.15) -- (0,1.4)
+    node[anchor=east, font=\small] {Energy};
+
+  % x-axis labels
+  \node[darkgray, font=\small, anchor=north] at (-1.0,-0.05) {$-x_0$};
+  \node[darkgray, font=\small, anchor=north] at ( 1.0,-0.05) {$x_0$};
+  \node[darkgray, font=\small, anchor=north] at ( 0.0,-0.05) {$0$};
+
+  % Total energy (horizontal line)
+  \draw[darkblue, thick, dashed] (-1.0, 1.0) -- (1.0, 1.0);
+  \node[darkblue, font=\small, anchor=west] at (1.05, 1.0) {$E$};
+
+  % PE = (1/2)m omega^2 x^2  -> parabola, scaled so PE=1 at x=1
+  \draw[accentpink, thick, domain=-1.0:1.0, samples=100, smooth]
+    plot (\x, {\x*\x});
+  \node[accentpink, font=\small] at (0.72, 0.62) {PE};
+
+  % KE = E - PE = 1 - x^2  -> inverted parabola
+  \draw[darkgreen!70!black, thick, domain=-1.0:1.0, samples=100, smooth]
+    plot (\x, {1 - \x*\x});
+  \node[darkgreen!70!black, font=\small] at (0.3, 0.85) {KE};
+\end{tikzpicture}
+\end{center}
+
+% ===== SECTION 4: DAMPED OSCILLATIONS =====
+\section{Damped and Forced Oscillations}
+
+\subsection{Damping}
+
+\begin{definitionbox}{Damping}
+\textbf{Damping} occurs when a resistive force (e.g., air resistance, viscosity) acts on an oscillating system. Energy is removed from the system, causing the amplitude to \textbf{decrease over time}. The frequency is approximately unchanged for light damping.
+\end{definitionbox}
+
+\begin{keybox}{Types of Damping}
+\begin{itemize}[itemsep=3pt]
+  \item \textbf{Light damping}: amplitude decreases gradually over many oscillations; the system oscillates for a long time before coming to rest.
+  \item \textbf{Critical damping}: the system returns to equilibrium in the \textbf{shortest possible time} without oscillating. Used in car suspension and door closers.
+  \item \textbf{Heavy (overdamping)}: the system returns to equilibrium \textbf{slowly} without oscillating; slower return than critical damping.
+\end{itemize}
+\end{keybox}
+
+\subsubsection*{Displacement–time graphs for the three types of damping}
+
+\begin{center}
+\begin{tikzpicture}[xscale=1.0, yscale=1.2]
+  % Axes
+  \draw[->, darkblue, thick] (-0.2,0) -- (6.5,0)
+    node[anchor=north, font=\small] {$t$};
+  \draw[->, darkblue, thick] (0,-1.5) -- (0,2.0)
+    node[anchor=east, font=\small] {$x$};
+  \node[darkgray, font=\small, anchor=north east] at (0,0) {$0$};
+
+  % Light damping — decaying sinusoid
+  \draw[midblue, thick, domain=0:6.2, samples=300, smooth]
+    plot (\x, {1.4*exp(-0.35*\x)*sin(200*\x r)});
+  \node[midblue, font=\small\bfseries] at (5.5, 0.85) {light};
+
+  % Critical damping — e^{-t} type return
+  \draw[darkgreen!70!black, thick, domain=0:6.2, samples=200, smooth]
+    plot (\x, {1.4*\x*exp(-1.5*\x)});
+  \node[darkgreen!70!black, font=\small\bfseries] at (3.2, 0.42) {critical};
+
+  % Heavy damping — very slow return, no oscillation
+  \draw[accentpink, thick, domain=0:6.2, samples=200, smooth]
+    plot (\x, {1.3*(exp(-0.45*\x) - exp(-1.4*\x))});
+  \node[accentpink, font=\small\bfseries] at (4.6, 0.18) {heavy};
+
+  % Starting displacement marker
+  \draw[dashed, darkgray, thin] (0,1.4) node[anchor=east, font=\small] {$x_0$} -- (0.2,1.4);
+\end{tikzpicture}
+\end{center}
+
+\subsection{Forced Oscillations and Resonance}
+
+\begin{definitionbox}{Forced Oscillations and Natural Frequency}
+\begin{itemize}[itemsep=2pt]
+  \item Every oscillating system has a \textbf{natural frequency} $f_0$ at which it oscillates freely when displaced and released.
+  \item A \textbf{forced oscillation} occurs when a periodic \textbf{driving force} is applied to the system at a \textbf{driving frequency} $f$.
+  \item The system oscillates at the \textbf{driving frequency}, not necessarily at its natural frequency.
+\end{itemize}
+\end{definitionbox}
+
+\begin{definitionbox}{Resonance}
+\textbf{Resonance} occurs when the driving frequency equals the natural frequency of the system ($f = f_0$). At resonance:
+\begin{itemize}[itemsep=2pt]
+  \item The amplitude of oscillation is a \textbf{maximum}.
+  \item Energy transfer from the driver to the system is most efficient.
+  \item The degree of damping determines how sharp the resonance peak is and the maximum amplitude reached.
+\end{itemize}
+\end{definitionbox}
+
+\subsubsection*{Amplitude–frequency graph (resonance curves)}
+
+\begin{center}
+\begin{tikzpicture}[xscale=2.8, yscale=1.6]
+  % Axes
+  \draw[->, darkblue, thick] (-0.1,0) -- (2.2,0)
+    node[anchor=north, font=\small] {Driving frequency $f$};
+  \draw[->, darkblue, thick] (0,-0.1) -- (0,2.4)
+    node[anchor=east, font=\small] {Amplitude};
+
+  % f0 marker
+  \draw[dashed, darkgray, thin] (1.0,0) node[anchor=north, font=\small] {$f_0$} -- (1.0,2.15);
+
+  % Light damping — sharp peak
+  \draw[midblue, thick, domain=0.05:2.0, samples=300, smooth]
+    plot (\x, {0.18 / ( (\x-1)^2 + 0.003 ) ^0.5 * 0.05});
+  % Replot with a proper Lorentzian
+  \draw[midblue, thick, domain=0.05:2.0, samples=400, smooth]
+    plot (\x, { 0.065 / sqrt( (\x*\x - 1)^2 + 0.008*\x*\x ) });
+  \node[midblue, font=\small] at (1.42, 1.55) {light damping};
+
+  % Heavy damping — broad, lower peak
+  \draw[accentpink, thick, domain=0.05:2.0, samples=400, smooth]
+    plot (\x, { 0.065 / sqrt( (\x*\x - 1)^2 + 0.25*\x*\x ) });
+  \node[accentpink, font=\small] at (1.55, 0.42) {heavy damping};
+\end{tikzpicture}
+\end{center}
+
+\begin{keybox}{Effect of Damping on Resonance}
+\begin{itemize}[itemsep=2pt]
+  \item More damping $\Rightarrow$ lower and broader resonance peak.
+  \item More damping $\Rightarrow$ peak shifts slightly \textbf{below} $f_0$.
+  \item Less damping $\Rightarrow$ sharper, taller peak closer to $f_0$.
+\end{itemize}
+\end{keybox}
+
+\begin{warningbox}{Resonance in Real Life}
+Resonance can be \textbf{useful} (e.g.\ MRI scanners, musical instruments, microwave ovens) or \textbf{destructive} (e.g.\ bridges vibrating in wind, buildings in earthquakes). Engineers use damping to control unwanted resonance.
+\end{warningbox}
+
+% ===== SECTION 5: EXAMPLES =====
+\section{Worked Examples}
+
+\subsection*{Example 1 — Finding Angular Frequency and Max Speed}
+
+\textbf{Question:} A mass oscillates with SHM, amplitude $4.0\ \text{cm}$ and period $0.80\ \text{s}$. Calculate (a) the angular frequency and (b) the maximum speed.
+
+\begin{examplebox}{Solution}
+\textbf{(a)} \quad $\omega = \dfrac{2\pi}{T} = \dfrac{2\pi}{0.80} = \mathbf{7.85\ \text{rad s}^{-1}}$
+
+\vspace{0.5em}
+\textbf{(b)} \quad $v_{\max} = \omega x_0 = 7.85 \times 0.040 = \mathbf{0.31\ \text{m s}^{-1}}$
+\end{examplebox}
+
+\subsection*{Example 2 — Speed at a Given Displacement}
+
+\textbf{Question:} The same mass ($\omega = 7.85\ \text{rad s}^{-1}$, $x_0 = 4.0\ \text{cm}$) has displacement $x = 2.5\ \text{cm}$. Find its speed.
+
+\begin{examplebox}{Solution}
+$$v = \omega\sqrt{x_0^2 - x^2} = 7.85\times\sqrt{(0.040)^2 - (0.025)^2}$$
+$$v = 7.85\times\sqrt{1.60\times10^{-3} - 6.25\times10^{-4}} = 7.85\times\sqrt{9.75\times10^{-4}}$$
+$$v = 7.85\times 0.0312 = \mathbf{0.245\ \text{m s}^{-1}}$$
+\end{examplebox}
+
+\subsection*{Example 3 — Total Energy of SHM System}
+
+\textbf{Question:} A $0.20\ \text{kg}$ mass oscillates with $\omega = 7.85\ \text{rad s}^{-1}$ and amplitude $4.0\ \text{cm}$. Calculate the total energy.
+
+\begin{examplebox}{Solution}
+$$E = \tfrac{1}{2}m\omega^2 x_0^2 = \tfrac{1}{2}\times 0.20 \times (7.85)^2 \times (0.040)^2$$
+$$E = 0.10\times 61.6\times 1.60\times10^{-3} = \mathbf{9.9\times10^{-3}\ \text{J}}$$
+\end{examplebox}
+
+% ===== SECTION 6: PRACTICE QUESTIONS =====
+\section{Practice Exam Questions}
+
+\subsection*{Section A — Short Answer Questions}
+
+\begin{tcolorbox}[colback=white, colframe=midblue, breakable]
+
+\begin{minipage}{\linewidth}
+\textbf{Q1.} State the two conditions that define simple harmonic motion.
+\par\hfill\textit{[2 marks]}
+\vspace{2.5cm}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+\textbf{Q2.} Define the terms \emph{amplitude}, \emph{period} and \emph{angular frequency} for an oscillating system.
+\par\hfill\textit{[3 marks]}
+\vspace{3cm}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+\textbf{Q3.} An object undergoes SHM with frequency $2.5\ \text{Hz}$ and amplitude $6.0\ \text{cm}$.
+\begin{enumerate}[label=(\alph*)]
+  \item Calculate the angular frequency.  \hfill\textit{[1 mark]}
+  \vspace{2cm}
+  \item Calculate the maximum acceleration.  \hfill\textit{[2 marks]}
+  \vspace{2.5cm}
+  \item Calculate the speed when $x = 4.0\ \text{cm}$.  \hfill\textit{[2 marks]}
+  \vspace{2.5cm}
+\end{enumerate}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+\textbf{Q4.} Sketch displacement–time graphs for \emph{light}, \emph{critical} and \emph{heavy} damping on the same axes, starting from the same initial displacement. Label each curve.
+\par\hfill\textit{[3 marks]}
+\vspace{6cm}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+\textbf{Q5.} Explain what is meant by \emph{resonance} and state the condition under which it occurs.
+\par\hfill\textit{[2 marks]}
+\vspace{2.5cm}
+\end{minipage}
+
+\end{tcolorbox}
+
+\subsection*{Section B — Longer Structured Questions}
+
+\begin{tcolorbox}[colback=white, colframe=midblue, breakable]
+
+\begin{minipage}{\linewidth}
+\textbf{Q6.} A $0.15\ \text{kg}$ mass is attached to a spring and oscillates vertically with SHM. Its displacement is given by $x = 0.050\sin(12t)$, where $x$ is in metres and $t$ in seconds.
+\end{minipage}
+
+\begin{enumerate}[label=(\alph*)]
+  \item \begin{minipage}[t]{\linewidth}
+  Write down the amplitude and angular frequency of the motion.
+  \par\hfill\textit{[2 marks]}
+  \vspace{2cm}
+  \end{minipage}
+
+  \item \begin{minipage}[t]{\linewidth}
+  Show that the maximum speed is $0.60\ \text{m s}^{-1}$.
+  \par\hfill\textit{[2 marks]}
+  \vspace{3cm}
+  \end{minipage}
+
+  \item \begin{minipage}[t]{\linewidth}
+  Calculate the total energy of the oscillation.
+  \par\hfill\textit{[2 marks]}
+  \vspace{3cm}
+  \end{minipage}
+
+  \item \begin{minipage}[t]{\linewidth}
+  Sketch graphs on the same axes showing how the kinetic energy and potential energy vary with displacement $x$. Label your axes clearly.
+  \par\hfill\textit{[3 marks]}
+  \vspace{6cm}
+  \end{minipage}
+\end{enumerate}
+
+\begin{minipage}{\linewidth}
+\textbf{Q7.} A child on a swing is pushed periodically by a parent.
+
+\begin{enumerate}[label=(\alph*)]
+  \item Explain why the amplitude of the swing increases when the pushing frequency equals the natural frequency of the swing.
+  \par\hfill\textit{[2 marks]}
+  \vspace{3cm}
+
+  \item The parent now pushes at a frequency higher than the natural frequency. Describe and explain what happens to the amplitude.
+  \par\hfill\textit{[2 marks]}
+  \vspace{3cm}
+
+  \item Air resistance acts on the swing. Describe how this affects the resonance curve compared to an undamped system.
+  \par\hfill\textit{[2 marks]}
+  \vspace{3cm}
+\end{enumerate}
+\end{minipage}
+
+\end{tcolorbox}
+
+% ===== SECTION 7: MARK SCHEME =====
+\section{Mark Scheme and Answers}
+
+\begin{markscheme}
+
+\textbf{Q1.} Acceleration is proportional to displacement from a fixed (equilibrium) point [1]; acceleration is always directed towards that point / opposite to displacement [1].
+
+\vspace{0.5em}\textbf{Q2.} Amplitude: maximum displacement from equilibrium [1]. Period: time for one complete oscillation [1]. Angular frequency: $\omega = 2\pi f = 2\pi/T$ (rad s$^{-1}$) [1].
+
+\vspace{0.5em}\textbf{Q3(a).} $\omega = 2\pi f = 2\pi \times 2.5 = \mathbf{15.7\ \text{rad s}^{-1}}$ [1].
+
+\vspace{0.5em}\textbf{Q3(b).} $a_{\max} = \omega^2 x_0 = (15.7)^2 \times 0.060$ [1] $= \mathbf{14.8\ \text{m s}^{-2}}$ [1].
+
+\vspace{0.5em}\textbf{Q3(c).} $v = \omega\sqrt{x_0^2 - x^2} = 15.7\times\sqrt{(0.060)^2-(0.040)^2}$ [1] $= 15.7\times 0.0447 = \mathbf{0.70\ \text{m s}^{-1}}$ [1].
+
+\vspace{0.5em}\textbf{Q4.} All three start from same $x_0$ [1]; light damping: decaying sinusoid, multiple oscillations; critical: returns to zero smoothly in shortest time without oscillating; heavy: slower return to zero, no oscillation — all three correctly labelled [2].
+
+\vspace{0.5em}\textbf{Q5.} Resonance: when the driving frequency equals the natural frequency of the system [1]; the amplitude of oscillation reaches a maximum [1].
+
+\vspace{0.5em}\textbf{Q6(a).} Amplitude $x_0 = 0.050\ \text{m}$ [1]; angular frequency $\omega = 12\ \text{rad s}^{-1}$ [1].
+
+\vspace{0.5em}\textbf{Q6(b).} $v_{\max} = \omega x_0 = 12 \times 0.050 = 0.60\ \text{m s}^{-1}$ [2] (must show substitution).
+
+\vspace{0.5em}\textbf{Q6(c).} $E = \tfrac{1}{2}m\omega^2 x_0^2 = \tfrac{1}{2}\times 0.15\times 144\times 2.5\times10^{-3}$ [1] $= \mathbf{2.7\times10^{-2}\ \text{J}}$ [1].
+
+\vspace{0.5em}\textbf{Q6(d).} PE: upward parabola, zero at $x=0$, maximum $E$ at $x = \pm x_0$ [1]; KE: inverted parabola, maximum $E$ at $x=0$, zero at $x = \pm x_0$ [1]; axes correctly labelled with $E$, $-x_0$, $0$, $x_0$ [1].
+
+\vspace{0.5em}\textbf{Q7(a).} Energy is transferred most efficiently from driver to system when $f_{\text{drive}} = f_0$ [1]; each push is in phase with the motion so energy is added each cycle, increasing amplitude [1].
+
+\vspace{0.5em}\textbf{Q7(b).} Amplitude decreases [1]; driving frequency is not matched to natural frequency so energy transfer is less efficient / pushes are out of phase with motion [1].
+
+\vspace{0.5em}\textbf{Q7(c).} The resonance peak is lower (smaller maximum amplitude) [1]; the peak is broader and shifts slightly to a frequency below $f_0$ [1].
+
+\end{markscheme}
+
+% ===== SECTION 8: REVISION CHECKLIST =====
+\newpage
+\section{Revision Checklist}
+
+Use this checklist to track your understanding. Tick each box when you are confident:
+
+\begin{tcolorbox}[colback=white, colframe=darkblue, breakable]
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{@{} c p{10.5cm} r @{}}
+\toprule
+ & \textbf{Learning Objective} & \textbf{Confidence (1--3)} \\
+\midrule
+$\square$ & Define displacement, amplitude, period, frequency and angular frequency & \\
+$\square$ & State and apply the two conditions for SHM & \\
+$\square$ & Use \nf{a = -\omega^2 x} to identify and analyse SHM & \\
+$\square$ & Use \nf{x = x_0\sin\omega t} and \nf{v = v_0\cos\omega t} & \\
+$\square$ & Use \nf{v = \pm\omega\sqrt{x_0^2 - x^2}} to find speed at any displacement & \\
+$\square$ & Sketch and interpret graphs of $x$, $v$ and $a$ against $t$ & \\
+$\square$ & Describe the phase relationships between $x$, $v$ and $a$ & \\
+$\square$ & Describe the interchange between KE and PE during SHM & \\
+$\square$ & Use \nf{E = \tfrac{1}{2}m\omega^2 x_0^2} for total energy & \\
+$\square$ & Sketch and interpret KE and PE against displacement graphs & \\
+$\square$ & Explain and distinguish light, critical and heavy damping & \\
+$\square$ & Sketch displacement–time graphs for the three types of damping & \\
+$\square$ & Explain resonance and the condition for it to occur & \\
+$\square$ & Describe the effect of damping on the resonance curve & \\
+\bottomrule
+\end{tabular}
+\vspace{0.5em}
+
+\textit{Key: 1 = Need more work \quad 2 = Getting there \quad 3 = Confident}
+\end{tcolorbox}
+
+\vspace{1em}
 \begin{motivationbox}
 \centering
 \textbf{\color{darkblue}Good luck with your revision!}\\[0.2em]
-{\color{darkgray}\small Remember: understanding \emph{why} formulas work is more powerful than memorising them.}
+{\color{darkgray}\small Remember: in SHM, acceleration and displacement are always linked by $a = -\omega^2 x$. If you can start from this equation and derive everything else, you truly understand the topic.}
 \end{motivationbox}
