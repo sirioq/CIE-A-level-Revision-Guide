@@ -3,7 +3,7 @@
 
 \chapteropener{14, 15 \& 16}{Thermal Physics}{%
   \item Temperature and Thermal Equilibrium
-  \item Temperature Scales and Measurement
+  \item Temperature Scales
   \item Specific Heat Capacity and Latent Heat
   \item The Mole and Ideal Gases
   \item Kinetic Theory of Gases
@@ -11,49 +11,556 @@
   \item The First Law of Thermodynamics
 }
 
-% ===== SECTION: TEMPERATURE AND THERMAL EQUILIBRIUM =====
-\section{Temperature and Thermal Equilibrium}
+% ===== SECTION 1: THERMAL EQUILIBRIUM =====
+\section{Thermal Equilibrium}
 
-% Content to be written.
+\begin{definitionbox}{Thermal Energy Transfer}
+Thermal (heat) energy is transferred from a region of \textbf{higher temperature} to a region of \textbf{lower temperature}. Transfer continues until the two regions reach the same temperature.
+\end{definitionbox}
 
+\begin{definitionbox}{Thermal Equilibrium}
+Two objects are in \textbf{thermal equilibrium} when there is no net transfer of thermal energy between them. This occurs when they are at the \textbf{same temperature}.
 
-% ===== SECTION: TEMPERATURE SCALES AND MEASUREMENT =====
-\section{Temperature Scales and Measurement}
+\medskip
+\textit{Zeroth Law of Thermodynamics:} If object A is in thermal equilibrium with object C, and object B is also in thermal equilibrium with object C, then A and B are in thermal equilibrium with each other.
+\end{definitionbox}
 
-% Content to be written.
+% ===== SECTION 2: TEMPERATURE SCALES =====
+\section{Temperature Scales}
 
+\begin{definitionbox}{Thermometric Property}
+A \textbf{thermometric property} is a physical property that varies continuously and measurably with temperature. Examples include:
+\begin{itemize}[itemsep=2pt]
+  \item Resistance of a metal wire (e.g.\ platinum resistance thermometer)
+  \item e.m.f.\ of a thermocouple
+  \item Volume of a gas at constant pressure
+  \item Density of a liquid
+\end{itemize}
+\end{definitionbox}
 
-% ===== SECTION: SPECIFIC HEAT CAPACITY AND LATENT HEAT =====
+\begin{definitionbox}{Thermodynamic Temperature Scale}
+The \textbf{thermodynamic (Kelvin) temperature scale} does not depend on the property of any particular substance. It is an absolute scale with:
+\begin{itemize}[itemsep=2pt]
+  \item \textbf{Absolute zero} ($0\ \text{K}$) --- the lowest possible temperature
+  \item \textbf{Triple point of water} ($273.16\ \text{K}$) --- fixed reference point
+\end{itemize}
+\end{definitionbox}
+
+\begin{formulabox}{Temperature Conversion}
+\begin{center}
+\Large $T/\text{K} = \theta/\text{°C} + 273.15$
+\end{center}
+\vspace{0.3em}
+\begin{tabular}{@{}ll@{}}
+$T$ & = thermodynamic temperature (K) \\
+$\theta$ & = Celsius temperature (°C) \\
+\end{tabular}
+
+\medskip
+Note: a temperature \emph{difference} of $1\ \text{K}$ equals a difference of $1\ \text{°C}$.
+\end{formulabox}
+
+\begin{keybox}{Absolute Zero}
+At absolute zero ($0\ \text{K} = -273.15\ \text{°C}$):
+\begin{itemize}[itemsep=2pt]
+  \item Molecules have minimum possible kinetic energy
+  \item It is impossible to reach in practice, only to approach asymptotically
+  \item All ideal gases would have zero volume (zero pressure at constant volume)
+\end{itemize}
+\end{keybox}
+
+% ===== SECTION 3: SPECIFIC HEAT CAPACITY AND LATENT HEAT =====
 \section{Specific Heat Capacity and Latent Heat}
 
-% Content to be written.
+\begin{definitionbox}{Specific Heat Capacity}
+The \textbf{specific heat capacity} $c$ of a substance is the energy required to raise the temperature of \textbf{unit mass} by \textbf{one kelvin} (or one degree Celsius), without change of state.
+$$c = \frac{Q}{m\,\Delta T} \qquad \text{units: J\,kg}^{-1}\text{K}^{-1}$$
+\end{definitionbox}
 
+\begin{formulabox}{Specific Heat Capacity}
+\begin{center}
+\Large $Q = mc\Delta T$
+\end{center}
+\vspace{0.3em}
+\begin{tabular}{@{}ll@{}}
+$Q$ & = thermal energy transferred (J) \\
+$m$ & = mass (kg) \\
+$c$ & = specific heat capacity (J\,kg$^{-1}$\,K$^{-1}$) \\
+$\Delta T$ & = temperature change (K or °C) \\
+\end{tabular}
+\end{formulabox}
 
-% ===== SECTION: THE MOLE AND IDEAL GASES =====
+\begin{definitionbox}{Specific Latent Heat}
+The \textbf{specific latent heat} $L$ of a substance is the energy required to change the state of \textbf{unit mass} at constant temperature.
+$$L = \frac{Q}{m} \qquad \text{units: J\,kg}^{-1}$$
+
+\begin{itemize}[itemsep=2pt]
+  \item \textbf{Specific latent heat of fusion} $L_f$: solid $\rightarrow$ liquid (melting)
+  \item \textbf{Specific latent heat of vaporisation} $L_v$: liquid $\rightarrow$ gas (boiling)
+\end{itemize}
+Note: $L_v > L_f$ for any given substance, since greater work is done separating molecules completely during vaporisation.
+\end{definitionbox}
+
+\begin{formulabox}{Specific Latent Heat}
+\begin{center}
+\Large $Q = mL$
+\end{center}
+\vspace{0.3em}
+\begin{tabular}{@{}ll@{}}
+$Q$ & = thermal energy transferred (J) \\
+$m$ & = mass (kg) \\
+$L$ & = specific latent heat (J\,kg$^{-1}$) \\
+\end{tabular}
+\end{formulabox}
+
+\begin{warningbox}{Common Mistake}
+During a change of state, temperature remains \textbf{constant} even though energy is being supplied. The energy goes into breaking intermolecular bonds, not increasing kinetic energy.
+\end{warningbox}
+
+% ===== SECTION 4: THE MOLE AND IDEAL GASES =====
 \section{The Mole and Ideal Gases}
 
-% Content to be written.
+\begin{definitionbox}{Amount of Substance}
+The \textbf{mole} (mol) is the SI base unit for amount of substance. One mole of any substance contains exactly $N_A = 6.02 \times 10^{23}$ particles (the Avogadro constant).
+\end{definitionbox}
 
+\begin{formulabox}{Equation of State for an Ideal Gas}
+\begin{center}
+\Large $pV = nRT$ \qquad or \qquad $pV = NkT$
+\end{center}
+\vspace{0.3em}
+\begin{tabular}{@{}ll@{}}
+$p$ & = pressure (Pa) \\
+$V$ & = volume (m$^3$) \\
+$n$ & = number of moles (mol) \\
+$R$ & = molar gas constant $= 8.31\ \text{J\,mol}^{-1}\text{K}^{-1}$ \\
+$T$ & = thermodynamic temperature (K) \\
+$N$ & = number of molecules \\
+$k$ & = Boltzmann constant $= 1.38 \times 10^{-23}\ \text{J\,K}^{-1}$ \\
+\end{tabular}
 
-% ===== SECTION: KINETIC THEORY OF GASES =====
+\medskip
+The Boltzmann constant: $k = R/N_A$
+\end{formulabox}
+
+\begin{definitionbox}{Ideal Gas}
+An \textbf{ideal gas} is one that obeys $pV \propto T$ (where $T$ is thermodynamic temperature) under all conditions. Real gases approximate ideal behaviour at low pressures and high temperatures.
+\end{definitionbox}
+
+\begin{keybox}{Gas Laws (special cases of $pV = nRT$)}
+\begin{itemize}[itemsep=4pt]
+  \item \textbf{Boyle's Law} (constant $T$): $pV = \text{constant}$, so $p_1V_1 = p_2V_2$
+  \item \textbf{Charles' Law} (constant $p$): $V/T = \text{constant}$, so $V_1/T_1 = V_2/T_2$
+  \item \textbf{Pressure Law} (constant $V$): $p/T = \text{constant}$, so $p_1/T_1 = p_2/T_2$
+\end{itemize}
+\end{keybox}
+
+\begin{warningbox}{Common Mistake}
+Always use \textbf{thermodynamic temperature in kelvin} in gas law calculations --- never degrees Celsius.
+\end{warningbox}
+
+% ===== SECTION 5: KINETIC THEORY OF GASES =====
 \section{Kinetic Theory of Gases}
 
-% Content to be written.
+\subsection{Assumptions of the Kinetic Model}
 
+\begin{keybox}{Basic Assumptions of Kinetic Theory}
+\begin{enumerate}[itemsep=3pt]
+  \item The gas contains a \textbf{large number} of molecules moving in \textbf{random directions} with a range of speeds.
+  \item The molecules occupy \textbf{negligible volume} compared to the volume of the gas.
+  \item All collisions are \textbf{perfectly elastic} (no kinetic energy lost).
+  \item \textbf{Intermolecular forces are negligible} except during collisions.
+  \item The duration of collisions is \textbf{negligible} compared to the time between collisions.
+  \item Molecules obey \textbf{Newton's laws of motion}.
+\end{enumerate}
+\end{keybox}
 
-% ===== SECTION: INTERNAL ENERGY =====
+\subsection{Pressure from Kinetic Theory}
+
+The pressure exerted by a gas arises from molecules colliding with the container walls. Each collision exerts a force; the average of many such collisions gives a steady pressure.
+
+\begin{center}
+\begin{tikzpicture}[scale=0.9]
+  % Container box
+  \draw[darkblue, thick] (0,0) rectangle (5,3.5);
+  % Molecules as filled circles
+  \foreach \x/\y in {0.6/0.5, 1.5/1.8, 2.8/0.7, 3.6/2.4, 4.2/1.0, 1.0/2.9, 2.2/2.0, 4.0/3.0}{
+    \fill[midblue] (\x,\y) circle (3.5pt);
+  }
+  % Velocity arrows on a few molecules
+  \draw[->, midblue, thick] (0.6,0.5) -- (1.3,1.0);
+  \draw[->, midblue, thick] (2.8,0.7) -- (3.5,0.3);
+  \draw[->, midblue, thick] (3.6,2.4) -- (4.55,2.7);
+  \draw[->, midblue, thick] (1.5,1.8) -- (0.7,2.3);
+  % Collision arrow hitting right wall
+  \draw[->, pinkframe, very thick] (4.2,1.0) -- (4.95,0.75);
+  % Wall label
+  \node[pinkframe, font=\small, right] at (5.05, 0.75) {collision $\Rightarrow$ pressure};
+  % Caption
+  \node[darkgray, font=\small] at (2.5,-0.35) {Random molecular motion causes pressure on walls};
+\end{tikzpicture}
+\end{center}
+
+\begin{formulabox}{Kinetic Theory Equation}
+\begin{center}
+\Large $pV = \dfrac{1}{3}Nm\langle c^2 \rangle$
+\end{center}
+\vspace{0.3em}
+\begin{tabular}{@{}ll@{}}
+$p$ & = pressure (Pa) \\
+$V$ & = volume (m$^3$) \\
+$N$ & = total number of molecules \\
+$m$ & = mass of one molecule (kg) \\
+$\langle c^2 \rangle$ & = mean square speed (m$^2$\,s$^{-2}$) \\
+\end{tabular}
+
+\medskip
+The \textbf{root-mean-square speed}: $c_\text{r.m.s.} = \sqrt{\langle c^2 \rangle}$
+\end{formulabox}
+
+\subsection{Molecular Kinetic Energy}
+
+Comparing $pV = \frac{1}{3}Nm\langle c^2\rangle$ with $pV = NkT$:
+
+\begin{formulabox}{Average Translational Kinetic Energy}
+\begin{center}
+\Large $\langle E_k \rangle = \dfrac{1}{2}m\langle c^2 \rangle = \dfrac{3}{2}kT$
+\end{center}
+
+The average kinetic energy of a molecule is \textbf{directly proportional to thermodynamic temperature}. This is a fundamental result.
+\end{formulabox}
+
+\begin{keybox}{Key Deductions}
+\begin{itemize}[itemsep=3pt]
+  \item At absolute zero, molecules have minimum kinetic energy
+  \item Molecules of different gases at the same temperature have the \textbf{same average KE}
+  \item Heavier molecules move more \textbf{slowly} on average at the same temperature
+  \item $c_\text{r.m.s.} \propto \sqrt{T}$
+\end{itemize}
+\end{keybox}
+
+% ===== SECTION 6: INTERNAL ENERGY =====
 \section{Internal Energy}
 
-% Content to be written.
+\begin{definitionbox}{Internal Energy}
+The \textbf{internal energy} of a system is the sum of the \textbf{random kinetic energies} and \textbf{potential energies} of all the molecules in the system.
 
+$$U = E_{k,\text{total}} + E_{p,\text{total}}$$
 
-% ===== SECTION: THE FIRST LAW OF THERMODYNAMICS =====
+\begin{itemize}[itemsep=2pt]
+  \item Internal energy is a \textbf{function of state}.
+  \item For an \textbf{ideal gas}: $E_p = 0$, so $U = E_{k,\text{total}}$ only.
+  \item A rise in temperature $\Rightarrow$ increase in average KE $\Rightarrow$ increase in $U$.
+  \item During a change of state: temperature (and KE) constant; $E_p$ increases as bonds break; $U$ increases.
+\end{itemize}
+\end{definitionbox}
+
+% ===== SECTION 7: THE FIRST LAW OF THERMODYNAMICS =====
 \section{The First Law of Thermodynamics}
 
-% Content to be written.
+\begin{formulabox}{Work Done by/on a Gas}
+When a gas changes volume at \textbf{constant pressure}:
+\begin{center}
+\Large $W = p\,\Delta V$
+\end{center}
+\vspace{0.3em}
+\begin{tabular}{@{}ll@{}}
+$W$ & = work done \textbf{by} the gas (J) \\
+$p$ & = pressure (Pa) \\
+$\Delta V$ & = change in volume (m$^3$) \\
+\end{tabular}
+\end{formulabox}
+
+\begin{formulabox}{First Law of Thermodynamics}
+\begin{center}
+\Large $\Delta U = q + W$
+\end{center}
+\vspace{0.3em}
+\begin{tabular}{@{}ll@{}}
+$\Delta U$ & = increase in internal energy of the system (J) \\
+$q$ & = energy supplied \textbf{to} the system by heating (J) \\
+$W$ & = work done \textbf{on} the system (J) \\
+\end{tabular}
+\end{formulabox}
+
+\begin{warningbox}{Sign Convention}
+CIE uses $\Delta U = q + W$ where $W$ is work done \textbf{on} the system. Some textbooks use $\Delta U = q - W$ where $W$ is work done \textbf{by} the system. Always check which convention is being used.
+\end{warningbox}
+
+\begin{keybox}{Special Cases of the First Law}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Process} & \textbf{Condition} & \textbf{Result} \\
+\midrule
+Isothermal & $\Delta T = 0 \Rightarrow \Delta U = 0$ & $q = -W$ \\
+Adiabatic  & $q = 0$ & $\Delta U = W$ \\
+Isochoric  & $\Delta V = 0 \Rightarrow W = 0$ & $\Delta U = q$ \\
+Isobaric   & constant $p$ & $\Delta U = q + p\Delta V$ \\
+\bottomrule
+\end{tabular}
+\end{keybox}
+
+\subsection{$p$--$V$ Diagrams}
+
+The \textbf{area under a $p$--$V$ curve} equals the work done by the gas during that process.
+
+\begin{center}
+\begin{tikzpicture}[xscale=1.8, yscale=1.4]
+  % Axes
+  \draw[->, darkblue, thick] (0,0) -- (3.2,0) node[right, font=\small] {$V$ / m$^3$};
+  \draw[->, darkblue, thick] (0,0) -- (0,2.8) node[above, font=\small] {$p$ / Pa};
+  % Isothermal curve
+  \draw[darkblue, very thick, domain=0.5:2.8, samples=100]
+    plot (\x, {1.4/\x});
+  \node[darkblue, font=\small, right] at (2.8,{1.4/2.8}) {Isothermal ($\Delta U=0$)};
+  % Isobaric line
+  \draw[pinkframe, very thick] (0.5,1.6) -- (2.5,1.6);
+  \node[pinkframe, font=\small, right] at (2.5,1.6) {Isobaric};
+  % Isochoric line
+  \draw[examgreen, very thick] (1.8,0.3) -- (1.8,2.5);
+  \node[examgreen, font=\small, above] at (1.8,2.5) {Isochoric};
+  % Shaded area under isothermal A to B
+  \fill[darkblue!15, domain=0.5:2.0, samples=100]
+    plot (\x, {1.4/\x}) -- (2.0,0) -- (0.5,0) -- cycle;
+  \node[darkblue, font=\scriptsize] at (1.1,0.35) {$W = $ area};
+  % Points A and B
+  \fill[darkblue] (0.5,{1.4/0.5}) circle (2.5pt) node[left, font=\small] {A};
+  \fill[darkblue] (2.0,{1.4/2.0}) circle (2.5pt) node[below right, font=\small] {B};
+  \node[darkgray, font=\small, anchor=north east] at (0,0) {O};
+\end{tikzpicture}
+\end{center}
+
+% ===== FORMULA SUMMARY =====
+\section{Formula Summary}
+
+\begin{minipage}{\linewidth}
+\begin{tcolorbox}[colback=lightgold, colframe=accentgold]
+\renewcommand{\arraystretch}{1.8}
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Formula} & \textbf{Quantity} & \textbf{Units} \\
+\midrule
+$T/\text{K} = \theta/\text{°C} + 273.15$ & Temperature conversion & K \\
+$Q = mc\Delta T$ & Sensible heat & J \\
+$Q = mL$ & Latent heat & J \\
+$pV = nRT$ & Ideal gas (moles) & Pa, m$^3$, K \\
+$pV = NkT$ & Ideal gas (molecules) & Pa, m$^3$, K \\
+$k = R/N_A$ & Boltzmann constant & J\,K$^{-1}$ \\
+$pV = \frac{1}{3}Nm\langle c^2 \rangle$ & Kinetic theory & Pa \\
+$\langle E_k \rangle = \frac{3}{2}kT$ & Mean molecular KE & J \\
+$W = p\Delta V$ & Work done by gas & J \\
+$\Delta U = q + W$ & First law & J \\
+\bottomrule
+\end{tabular}
+\end{tcolorbox}
+
+\vspace{0.5em}
+\begin{tcolorbox}[colback=lightblue, colframe=darkblue]
+\textbf{Constants:}\quad
+$R = 8.31\ \text{J\,mol}^{-1}\text{K}^{-1}$\quad
+$k = 1.38\times10^{-23}\ \text{J\,K}^{-1}$\quad
+$N_A = 6.02\times10^{23}\ \text{mol}^{-1}$
+\end{tcolorbox}
+\end{minipage}
+
+% ===== WORKED EXAMPLES =====
+\section{Worked Examples}
+
+\subsection*{Example 1 --- Specific Heat Capacity}
+
+\textbf{Question:} A 2.0 kg block of aluminium ($c = 900\ \text{J\,kg}^{-1}\text{K}^{-1}$) is heated from $20\ \text{°C}$ to $80\ \text{°C}$. Calculate the energy supplied.
+
+\begin{examplebox}{Solution}
+$$Q = mc\Delta T = 2.0 \times 900 \times (80-20) = \mathbf{1.08 \times 10^5\ \text{J}}$$
+\end{examplebox}
+
+\subsection*{Example 2 --- Ideal Gas Law}
+
+\textbf{Question:} A fixed mass of ideal gas has pressure $1.2\times10^5\ \text{Pa}$ and volume $3.0\times10^{-3}\ \text{m}^3$ at $27\ \text{°C}$. It is heated at constant pressure until its volume doubles. Find the final temperature.
+
+\begin{examplebox}{Solution}
+$T_1 = 27 + 273.15 = 300.15\ \text{K}$. At constant pressure, $V \propto T$:
+$$T_2 = T_1 \times \frac{V_2}{V_1} = 300.15 \times 2 = \mathbf{600\ \text{K}\ (327\ \text{°C})}$$
+\end{examplebox}
+
+\subsection*{Example 3 --- r.m.s.\ Speed}
+
+\textbf{Question:} Calculate the r.m.s.\ speed of nitrogen molecules ($M = 0.028\ \text{kg\,mol}^{-1}$) at $300\ \text{K}$.
+
+\begin{examplebox}{Solution}
+Mass of one molecule: $m = 0.028/6.02\times10^{23} = 4.65\times10^{-26}\ \text{kg}$
+
+$$c_\text{r.m.s.} = \sqrt{\frac{3kT}{m}} = \sqrt{\frac{3 \times 1.38\times10^{-23} \times 300}{4.65\times10^{-26}}} = \sqrt{2.67\times10^5} = \mathbf{517\ \text{m\,s}^{-1}}$$
+\end{examplebox}
+
+\subsection*{Example 4 --- First Law}
+
+\textbf{Question:} A gas is compressed. $650\ \text{J}$ of work is done on the gas and $200\ \text{J}$ of heat flows out. Find the change in internal energy.
+
+\begin{examplebox}{Solution}
+$W = +650\ \text{J}$ (work done \emph{on} gas), \quad $q = -200\ \text{J}$ (heat leaves)
+$$\Delta U = q + W = -200 + 650 = \mathbf{+450\ \text{J}}$$
+Internal energy \textbf{increases} by 450 J.
+\end{examplebox}
+
+% ===== PRACTICE QUESTIONS =====
+\section{Practice Exam Questions}
+
+{\bfseries\color{midblue}\large Section A --- Short Answer Questions}
+
+\medskip
+
+\begin{tcolorbox}[colback=white, colframe=midblue, breakable]
+
+\begin{minipage}{\linewidth}
+\textbf{Q1.} Define \textit{specific latent heat of vaporisation} and explain why it is greater than the specific latent heat of fusion for the same substance.
+\par\hfill\textit{[3 marks]}
+\vspace{3cm}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+\textbf{Q2.} State the basic assumptions of the kinetic theory of gases.
+\par\hfill\textit{[4 marks]}
+\vspace{4cm}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+\textbf{Q3.} Explain what is meant by \textit{internal energy} and state how it differs for an ideal gas compared to a real gas.
+\par\hfill\textit{[3 marks]}
+\vspace{3cm}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+\textbf{Q4.} A gas at pressure $2.0\times10^5\ \text{Pa}$ and temperature $300\ \text{K}$ occupies a volume of $0.40\ \text{m}^3$. Calculate the number of molecules present.
+\par\hfill\textit{[2 marks]}
+\vspace{3cm}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+\textbf{Q5.} Show that the mean kinetic energy of a gas molecule is $\frac{3}{2}kT$ by combining the kinetic theory equation with the ideal gas equation.
+\par\hfill\textit{[3 marks]}
+\vspace{4cm}
+\end{minipage}
+
+\end{tcolorbox}
+
+{\bfseries\color{midblue}\large Section B --- Longer Structured Questions}
+
+\medskip
+
+\begin{tcolorbox}[colback=white, colframe=midblue, breakable]
+
+\begin{minipage}{\linewidth}
+\textbf{Q6.} A sample of water of mass 0.50 kg is heated from $20\ \text{°C}$ to $100\ \text{°C}$ and then completely vaporised.\\
+($c_\text{water} = 4200\ \text{J\,kg}^{-1}\text{K}^{-1}$,\quad $L_v = 2.26\times10^6\ \text{J\,kg}^{-1}$)
+
+\begin{enumerate}[label=(\alph*)]
+  \item \begin{minipage}[t]{\linewidth}
+  Calculate the energy needed to heat the water from $20\ \text{°C}$ to $100\ \text{°C}$.
+  \par\hfill\textit{[2 marks]}
+  \vspace{3cm}
+  \end{minipage}
+
+  \item \begin{minipage}[t]{\linewidth}
+  Calculate the energy needed to vaporise the water at $100\ \text{°C}$.
+  \par\hfill\textit{[2 marks]}
+  \vspace{3cm}
+  \end{minipage}
+
+  \item \begin{minipage}[t]{\linewidth}
+  Explain in terms of molecular behaviour why energy is needed to vaporise water even though the temperature does not change.
+  \par\hfill\textit{[2 marks]}
+  \vspace{3.5cm}
+  \end{minipage}
+\end{enumerate}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+\textbf{Q7.} A fixed mass of ideal gas undergoes the cycle A $\to$ B $\to$ C $\to$ A on a $p$--$V$ diagram where A $\to$ B is isothermal expansion, B $\to$ C is isochoric pressure decrease, and C $\to$ A is isobaric compression.
+
+\begin{enumerate}[label=(\alph*)]
+  \item \begin{minipage}[t]{\linewidth}
+  State the change in internal energy during A $\to$ B and justify your answer.
+  \par\hfill\textit{[2 marks]}
+  \vspace{2.5cm}
+  \end{minipage}
+
+  \item \begin{minipage}[t]{\linewidth}
+  Using the first law, find $q$ for A $\to$ B given that the work done by the gas is $440\ \text{J}$.
+  \par\hfill\textit{[2 marks]}
+  \vspace{3cm}
+  \end{minipage}
+
+  \item \begin{minipage}[t]{\linewidth}
+  Describe the energy changes during the isochoric process B $\to$ C.
+  \par\hfill\textit{[2 marks]}
+  \vspace{3cm}
+  \end{minipage}
+\end{enumerate}
+\end{minipage}
+
+\end{tcolorbox}
+
+% ===== MARK SCHEME =====
+\section{Mark Scheme and Answers}
+
+\begin{markscheme}
+
+\textbf{Q1.} Specific latent heat of vaporisation is the energy per unit mass required to change a substance from liquid to gas at constant temperature [1]; greater than $L_f$ because molecules must be completely separated, requiring work against intermolecular forces over a much greater distance than in melting [2].
+
+\vspace{0.5em}\textbf{Q2.} Large number of molecules moving randomly in all directions with a range of speeds [1]; occupying negligible volume compared to container [1]; collisions perfectly elastic [1]; intermolecular forces negligible except during collisions; collisions of negligible duration; obey Newton's laws [1].
+
+\vspace{0.5em}\textbf{Q3.} Internal energy is the sum of random kinetic and potential energies of all molecules [1]; for an ideal gas, $E_p = 0$ so internal energy is kinetic energy only [1]; for a real gas, molecules have potential energy due to intermolecular forces [1].
+
+\vspace{0.5em}\textbf{Q4.} $N = pV/kT = (2.0\times10^5 \times 0.40)/(1.38\times10^{-23} \times 300) = \mathbf{1.93\times10^{25}}\ \text{molecules}$ [2].
+
+\vspace{0.5em}\textbf{Q5.} $pV = \tfrac{1}{3}Nm\langle c^2\rangle$ [1]; equate with $pV = NkT$: $\tfrac{1}{3}m\langle c^2\rangle = kT$ [1]; so $\tfrac{1}{2}m\langle c^2\rangle = \tfrac{3}{2}kT$ [1].
+
+\vspace{0.5em}\textbf{Q6(a).} $Q = 0.50 \times 4200 \times 80 = \mathbf{1.68\times10^5\ \text{J}}$ [2].
+
+\vspace{0.5em}\textbf{Q6(b).} $Q = 0.50 \times 2.26\times10^6 = \mathbf{1.13\times10^6\ \text{J}}$ [2].
+
+\vspace{0.5em}\textbf{Q6(c).} KE of molecules unchanged (temperature constant) [1]; energy breaks intermolecular bonds as molecules separate completely, increasing potential energy [1].
+
+\vspace{0.5em}\textbf{Q7(a).} $\Delta U = 0$ [1]; temperature is constant and for an ideal gas internal energy depends only on temperature [1].
+
+\vspace{0.5em}\textbf{Q7(b).} $\Delta U = 0$, work done on gas $= -440\ \text{J}$; $q = +440\ \text{J}$ --- heat flows into gas [2].
+
+\vspace{0.5em}\textbf{Q7(c).} No work done ($\Delta V = 0$) [1]; temperature and KE decrease; heat flows out; internal energy decreases [1].
+
+\end{markscheme}
+
+% ===== REVISION CHECKLIST =====
+\section{Revision Checklist}
+
+\begin{tcolorbox}[colback=white, colframe=darkblue, breakable]
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{@{} c p{10.5cm} r @{}}
+\toprule
+ & \textbf{Learning Objective} & \textbf{Confidence (1--3)} \\
+\midrule
+$\square$ & Explain thermal equilibrium and direction of heat flow & \\
+$\square$ & Convert between Celsius and Kelvin & \\
+$\square$ & State examples of thermometric properties & \\
+$\square$ & Define and use specific heat capacity: \nf{Q = mc\Delta T} & \\
+$\square$ & Define and use specific latent heat: \nf{Q = mL} & \\
+$\square$ & State the assumptions of kinetic theory & \\
+$\square$ & Use \nf{pV = nRT} and \nf{pV = NkT} & \\
+$\square$ & Derive and use \nf{pV = \frac{1}{3}Nm\langle c^2\rangle} & \\
+$\square$ & Show that mean KE of a molecule is \nf{\frac{3}{2}kT} & \\
+$\square$ & Define internal energy and relate to temperature & \\
+$\square$ & Apply the first law \nf{\Delta U = q + W} & \\
+$\square$ & Interpret and use $p$--$V$ diagrams & \\
+\bottomrule
+\end{tabular}
+\vspace{0.5em}
+
+\textit{Key: 1 = Need more work \quad 2 = Getting there \quad 3 = Confident}
+\end{tcolorbox}
 
 \begin{motivationbox}
 \centering
 \textbf{\color{darkblue}Good luck with your revision!}\\[0.2em]
-{\color{darkgray}\small Remember: understanding \emph{why} formulas work is more powerful than memorising them.}
+{\color{darkgray}\small Remember: understanding \emph{why} formulas work is more powerful than memorising them. Practice drawing $p$--$V$ diagrams and deriving key results from first principles.}
 \end{motivationbox}
