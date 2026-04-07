@@ -85,12 +85,11 @@ $t$ & = time (s) \\
 
 \begin{center}
 \begin{tikzpicture}[xscale=1.1, yscale=0.75]
-  \def\T{4.0}
   % --- Displacement ---
   \draw[->, darkblue, thick] (-0.2,0) -- (5.2,0);
   \draw[->, darkblue, thick] (0,-1.4) -- (0,1.6);
   \draw[midblue, thick, domain=0:5.0, samples=200, smooth]
-    plot (\x, {sin(360*\x/\T r)});
+    plot (\x, {sin(90*\x)});
   \node[darkblue, font=\small, anchor=west] at (5.1,0) {$t$};
   \node[midblue, font=\small, anchor=east] at (-0.05,1.0) {$x_0$};
   \node[midblue, font=\small, anchor=west] at (0.1,1.3) {$x$};
@@ -100,7 +99,7 @@ $t$ & = time (s) \\
     \draw[->, darkblue, thick] (-0.2,0) -- (5.2,0);
     \draw[->, darkblue, thick] (0,-1.4) -- (0,1.6);
     \draw[darkgreen!70!black, thick, domain=0:5.0, samples=200, smooth]
-      plot (\x, {cos(360*\x/\T r)});
+      plot (\x, {cos(90*\x)});
     \node[darkblue, font=\small, anchor=west] at (5.1,0) {$t$};
     \node[darkgreen!70!black, font=\small, anchor=east] at (-0.05,1.0) {$v_0$};
     \node[darkgreen!70!black, font=\small, anchor=west] at (0.1,1.3) {$v$};
@@ -111,15 +110,15 @@ $t$ & = time (s) \\
     \draw[->, darkblue, thick] (-0.2,0) -- (5.2,0);
     \draw[->, darkblue, thick] (0,-1.4) -- (0,1.6);
     \draw[accentpink, thick, domain=0:5.0, samples=200, smooth]
-      plot (\x, {-sin(360*\x/\T r)});
+      plot (\x, {-sin(90*\x)});
     \node[darkblue, font=\small, anchor=west] at (5.1,0) {$t$};
     \node[accentpink, font=\small, anchor=east] at (-0.05,-1.0) {$-\omega^2 x_0$};
     \node[accentpink, font=\small, anchor=west] at (0.1,1.3) {$a$};
   \end{scope}
 
   % T label on top graph
-  \draw[dashed, darkgray, thin] (\T, 0.05) -- (\T, -0.3);
-  \node[darkgray, font=\small] at (\T,-0.5) {$T$};
+  \draw[dashed, darkgray, thin] (4.0, 0.05) -- (4.0, -0.3);
+  \node[darkgray, font=\small] at (4.0,-0.5) {$T$};
 \end{tikzpicture}
 \end{center}
 
