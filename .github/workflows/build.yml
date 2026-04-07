@@ -33,18 +33,18 @@ jobs:
           working_directory: topics_14_15_16
 
       # ── Topic 17 — Oscillations ───────────────────────────────────────────────
-      # - name: Compile Topic 17 standalone PDF
-      #   uses: xu-cheng/latex-action@v3
-      #   with:
-      #     root_file: topic_17_standalone.tex
-      #     working_directory: topic_17
+      - name: Compile Topic 17 standalone PDF
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: topic_17_standalone.tex
+          working_directory: topic_17
 
       # ── Topic 18 — Electric Fields ────────────────────────────────────────────
-      # - name: Compile Topic 18 standalone PDF
-      #   uses: xu-cheng/latex-action@v3
-      #   with:
-      #     root_file: topic_18_standalone.tex
-      #     working_directory: topic_18
+      - name: Compile Topic 18 standalone PDF
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: topic_18_standalone.tex
+          working_directory: topic_18
 
       # ── Topic 19 — Capacitance ────────────────────────────────────────────────
       # - name: Compile Topic 19 standalone PDF
