@@ -109,11 +109,11 @@ $t$ & = time (s) \\
   \begin{scope}[yshift=-7.6cm]
     \draw[->, darkblue, thick] (-0.2,0) -- (5.2,0);
     \draw[->, darkblue, thick] (0,-1.4) -- (0,1.6);
-    \draw[accentpink, thick, domain=0:5.0, samples=200, smooth]
+    \draw[pinkframe, thick, domain=0:5.0, samples=200, smooth]
       plot (\x, {-sin(90*\x)});
     \node[darkblue, font=\small, anchor=west] at (5.1,0) {$t$};
-    \node[accentpink, font=\small, anchor=east] at (-0.05,-1.0) {$-\omega^2 x_0$};
-    \node[accentpink, font=\small, anchor=west] at (0.1,1.3) {$a$};
+    \node[pinkframe, font=\small, anchor=east] at (-0.05,-1.0) {$-\omega^2 x_0$};
+    \node[pinkframe, font=\small, anchor=west] at (0.1,1.3) {$a$};
   \end{scope}
 
   % T label on top graph
@@ -178,9 +178,9 @@ $x_0$ & = amplitude (m) \\
   \node[darkblue, font=\small, anchor=west] at (1.05, 1.0) {$E$};
 
   % PE = (1/2)m omega^2 x^2  -> parabola, scaled so PE=1 at x=1
-  \draw[accentpink, thick, domain=-1.0:1.0, samples=100, smooth]
+  \draw[pinkframe, thick, domain=-1.0:1.0, samples=100, smooth]
     plot (\x, {\x*\x});
-  \node[accentpink, font=\small] at (0.72, 0.62) {PE};
+  \node[pinkframe, font=\small] at (0.72, 0.62) {PE};
 
   % KE = E - PE = 1 - x^2  -> inverted parabola
   \draw[midblue, thick, domain=-1.0:1.0, samples=100, smooth]
@@ -228,9 +228,9 @@ $x_0$ & = amplitude (m) \\
   \node[midblue, font=\small\bfseries] at (3.2, 0.42) {critical};
 
   % Heavy damping — very slow return, no oscillation
-  \draw[accentpink, thick, domain=0:6.2, samples=200, smooth]
+  \draw[pinkframe, thick, domain=0:6.2, samples=200, smooth]
     plot (\x, {1.3*(exp(-0.45*\x) - exp(-1.4*\x))});
-  \node[accentpink, font=\small\bfseries] at (4.6, 0.18) {heavy};
+  \node[pinkframe, font=\small\bfseries] at (4.6, 0.18) {heavy};
 
   % Starting displacement marker
   \draw[dashed, darkgray, thin] (0,1.4) node[anchor=east, font=\small] {$x_0$} -- (0.2,1.4);
@@ -278,9 +278,9 @@ $x_0$ & = amplitude (m) \\
   \node[midblue, font=\small] at (1.42, 1.55) {light damping};
 
   % Heavy damping — broad, lower peak
-  \draw[accentpink, thick, domain=0.05:2.0, samples=400, smooth]
+  \draw[pinkframe, thick, domain=0.05:2.0, samples=400, smooth]
     plot (\x, { 0.065 / sqrt( (\x*\x - 1)^2 + 0.25*\x*\x ) });
-  \node[accentpink, font=\small] at (1.55, 0.42) {heavy damping};
+  \node[pinkframe, font=\small] at (1.55, 0.42) {heavy damping};
 \end{tikzpicture}
 \end{center}
 
