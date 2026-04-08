@@ -98,11 +98,11 @@ $t$ & = time (s) \\
   \begin{scope}[yshift=-3.8cm]
     \draw[->, darkblue, thick] (-0.2,0) -- (5.2,0);
     \draw[->, darkblue, thick] (0,-1.4) -- (0,1.6);
-    \draw[darkgreen!70!black, thick, domain=0:5.0, samples=200, smooth]
+    \draw[midblue, thick, domain=0:5.0, samples=200, smooth]
       plot (\x, {cos(90*\x)});
     \node[darkblue, font=\small, anchor=west] at (5.1,0) {$t$};
-    \node[darkgreen!70!black, font=\small, anchor=east] at (-0.05,1.0) {$v_0$};
-    \node[darkgreen!70!black, font=\small, anchor=west] at (0.1,1.3) {$v$};
+    \node[midblue, font=\small, anchor=east] at (-0.05,1.0) {$v_0$};
+    \node[midblue, font=\small, anchor=west] at (0.1,1.3) {$v$};
   \end{scope}
 
   % --- Acceleration ---
@@ -183,9 +183,9 @@ $x_0$ & = amplitude (m) \\
   \node[accentpink, font=\small] at (0.72, 0.62) {PE};
 
   % KE = E - PE = 1 - x^2  -> inverted parabola
-  \draw[darkgreen!70!black, thick, domain=-1.0:1.0, samples=100, smooth]
+  \draw[midblue, thick, domain=-1.0:1.0, samples=100, smooth]
     plot (\x, {1 - \x*\x});
-  \node[darkgreen!70!black, font=\small] at (0.3, 0.85) {KE};
+  \node[midblue, font=\small] at (0.3, 0.85) {KE};
 \end{tikzpicture}
 \end{center}
 
@@ -223,9 +223,9 @@ $x_0$ & = amplitude (m) \\
   \node[midblue, font=\small\bfseries] at (5.5, 0.85) {light};
 
   % Critical damping — e^{-t} type return
-  \draw[darkgreen!70!black, thick, domain=0:6.2, samples=200, smooth]
+  \draw[midblue, thick, domain=0:6.2, samples=200, smooth]
     plot (\x, {1.4*\x*exp(-1.5*\x)});
-  \node[darkgreen!70!black, font=\small\bfseries] at (3.2, 0.42) {critical};
+  \node[midblue, font=\small\bfseries] at (3.2, 0.42) {critical};
 
   % Heavy damping — very slow return, no oscillation
   \draw[accentpink, thick, domain=0:6.2, samples=200, smooth]
