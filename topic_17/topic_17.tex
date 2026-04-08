@@ -175,17 +175,19 @@ $x_0$ & = amplitude (m) \\
 
   % Total energy (horizontal line)
   \draw[darkblue, thick, dashed] (-1.0, 1.0) -- (1.0, 1.0);
-  \node[darkblue, font=\small, anchor=west] at (1.05, 1.0) {$E$};
 
   % PE = (1/2)m omega^2 x^2  -> parabola, scaled so PE=1 at x=1
   \draw[pinkframe, thick, domain=-1.0:1.0, samples=100, smooth]
     plot (\x, {\x*\x});
-  \node[pinkframe, font=\small] at (0.72, 0.62) {PE};
 
   % KE = E - PE = 1 - x^2  -> inverted parabola
   \draw[midblue, thick, domain=-1.0:1.0, samples=100, smooth]
     plot (\x, {1 - \x*\x});
-  \node[midblue, font=\small] at (0.3, 0.85) {KE};
+
+  % Stacked labels on the right
+  \node[darkblue, font=\small, anchor=west] at (1.05, 1.00) {$E_{\text{total}}$};
+  \node[midblue, font=\small, anchor=west]  at (1.05, 0.72) {KE};
+  \node[pinkframe, font=\small, anchor=west] at (1.05, 0.44) {PE};
 \end{tikzpicture}
 \end{center}
 
@@ -223,19 +225,19 @@ $x_0$ & = amplitude (m) \\
   % Light damping — cosine, slow exponential decay, multiple oscillations
   \draw[midblue, thick, domain=0:7.0, samples=400, smooth]
     plot (\x, {1.4*exp(-0.18*\x)*cos(180*\x)});
-  \node[midblue, font=\small\bfseries, anchor=west] at (7.05, 0.38) {light};
 
   % Critical damping — returns to zero in shortest time, no oscillation
-  % Modelled as (1 + omega*t)*exp(-omega*t), scaled to start at x0=1.4
   \draw[pinkframe, thick, domain=0:7.0, samples=300, smooth]
     plot (\x, {1.4*(1 + 2.8*\x)*exp(-2.8*\x)});
-  \node[pinkframe, font=\small\bfseries, anchor=west] at (7.05, 0.04) {critical};
 
   % Heavy damping — overdamped, slow return, no oscillation
-  % Two decaying exponentials: starts at x0, decays slowly
   \draw[darkgray, thick, domain=0:7.0, samples=300, smooth]
     plot (\x, {1.4*exp(-0.40*\x)});
-  \node[darkgray, font=\small\bfseries, anchor=west] at (7.05, 0.19) {heavy};
+
+  % Labels — stacked on right with clear vertical spacing
+  \node[midblue, font=\small\bfseries, anchor=west] at (7.05, 0.60) {light};
+  \node[darkgray, font=\small\bfseries, anchor=west] at (7.05, 0.30) {heavy};
+  \node[pinkframe, font=\small\bfseries, anchor=west] at (7.05, 0.03) {critical};
 \end{tikzpicture}
 \end{center}
 
