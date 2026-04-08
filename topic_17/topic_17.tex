@@ -211,29 +211,29 @@ $x_0$ & = amplitude (m) \\
 \begin{center}
 \begin{tikzpicture}[xscale=1.0, yscale=1.2]
   % Axes
-  \draw[->, darkblue, thick] (-0.2,0) -- (6.5,0)
+  \draw[->, darkblue, thick] (-0.2,0) -- (6.8,0)
     node[anchor=north, font=\small] {$t$};
   \draw[->, darkblue, thick] (0,-1.5) -- (0,2.0)
     node[anchor=east, font=\small] {$x$};
   \node[darkgray, font=\small, anchor=north east] at (0,0) {$0$};
 
-  % Light damping — decaying sinusoid
-  \draw[midblue, thick, domain=0:6.2, samples=300, smooth]
-    plot (\x, {1.4*exp(-0.35*\x)*sin(180*\x)});
-  \node[midblue, font=\small\bfseries] at (5.5, 0.85) {light};
-
-  % Critical damping — e^{-t} type return
-  \draw[midblue, thick, domain=0:6.2, samples=200, smooth]
-    plot (\x, {1.4*\x*exp(-1.5*\x)});
-  \node[midblue, font=\small\bfseries] at (3.2, 0.42) {critical};
-
-  % Heavy damping — very slow return, no oscillation
-  \draw[pinkframe, thick, domain=0:6.2, samples=200, smooth]
-    plot (\x, {1.3*(exp(-0.45*\x) - exp(-1.4*\x))});
-  \node[pinkframe, font=\small\bfseries] at (4.6, 0.18) {heavy};
-
   % Starting displacement marker
-  \draw[dashed, darkgray, thin] (0,1.4) node[anchor=east, font=\small] {$x_0$} -- (0.2,1.4);
+  \draw[dashed, darkgray, thin] (0,1.4) node[anchor=east, font=\small] {$x_0$} -- (0.15,1.4);
+
+  % Light damping — decaying sinusoid (label above curve at right)
+  \draw[midblue, thick, domain=0:6.5, samples=300, smooth]
+    plot (\x, {1.4*exp(-0.35*\x)*sin(180*\x)});
+  \node[midblue, font=\small\bfseries, anchor=west] at (6.55, 0.55) {light};
+
+  % Critical damping — fastest return, no oscillation (label above peak)
+  \draw[pinkframe, thick, domain=0:6.5, samples=200, smooth]
+    plot (\x, {1.4*\x*exp(-1.5*\x)});
+  \node[pinkframe, font=\small\bfseries, anchor=south] at (0.67, 0.88) {critical};
+
+  % Heavy damping — slow return, no oscillation (label on right flank)
+  \draw[darkgray, thick, domain=0:6.5, samples=200, smooth]
+    plot (\x, {1.3*(exp(-0.45*\x) - exp(-1.4*\x))});
+  \node[darkgray, font=\small\bfseries, anchor=west] at (6.55, 0.20) {heavy};
 \end{tikzpicture}
 \end{center}
 
@@ -266,29 +266,33 @@ $x_0$ & = amplitude (m) \\
   \draw[->, darkblue, thick] (0,-0.1) -- (0,2.4)
     node[anchor=east, font=\small] {Amplitude};
 
-  % f0 marker
+  % f0 marker (natural frequency of undamped system)
   \draw[dashed, darkgray, thin] (1.0,0) node[anchor=north, font=\small] {$f_0$} -- (1.0,2.15);
 
-  % Light damping — sharp peak
-  \draw[midblue, thick, domain=0.05:2.0, samples=300, smooth]
-    plot (\x, {0.18 / ( (\x-1)^2 + 0.003 ) ^0.5 * 0.05});
-  % Replot with a proper Lorentzian
+  % Light damping — sharp peak, very close to f0
+  % Peak of driven oscillator: f_peak = f0 * sqrt(1 - gamma^2/2), gamma=0.09 -> ~f0
   \draw[midblue, thick, domain=0.05:2.0, samples=400, smooth]
     plot (\x, { 0.065 / sqrt( (\x*\x - 1)^2 + 0.008*\x*\x ) });
-  \node[midblue, font=\small] at (1.42, 1.55) {light damping};
+  \node[midblue, font=\small, anchor=west] at (1.18, 1.85) {light};
 
-  % Heavy damping — broad, lower peak
+  % Medium damping — lower broader peak, shifted slightly left
+  \draw[darkgray, thick, domain=0.05:2.0, samples=400, smooth]
+    plot (\x, { 0.065 / sqrt( (\x*\x - 1)^2 + 0.08*\x*\x ) });
+  \node[darkgray, font=\small, anchor=west] at (1.12, 0.88) {medium};
+
+  % Heavy damping — broad low peak, noticeably left of f0
   \draw[pinkframe, thick, domain=0.05:2.0, samples=400, smooth]
-    plot (\x, { 0.065 / sqrt( (\x*\x - 1)^2 + 0.25*\x*\x ) });
-  \node[pinkframe, font=\small] at (1.55, 0.42) {heavy damping};
+    plot (\x, { 0.065 / sqrt( (\x*\x - 1)^2 + 0.50*\x*\x ) });
+  \node[pinkframe, font=\small, anchor=east] at (0.78, 0.40) {heavy};
 \end{tikzpicture}
 \end{center}
 
 \begin{keybox}{Effect of Damping on Resonance}
 \begin{itemize}[itemsep=2pt]
   \item More damping $\Rightarrow$ lower and broader resonance peak.
-  \item More damping $\Rightarrow$ peak shifts slightly \textbf{below} $f_0$.
-  \item Less damping $\Rightarrow$ sharper, taller peak closer to $f_0$.
+  \item More damping $\Rightarrow$ peak shifts \textbf{below} $f_0$ (towards lower frequencies).
+  \item Less damping $\Rightarrow$ sharper, taller peak with maximum amplitude closer to $f_0$.
+  \item With no damping the peak would be infinite at exactly $f_0$.
 \end{itemize}
 \end{keybox}
 
