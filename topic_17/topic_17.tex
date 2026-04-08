@@ -211,29 +211,31 @@ $x_0$ & = amplitude (m) \\
 \begin{center}
 \begin{tikzpicture}[xscale=1.0, yscale=1.2]
   % Axes
-  \draw[->, darkblue, thick] (-0.2,0) -- (6.8,0)
+  \draw[->, darkblue, thick] (-0.2,0) -- (7.2,0)
     node[anchor=north, font=\small] {$t$};
-  \draw[->, darkblue, thick] (0,-1.5) -- (0,2.0)
+  \draw[->, darkblue, thick] (0,-1.6) -- (0,2.0)
     node[anchor=east, font=\small] {$x$};
   \node[darkgray, font=\small, anchor=north east] at (0,0) {$0$};
 
   % Starting displacement marker
   \draw[dashed, darkgray, thin] (0,1.4) node[anchor=east, font=\small] {$x_0$} -- (0.15,1.4);
 
-  % Light damping — decaying sinusoid (label above curve at right)
-  \draw[midblue, thick, domain=0:6.5, samples=300, smooth]
-    plot (\x, {1.4*exp(-0.35*\x)*sin(180*\x)});
-  \node[midblue, font=\small\bfseries, anchor=west] at (6.55, 0.55) {light};
+  % Light damping — cosine, slow exponential decay, multiple oscillations
+  \draw[midblue, thick, domain=0:7.0, samples=400, smooth]
+    plot (\x, {1.4*exp(-0.18*\x)*cos(180*\x)});
+  \node[midblue, font=\small\bfseries, anchor=west] at (7.05, 0.38) {light};
 
-  % Critical damping — fastest return, no oscillation (label above peak)
-  \draw[pinkframe, thick, domain=0:6.5, samples=200, smooth]
-    plot (\x, {1.4*\x*exp(-1.5*\x)});
-  \node[pinkframe, font=\small\bfseries, anchor=south] at (0.67, 0.88) {critical};
+  % Critical damping — returns to zero in shortest time, no oscillation
+  % Modelled as (1 + omega*t)*exp(-omega*t), scaled to start at x0=1.4
+  \draw[pinkframe, thick, domain=0:7.0, samples=300, smooth]
+    plot (\x, {1.4*(1 + 2.8*\x)*exp(-2.8*\x)});
+  \node[pinkframe, font=\small\bfseries, anchor=west] at (7.05, 0.04) {critical};
 
-  % Heavy damping — slow return, no oscillation (label on right flank)
-  \draw[darkgray, thick, domain=0:6.5, samples=200, smooth]
-    plot (\x, {1.3*(exp(-0.45*\x) - exp(-1.4*\x))});
-  \node[darkgray, font=\small\bfseries, anchor=west] at (6.55, 0.20) {heavy};
+  % Heavy damping — overdamped, slow return, no oscillation
+  % Two decaying exponentials: starts at x0, decays slowly
+  \draw[darkgray, thick, domain=0:7.0, samples=300, smooth]
+    plot (\x, {1.4*exp(-0.40*\x)});
+  \node[darkgray, font=\small\bfseries, anchor=west] at (7.05, 0.19) {heavy};
 \end{tikzpicture}
 \end{center}
 
