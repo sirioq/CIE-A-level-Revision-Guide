@@ -54,11 +54,11 @@ jobs:
           working_directory: topic_19
 
       # ── Topics 20 & 21 — Magnetic Fields & AC ────────────────────────────────
-      # - name: Compile Topics 20-21 standalone PDF
-      #   uses: xu-cheng/latex-action@v3
-      #   with:
-      #     root_file: topics_20_21_standalone.tex
-      #     working_directory: topics_20_21
+      - name: Compile Topics 20-21 standalone PDF
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: topics_20_21_standalone.tex
+          working_directory: topics_20_21
 
       # ── Topic 22 — Quantum Physics ────────────────────────────────────────────
       # - name: Compile Topic 22 standalone PDF
