@@ -3,29 +3,458 @@
 
 \chapteropener{19}{Capacitance}{%
   \item Capacitors and Capacitance
+  \item Capacitors in Series and Parallel
   \item Energy Stored in a Capacitor
-  \item Charging and Discharging
+  \item Capacitor Discharge
+  \item The Time Constant
 }
 
-% ===== SECTION: CAPACITORS AND CAPACITANCE =====
-\section{Capacitors and Capacitance}
+% ===== SECTION 1: KEY CONCEPTS =====
+\section{Core Concepts and Definitions}
 
-% Content to be written.
+\begin{definitionbox}{Capacitance}
+The \textbf{capacitance} of a conductor is the charge stored per unit potential difference across it.
+$$C = \frac{Q}{V} \qquad \text{units: F (farads) } \equiv \text{C V}^{-1}$$
+\begin{itemize}[itemsep=2pt]
+  \item $1\ \text{F}$ is a very large unit; practical capacitors are typically $\mu\text{F}$, $\text{nF}$ or $\text{pF}$.
+  \item Capacitance depends on the \textbf{geometry} of the conductor and the medium between the plates, not on $Q$ or $V$ individually.
+  \item For an \textbf{isolated spherical conductor} of radius $R$: $C = 4\pi\varepsilon_0 R$.
+\end{itemize}
+\end{definitionbox}
 
+\begin{definitionbox}{The Parallel Plate Capacitor}
+Two conducting plates of area $A$ separated by distance $d$:
+\begin{itemize}[itemsep=2pt]
+  \item Charging the capacitor stores charge $+Q$ on one plate and $-Q$ on the other.
+  \item The electric field between the plates is uniform: $E = V/d$.
+  \item Capacitance increases with larger plate area $A$ and smaller separation $d$.
+\end{itemize}
+\end{definitionbox}
 
-% ===== SECTION: ENERGY STORED IN A CAPACITOR =====
+\vspace{0.5em}
+\begin{center}
+\begin{circuitikz}[scale=1.1]
+  % Simple capacitor symbol with charge labels
+  \draw (0,0) to[C, l=$C$] (3,0);
+  \node[darkblue, font=\small] at (0.95, 0.55) {$+Q$};
+  \node[darkblue, font=\small] at (2.05, 0.55) {$-Q$};
+  \draw[darkblue, ->, >=stealth] (1.5,-0.7) -- (1.5,-0.25)
+    node[midway, right, font=\small] {$V$};
+\end{circuitikz}
+\end{center}
+
+% ===== SECTION 2: SERIES AND PARALLEL =====
+\section{Capacitors in Series and Parallel}
+
+\begin{formulabox}{Capacitors in Parallel}
+\begin{center}
+\large $C_{\text{total}} = C_1 + C_2 + C_3 + \cdots$
+\end{center}
+\vspace{0.3em}
+Each capacitor has the \textbf{same voltage}; charges add: $Q_{\text{total}} = Q_1 + Q_2 + \cdots$
+\end{formulabox}
+
+\begin{formulabox}{Capacitors in Series}
+\begin{center}
+\large $\dfrac{1}{C_{\text{total}}} = \dfrac{1}{C_1} + \dfrac{1}{C_2} + \dfrac{1}{C_3} + \cdots$
+\end{center}
+\vspace{0.3em}
+Each capacitor has the \textbf{same charge}; voltages add: $V_{\text{total}} = V_1 + V_2 + \cdots$
+\end{formulabox}
+
+\subsubsection*{Circuit diagrams}
+
+\begin{center}
+\begin{circuitikz}[scale=1.0]
+  % Parallel combination
+  \begin{scope}
+    \draw (0,1.5) -- (0,0.5) to[C, l=$C_1$] (2.5,0.5) -- (2.5,1.5);
+    \draw (0,1.5) -- (0,2.5) to[C, l=$C_2$] (2.5,2.5) -- (2.5,1.5);
+    \draw (0,1.5) -- (-0.6,1.5);
+    \draw (2.5,1.5) -- (3.1,1.5);
+    \node[darkblue, font=\small\bfseries] at (1.25,-0.3) {Parallel: $C_T = C_1 + C_2$};
+  \end{scope}
+  % Series combination
+  \begin{scope}[xshift=5.5cm]
+    \draw (-0.6,1.5) to[C, l=$C_1$] (1.5,1.5) to[C, l=$C_2$] (3.6,1.5);
+    \node[darkblue, font=\small\bfseries] at (1.5,-0.3) {Series: $\frac{1}{C_T} = \frac{1}{C_1}+\frac{1}{C_2}$};
+  \end{scope}
+\end{circuitikz}
+\end{center}
+
+\begin{keybox}{Derivation of Series Formula}
+For capacitors in series, each carries the same charge $Q$. The total voltage is:
+$$V_{\text{total}} = V_1 + V_2 = \frac{Q}{C_1} + \frac{Q}{C_2} = Q\left(\frac{1}{C_1} + \frac{1}{C_2}\right)$$
+Since $C_{\text{total}} = Q/V_{\text{total}}$, dividing through by $Q$ gives $\dfrac{1}{C_{\text{total}}} = \dfrac{1}{C_1} + \dfrac{1}{C_2}$.
+\end{keybox}
+
+\begin{warningbox}{Common Mistake}
+Capacitors in series combine like \textbf{resistors in parallel} (reciprocal rule), and capacitors in parallel combine like \textbf{resistors in series} (direct sum). This is the opposite to resistors — don't mix them up.
+\end{warningbox}
+
+% ===== SECTION 3: ENERGY =====
 \section{Energy Stored in a Capacitor}
 
-% Content to be written.
+\begin{formulabox}{Energy Stored}
+\begin{center}
+\Large $W = \tfrac{1}{2}QV = \tfrac{1}{2}CV^2 = \dfrac{Q^2}{2C}$
+\end{center}
+\vspace{0.3em}
+\begin{tabular}{@{}ll@{}}
+$W$ & = energy stored (J) \\
+$Q$ & = charge stored (C) \\
+$V$ & = potential difference across capacitor (V) \\
+$C$ & = capacitance (F) \\
+\end{tabular}
+\end{formulabox}
 
+\begin{keybox}{Energy from the $V$–$Q$ Graph}
+The energy stored equals the \textbf{area under the $V$–$Q$ graph} (a straight line through the origin with gradient $1/C$):
+$$W = \text{area of triangle} = \tfrac{1}{2} \times Q \times V = \tfrac{1}{2}QV$$
+\end{keybox}
 
-% ===== SECTION: CHARGING AND DISCHARGING =====
-\section{Charging and Discharging}
+\subsubsection*{$V$–$Q$ graph for a capacitor}
 
-% Content to be written.
+\begin{center}
+\begin{tikzpicture}[xscale=2.8, yscale=2.2]
+  \draw[->, darkblue, thick] (0,0) -- (1.4,0)
+    node[anchor=north, font=\small] {Charge $Q$};
+  \draw[->, darkblue, thick] (0,0) -- (0,1.4)
+    node[anchor=east, font=\small] {Voltage $V$};
+  % Line V = Q/C (gradient = 1/C)
+  \draw[midblue, thick] (0,0) -- (1.1,1.1);
+  % Shaded triangle = energy
+  \fill[pinklight] (0,0) -- (1.0,1.0) -- (1.0,0) -- cycle;
+  \draw[pinkframe, thick] (0,0) -- (1.0,1.0) -- (1.0,0) -- cycle;
+  % Labels
+  \node[darkgray, font=\small, anchor=north] at (1.0,-0.03) {$Q_0$};
+  \node[darkgray, font=\small, anchor=east]  at (-0.03,1.0) {$V_0$};
+  \node[pinkframe, font=\small] at (0.38, 0.28) {$W = \tfrac{1}{2}Q_0 V_0$};
+  \node[midblue, font=\small] at (0.9, 1.15) {gradient $= \tfrac{1}{C}$};
+\end{tikzpicture}
+\end{center}
 
+% ===== SECTION 4: DISCHARGE =====
+\section{Discharging a Capacitor}
+
+\begin{definitionbox}{Capacitor Discharge Through a Resistor}
+When a charged capacitor discharges through a resistor $R$, the charge, voltage and current all decay \textbf{exponentially} with time:
+$$Q = Q_0\,e^{-t/RC} \qquad V = V_0\,e^{-t/RC} \qquad I = I_0\,e^{-t/RC}$$
+where $I_0 = V_0/R = Q_0/RC$ is the initial current.
+\end{definitionbox}
+
+\begin{formulabox}{Time Constant}
+\begin{center}
+\Large $\tau = RC$
+\end{center}
+\vspace{0.3em}
+\begin{tabular}{@{}ll@{}}
+$\tau$ & = time constant (s) \\
+$R$ & = resistance of discharge path ($\Omega$) \\
+$C$ & = capacitance (F) \\
+\end{tabular}
+\vspace{0.4em}
+
+After one time constant ($t = \tau$), the charge/voltage/current has fallen to $e^{-1} \approx \mathbf{37\%}$ of its initial value.
+\end{formulabox}
+
+\begin{keybox}{Key Values During Discharge}
+\begin{itemize}[itemsep=2pt]
+  \item $t = \tau$: $Q = 0.37\,Q_0$ (37\%)
+  \item $t = 2\tau$: $Q = 0.135\,Q_0$ (13.5\%)
+  \item $t = 5\tau$: $Q \approx 0.007\,Q_0$ — capacitor considered fully discharged.
+  \item A larger $\tau$ means slower discharge; a smaller $\tau$ means faster discharge.
+\end{itemize}
+\end{keybox}
+
+\subsubsection*{Discharge circuit and $Q$–$t$ graph}
+
+\begin{center}
+\begin{circuitikz}[scale=1.1]
+  \draw (0,2) to[C, l=$C$, v=$V_0$] (0,0)
+        -- (3,0)
+        to[R, l=$R$] (3,2)
+        -- (0,2);
+  \draw[dashed, darkgray] (1.5,2) to[nos] (1.5,1.2);
+  \node[darkgray, font=\small] at (1.5,0.85) {switch};
+\end{circuitikz}
+\hspace{1.5cm}
+\begin{tikzpicture}[xscale=1.2, yscale=1.8]
+  \draw[->, darkblue, thick] (0,0) -- (4.5,0)
+    node[anchor=north, font=\small] {$t$};
+  \draw[->, darkblue, thick] (0,0) -- (0,1.5)
+    node[anchor=east, font=\small] {$Q$};
+  % Exponential decay
+  \draw[midblue, thick, domain=0:4.2, samples=200, smooth]
+    plot (\x, {1.2*exp(-\x/1.2)});
+  % Q0 label
+  \draw[dashed, darkgray, thin] (0,1.2) node[anchor=east, font=\small] {$Q_0$} -- (0.15,1.2);
+  % tau marker
+  \draw[dashed, darkgray, thin] (1.2,0) node[anchor=north, font=\small] {$\tau$} -- (1.2,0.441);
+  \draw[dashed, darkgray, thin] (0,0.441) node[anchor=east, font=\small\hspace{-2pt}] {$0.37Q_0$} -- (1.2,0.441);
+\end{tikzpicture}
+\end{center}
+
+\begin{keybox}{Analysing Discharge Graphs}
+\begin{itemize}[itemsep=2pt]
+  \item A \textbf{linear} $\ln Q$ vs $t$ graph confirms exponential decay; gradient $= -1/RC$.
+  \item The time constant $\tau$ can be read directly as the time for $Q$ to fall to $0.37\,Q_0$.
+  \item Doubling $R$ or $C$ doubles $\tau$ and halves the rate of discharge.
+\end{itemize}
+\end{keybox}
+
+\subsubsection*{Linearising the discharge: $\ln Q$ against $t$}
+
+Taking logarithms of $Q = Q_0\,e^{-t/RC}$:
+$$\ln Q = \ln Q_0 - \frac{1}{RC}\,t$$
+This is of the form $y = mx + c$, so a graph of $\ln Q$ against $t$ gives:
+\begin{itemize}[itemsep=2pt]
+  \item gradient $= -\dfrac{1}{RC} = -\dfrac{1}{\tau}$
+  \item $y$-intercept $= \ln Q_0$
+\end{itemize}
+
+% ===== SECTION 5: FORMULA SUMMARY =====
+\section{Formula Summary Sheet}
+
+\begin{minipage}{\linewidth}
+\begin{tcolorbox}[colback=lightgold, colframe=accentgold]
+\renewcommand{\arraystretch}{1.8}
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Formula} & \textbf{Quantity} & \textbf{Units} \\
+\midrule
+$C = Q/V$ & Capacitance (definition) & F \\
+$C_T = C_1 + C_2 + \cdots$ & Capacitors in parallel & F \\
+$\dfrac{1}{C_T} = \dfrac{1}{C_1} + \dfrac{1}{C_2} + \cdots$ & Capacitors in series & F \\
+$W = \tfrac{1}{2}QV = \tfrac{1}{2}CV^2 = \dfrac{Q^2}{2C}$ & Energy stored & J \\
+$\tau = RC$ & Time constant & s \\
+$Q = Q_0\,e^{-t/RC}$ & Charge during discharge & C \\
+$V = V_0\,e^{-t/RC}$ & Voltage during discharge & V \\
+$I = I_0\,e^{-t/RC}$ & Current during discharge & A \\
+$\ln Q = \ln Q_0 - \dfrac{t}{RC}$ & Linearised discharge & — \\
+\bottomrule
+\end{tabular}
+\end{tcolorbox}
+
+\vspace{0.5em}
+\begin{tcolorbox}[colback=lightblue, colframe=darkblue]
+\textbf{Constants and values:}\quad
+$e^{-1} \approx 0.368$;\quad after $1\tau$: 37\% remains;\quad after $5\tau$: $<1\%$ remains\\[0.3em]
+\textbf{Units check:} $[\tau] = [\Omega][\text{F}] = [\text{V A}^{-1}][\text{C V}^{-1}] = [\text{C A}^{-1}] = \text{s}$
+\end{tcolorbox}
+\end{minipage}
+
+% ===== SECTION 6: WORKED EXAMPLES =====
+\section{Worked Examples}
+
+\subsection*{Example 1 — Capacitors in Series and Parallel}
+
+\textbf{Question:} Three capacitors of $2.0\ \mu\text{F}$, $3.0\ \mu\text{F}$ and $6.0\ \mu\text{F}$ are connected (a) in parallel and (b) in series. Find the total capacitance in each case.
+
+\begin{examplebox}{Solution}
+\textbf{(a) Parallel:}
+$$C_T = 2.0 + 3.0 + 6.0 = \mathbf{11.0\ \mu\text{F}}$$
+
+\textbf{(b) Series:}
+$$\frac{1}{C_T} = \frac{1}{2.0} + \frac{1}{3.0} + \frac{1}{6.0} = \frac{3+2+1}{6.0} = \frac{6}{6.0} = 1.0\ \mu\text{F}^{-1}$$
+$$C_T = \mathbf{1.0\ \mu\text{F}}$$
+\end{examplebox}
+
+\subsection*{Example 2 — Energy Stored}
+
+\textbf{Question:} A $470\ \mu\text{F}$ capacitor is charged to $12\ \text{V}$. Calculate (a) the charge stored and (b) the energy stored.
+
+\begin{examplebox}{Solution}
+\textbf{(a)} \quad $Q = CV = 470\times10^{-6} \times 12 = \mathbf{5.64\times10^{-3}\ \text{C}}$
+
+\textbf{(b)} \quad $W = \tfrac{1}{2}CV^2 = \tfrac{1}{2}\times470\times10^{-6}\times12^2 = \mathbf{3.38\times10^{-2}\ \text{J}}$
+\end{examplebox}
+
+\subsection*{Example 3 — Capacitor Discharge}
+
+\textbf{Question:} A $220\ \mu\text{F}$ capacitor charged to $9.0\ \text{V}$ discharges through a $47\ \text{k}\Omega$ resistor. Calculate (a) the time constant and (b) the voltage after $5.0\ \text{s}$.
+
+\begin{examplebox}{Solution}
+\textbf{(a)} \quad $\tau = RC = 47\times10^3 \times 220\times10^{-6} = \mathbf{10.3\ \text{s}}$
+
+\textbf{(b)} \quad $V = V_0\,e^{-t/RC} = 9.0 \times e^{-5.0/10.3} = 9.0 \times e^{-0.485} = 9.0 \times 0.616 = \mathbf{5.5\ \text{V}}$
+\end{examplebox}
+
+% ===== SECTION 7: PRACTICE QUESTIONS =====
+\section{Practice Exam Questions}
+
+\subsection*{Section A — Short Answer Questions}
+
+\begin{tcolorbox}[colback=white, colframe=midblue, breakable]
+
+\begin{minipage}{\linewidth}
+\textbf{Q1.} Define capacitance and state its SI unit.
+\par\hfill\textit{[2 marks]}
+\vspace{2.5cm}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+\textbf{Q2.} A capacitor stores $360\ \mu\text{C}$ of charge when connected to a $12\ \text{V}$ supply. Calculate its capacitance.
+\par\hfill\textit{[2 marks]}
+\vspace{2.5cm}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+\textbf{Q3.} Two capacitors of $4.0\ \mu\text{F}$ and $12\ \mu\text{F}$ are connected in series across a $6.0\ \text{V}$ supply.
+\begin{enumerate}[label=(\alph*)]
+  \item Calculate the total capacitance. \hfill\textit{[2 marks]}
+  \vspace{2.5cm}
+  \item Calculate the total charge stored. \hfill\textit{[1 mark]}
+  \vspace{2cm}
+  \item Calculate the voltage across the $4.0\ \mu\text{F}$ capacitor. \hfill\textit{[2 marks]}
+  \vspace{2.5cm}
+\end{enumerate}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+\textbf{Q4.} Explain, with reference to the $V$–$Q$ graph, why the energy stored in a capacitor is $W = \tfrac{1}{2}QV$ and not $W = QV$.
+\par\hfill\textit{[2 marks]}
+\vspace{3cm}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+\textbf{Q5.} Define the time constant for a capacitor–resistor discharge circuit and state what fraction of the initial charge remains after two time constants.
+\par\hfill\textit{[3 marks]}
+\vspace{3cm}
+\end{minipage}
+
+\end{tcolorbox}
+
+\subsection*{Section B — Longer Structured Questions}
+
+\begin{tcolorbox}[colback=white, colframe=midblue, breakable]
+
+\begin{minipage}{\linewidth}
+\textbf{Q6.} A $100\ \mu\text{F}$ capacitor is charged to $20\ \text{V}$ and then discharged through a $25\ \text{k}\Omega$ resistor.
+\end{minipage}
+
+\begin{enumerate}[label=(\alph*)]
+  \item \begin{minipage}[t]{\linewidth}
+  Calculate the initial charge stored on the capacitor.
+  \par\hfill\textit{[1 mark]}
+  \vspace{2cm}
+  \end{minipage}
+
+  \item \begin{minipage}[t]{\linewidth}
+  Calculate the initial discharge current.
+  \par\hfill\textit{[2 marks]}
+  \vspace{2.5cm}
+  \end{minipage}
+
+  \item \begin{minipage}[t]{\linewidth}
+  Calculate the time constant for the discharge.
+  \par\hfill\textit{[1 mark]}
+  \vspace{2cm}
+  \end{minipage}
+
+  \item \begin{minipage}[t]{\linewidth}
+  Calculate the charge remaining after $4.0\ \text{s}$.
+  \par\hfill\textit{[2 marks]}
+  \vspace{3cm}
+  \end{minipage}
+
+  \item \begin{minipage}[t]{\linewidth}
+  The student plots a graph of $\ln(Q/\text{C})$ against $t/\text{s}$. State the gradient and $y$-intercept of this graph.
+  \par\hfill\textit{[2 marks]}
+  \vspace{3cm}
+  \end{minipage}
+\end{enumerate}
+
+\begin{minipage}{\linewidth}
+\textbf{Q7.} A $50\ \mu\text{F}$ and a $200\ \mu\text{F}$ capacitor are connected in series and charged from a $15\ \text{V}$ supply.
+
+\begin{enumerate}[label=(\alph*)]
+  \item Calculate the combined capacitance.
+  \par\hfill\textit{[2 marks]}
+  \vspace{3cm}
+
+  \item Calculate the energy stored in the combination.
+  \par\hfill\textit{[2 marks]}
+  \vspace{3cm}
+
+  \item The two capacitors are now reconnected in parallel across the same supply. Calculate the new total energy stored and explain why it differs from part (b).
+  \par\hfill\textit{[3 marks]}
+  \vspace{4cm}
+\end{enumerate}
+\end{minipage}
+
+\end{tcolorbox}
+
+% ===== SECTION 8: MARK SCHEME =====
+\section{Mark Scheme and Answers}
+
+\begin{markscheme}
+
+\textbf{Q1.} Capacitance is the charge stored per unit potential difference [1]; unit: farad (F) or C V$^{-1}$ [1].
+
+\vspace{0.5em}\textbf{Q2.} $C = Q/V = 360\times10^{-6}/12 = \mathbf{30\ \mu\text{F}}$ [2].
+
+\vspace{0.5em}\textbf{Q3(a).} $\dfrac{1}{C_T} = \dfrac{1}{4.0} + \dfrac{1}{12} = \dfrac{3+1}{12} = \dfrac{4}{12}$ [1]; $C_T = \mathbf{3.0\ \mu\text{F}}$ [1].
+
+\vspace{0.5em}\textbf{Q3(b).} $Q = C_T V = 3.0\times10^{-6}\times6.0 = \mathbf{1.8\times10^{-5}\ \text{C}}$ [1].
+
+\vspace{0.5em}\textbf{Q3(c).} Same charge on each capacitor in series; $V_1 = Q/C_1 = 1.8\times10^{-5}/(4.0\times10^{-6}) = \mathbf{4.5\ \text{V}}$ [2].
+
+\vspace{0.5em}\textbf{Q4.} The $V$–$Q$ graph is a straight line through the origin [1]; the energy is the area under this graph (a triangle), which is $\tfrac{1}{2}\times\text{base}\times\text{height} = \tfrac{1}{2}QV$ — not $QV$ because the voltage builds up gradually from 0 to $V$ as charge is stored [1].
+
+\vspace{0.5em}\textbf{Q5.} The time constant is the product $RC$ [1]; it is the time taken for the charge (or voltage or current) to fall to $1/e \approx 37\%$ of its initial value [1]; after $2\tau$: $e^{-2} \approx \mathbf{13.5\%}$ remains [1].
+
+\vspace{0.5em}\textbf{Q6(a).} $Q_0 = CV_0 = 100\times10^{-6}\times20 = \mathbf{2.0\times10^{-3}\ \text{C}}$ [1].
+
+\vspace{0.5em}\textbf{Q6(b).} $I_0 = V_0/R = 20/(25\times10^3)$ [1] $= \mathbf{8.0\times10^{-4}\ \text{A}}$ [1].
+
+\vspace{0.5em}\textbf{Q6(c).} $\tau = RC = 25\times10^3\times100\times10^{-6} = \mathbf{2.5\ \text{s}}$ [1].
+
+\vspace{0.5em}\textbf{Q6(d).} $Q = Q_0\,e^{-t/RC} = 2.0\times10^{-3}\times e^{-4.0/2.5}$ [1] $= 2.0\times10^{-3}\times e^{-1.6} = 2.0\times10^{-3}\times0.202 = \mathbf{4.0\times10^{-4}\ \text{C}}$ [1].
+
+\vspace{0.5em}\textbf{Q6(e).} Gradient $= -1/RC = -1/2.5 = \mathbf{-0.40\ \text{s}^{-1}}$ [1]; $y$-intercept $= \ln Q_0 = \ln(2.0\times10^{-3}) = \mathbf{-6.2}$ [1].
+
+\vspace{0.5em}\textbf{Q7(a).} $\dfrac{1}{C_T} = \dfrac{1}{50} + \dfrac{1}{200} = \dfrac{4+1}{200} = \dfrac{5}{200}$ [1]; $C_T = \mathbf{40\ \mu\text{F}}$ [1].
+
+\vspace{0.5em}\textbf{Q7(b).} $W = \tfrac{1}{2}C_T V^2 = \tfrac{1}{2}\times40\times10^{-6}\times15^2$ [1] $= \mathbf{4.5\times10^{-3}\ \text{J}}$ [1].
+
+\vspace{0.5em}\textbf{Q7(c).} $C_T = 50+200 = 250\ \mu\text{F}$; $W = \tfrac{1}{2}\times250\times10^{-6}\times15^2$ [1] $= \mathbf{2.8\times10^{-2}\ \text{J}}$ [1]; more energy is stored in parallel because the total capacitance is greater — more charge is drawn from the supply [1].
+
+\end{markscheme}
+
+% ===== SECTION 9: REVISION CHECKLIST =====
+\newpage
+\section{Revision Checklist}
+
+Use this checklist to track your understanding. Tick each box when you are confident:
+
+\begin{tcolorbox}[colback=white, colframe=darkblue, breakable]
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{@{} c p{10.5cm} r @{}}
+\toprule
+ & \textbf{Learning Objective} & \textbf{Confidence (1--3)} \\
+\midrule
+$\square$ & Define capacitance; use \nf{C = Q/V} & \\
+$\square$ & Calculate combined capacitance for series and parallel combinations & \\
+$\square$ & Derive the series and parallel formulae from \nf{C = Q/V} & \\
+$\square$ & Use \nf{W = \tfrac{1}{2}QV = \tfrac{1}{2}CV^2 = Q^2/2C} for energy stored & \\
+$\square$ & Explain why energy stored is the area under a \nf{V}--\nf{Q} graph & \\
+$\square$ & Describe the exponential decay of $Q$, $V$ and $I$ during discharge & \\
+$\square$ & Use \nf{x = x_0\,e^{-t/RC}} for discharge of charge, voltage or current & \\
+$\square$ & Define the time constant \nf{\tau = RC} and state its physical significance & \\
+$\square$ & Determine \nf{\tau} from a discharge graph (directly or via \nf{\ln Q} vs \nf{t}) & \\
+$\square$ & Sketch discharge curves for $Q$, $V$ and $I$ against time & \\
+$\square$ & Linearise the discharge equation and interpret gradient and intercept & \\
+\bottomrule
+\end{tabular}
+\vspace{0.5em}
+
+\textit{Key: 1 = Need more work \quad 2 = Getting there \quad 3 = Confident}
+\end{tcolorbox}
+
+\vspace{1em}
 \begin{motivationbox}
 \centering
 \textbf{\color{darkblue}Good luck with your revision!}\\[0.2em]
-{\color{darkgray}\small Remember: understanding \emph{why} formulas work is more powerful than memorising them.}
+{\color{darkgray}\small The exponential decay of a capacitor is one of the most important mathematical forms in physics. Once you can recognise it, linearise it, and extract $\tau$ from a graph, you have a powerful tool that reappears throughout the course.}
 \end{motivationbox}
