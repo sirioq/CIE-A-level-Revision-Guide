@@ -47,11 +47,11 @@ jobs:
           working_directory: topic_18
 
       # ── Topic 19 — Capacitance ────────────────────────────────────────────────
-      # - name: Compile Topic 19 standalone PDF
-      #   uses: xu-cheng/latex-action@v3
-      #   with:
-      #     root_file: topic_19_standalone.tex
-      #     working_directory: topic_19
+      - name: Compile Topic 19 standalone PDF
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: topic_19_standalone.tex
+          working_directory: topic_19
 
       # ── Topics 20 & 21 — Magnetic Fields & AC ────────────────────────────────
       # - name: Compile Topics 20-21 standalone PDF
