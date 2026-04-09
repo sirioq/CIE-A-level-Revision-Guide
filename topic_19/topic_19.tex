@@ -34,12 +34,10 @@ Two conducting plates of area $A$ separated by distance $d$:
 \vspace{0.5em}
 \begin{center}
 \begin{circuitikz}[scale=1.1]
-  % Simple capacitor symbol with charge labels
   \draw (0,0) to[C, l=$C$] (3,0);
   \node[darkblue, font=\small] at (0.95, 0.55) {$+Q$};
   \node[darkblue, font=\small] at (2.05, 0.55) {$-Q$};
-  \draw[darkblue, ->, >=stealth] (1.5,-0.7) -- (1.5,-0.25)
-    node[midway, right, font=\small] {$V$};
+  \node[darkblue, font=\small] at (1.5, -0.55) {$V$};
 \end{circuitikz}
 \end{center}
 
@@ -65,7 +63,7 @@ Each capacitor has the \textbf{same charge}; voltages add: $V_{\text{total}} = V
 \subsubsection*{Circuit diagrams}
 
 \begin{center}
-\begin{circuitikz}[scale=1.0]
+\begin{circuitikz}[scale=1.0, european resistors]
   % Parallel combination
   \begin{scope}
     \draw (0,1.5) -- (0,0.5) to[C, l=$C_1$] (2.5,0.5) -- (2.5,1.5);
@@ -170,13 +168,11 @@ After one time constant ($t = \tau$), the charge/voltage/current has fallen to $
 \subsubsection*{Discharge circuit and $Q$–$t$ graph}
 
 \begin{center}
-\begin{circuitikz}[scale=1.1]
-  \draw (0,2) to[C, l=$C$, v=$V_0$] (0,0)
+\begin{circuitikz}[scale=1.1, european resistors]
+  \draw (0,2) to[C, l=$C$] (0,0)
         -- (3,0)
         to[R, l=$R$] (3,2)
-        -- (0,2);
-  \draw[dashed, darkgray] (1.5,2) to[nos] (1.5,1.2);
-  \node[darkgray, font=\small] at (1.5,0.85) {switch};
+        to[nos, l=S] (0,2);
 \end{circuitikz}
 \hspace{1.5cm}
 \begin{tikzpicture}[xscale=1.2, yscale=1.8]
