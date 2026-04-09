@@ -161,17 +161,17 @@ $x_0$ & = amplitude (m) \\
 \subsubsection*{Energy–displacement graph}
 
 \begin{center}
-\begin{tikzpicture}[xscale=2.0, yscale=1.8]
+\begin{tikzpicture}[xscale=3.8, yscale=3.4]
   % Axes
   \draw[->, darkblue, thick] (-1.4,0) -- (1.4,0)
     node[anchor=north, font=\small] {$x$};
-  \draw[->, darkblue, thick] (0,-0.15) -- (0,1.4)
+  \draw[->, darkblue, thick] (0,-0.08) -- (0,1.35)
     node[anchor=east, font=\small] {Energy};
 
   % x-axis labels
-  \node[darkgray, font=\small, anchor=north] at (-1.0,-0.05) {$-x_0$};
-  \node[darkgray, font=\small, anchor=north] at ( 1.0,-0.05) {$x_0$};
-  \node[darkgray, font=\small, anchor=north] at ( 0.0,-0.05) {$0$};
+  \node[darkgray, font=\small, anchor=north] at (-1.0,-0.03) {$-x_0$};
+  \node[darkgray, font=\small, anchor=north] at ( 1.0,-0.03) {$x_0$};
+  \node[darkgray, font=\small, anchor=north] at ( 0.0,-0.03) {$0$};
 
   % Total energy (horizontal line)
   \draw[darkblue, thick, dashed] (-1.0, 1.0) -- (1.0, 1.0);
@@ -185,9 +185,9 @@ $x_0$ & = amplitude (m) \\
     plot (\x, {1 - \x*\x});
 
   % Stacked labels on the right
-  \node[darkblue, font=\small, anchor=west] at (1.05, 1.00) {$E_{\text{total}}$};
-  \node[midblue, font=\small, anchor=west]  at (1.05, 0.72) {KE};
-  \node[pinkframe, font=\small, anchor=west] at (1.05, 0.44) {PE};
+  \node[darkblue, font=\small, anchor=west] at (1.03, 1.00) {$E_{\text{total}}$};
+  \node[midblue, font=\small, anchor=west]  at (1.03, 0.72) {KE};
+  \node[pinkframe, font=\small, anchor=west] at (1.03, 0.44) {PE};
 \end{tikzpicture}
 \end{center}
 
