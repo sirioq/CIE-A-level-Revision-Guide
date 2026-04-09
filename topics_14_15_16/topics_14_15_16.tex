@@ -181,22 +181,16 @@ The pressure exerted by a gas arises from molecules colliding with the container
 
 \begin{center}
 \begin{tikzpicture}[scale=0.9]
-  % Container box
   \draw[darkblue, thick] (0,0) rectangle (5,3.5);
-  % Molecules as filled circles
   \foreach \x/\y in {0.6/0.5, 1.5/1.8, 2.8/0.7, 3.6/2.4, 4.2/1.0, 1.0/2.9, 2.2/2.0, 4.0/3.0}{
     \fill[midblue] (\x,\y) circle (3.5pt);
   }
-  % Velocity arrows on a few molecules
   \draw[->, midblue, thick] (0.6,0.5) -- (1.3,1.0);
   \draw[->, midblue, thick] (2.8,0.7) -- (3.5,0.3);
   \draw[->, midblue, thick] (3.6,2.4) -- (4.55,2.7);
   \draw[->, midblue, thick] (1.5,1.8) -- (0.7,2.3);
-  % Collision arrow hitting right wall
   \draw[->, pinkframe, very thick] (4.2,1.0) -- (4.95,0.75);
-  % Wall label
   \node[pinkframe, font=\small, right] at (5.05, 0.75) {collision $\Rightarrow$ pressure};
-  % Caption
   \node[darkgray, font=\small] at (2.5,-0.35) {Random molecular motion causes pressure on walls};
 \end{tikzpicture}
 \end{center}
@@ -213,29 +207,67 @@ $N$ & = total number of molecules \\
 $m$ & = mass of one molecule (kg) \\
 $\langle c^2 \rangle$ & = mean square speed (m$^2$\,s$^{-2}$) \\
 \end{tabular}
+\medskip
+
+The \textbf{root-mean-square speed}: $c_\text{r.m.s.} = \sqrt{\langle c^2 \rangle}$
 
 \medskip
-The \textbf{root-mean-square speed}: $c_\text{r.m.s.} = \sqrt{\langle c^2 \rangle}$
+\textbf{Note:} $c_\text{r.m.s.}$ is not the same as the mean speed $\bar{c}$. Because we square first then average, faster molecules contribute more. In general $c_\text{r.m.s.} > \bar{c}$.
 \end{formulabox}
+
+\begin{examplebox}{Derivation of $pV = \frac{1}{3}Nm\langle c^2\rangle$}
+Consider one molecule of mass $m$ moving with speed $c_x$ in the $x$-direction inside a box of side $L$.
+
+\textbf{Step 1 — change in momentum at one wall:}
+The molecule hits the right wall and bounces back elastically:
+$$\Delta p = mc_x - (-mc_x) = 2mc_x$$
+
+\textbf{Step 2 — time between collisions with the same wall:}
+The molecule must travel $2L$ before returning:
+$$\Delta t = \frac{2L}{c_x}$$
+
+\textbf{Step 3 — force from one molecule:}
+$$F = \frac{\Delta p}{\Delta t} = \frac{2mc_x}{2L/c_x} = \frac{mc_x^2}{L}$$
+
+\textbf{Step 4 — pressure from $N$ molecules:}
+Summing over all $N$ molecules and dividing by area $L^2$:
+$$p = \frac{Nm\langle c_x^2\rangle}{L^3} = \frac{Nm\langle c_x^2\rangle}{V}$$
+
+\textbf{Step 5 — extend to 3 dimensions:}
+By symmetry of random motion: $\langle c_x^2\rangle = \langle c_y^2\rangle = \langle c_z^2\rangle = \tfrac{1}{3}\langle c^2\rangle$
+
+$$\boxed{pV = \tfrac{1}{3}Nm\langle c^2\rangle}$$
+\end{examplebox}
 
 \subsection{Molecular Kinetic Energy}
 
-Comparing $pV = \frac{1}{3}Nm\langle c^2\rangle$ with $pV = NkT$:
+\begin{examplebox}{Derivation of $\langle E_k\rangle = \frac{3}{2}kT$}
+Start with the two equations for an ideal gas:
+$$pV = \tfrac{1}{3}Nm\langle c^2\rangle \qquad \text{and} \qquad pV = NkT$$
+
+Equating the right-hand sides:
+$$\tfrac{1}{3}Nm\langle c^2\rangle = NkT$$
+
+Divide both sides by $N$ and multiply by $\tfrac{3}{2}$:
+$$\tfrac{1}{2}m\langle c^2\rangle = \tfrac{3}{2}kT$$
+
+Since $\langle E_k\rangle = \tfrac{1}{2}m\langle c^2\rangle$:
+$$\boxed{\langle E_k\rangle = \tfrac{3}{2}kT}$$
+\end{examplebox}
 
 \begin{formulabox}{Average Translational Kinetic Energy}
 \begin{center}
 \Large $\langle E_k \rangle = \dfrac{1}{2}m\langle c^2 \rangle = \dfrac{3}{2}kT$
 \end{center}
-
-The average kinetic energy of a molecule is \textbf{directly proportional to thermodynamic temperature}. This is a fundamental result.
+The average kinetic energy of a molecule is \textbf{directly proportional to thermodynamic temperature}.
 \end{formulabox}
 
 \begin{keybox}{Key Deductions}
 \begin{itemize}[itemsep=3pt]
   \item At absolute zero, molecules have minimum kinetic energy
   \item Molecules of different gases at the same temperature have the \textbf{same average KE}
-  \item Heavier molecules move more \textbf{slowly} on average at the same temperature
-  \item $c_\text{r.m.s.} \propto \sqrt{T}$
+  \item Heavier molecules move more \textbf{slowly} on average at the same temperature: $c_\text{r.m.s.} = \sqrt{3kT/m}$
+  \item $c_\text{r.m.s.} \propto \sqrt{T}$ --- doubling thermodynamic temperature increases r.m.s.\ speed by factor $\sqrt{2}$
 \end{itemize}
 \end{keybox}
 
@@ -293,10 +325,10 @@ CIE uses $\Delta U = q + W$ where $W$ is work done \textbf{on} the system. Some 
 \toprule
 \textbf{Process} & \textbf{Condition} & \textbf{Result} \\
 \midrule
-Isothermal & $\Delta T = 0 \Rightarrow \Delta U = 0$ & $q = -W$ \\
-Adiabatic  & $q = 0$ & $\Delta U = W$ \\
-Isochoric  & $\Delta V = 0 \Rightarrow W = 0$ & $\Delta U = q$ \\
-Isobaric   & constant $p$ & $\Delta U = q + p\Delta V$ \\
+Constant temperature & $\Delta T = 0 \Rightarrow \Delta U = 0$ & $q = -W$ \\
+No heat transfer     & $q = 0$ & $\Delta U = W$ \\
+Constant volume      & $\Delta V = 0 \Rightarrow W = 0$ & $\Delta U = q$ \\
+Constant pressure    & $p$ constant & $\Delta U = q - p\Delta V$ \\
 \bottomrule
 \end{tabular}
 \end{keybox}
@@ -313,13 +345,13 @@ The \textbf{area under a $p$--$V$ curve} equals the work done by the gas during 
   % Isothermal curve
   \draw[darkblue, very thick, domain=0.5:2.8, samples=100]
     plot (\x, {1.4/\x});
-  \node[darkblue, font=\small, right] at (2.8,{1.4/2.8}) {Isothermal ($\Delta U=0$)};
+  \node[darkblue, font=\small, right] at (2.8,{1.4/2.8}) {Constant temperature ($\Delta U=0$)};
   % Isobaric line
   \draw[pinkframe, very thick] (0.5,1.6) -- (2.5,1.6);
-  \node[pinkframe, font=\small, right] at (2.5,1.6) {Isobaric};
+  \node[pinkframe, font=\small, right] at (2.5,1.6) {Constant pressure};
   % Isochoric line
   \draw[examgreen, very thick] (1.8,0.3) -- (1.8,2.5);
-  \node[examgreen, font=\small, above] at (1.8,2.5) {Isochoric};
+  \node[examgreen, font=\small, above] at (1.8,2.5) {Constant volume};
   % Shaded area under isothermal A to B
   \fill[darkblue!15, domain=0.5:2.0, samples=100]
     plot (\x, {1.4/\x}) -- (2.0,0) -- (0.5,0) -- cycle;
@@ -477,7 +509,7 @@ Internal energy \textbf{increases} by 450 J.
 \end{minipage}
 
 \begin{minipage}{\linewidth}
-\textbf{Q7.} A fixed mass of ideal gas undergoes the cycle A $\to$ B $\to$ C $\to$ A on a $p$--$V$ diagram where A $\to$ B is isothermal expansion, B $\to$ C is isochoric pressure decrease, and C $\to$ A is isobaric compression.
+\textbf{Q7.} A fixed mass of ideal gas undergoes the cycle A $\to$ B $\to$ C $\to$ A on a $p$--$V$ diagram where A $\to$ B is constant temperature expansion, B $\to$ C is constant volume pressure decrease, and C $\to$ A is constant pressure compression.
 
 \begin{enumerate}[label=(\alph*)]
   \item \begin{minipage}[t]{\linewidth}
@@ -493,7 +525,7 @@ Internal energy \textbf{increases} by 450 J.
   \end{minipage}
 
   \item \begin{minipage}[t]{\linewidth}
-  Describe the energy changes during the isochoric process B $\to$ C.
+  Describe the energy changes during the constant volume process B $\to$ C.
   \par\hfill\textit{[2 marks]}
   \vspace{3cm}
   \end{minipage}
