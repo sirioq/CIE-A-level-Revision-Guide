@@ -5,34 +5,501 @@
   \item Electric Fields and Field Lines
   \item Uniform Electric Fields
   \item Coulomb's Law
+  \item Electric Field of a Point Charge
   \item Electric Potential
 }
 
-% ===== SECTION: ELECTRIC FIELDS AND FIELD LINES =====
-\section{Electric Fields and Field Lines}
+% ===== SECTION 1: KEY CONCEPTS =====
+\section{Core Concepts and Definitions}
 
-% Content to be written.
+\begin{definitionbox}{Electric Field}
+An \textbf{electric field} is a region of space in which a charged object experiences a force.
+\begin{itemize}[itemsep=2pt]
+  \item Electric field is defined as the \textbf{force per unit positive charge} acting on a small stationary test charge placed at that point.
+  \item It is a \textbf{vector} quantity, directed along the force on a positive test charge.
+  \item Units: N C$^{-1}$ $\equiv$ V m$^{-1}$.
+\end{itemize}
+$$E = \frac{F}{q}$$
+\end{definitionbox}
 
+\begin{definitionbox}{Radial vs Uniform Fields}
+\begin{itemize}[itemsep=2pt]
+  \item \textbf{Radial field} (around a point charge or sphere): field lines point radially inward (negative charge) or outward (positive charge); $E$ decreases with distance.
+  \item \textbf{Uniform field} (between parallel plates): field lines are parallel and equally spaced; $E$ is constant throughout.
+\end{itemize}
+\end{definitionbox}
 
-% ===== SECTION: UNIFORM ELECTRIC FIELDS =====
+\vspace{0.5em}
+\begin{center}
+\begin{tikzpicture}[scale=0.85]
+  % Radial field — positive point charge
+  \begin{scope}[xshift=-4cm]
+    \draw[fill=darkblue!70] (0,0) circle (0.35);
+    \node[white, font=\small\bfseries] at (0,0) {$+Q$};
+    \foreach \angle in {0,45,90,135,180,225,270,315}{
+      \draw[->,>=stealth, midblue, thick]
+        ({0.5*cos(\angle)},{0.5*sin(\angle)}) -- ({1.8*cos(\angle)},{1.8*sin(\angle)});
+    }
+    \node[darkblue, font=\small\bfseries] at (0,-2.4) {Radial Field ($+$)};
+  \end{scope}
+  % Uniform field — parallel plates
+  \begin{scope}[xshift=3.5cm]
+    \fill[darkgray!30] (-1.8, 1.6) rectangle (1.8, 1.9);
+    \fill[darkgray!30] (-1.8,-1.6) rectangle (1.8,-1.9);
+    \draw[darkgray, thick] (-1.8, 1.6) -- (1.8, 1.6);
+    \draw[darkgray, thick] (-1.8,-1.6) -- (1.8,-1.6);
+    \node[darkgray, font=\small] at (2.2, 1.6) {$+$};
+    \node[darkgray, font=\small] at (2.2,-1.6) {$-$};
+    \foreach \x in {-1.2,-0.4,0.4,1.2}{
+      \draw[->,>=stealth, midblue, thick] (\x,1.4) -- (\x,-1.4);
+    }
+    \node[darkblue, font=\small\bfseries] at (0,-2.4) {Uniform Field};
+  \end{scope}
+\end{tikzpicture}
+\end{center}
+
+% ===== SECTION 2: UNIFORM ELECTRIC FIELDS =====
 \section{Uniform Electric Fields}
 
-% Content to be written.
+\begin{formulabox}{Field Strength Between Parallel Plates}
+\begin{center}
+\Large $E = \dfrac{\Delta V}{\Delta d}$
+\end{center}
+\vspace{0.3em}
+\begin{tabular}{@{}ll@{}}
+$E$ & = electric field strength (V m$^{-1}$) \\
+$\Delta V$ & = potential difference between the plates (V) \\
+$\Delta d$ & = separation of the plates (m) \\
+\end{tabular}
+\end{formulabox}
 
+\begin{keybox}{Motion of Charged Particles in a Uniform Field}
+\begin{itemize}[itemsep=2pt]
+  \item A charge $q$ in a uniform field $E$ experiences a constant force $F = qE$.
+  \item The motion is analogous to projectile motion in a gravitational field:
+    \begin{itemize}
+      \item Along the field: \textbf{uniform acceleration} $a = qE/m$.
+      \item Perpendicular to the field: \textbf{constant velocity} (if no other forces).
+    \end{itemize}
+  \item The path of the charge is \textbf{parabolic}.
+\end{itemize}
+\end{keybox}
 
-% ===== SECTION: COULOMB'S LAW =====
+\begin{warningbox}{Common Mistake}
+$E = \Delta V / \Delta d$ applies \textbf{only} to uniform fields (parallel plates). Do not apply it to the field around a point charge — use $E = Q/(4\pi\varepsilon_0 r^2)$ instead.
+\end{warningbox}
+
+% ===== SECTION 3: COULOMB'S LAW =====
 \section{Coulomb's Law}
 
-% Content to be written.
+\begin{formulabox}{Coulomb's Law}
+\begin{center}
+\Large $F = \dfrac{Q_1 Q_2}{4\pi\varepsilon_0 r^2}$
+\end{center}
+\vspace{0.3em}
+\begin{tabular}{@{}ll@{}}
+$F$ & = electrostatic force between the charges (N) \\
+$Q_1,\,Q_2$ & = the two point charges (C) \\
+$r$ & = separation between the charges (m) \\
+$\varepsilon_0$ & = permittivity of free space $= 8.85\times10^{-12}\ \text{F m}^{-1}$ \\
+\end{tabular}
+\end{formulabox}
 
+\begin{keybox}{Key Points}
+\begin{itemize}[itemsep=2pt]
+  \item Like charges \textbf{repel}; unlike charges \textbf{attract}.
+  \item The force obeys an \textbf{inverse-square law}: double the distance, quarter the force.
+  \item Applies strictly to \textbf{point charges}, and to uniform spheres (treat as point charge at centre).
+  \item Compare with gravity: same inverse-square form but gravity is \textbf{always attractive}.
+\end{itemize}
+\end{keybox}
 
-% ===== SECTION: ELECTRIC POTENTIAL =====
+\subsubsection*{Comparison: Coulomb's Law vs Newton's Law of Gravitation}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{@{} p{5cm} p{5cm} @{}}
+\toprule
+\textbf{Coulomb's Law} & \textbf{Newton's Law} \\
+\midrule
+$F = \dfrac{Q_1 Q_2}{4\pi\varepsilon_0 r^2}$ & $F = \dfrac{Gm_1 m_2}{r^2}$ \\[0.5em]
+Can be attractive or repulsive & Always attractive \\
+Acts between charges & Acts between masses \\
+Much stronger force & Much weaker force \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+% ===== SECTION 4: FIELD OF A POINT CHARGE =====
+\section{Electric Field of a Point Charge}
+
+\begin{formulabox}{Electric Field Strength due to a Point Charge}
+\begin{center}
+\Large $E = \dfrac{Q}{4\pi\varepsilon_0 r^2}$
+\end{center}
+\vspace{0.3em}
+\begin{tabular}{@{}ll@{}}
+$E$ & = electric field strength at distance $r$ (N C$^{-1}$) \\
+$Q$ & = point charge creating the field (C) \\
+$r$ & = distance from the centre of $Q$ (m) \\
+$\varepsilon_0$ & = $8.85\times10^{-12}\ \text{F m}^{-1}$ \\
+\end{tabular}
+\end{formulabox}
+
+\subsubsection*{Variation of $E$ with distance $r$}
+
+\begin{center}
+\begin{tikzpicture}[xscale=1.6, yscale=1.0]
+  \draw[->, darkblue, thick] (0,0) -- (5.5,0);
+  \draw[->, darkblue, thick] (0,0) -- (0,5.0);
+  \node[darkblue, font=\small, anchor=north] at (2.75,-0.25) {Distance, $r$};
+  \node[darkblue, font=\small, rotate=90, anchor=south] at (-0.35,2.0) {Field strength, $E$};
+  \node[darkgray, font=\small, anchor=north east] at (0,0) {$0$};
+  % Curve: E = 4/r^2
+  \draw[midblue, thick, domain=0.9:5.2, samples=150, smooth]
+    plot (\x, {3.24/\x^2});
+  \node[darkblue, font=\small] at (3.5, 0.8) {$E \propto \dfrac{1}{r^2}$};
+\end{tikzpicture}
+\end{center}
+
+\begin{keybox}{Comparing $E$ and $g$ fields}
+\begin{itemize}[itemsep=2pt]
+  \item Both follow an inverse-square law with distance.
+  \item $E = Q/(4\pi\varepsilon_0 r^2)$ parallels $g = GM/r^2$.
+  \item $F = qE$ parallels $F = mg$.
+  \item Unlike gravitational fields, electric fields can point inward or outward depending on the sign of $Q$.
+\end{itemize}
+\end{keybox}
+
+% ===== SECTION 5: ELECTRIC POTENTIAL =====
 \section{Electric Potential}
 
-% Content to be written.
+\begin{definitionbox}{Definition of Electric Potential $V$}
+The \textbf{electric potential} at a point is the work done per unit positive charge in bringing a small test charge from infinity to that point.
+$$V = \frac{W}{q} \qquad \text{units: J C}^{-1} \equiv \text{V}$$
+\begin{itemize}[itemsep=2pt]
+  \item $V = 0$ at infinity (by convention).
+  \item Around a positive charge: $V > 0$ (work must be done \emph{against} repulsion).
+  \item Around a negative charge: $V < 0$ (work is done \emph{by} the field as the test charge moves in).
+\end{itemize}
+\end{definitionbox}
 
+\begin{formulabox}{Electric Potential due to a Point Charge}
+\begin{center}
+\Large $V = \dfrac{Q}{4\pi\varepsilon_0 r}$
+\end{center}
+\vspace{0.3em}
+\begin{tabular}{@{}ll@{}}
+$V$ & = electric potential at distance $r$ (V) \\
+$Q$ & = point charge (C) \\
+$r$ & = distance from the charge (m) \\
+\end{tabular}
+\end{formulabox}
+
+\subsection{Relationship Between $E$ and $V$}
+
+\begin{formulabox}{Field Strength from Potential Gradient}
+\begin{center}
+\large $E = -\dfrac{\Delta V}{\Delta r}$
+\end{center}
+\vspace{0.2em}
+The electric field strength equals the \textbf{negative gradient} of the potential–distance graph.
+The area under an $E$–$r$ graph gives the change in potential $\Delta V$.
+\end{formulabox}
+
+\subsection{Electric Potential Energy}
+
+\begin{formulabox}{Potential Energy of Two Point Charges}
+\begin{center}
+\Large $E_P = \dfrac{Qq}{4\pi\varepsilon_0 r}$
+\end{center}
+\vspace{0.3em}
+\begin{tabular}{@{}ll@{}}
+$E_P$ & = electric potential energy (J) \\
+$Q,\,q$ & = the two point charges (C) \\
+$r$ & = separation (m) \\
+\end{tabular}
+\vspace{0.3em}
+
+Note: $E_P = qV$, where $V$ is the potential due to charge $Q$ at the location of $q$.
+\end{formulabox}
+
+\begin{keybox}{Signs of Potential Energy}
+\begin{itemize}[itemsep=2pt]
+  \item Like charges ($Qq > 0$): $E_P > 0$ — energy must be supplied to bring them together.
+  \item Unlike charges ($Qq < 0$): $E_P < 0$ — energy is released as they come together.
+  \item $E_P = 0$ at infinite separation.
+\end{itemize}
+\end{keybox}
+
+\subsubsection*{Graphs of $V$ and $E$ against $r$ for a positive point charge}
+
+\begin{center}
+\begin{tikzpicture}[xscale=1.6, yscale=1.0]
+  % V graph
+  \begin{scope}
+    \draw[->, darkblue, thick] (0,0) -- (5.5,0);
+    \draw[->, darkblue, thick] (0,-0.3) -- (0,5.0);
+    \node[darkblue, font=\small, anchor=north] at (2.75,-0.25) {Distance, $r$};
+    \node[darkblue, font=\small, rotate=90, anchor=south] at (-0.35,2.0) {Potential, $V$};
+    \node[darkgray, font=\small, anchor=north east] at (0,0) {$0$};
+    \draw[pinkframe, thick, domain=0.7:5.2, samples=150, smooth]
+      plot (\x, {3.0/\x});
+    \node[pinkframe, font=\small] at (3.5,1.5) {$V \propto \dfrac{1}{r}$};
+  \end{scope}
+\end{tikzpicture}
+\end{center}
+
+\begin{warningbox}{Common Mistake}
+Note the difference in distance dependence: $E \propto 1/r^2$ but $V \propto 1/r$. Students often mix these up. Remember: potential falls off more \emph{slowly} than field strength with distance.
+\end{warningbox}
+
+% ===== SECTION 6: EQUIPOTENTIALS =====
+\section{Equipotential Surfaces}
+
+\begin{definitionbox}{Equipotentials}
+An \textbf{equipotential surface} is a surface on which the electric potential is the same at every point.
+\begin{itemize}[itemsep=2pt]
+  \item No work is done moving a charge \emph{along} an equipotential.
+  \item Equipotentials are always \textbf{perpendicular} to field lines.
+  \item Around a point charge: equipotentials are concentric spheres.
+  \item Between parallel plates: equipotentials are parallel planes equally spaced (for uniform field).
+\end{itemize}
+\end{definitionbox}
+
+\begin{center}
+\begin{tikzpicture}[scale=0.85]
+  % Point charge equipotentials
+  \begin{scope}[xshift=-3.8cm]
+    \draw[fill=darkblue!70] (0,0) circle (0.25);
+    \node[white, font=\scriptsize\bfseries] at (0,0) {$+$};
+    % Field lines
+    \foreach \angle in {0,45,90,135,180,225,270,315}{
+      \draw[->,>=stealth, midblue, thin]
+        ({0.35*cos(\angle)},{0.35*sin(\angle)}) -- ({1.9*cos(\angle)},{1.9*sin(\angle)});
+    }
+    % Equipotentials
+    \foreach \r in {0.65, 1.05, 1.55}{
+      \draw[pinkframe, dashed, thin] (0,0) circle (\r);
+    }
+    \node[darkblue, font=\small\bfseries] at (0,-2.4) {Point charge};
+  \end{scope}
+  % Parallel plate equipotentials
+  \begin{scope}[xshift=3.8cm]
+    \fill[darkgray!30] (-1.8, 1.5) rectangle (1.8, 1.75);
+    \fill[darkgray!30] (-1.8,-1.5) rectangle (1.8,-1.75);
+    \draw[darkgray, thick] (-1.8, 1.5) -- (1.8, 1.5);
+    \draw[darkgray, thick] (-1.8,-1.5) -- (1.8,-1.5);
+    \node[darkgray, font=\small] at (2.1, 1.5) {$+$};
+    \node[darkgray, font=\small] at (2.1,-1.5) {$-$};
+    % Field lines
+    \foreach \x in {-1.1, 0.0, 1.1}{
+      \draw[->,>=stealth, midblue, thin] (\x,1.3) -- (\x,-1.3);
+    }
+    % Equipotentials
+    \foreach \y in {0.9, 0.0, -0.9}{
+      \draw[pinkframe, dashed, thin] (-1.6,\y) -- (1.6,\y);
+    }
+    \node[darkblue, font=\small\bfseries] at (0,-2.4) {Parallel plates};
+  \end{scope}
+\end{tikzpicture}
+\end{center}
+
+% ===== SECTION 7: WORKED EXAMPLES =====
+\section{Worked Examples}
+
+\subsection*{Example 1 — Force Between Two Charges}
+
+\textbf{Question:} Calculate the electrostatic force between two charges of $+3.0\ \mu\text{C}$ and $-5.0\ \mu\text{C}$ separated by $0.12\ \text{m}$.
+
+\begin{examplebox}{Solution}
+$$F = \frac{Q_1 Q_2}{4\pi\varepsilon_0 r^2} = \frac{3.0\times10^{-6} \times 5.0\times10^{-6}}{4\pi \times 8.85\times10^{-12} \times (0.12)^2}$$
+$$F = \frac{1.5\times10^{-11}}{1.61\times10^{-12}} = \mathbf{9.3\ \text{N}}$$
+The force is \textbf{attractive} (unlike charges).
+\end{examplebox}
+
+\subsection*{Example 2 — Field Strength and Potential at a Distance}
+
+\textbf{Question:} A point charge $Q = +4.0\ \mu\text{C}$. Calculate (a) the electric field strength and (b) the electric potential at a distance of $0.30\ \text{m}$.
+
+\begin{examplebox}{Solution}
+\textbf{(a)} \quad $E = \dfrac{Q}{4\pi\varepsilon_0 r^2} = \dfrac{4.0\times10^{-6}}{4\pi\times8.85\times10^{-12}\times(0.30)^2}$
+
+$\phantom{(a)} \quad E = \dfrac{4.0\times10^{-6}}{1.005\times10^{-10}} \times (0.09)^{-1}$
+
+$$E = \frac{4.0\times10^{-6}}{1.005\times10^{-10}} = \mathbf{4.0\times10^{5}\ \text{N C}^{-1}}$$
+
+\vspace{0.3em}
+\textbf{(b)} \quad $V = \dfrac{Q}{4\pi\varepsilon_0 r} = \dfrac{4.0\times10^{-6}}{4\pi\times8.85\times10^{-12}\times0.30} = \mathbf{1.2\times10^{5}\ \text{V}}$
+\end{examplebox}
+
+\subsection*{Example 3 — Uniform Field Between Plates}
+
+\textbf{Question:} Two parallel plates are separated by $4.0\ \text{mm}$ with a potential difference of $240\ \text{V}$. Calculate (a) the field strength and (b) the force on an electron between the plates.
+
+\begin{examplebox}{Solution}
+\textbf{(a)} \quad $E = \dfrac{\Delta V}{\Delta d} = \dfrac{240}{4.0\times10^{-3}} = \mathbf{6.0\times10^{4}\ \text{V m}^{-1}}$
+
+\vspace{0.3em}
+\textbf{(b)} \quad $F = qE = 1.6\times10^{-19} \times 6.0\times10^4 = \mathbf{9.6\times10^{-15}\ \text{N}}$
+\end{examplebox}
+
+% ===== SECTION 8: PRACTICE QUESTIONS =====
+\section{Practice Exam Questions}
+
+\subsection*{Section A — Short Answer Questions}
+
+\begin{tcolorbox}[colback=white, colframe=midblue, breakable]
+
+\begin{minipage}{\linewidth}
+\textbf{Q1.} Define electric field strength and state its SI units.
+\par\hfill\textit{[2 marks]}
+\vspace{2.5cm}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+\textbf{Q2.} State Coulomb's Law and identify one similarity and one difference compared with Newton's Law of Gravitation.
+\par\hfill\textit{[3 marks]}
+\vspace{3.5cm}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+\textbf{Q3.} Define electric potential at a point. Explain why the potential around an isolated positive charge is positive, but around an isolated negative charge is negative.
+\par\hfill\textit{[3 marks]}
+\vspace{3.5cm}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+\textbf{Q4.} Two parallel plates are $6.0\ \text{mm}$ apart. The electric field strength between them is $5.0\times10^4\ \text{V m}^{-1}$. Calculate the potential difference between the plates.
+\par\hfill\textit{[2 marks]}
+\vspace{2.5cm}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+\textbf{Q5.} A point charge produces an electric field of $3.6\times10^5\ \text{N C}^{-1}$ at a distance of $0.10\ \text{m}$. Calculate the magnitude of the charge.
+\par\hfill\textit{[3 marks]}
+\vspace{3.5cm}
+\end{minipage}
+
+\end{tcolorbox}
+
+\subsection*{Section B — Longer Structured Questions}
+
+\begin{tcolorbox}[colback=white, colframe=midblue, breakable]
+
+\begin{minipage}{\linewidth}
+\textbf{Q6.} Two point charges $Q_1 = +6.0\ \mu\text{C}$ and $Q_2 = +6.0\ \mu\text{C}$ are placed $0.20\ \text{m}$ apart.
+\end{minipage}
+
+\begin{enumerate}[label=(\alph*)]
+  \item \begin{minipage}[t]{\linewidth}
+  Calculate the force between the two charges.
+  \par\hfill\textit{[2 marks]}
+  \vspace{3cm}
+  \end{minipage}
+
+  \item \begin{minipage}[t]{\linewidth}
+  Calculate the electric field strength at the midpoint between the two charges. Explain your reasoning.
+  \par\hfill\textit{[3 marks]}
+  \vspace{3.5cm}
+  \end{minipage}
+
+  \item \begin{minipage}[t]{\linewidth}
+  Calculate the electric potential at the midpoint between the two charges.
+  \par\hfill\textit{[3 marks]}
+  \vspace{3.5cm}
+  \end{minipage}
+\end{enumerate}
+
+\begin{minipage}{\linewidth}
+\textbf{Q7.} An electron (mass $9.11\times10^{-31}\ \text{kg}$, charge $-1.6\times10^{-19}\ \text{C}$) enters horizontally between two parallel plates. The plates are $30\ \text{mm}$ apart and have a potential difference of $150\ \text{V}$. The electron enters midway between the plates with horizontal speed $4.0\times10^7\ \text{m s}^{-1}$.
+
+\begin{enumerate}[label=(\alph*)]
+  \item Calculate the electric field strength between the plates.
+  \par\hfill\textit{[1 mark]}
+  \vspace{2cm}
+
+  \item Calculate the vertical acceleration of the electron.
+  \par\hfill\textit{[2 marks]}
+  \vspace{3cm}
+
+  \item The plates are $60\ \text{mm}$ long. Calculate the vertical deflection of the electron as it exits the plates.
+  \par\hfill\textit{[3 marks]}
+  \vspace{4cm}
+
+  \item State and explain whether the electron hits one of the plates before exiting.
+  \par\hfill\textit{[2 marks]}
+  \vspace{3cm}
+\end{enumerate}
+\end{minipage}
+
+\end{tcolorbox}
+
+% ===== SECTION 9: MARK SCHEME =====
+\section{Mark Scheme and Answers}
+
+\begin{markscheme}
+
+\textbf{Q1.} Electric field strength is the force per unit positive charge acting on a small stationary test charge placed at that point [1]; units: N C$^{-1}$ or V m$^{-1}$ [1].
+
+\vspace{0.5em}\textbf{Q2.} The force between two point charges is proportional to the product of the charges and inversely proportional to the square of their separation [1]. Similarity: both follow an inverse-square law [1]. Difference: gravity is always attractive; electrostatic force can be attractive or repulsive [1].
+
+\vspace{0.5em}\textbf{Q3.} Electric potential at a point is the work done per unit positive charge in bringing a small test charge from infinity to that point [1]. Around a positive charge: the test charge is repelled, so work must be done \emph{on} it to bring it in from infinity — the potential is positive [1]. Around a negative charge: the test charge is attracted, so work is done \emph{by} the field — the potential is negative [1].
+
+\vspace{0.5em}\textbf{Q4.} $\Delta V = E \times \Delta d = 5.0\times10^4 \times 6.0\times10^{-3} = \mathbf{300\ \text{V}}$ [2].
+
+\vspace{0.5em}\textbf{Q5.} $E = Q/(4\pi\varepsilon_0 r^2)$ [1]; $Q = E \times 4\pi\varepsilon_0 r^2 = 3.6\times10^5 \times 4\pi\times8.85\times10^{-12}\times(0.10)^2$ [1] $= \mathbf{4.0\times10^{-7}\ \text{C}}$ [1].
+
+\vspace{0.5em}\textbf{Q6(a).} $F = \dfrac{Q_1 Q_2}{4\pi\varepsilon_0 r^2} = \dfrac{(6.0\times10^{-6})^2}{4\pi\times8.85\times10^{-12}\times(0.20)^2}$ [1] $= \mathbf{8.1\ \text{N}}$ [1].
+
+\vspace{0.5em}\textbf{Q6(b).} By symmetry, the two equal charges produce equal and opposite field contributions at the midpoint [1]; the fields cancel, so $E = \mathbf{0}$ at the midpoint [2].
+
+\vspace{0.5em}\textbf{Q6(c).} $V_1 = V_2 = \dfrac{Q}{4\pi\varepsilon_0 r} = \dfrac{6.0\times10^{-6}}{4\pi\times8.85\times10^{-12}\times0.10}$ [1] $= 5.4\times10^5\ \text{V}$; total $V = V_1 + V_2 = \mathbf{1.08\times10^6\ \text{V}}$ [2].
+
+\vspace{0.5em}\textbf{Q7(a).} $E = \Delta V/\Delta d = 150/(30\times10^{-3}) = \mathbf{5.0\times10^3\ \text{V m}^{-1}}$ [1].
+
+\vspace{0.5em}\textbf{Q7(b).} $F = qE = 1.6\times10^{-19}\times5.0\times10^3 = 8.0\times10^{-16}\ \text{N}$ [1]; $a = F/m = 8.0\times10^{-16}/(9.11\times10^{-31}) = \mathbf{8.8\times10^{14}\ \text{m s}^{-2}}$ [1].
+
+\vspace{0.5em}\textbf{Q7(c).} Time in field: $t = L/v = 0.060/(4.0\times10^7) = 1.5\times10^{-9}\ \text{s}$ [1]; vertical deflection: $y = \tfrac{1}{2}at^2 = \tfrac{1}{2}\times8.8\times10^{14}\times(1.5\times10^{-9})^2$ [1] $= \mathbf{9.9\times10^{-4}\ \text{m} \approx 1.0\ \text{mm}}$ [1].
+
+\vspace{0.5em}\textbf{Q7(d).} The electron enters midway so has $15\ \text{mm}$ to the nearest plate [1]; deflection of $\approx 1\ \text{mm} \ll 15\ \text{mm}$, so the electron \textbf{does not} hit a plate [1].
+
+\end{markscheme}
+
+% ===== SECTION 10: REVISION CHECKLIST =====
+\newpage
+\section{Revision Checklist}
+
+Use this checklist to track your understanding. Tick each box when you are confident:
+
+\begin{tcolorbox}[colback=white, colframe=darkblue, breakable]
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{@{} c p{10.5cm} r @{}}
+\toprule
+ & \textbf{Learning Objective} & \textbf{Confidence (1--3)} \\
+\midrule
+$\square$ & Define electric field strength as force per unit positive charge; use \nf{E = F/q} & \\
+$\square$ & Represent electric fields using field lines for point charges and parallel plates & \\
+$\square$ & Use \nf{E = \Delta V/\Delta d} for a uniform field between parallel plates & \\
+$\square$ & Describe the parabolic motion of a charge in a uniform electric field & \\
+$\square$ & State and apply Coulomb's Law \nf{F = Q_1 Q_2/(4\pi\varepsilon_0 r^2)} & \\
+$\square$ & Use \nf{E = Q/(4\pi\varepsilon_0 r^2)} for the field due to a point charge & \\
+$\square$ & Define electric potential; explain why sign depends on sign of source charge & \\
+$\square$ & Use \nf{V = Q/(4\pi\varepsilon_0 r)} for potential due to a point charge & \\
+$\square$ & Apply \nf{E = -\Delta V/\Delta r} to relate field strength and potential gradient & \\
+$\square$ & Use \nf{E_P = Qq/(4\pi\varepsilon_0 r)} for potential energy of two charges & \\
+$\square$ & Sketch and interpret equipotential diagrams for point charges and parallel plates & \\
+$\square$ & Compare electric and gravitational fields (similarities and differences) & \\
+\bottomrule
+\end{tabular}
+\vspace{0.5em}
+
+\textit{Key: 1 = Need more work \quad 2 = Getting there \quad 3 = Confident}
+\end{tcolorbox}
+
+\vspace{1em}
 \begin{motivationbox}
 \centering
 \textbf{\color{darkblue}Good luck with your revision!}\\[0.2em]
-{\color{darkgray}\small Remember: understanding \emph{why} formulas work is more powerful than memorising them.}
+{\color{darkgray}\small The key to electric fields is seeing the deep parallel with gravitational fields: same inverse-square laws, same potential formalism — but with charge replacing mass, and the crucial difference that charge can be positive or negative.}
 \end{motivationbox}
