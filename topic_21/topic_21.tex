@@ -95,34 +95,54 @@ Do not use peak values in power calculations. Always convert to r.m.s. first: $V
 \subsubsection*{Comparison of rectified outputs}
 
 \begin{center}
-\begin{tikzpicture}[xscale=0.9, yscale=0.88]
-  % Half-wave
-  \begin{scope}
-    \draw[->, darkblue, thick] (-0.2,0) -- (6.8,0)
-      node[anchor=north, font=\scriptsize] {$t$};
-    \draw[->, darkblue, thick] (0,-0.3) -- (0,1.7)
-      node[anchor=east, font=\scriptsize] {$V$};
-    \foreach \k in {0,2,4}{
-      \draw[midblue, thick, domain=0:3.14, samples=100, smooth]
-        plot ({\x+\k}, {1.2*sin(180*\x/3.14)});
-    }
-    \foreach \k in {1,3,5}{
-      \draw[midblue, thick] (\k,0) -- (\k+1,0);
-    }
-    \node[darkblue, font=\small\bfseries] at (3.2,-0.85) {Half-wave rectification};
-  \end{scope}
-  % Full-wave
-  \begin{scope}[yshift=-4.2cm]
-    \draw[->, darkblue, thick] (-0.2,0) -- (6.8,0)
-      node[anchor=north, font=\scriptsize] {$t$};
-    \draw[->, darkblue, thick] (0,-0.3) -- (0,1.7)
-      node[anchor=east, font=\scriptsize] {$V$};
-    \foreach \k in {0,1,2,3,4,5,6,7,8,9,10,11}{
-      \draw[midblue, thick, domain=0:3.14, samples=100, smooth]
-        plot ({\x/2+\k/2}, {1.2*sin(180*\x/3.14)});
-    }
-    \node[darkblue, font=\small\bfseries] at (3.2,-0.85) {Full-wave rectification};
-  \end{scope}
+% Half-wave rectification
+\begin{tikzpicture}
+\begin{axis}[
+  width=10cm, height=4cm,
+  xlabel={$t$}, ylabel={$V$},
+  xmin=0, xmax=6.3,
+  ymin=-0.3, ymax=1.5,
+  axis x line=center,
+  axis y line=left,
+  xtick=\empty, ytick=\empty,
+  axis line style={darkblue},
+  tick style={darkblue},
+  clip=false,
+]
+  % Positive half-cycles only
+  \addplot[midblue, thick, domain=0:pi,     samples=100, smooth] {1.2*sin(deg(x))};
+  \addplot[midblue, thick, domain=pi:2*pi,  samples=2]           {0};
+  \addplot[midblue, thick, domain=2*pi:3*pi,samples=100, smooth] {1.2*sin(deg(x))};
+  \addplot[midblue, thick, domain=3*pi:4*pi,samples=2]           {0};
+  \addplot[midblue, thick, domain=4*pi:6.3, samples=100, smooth] {1.2*sin(deg(x))};
+  \node[darkblue, font=\small\bfseries] at (axis cs:3.14,-0.25) {Half-wave rectification};
+\end{axis}
+\end{tikzpicture}
+
+\vspace{0.8em}
+
+% Full-wave rectification
+\begin{tikzpicture}
+\begin{axis}[
+  width=10cm, height=4cm,
+  xlabel={$t$}, ylabel={$V$},
+  xmin=0, xmax=6.3,
+  ymin=-0.3, ymax=1.5,
+  axis x line=center,
+  axis y line=left,
+  xtick=\empty, ytick=\empty,
+  axis line style={darkblue},
+  tick style={darkblue},
+  clip=false,
+]
+  % All half-cycles made positive
+  \addplot[midblue, thick, domain=0:pi,     samples=100, smooth] { 1.2*sin(deg(x))};
+  \addplot[midblue, thick, domain=pi:2*pi,  samples=100, smooth] {-1.2*sin(deg(x))};
+  \addplot[midblue, thick, domain=2*pi:3*pi,samples=100, smooth] { 1.2*sin(deg(x))};
+  \addplot[midblue, thick, domain=3*pi:4*pi,samples=100, smooth] {-1.2*sin(deg(x))};
+  \addplot[midblue, thick, domain=4*pi:6.3, samples=100, smooth] { 1.2*sin(deg(x))};
+  \node[darkblue, font=\small\bfseries] at (axis cs:3.14,-0.25) {Full-wave rectification};
+\end{axis}
 \end{tikzpicture}
 \end{center}
 
@@ -185,25 +205,47 @@ A capacitor connected in \textbf{parallel with the load} reduces the ripple on a
 \subsubsection*{Effect of smoothing capacitor on full-wave rectified output}
 
 \begin{center}
-\begin{tikzpicture}[xscale=0.9, yscale=0.95]
-  \draw[->, darkblue, thick] (-0.2,0) -- (7.5,0)
-    node[anchor=north, font=\small] {$t$};
-  \draw[->, darkblue, thick] (0,-0.3) -- (0,1.9)
-    node[anchor=east, font=\small] {$V$};
-  % Unsmoothed full-wave (dashed grey)
-  \foreach \k in {0,1,2,3,4,5,6,7,8,9,10,11,12}{
-    \draw[darkgray, dashed, domain=0:3.14, samples=60, smooth]
-      plot ({\x/2+\k/2}, {1.3*sin(180*\x/3.14)});
-  }
-  % Smoothed — slow exponential droop between peaks
-  \draw[midblue, thick, domain=0:7.2, samples=500, smooth]
-    plot (\x, {1.3 - 0.12*(1 - cos(360*mod(\x,0.5)/0.5))});
+\begin{tikzpicture}
+\begin{axis}[
+  width=11cm, height=5cm,
+  xlabel={$t$}, ylabel={$V$},
+  xmin=0, xmax=6.4,
+  ymin=0, ymax=1.55,
+  axis x line=bottom,
+  axis y line=left,
+  xtick=\empty, ytick=\empty,
+  axis line style={darkblue},
+  tick style={darkblue},
+  clip=false,
+]
+  % Unsmoothed full-wave (dashed)
+  \addplot[darkgray, dashed, thin, domain=0:pi,     samples=100, smooth] { 1.2*sin(deg(x))};
+  \addplot[darkgray, dashed, thin, domain=pi:2*pi,  samples=100, smooth] {-1.2*sin(deg(x))};
+  \addplot[darkgray, dashed, thin, domain=2*pi:3*pi,samples=100, smooth] { 1.2*sin(deg(x))};
+  \addplot[darkgray, dashed, thin, domain=3*pi:4*pi,samples=100, smooth] {-1.2*sin(deg(x))};
+  \addplot[darkgray, dashed, thin, domain=4*pi:6.4, samples=100, smooth] { 1.2*sin(deg(x))};
+
+  % Smoothed output: exponential decay from peak, recharged by next sine peak
+  % Each half-cycle peak is at x = pi/2, 3pi/2, 5pi/2 ...
+  % Decay constant chosen so ripple is visible but small
+  \pgfmathsetmacro{\tau}{1.8}
+  \addplot[midblue, thick, domain=pi/2:3*pi/2,   samples=150, smooth]
+    {1.2*exp(-(x - pi/2)/\tau)};
+  \addplot[midblue, thick, domain=3*pi/2:5*pi/2, samples=150, smooth]
+    {1.2*exp(-(x - 3*pi/2)/\tau)};
+  \addplot[midblue, thick, domain=5*pi/2:6.4,    samples=150, smooth]
+    {1.2*exp(-(x - 5*pi/2)/\tau)};
+
   % Labels
-  \node[midblue, font=\small] at (5.8, 1.55) {smoothed};
-  \node[darkgray, font=\small] at (5.8, 0.55) {unsmoothed};
-  % Ripple annotation
-  \draw[<->, pinkframe, thin] (0.75, 1.18) -- (0.75, 1.30);
-  \node[pinkframe, font=\small, anchor=west] at (0.82, 1.24) {ripple};
+  \node[midblue,  font=\small, anchor=west] at (axis cs:5.6, 1.10) {smoothed};
+  \node[darkgray, font=\small, anchor=west] at (axis cs:5.6, 0.55) {unsmoothed};
+
+  % Ripple annotation on second decay segment
+  \draw[<->, pinkframe, thin]
+    (axis cs:{3*pi/2}, {1.2*exp(-(3*pi/2 - pi/2 - pi)/\tau)})
+    -- (axis cs:{3*pi/2}, 1.2)
+    node[midway, right, pinkframe, font=\scriptsize] {ripple};
+\end{axis}
 \end{tikzpicture}
 \end{center}
 
