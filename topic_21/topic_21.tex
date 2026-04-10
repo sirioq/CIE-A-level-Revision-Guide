@@ -196,48 +196,49 @@ A capacitor connected in \textbf{parallel with the load} reduces the ripple on a
 
 \subsubsection*{Effect of smoothing capacitor on full-wave rectified output}
 
-\begin{center}
+\def\arch{1.7*pi/3}   %
+\begin{figure}[!hbt]
+\centering
 \begin{tikzpicture}
-\pgfmathsetmacro{\arch}{2.8}
-\begin{axis}[
-  width=11cm, height=5cm,
-  xlabel={$t$}, ylabel={$V$},
-  xmin=-3, xmax=21,
-  ymin=0, ymax=1.55,
-  axis x line=center,
-  axis y line=left,
-  xtick=\empty, ytick=\empty,
-  axis line style={darkblue},
-  clip=false,
-]
-  % Dashed unsmoothed full-wave
-  \addplot[darkgray, dashed, thin, domain=-3:21, samples=400, smooth]
-    {abs(1.2*sin(deg(0.5*x)))};
+\begin{axis}[xlabel={$t$},xmin=-3,xmax=21,
+             ylabel={$i_D$},ymin=0,ymax=5,
+             axis x line=center, 
+             axis y line=left, enlargelimits=upper]
+% draw sine functions
+\addplot [dashed,thin,domain=-pi:6*pi,smooth]{-2*sin(deg(0.5*x))};
+\addplot [dashed,thin,domain=-pi:6*pi,smooth]{ 2*sin(deg(0.5*x))};
 
-  % Smoothed output using same foreach pattern as user's example
-  % Half-period = 2*pi ~ 6.28; peaks at x = pi, 3pi, 5pi, 7pi ~ 3.14, 9.42, 15.71
-  % Start from x=0 already charged (capacitor pre-charged to peak)
-  \addplot[midblue, thick, domain=0:{\arch}, samples=80, smooth]
-    {1.2*exp(-0.05*x)};
-  \foreach \i/\j/\k in {-1/0/1, 1/2/3, 3/4/5}{
-    \addplot[midblue, thick, domain={\i*3.14159+\arch}:{\j*3.14159+\arch}, samples=80, smooth]
-      {1.2*exp(-0.05*(x-\i*3.14159))};
-    \addplot[midblue, thick, domain={\j*3.14159+\arch}:{\k*3.14159}, samples=80, smooth]
-      {abs(1.2*sin(deg(0.5*x)))};
-  }
-
-  % Labels inside plot area
-  \node[midblue,  font=\small] at (axis cs:18, 1.35) {smoothed};
-  \node[darkgray, font=\small] at (axis cs:18, 0.55) {unsmoothed};
-
-  % Ripple annotation
-  \draw[<->, pinkframe, thin]
-    (axis cs:{3.14159+\arch}, {1.2*exp(-0.05*\arch)})
-    -- (axis cs:{3.14159+\arch}, {1.2})
-    node[midway, right, pinkframe, font=\scriptsize] {ripple};
+% draw the rectified curves automatically via foreach skill
+\foreach \i/\j/\k in {-1/0/1,1/2/3,3/4/5,5/6/7}{
+\addplot [thick,domain=\i*pi:{\j*pi+\arch}, ] {2*e^(-0.05*(x-\i*pi)};  % exponentially decay curves, not a line
+\addplot [thick,domain={\j*pi+\arch}:\k*pi, smooth]{ 2*sin(deg(0.5*x))};
+\addplot [thick,domain={\j*pi+\arch}:\k*pi, smooth]{-2*sin(deg(0.5*x))};
+}
 \end{axis}
 \end{tikzpicture}
-\end{center}
+\def\arch{1.7*pi/3}   %
+\begin{figure}[!hbt]
+\centering
+\begin{tikzpicture}
+\begin{axis}[xlabel={$t$},xmin=-3,xmax=21,
+             ylabel={$i_D$},ymin=0,ymax=5,
+             axis x line=center, 
+             axis y line=left, enlargelimits=upper]
+% draw sine functions
+\addplot [dashed,thin,domain=-pi:6*pi,smooth]{-2*sin(deg(0.5*x))};
+\addplot [dashed,thin,domain=-pi:6*pi,smooth]{ 2*sin(deg(0.5*x))};
+
+% draw the rectified curves automatically via foreach skill
+\foreach \i/\j/\k in {-1/0/1,1/2/3,3/4/5,5/6/7}{
+\addplot [thick,domain=\i*pi:{\j*pi+\arch}, ] {2*e^(-0.05*(x-\i*pi)};  % exponentially decay curves, not a line
+\addplot [thick,domain={\j*pi+\arch}:\k*pi, smooth]{ 2*sin(deg(0.5*x))};
+\addplot [thick,domain={\j*pi+\arch}:\k*pi, smooth]{-2*sin(deg(0.5*x))};
+}
+\end{axis}
+\end{tikzpicture}
+\caption{Half-Wave Rectifier Waveform}
+\label{halfcycle}
+\end{figure}
 
 \begin{warningbox}{Common Mistake}
 A larger capacitance reduces ripple but also means the capacitor takes longer to charge and discharge. In exam questions, always link ripple size explicitly to the time constant $\tau = CR_L$ — just saying ``bigger capacitor'' without explanation will not earn full marks.
