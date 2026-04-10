@@ -1,0 +1,441 @@
+% topic_21.tex — Content only. Compiled via main.tex.
+% ── No \documentclass, \begin{document} or \end{document} here ──
+
+\chapteropener{21}{Alternating Currents}{%
+  \item Characteristics of Alternating Currents
+  \item R.M.S. Values and Power
+  \item Half-Wave Rectification
+  \item Full-Wave (Bridge) Rectification
+  \item Smoothing with a Capacitor
+}
+
+% ===== SECTION 1: ALTERNATING CURRENTS =====
+\section{Characteristics of Alternating Currents}
+
+\begin{definitionbox}{Alternating Current}
+An \textbf{alternating current} (a.c.) reverses direction periodically. For a sinusoidal a.c.:
+$$I = I_0\sin\omega t \qquad V = V_0\sin\omega t$$
+\begin{itemize}[itemsep=2pt]
+  \item $I_0$, $V_0$: \textbf{peak} (amplitude) values.
+  \item $\omega = 2\pi f = 2\pi/T$: angular frequency (rad s$^{-1}$).
+  \item $T$: period (s);\quad $f$: frequency (Hz).
+  \item UK mains supply: $f = 50\ \text{Hz}$, $T = 20\ \text{ms}$, $V_{\text{rms}} = 230\ \text{V}$.
+\end{itemize}
+\end{definitionbox}
+
+\subsubsection*{Sinusoidal a.c. voltage waveform}
+
+\begin{center}
+\begin{tikzpicture}[xscale=1.15, yscale=0.95]
+  \draw[->, darkblue, thick] (-0.3,0) -- (6.8,0)
+    node[anchor=north, font=\small] {$t$};
+  \draw[->, darkblue, thick] (0,-1.7) -- (0,2.0)
+    node[anchor=east, font=\small] {$V$};
+  % Sinusoid — two full cycles
+  \draw[midblue, thick, domain=0:6.28, samples=200, smooth]
+    plot (\x, {1.3*sin(180*\x/3.14)});
+  % V0 and -V0 markers
+  \draw[dashed, darkgray, thin] (0,1.3) node[anchor=east, font=\small] {$V_0$} -- (0.1,1.3);
+  \draw[dashed, darkgray, thin] (0,-1.3) node[anchor=east, font=\small] {$-V_0$} -- (0.1,-1.3);
+  % Vrms line
+  \draw[pinkframe, dashed, thick] (0,0.919) -- (6.5,0.919);
+  \node[pinkframe, font=\small, anchor=west] at (6.55,0.919) {$V_{\text{rms}}$};
+  % Period arrow
+  \draw[<->, darkgray, thin] (0,-0.25) -- (6.28,-0.25);
+  \node[darkgray, font=\small, anchor=north] at (3.14,-0.28) {$T$};
+\end{tikzpicture}
+\end{center}
+
+% ===== SECTION 2: RMS VALUES AND POWER =====
+\section{R.M.S. Values and Power}
+
+\begin{definitionbox}{Root-Mean-Square (R.M.S.) Value}
+The \textbf{r.m.s. value} of an alternating current is defined as the value of steady direct current that would dissipate the \textbf{same power} in a purely resistive load.
+\end{definitionbox}
+
+\begin{formulabox}{R.M.S. Formulae}
+\begin{center}
+\Large $I_{\text{rms}} = \dfrac{I_0}{\sqrt{2}}$ \qquad $V_{\text{rms}} = \dfrac{V_0}{\sqrt{2}}$
+\end{center}
+\vspace{0.3em}
+These apply to \textbf{sinusoidal} waveforms only. For other waveforms the factor $1/\sqrt{2}$ changes.
+\end{formulabox}
+
+\begin{formulabox}{Mean Power in a Resistive Load}
+\begin{center}
+\large $P_{\text{mean}} = \tfrac{1}{2}P_{\text{max}} = \tfrac{1}{2}I_0^2 R = I_{\text{rms}}^2 R = \dfrac{V_{\text{rms}}^2}{R}$
+\end{center}
+\vspace{0.3em}
+The mean power is \textbf{half} the peak power for a sinusoidal waveform.
+\end{formulabox}
+
+\begin{keybox}{Why Use R.M.S.?}
+\begin{itemize}[itemsep=2pt]
+  \item The mean value of a sinusoidal current is \textbf{zero} — useless for power calculations.
+  \item R.M.S. values allow direct use of d.c. power formulae ($P = IV$, $P = I^2R$, $P = V^2/R$).
+  \item Meters and ratings (e.g.\ $230\ \text{V}$ mains) always quote r.m.s. values.
+\end{itemize}
+\end{keybox}
+
+\begin{warningbox}{Common Mistake}
+Do not use peak values in power calculations. Always convert to r.m.s. first: $V_{\text{rms}} = V_0/\sqrt{2}$. The peak mains voltage is $230\sqrt{2} \approx 325\ \text{V}$, not $230\ \text{V}$.
+\end{warningbox}
+
+% ===== SECTION 3: RECTIFICATION =====
+\section{Rectification}
+
+\begin{definitionbox}{Rectification}
+\textbf{Rectification} converts alternating current into direct current flowing in one direction only.
+\begin{itemize}[itemsep=2pt]
+  \item \textbf{Half-wave rectification}: a single diode passes only the positive (or negative) half-cycles; output is a series of pulses with gaps.
+  \item \textbf{Full-wave rectification}: a bridge rectifier (four diodes) inverts the negative half-cycles, producing a continuous pulsating d.c. output with no gaps.
+\end{itemize}
+\end{definitionbox}
+
+\subsubsection*{Comparison of rectified outputs}
+
+\begin{center}
+\begin{tikzpicture}[xscale=0.9, yscale=0.88]
+  % Half-wave
+  \begin{scope}
+    \draw[->, darkblue, thick] (-0.2,0) -- (6.8,0)
+      node[anchor=north, font=\scriptsize] {$t$};
+    \draw[->, darkblue, thick] (0,-0.3) -- (0,1.7)
+      node[anchor=east, font=\scriptsize] {$V$};
+    \foreach \k in {0,2,4}{
+      \draw[midblue, thick, domain=0:3.14, samples=100, smooth]
+        plot ({\x+\k}, {1.2*sin(180*\x/3.14)});
+    }
+    \foreach \k in {1,3,5}{
+      \draw[midblue, thick] (\k,0) -- (\k+1,0);
+    }
+    \node[darkblue, font=\small\bfseries] at (3.2,-0.85) {Half-wave rectification};
+  \end{scope}
+  % Full-wave
+  \begin{scope}[yshift=-4.2cm]
+    \draw[->, darkblue, thick] (-0.2,0) -- (6.8,0)
+      node[anchor=north, font=\scriptsize] {$t$};
+    \draw[->, darkblue, thick] (0,-0.3) -- (0,1.7)
+      node[anchor=east, font=\scriptsize] {$V$};
+    \foreach \k in {0,1,2,3,4,5,6,7,8,9,10,11}{
+      \draw[midblue, thick, domain=0:3.14, samples=100, smooth]
+        plot ({\x/2+\k/2}, {1.2*sin(180*\x/3.14)});
+    }
+    \node[darkblue, font=\small\bfseries] at (3.2,-0.85) {Full-wave rectification};
+  \end{scope}
+\end{tikzpicture}
+\end{center}
+
+\subsection{Bridge Rectifier}
+
+\begin{definitionbox}{Bridge Rectifier}
+A bridge rectifier uses \textbf{four diodes} arranged in a diamond so that:
+\begin{itemize}[itemsep=2pt]
+  \item During the \textbf{positive half-cycle}: current flows through diodes D1 and D4, through the load in the positive direction.
+  \item During the \textbf{negative half-cycle}: current flows through diodes D2 and D3, but still through the load in the \textbf{same} direction.
+  \item Both half-cycles contribute to the output — no wasted half-cycles.
+\end{itemize}
+\end{definitionbox}
+
+\begin{center}
+\begin{tikzpicture}[scale=1.15, every node/.style={font=\small}]
+  \coordinate (T)   at (2.2, 3.0);
+  \coordinate (Bot) at (2.2, 0.0);
+  \coordinate (L)   at (0.0, 1.5);
+  \coordinate (R)   at (4.4, 1.5);
+
+  % Diodes as labelled arrows
+  \draw[->, midblue, thick] (L)   -- (T)   node[midway, left]  {D1};
+  \draw[->, midblue, thick] (Bot) -- (L)   node[midway, left]  {D2};
+  \draw[->, midblue, thick] (T)   -- (R)   node[midway, right] {D3};
+  \draw[->, midblue, thick] (R)   -- (Bot) node[midway, right] {D4};
+
+  % AC source (left)
+  \draw (L)   -- (-1.2, 1.5);
+  \draw (Bot) -- (-1.2, 0.0);
+  \draw[darkblue, thick] (-1.2, 0.0) -- (-1.2, 1.5);
+  \node[darkblue, font=\normalsize] at (-1.2, 0.75) {$\sim$};
+  \node[darkblue] at (-1.2, -0.35) {a.c. input};
+
+  % Load (right)
+  \draw (T)   -- (4.4, 3.0) -- (5.8, 3.0);
+  \draw (Bot) -- (4.4, 0.0) -- (5.8, 0.0);
+  \draw[darkblue, very thick] (5.8, 0.0) -- (5.8, 3.0);
+  \node[darkblue, anchor=west] at (5.9, 1.5) {$R_L$};
+  \node[darkblue] at (5.8, -0.35) {d.c. output};
+
+  % Junction dots
+  \fill[darkblue] (T)   circle (2.5pt);
+  \fill[darkblue] (Bot) circle (2.5pt);
+  \fill[darkblue] (L)   circle (2.5pt);
+  \fill[darkblue] (R)   circle (2.5pt);
+\end{tikzpicture}
+\end{center}
+
+% ===== SECTION 4: SMOOTHING =====
+\section{Smoothing with a Capacitor}
+
+\begin{keybox}{Smoothing}
+A capacitor connected in \textbf{parallel with the load} reduces the ripple on a rectified output:
+\begin{itemize}[itemsep=2pt]
+  \item The capacitor \textbf{charges up} rapidly to the peak voltage during each pulse.
+  \item It \textbf{discharges slowly} through the load $R_L$ between peaks, maintaining a more constant voltage.
+  \item The output has a small residual \textbf{ripple voltage} rather than falling to zero between pulses.
+  \item \textbf{Larger $C$} or \textbf{larger $R_L$}: longer time constant $\tau = CR_L$, less ripple.
+  \item \textbf{Smaller $C$} or \textbf{smaller $R_L$}: faster discharge, larger ripple.
+\end{itemize}
+\end{keybox}
+
+\subsubsection*{Effect of smoothing capacitor on full-wave rectified output}
+
+\begin{center}
+\begin{tikzpicture}[xscale=0.9, yscale=0.95]
+  \draw[->, darkblue, thick] (-0.2,0) -- (7.5,0)
+    node[anchor=north, font=\small] {$t$};
+  \draw[->, darkblue, thick] (0,-0.3) -- (0,1.9)
+    node[anchor=east, font=\small] {$V$};
+  % Unsmoothed full-wave (dashed grey)
+  \foreach \k in {0,1,2,3,4,5,6,7,8,9,10,11,12}{
+    \draw[darkgray, dashed, domain=0:3.14, samples=60, smooth]
+      plot ({\x/2+\k/2}, {1.3*sin(180*\x/3.14)});
+  }
+  % Smoothed — slow exponential droop between peaks
+  \draw[midblue, thick, domain=0:7.2, samples=500, smooth]
+    plot (\x, {1.3 - 0.12*(1 - cos(360*mod(\x,0.5)/0.5))});
+  % Labels
+  \node[midblue, font=\small] at (5.8, 1.55) {smoothed};
+  \node[darkgray, font=\small] at (5.8, 0.55) {unsmoothed};
+  % Ripple annotation
+  \draw[<->, pinkframe, thin] (0.75, 1.18) -- (0.75, 1.30);
+  \node[pinkframe, font=\small, anchor=west] at (0.82, 1.24) {ripple};
+\end{tikzpicture}
+\end{center}
+
+\begin{warningbox}{Common Mistake}
+A larger capacitance reduces ripple but also means the capacitor takes longer to charge and discharge. In exam questions, always link ripple size explicitly to the time constant $\tau = CR_L$ — just saying ``bigger capacitor'' without explanation will not earn full marks.
+\end{warningbox}
+
+% ===== SECTION 5: FORMULA SUMMARY =====
+\section{Formula Summary Sheet}
+
+\begin{minipage}{\linewidth}
+\begin{tcolorbox}[colback=lightgold, colframe=accentgold]
+\renewcommand{\arraystretch}{1.8}
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Formula} & \textbf{Quantity} & \textbf{Units} \\
+\midrule
+$I = I_0\sin\omega t$ & Sinusoidal alternating current & A \\
+$V = V_0\sin\omega t$ & Sinusoidal alternating voltage & V \\
+$\omega = 2\pi f = 2\pi/T$ & Angular frequency & rad s$^{-1}$ \\
+$I_{\text{rms}} = I_0/\sqrt{2}$ & R.M.S. current & A \\
+$V_{\text{rms}} = V_0/\sqrt{2}$ & R.M.S. voltage & V \\
+$P_{\text{mean}} = \tfrac{1}{2}I_0^2 R$ & Mean power (peak values) & W \\
+$P_{\text{mean}} = I_{\text{rms}}^2 R = V_{\text{rms}}^2/R$ & Mean power (r.m.s. values) & W \\
+\bottomrule
+\end{tabular}
+\end{tcolorbox}
+
+\vspace{0.5em}
+\begin{tcolorbox}[colback=lightblue, colframe=darkblue]
+\textbf{UK mains:}\quad $V_{\text{rms}} = 230\ \text{V}$;\quad $f = 50\ \text{Hz}$;\quad $V_0 = 230\sqrt{2} \approx 325\ \text{V}$\\[0.3em]
+\textbf{Note:} $1/\sqrt{2} \approx 0.707$;\quad $P_{\text{mean}} = \tfrac{1}{2}P_{\text{max}}$ for sinusoidal waveform only.
+\end{tcolorbox}
+\end{minipage}
+
+% ===== SECTION 6: WORKED EXAMPLES =====
+\section{Worked Examples}
+
+\subsection*{Example 1 — R.M.S. and Peak Values}
+
+\textbf{Question:} The mains supply has $V_{\text{rms}} = 230\ \text{V}$ at $50\ \text{Hz}$. Find (a) the peak voltage, (b) the angular frequency and (c) the mean power in a $1.2\ \text{k}\Omega$ resistor.
+
+\begin{examplebox}{Solution}
+\textbf{(a)} \quad $V_0 = V_{\text{rms}}\sqrt{2} = 230\sqrt{2} = \mathbf{325\ \text{V}}$
+
+\vspace{0.3em}
+\textbf{(b)} \quad $\omega = 2\pi f = 2\pi\times50 = \mathbf{314\ \text{rad s}^{-1}}$
+
+\vspace{0.3em}
+\textbf{(c)} \quad $P = V_{\text{rms}}^2/R = 230^2/(1.2\times10^3) = 52900/1200 = \mathbf{44\ \text{W}}$
+\end{examplebox}
+
+\subsection*{Example 2 — Peak Power and Mean Power}
+
+\textbf{Question:} An a.c. supply has peak voltage $V_0 = 12\ \text{V}$ and is connected to a $60\ \Omega$ resistor. Calculate (a) the peak power and (b) the mean power dissipated.
+
+\begin{examplebox}{Solution}
+\textbf{(a)} \quad $P_{\text{max}} = V_0^2/R = 144/60 = \mathbf{2.4\ \text{W}}$
+
+\vspace{0.3em}
+\textbf{(b)} \quad $P_{\text{mean}} = \tfrac{1}{2}P_{\text{max}} = \mathbf{1.2\ \text{W}}$
+
+\vspace{0.3em}
+Or equivalently: $V_{\text{rms}} = 12/\sqrt{2}$; $P = V_{\text{rms}}^2/R = 72/60 = 1.2\ \text{W}$ ✓
+\end{examplebox}
+
+\subsection*{Example 3 — Smoothing}
+
+\textbf{Question:} A full-wave rectifier feeds a $470\ \mu\text{F}$ smoothing capacitor in parallel with a $2.2\ \text{k}\Omega$ load. Calculate the time constant and comment on the degree of smoothing for a $50\ \text{Hz}$ supply.
+
+\begin{examplebox}{Solution}
+$\tau = CR = 470\times10^{-6} \times 2200 = \mathbf{1.03\ \text{s}}$
+
+The period of the full-wave rectified signal is $T/2 = 1/(2\times50) = 10\ \text{ms}$.
+
+Since $\tau = 1.03\ \text{s} \gg 10\ \text{ms}$, the capacitor discharges very little between peaks — the output is well smoothed with very small ripple.
+\end{examplebox}
+
+% ===== SECTION 7: PRACTICE QUESTIONS =====
+\section{Practice Exam Questions}
+
+\subsection*{Section A — Short Answer Questions}
+
+\begin{tcolorbox}[colback=white, colframe=midblue, breakable]
+
+\begin{minipage}{\linewidth}
+\textbf{Q1.} Explain what is meant by the r.m.s. value of an alternating current and state why it is more useful than the peak value.
+\par\hfill\textit{[3 marks]}
+\vspace{3cm}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+\textbf{Q2.} An a.c. supply has peak voltage $340\ \text{V}$. Calculate (a) the r.m.s. voltage and (b) the mean power delivered to a $680\ \Omega$ resistor.
+\par\hfill\textit{[3 marks]}
+\vspace{3cm}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+\textbf{Q3.} Distinguish between half-wave and full-wave rectification. State the number of diodes required for each.
+\par\hfill\textit{[3 marks]}
+\vspace{3cm}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+\textbf{Q4.} Explain how a capacitor connected in parallel with a load resistor smooths a rectified output. State the effect of increasing the capacitance.
+\par\hfill\textit{[3 marks]}
+\vspace{3.5cm}
+\end{minipage}
+
+\end{tcolorbox}
+
+\subsection*{Section B — Longer Structured Questions}
+
+\begin{tcolorbox}[colback=white, colframe=midblue, breakable]
+
+\begin{minipage}{\linewidth}
+\textbf{Q5.} The alternating voltage from a supply is given by $V = 170\sin(100\pi t)$, where $V$ is in volts and $t$ is in seconds.
+\end{minipage}
+
+\begin{enumerate}[label=(\alph*)]
+  \item \begin{minipage}[t]{\linewidth}
+  State the peak voltage and the frequency of the supply.
+  \par\hfill\textit{[2 marks]}
+  \vspace{2.5cm}
+  \end{minipage}
+
+  \item \begin{minipage}[t]{\linewidth}
+  Calculate the r.m.s. voltage.
+  \par\hfill\textit{[1 mark]}
+  \vspace{2cm}
+  \end{minipage}
+
+  \item \begin{minipage}[t]{\linewidth}
+  The supply is connected to a $500\ \Omega$ resistor. Calculate the mean power dissipated.
+  \par\hfill\textit{[2 marks]}
+  \vspace{3cm}
+  \end{minipage}
+
+  \item \begin{minipage}[t]{\linewidth}
+  The supply is now passed through a bridge rectifier and a smoothing capacitor of $1000\ \mu\text{F}$ is connected in parallel with the $500\ \Omega$ load. Calculate the time constant and comment on the effectiveness of smoothing.
+  \par\hfill\textit{[3 marks]}
+  \vspace{4cm}
+  \end{minipage}
+\end{enumerate}
+
+\begin{minipage}{\linewidth}
+\textbf{Q6.} The graph below represents the output of a full-wave rectifier before smoothing. The peak voltage is $12\ \text{V}$ and the supply frequency is $50\ \text{Hz}$.
+
+\begin{enumerate}[label=(\alph*)]
+  \item State the frequency of the rectified output.
+  \par\hfill\textit{[1 mark]}
+  \vspace{1.5cm}
+
+  \item On the same axes, sketch the output after connecting a large smoothing capacitor in parallel with the load. Indicate the approximate ripple voltage.
+  \par\hfill\textit{[2 marks]}
+  \vspace{5cm}
+
+  \item Explain what happens to the smoothing if the load resistance is reduced. 
+  \par\hfill\textit{[2 marks]}
+  \vspace{3cm}
+\end{enumerate}
+\end{minipage}
+
+\end{tcolorbox}
+
+% ===== SECTION 8: MARK SCHEME =====
+\section{Mark Scheme and Answers}
+
+\begin{markscheme}
+
+\textbf{Q1.} The r.m.s. value is the equivalent steady d.c. that dissipates the same power in a resistive load [1]; it is more useful because power formulae ($P = I^2R$, $P = V^2/R$) can be applied directly [1]; the mean of a sinusoidal current is zero, so it gives no information about power [1].
+
+\vspace{0.5em}\textbf{Q2(a).} $V_{\text{rms}} = V_0/\sqrt{2} = 340/\sqrt{2} = \mathbf{240\ \text{V}}$ [1].
+\textbf{Q2(b).} $P = V_{\text{rms}}^2/R = 240^2/680 = 57600/680 = \mathbf{85\ \text{W}}$ [2].
+
+\vspace{0.5em}\textbf{Q3.} Half-wave: uses \textbf{1 diode}; only one half of each cycle is passed; output has gaps of zero voltage [1]. Full-wave: uses \textbf{4 diodes} (bridge rectifier); both half-cycles are used; output is always positive with no gaps [2].
+
+\vspace{0.5em}\textbf{Q4.} The capacitor charges to the peak voltage during each pulse [1]; between pulses it discharges slowly through the load, maintaining a more constant output voltage [1]; increasing $C$ increases the time constant $\tau = CR$, so the capacitor discharges less between pulses and the ripple is smaller [1].
+
+\vspace{0.5em}\textbf{Q5(a).} Peak voltage $V_0 = \mathbf{170\ \text{V}}$ [1]; $\omega = 100\pi$, so $f = \omega/2\pi = 100\pi/2\pi = \mathbf{50\ \text{Hz}}$ [1].
+
+\vspace{0.5em}\textbf{Q5(b).} $V_{\text{rms}} = 170/\sqrt{2} = \mathbf{120\ \text{V}}$ [1].
+
+\vspace{0.5em}\textbf{Q5(c).} $P = V_{\text{rms}}^2/R = (120)^2/500$ [1] $= 14400/500 = \mathbf{28.8\ \text{W}}$ [1].
+
+\vspace{0.5em}\textbf{Q5(d).} $\tau = CR = 1000\times10^{-6}\times500 = \mathbf{0.50\ \text{s}}$ [1]; period of full-wave output $= 1/(2\times50) = 10\ \text{ms}$ [1]; $\tau \gg T/2$ so capacitor barely discharges between peaks — very effective smoothing with tiny ripple [1].
+
+\vspace{0.5em}\textbf{Q6(a).} The full-wave rectified output has frequency $2\times50 = \mathbf{100\ \text{Hz}}$ [1].
+
+\vspace{0.5em}\textbf{Q6(b).} Sketch: smoothed output just below $12\ \text{V}$ with small sawtooth ripple; ripple voltage is the small oscillation between the capacitor charge and discharge levels [2].
+
+\vspace{0.5em}\textbf{Q6(c).} Reducing load resistance increases the discharge current [1]; the capacitor discharges faster between peaks ($\tau = CR$ decreases), so the ripple voltage increases and smoothing is less effective [1].
+
+\end{markscheme}
+
+% ===== SECTION 9: REVISION CHECKLIST =====
+\newpage
+\section{Revision Checklist}
+
+Use this checklist to track your understanding. Tick each box when you are confident:
+
+\begin{tcolorbox}[colback=white, colframe=darkblue, breakable]
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{@{} c p{10.5cm} r @{}}
+\toprule
+ & \textbf{Learning Objective} & \textbf{Confidence (1--3)} \\
+\midrule
+$\square$ & Define period, frequency and peak value for an a.c. waveform & \\
+$\square$ & Use \nf{x = x_0\sin\omega t} for sinusoidal current or voltage & \\
+$\square$ & Define r.m.s. value and explain why it is useful & \\
+$\square$ & Use \nf{I_{\text{rms}} = I_0/\sqrt{2}} and \nf{V_{\text{rms}} = V_0/\sqrt{2}} & \\
+$\square$ & Calculate mean power using r.m.s. values: \nf{P = I_{\text{rms}}^2 R = V_{\text{rms}}^2/R} & \\
+$\square$ & State that mean power is half peak power for sinusoidal a.c. & \\
+$\square$ & Distinguish half-wave and full-wave rectification graphically & \\
+$\square$ & Explain the action of a single diode for half-wave rectification & \\
+$\square$ & Explain the action of a bridge rectifier (four diodes) & \\
+$\square$ & Explain smoothing by a capacitor in terms of charge/discharge & \\
+$\square$ & Analyse the effect of $C$ and $R_L$ on the time constant and ripple & \\
+\bottomrule
+\end{tabular}
+\vspace{0.5em}
+
+\textit{Key: 1 = Need more work \quad 2 = Getting there \quad 3 = Confident}
+\end{tcolorbox}
+
+\vspace{1em}
+\begin{motivationbox}
+\centering
+\textbf{\color{darkblue}Good luck with your revision!}\\[0.2em]
+{\color{darkgray}\small R.M.S. values are one of physics's most elegant ideas: a way to make a continuously varying quantity equivalent to a steady one. Once you see that $P_{\text{mean}} = \tfrac{1}{2}P_{\text{max}}$ comes directly from $\langle\sin^2\rangle = \tfrac{1}{2}$, the whole topic falls into place.}
+\end{motivationbox}
