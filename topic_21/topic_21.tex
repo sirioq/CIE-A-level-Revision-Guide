@@ -138,38 +138,35 @@ A bridge rectifier uses \textbf{four diodes} arranged in a diamond so that:
 \end{definitionbox}
 
 \begin{center}
-\begin{tikzpicture}[scale=1.15, every node/.style={font=\small}]
-  \coordinate (T)   at (2.2, 3.0);
-  \coordinate (Bot) at (2.2, 0.0);
-  \coordinate (L)   at (0.0, 1.5);
-  \coordinate (R)   at (4.4, 1.5);
+\begin{circuitikz}[european resistors, scale=0.95,
+    every node/.style={font=\small},
+    bipoles/thickness=1.2]
+  % Diamond coordinates
+  \coordinate (TOP)   at (3, 4.5);
+  \coordinate (BOT)   at (3, 0);
+  \coordinate (LEFT)  at (0, 2.25);
+  \coordinate (RIGHT) at (6, 2.25);
 
-  % Diodes as labelled arrows
-  \draw[->, midblue, thick] (L)   -- (T)   node[midway, left]  {D1};
-  \draw[->, midblue, thick] (Bot) -- (L)   node[midway, left]  {D2};
-  \draw[->, midblue, thick] (T)   -- (R)   node[midway, right] {D3};
-  \draw[->, midblue, thick] (R)   -- (Bot) node[midway, right] {D4};
+  % Four diodes — conventional current flows: LEFT->TOP, BOT->LEFT, TOP->RIGHT, RIGHT->BOT
+  \draw (LEFT)  to[full diode, l=$D_1$, *-*] (TOP);
+  \draw (BOT)   to[full diode, l_=$D_2$, *-*] (LEFT);
+  \draw (TOP)   to[full diode, l=$D_3$, *-*] (RIGHT);
+  \draw (RIGHT) to[full diode, l_=$D_4$, *-*] (BOT);
 
-  % AC source (left)
-  \draw (L)   -- (-1.2, 1.5);
-  \draw (Bot) -- (-1.2, 0.0);
-  \draw[darkblue, thick] (-1.2, 0.0) -- (-1.2, 1.5);
-  \node[darkblue, font=\normalsize] at (-1.2, 0.75) {$\sim$};
-  \node[darkblue] at (-1.2, -0.35) {a.c. input};
+  % AC source on the left (LEFT to BOT via external wire)
+  \draw (LEFT) -- (-1.5, 2.25);
+  \draw (BOT)  -- (3, -1.2) -- (-1.5, -1.2);
+  \draw (-1.5, -1.2) to[sV, l=a.c.] (-1.5, 2.25);
 
-  % Load (right)
-  \draw (T)   -- (4.4, 3.0) -- (5.8, 3.0);
-  \draw (Bot) -- (4.4, 0.0) -- (5.8, 0.0);
-  \draw[darkblue, very thick] (5.8, 0.0) -- (5.8, 3.0);
-  \node[darkblue, anchor=west] at (5.9, 1.5) {$R_L$};
-  \node[darkblue] at (5.8, -0.35) {d.c. output};
+  % Load resistor on the right (TOP to BOT via external wire)
+  \draw (TOP)   -- (3, 5.7) -- (7.5, 5.7);
+  \draw (BOT)   -- (3, -1.2) -- (7.5, -1.2);
+  \draw (7.5, 5.7) to[R, l=$R_L$, *-*] (7.5, -1.2);
 
-  % Junction dots
-  \fill[darkblue] (T)   circle (2.5pt);
-  \fill[darkblue] (Bot) circle (2.5pt);
-  \fill[darkblue] (L)   circle (2.5pt);
-  \fill[darkblue] (R)   circle (2.5pt);
-\end{tikzpicture}
+  % +/- output labels
+  \node[darkblue, anchor=south] at (7.5, 5.7)  {$+$};
+  \node[darkblue, anchor=north] at (7.5, -1.2) {$-$};
+\end{circuitikz}
 \end{center}
 
 % ===== SECTION 4: SMOOTHING =====
