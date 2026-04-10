@@ -1,0 +1,434 @@
+% topic_20.tex — Content only. Compiled via main.tex.
+% ── No \documentclass, \begin{document} or \end{document} here ──
+
+\chapteropener{20}{Magnetic Fields}{%
+  \item Magnetic Fields and Field Lines
+  \item Force on a Current-Carrying Conductor
+  \item Force on a Moving Charge
+  \item Hall Effect and Velocity Selector
+  \item Magnetic Fields due to Currents
+  \item Electromagnetic Induction
+}
+
+% ===== SECTION 1: CONCEPT OF MAGNETIC FIELD =====
+\section{Magnetic Fields}
+
+\begin{definitionbox}{Magnetic Field}
+A \textbf{magnetic field} is a region of space in which a moving charge, or a current-carrying conductor, experiences a force.
+\begin{itemize}[itemsep=2pt]
+  \item Magnetic fields are produced by \textbf{moving charges} (electric currents) or by \textbf{permanent magnets}.
+  \item The field is represented by \textbf{field lines} (flux lines); the direction is the direction of the force on a north pole.
+  \item Field lines never cross; closer lines indicate a stronger field.
+  \item Crosses ($\times$) represent field into the page; dots ($\bullet$) represent field out of the page.
+\end{itemize}
+\end{definitionbox}
+
+% ===== SECTION 2: FORCE ON A CURRENT-CARRYING CONDUCTOR =====
+\section{Force on a Current-Carrying Conductor}
+
+\begin{formulabox}{Force on a Conductor}
+\begin{center}
+\Large $F = BIL\sin\theta$
+\end{center}
+\vspace{0.3em}
+\begin{tabular}{@{}ll@{}}
+$F$ & = force on the conductor (N) \\
+$B$ & = magnetic flux density (T) \\
+$I$ & = current in the conductor (A) \\
+$L$ & = length of conductor in the field (m) \\
+$\theta$ & = angle between the conductor and the field direction \\
+\end{tabular}
+\vspace{0.4em}
+
+Force is \textbf{maximum} when $\theta = 90°$ (conductor perpendicular to field): $F = BIL$.\\
+Force is \textbf{zero} when $\theta = 0°$ (conductor parallel to field).
+\end{formulabox}
+
+\begin{definitionbox}{Magnetic Flux Density $B$}
+\textbf{Magnetic flux density} is defined as the force per unit current per unit length acting on a wire placed \textbf{at right angles} to the field.
+$$B = \frac{F}{IL} \qquad \text{units: T (tesla) } \equiv \text{N A}^{-1}\text{m}^{-1}$$
+$B$ is a vector quantity. $1\ \text{T}$ is a strong field; Earth's field is $\approx 50\ \mu\text{T}$.
+\end{definitionbox}
+
+\begin{keybox}{Fleming's Left-Hand Rule}
+For a \textbf{conventional current} in a magnetic field:
+\begin{itemize}[itemsep=2pt]
+  \item \textbf{First finger}: direction of magnetic field $B$
+  \item \textbf{Second finger}: direction of conventional current $I$
+  \item \textbf{Thumb}: direction of force (motion) $F$
+\end{itemize}
+Remember: the rule gives the force on \emph{positive} charges / conventional current. For electrons, reverse the direction.
+\end{keybox}
+
+\begin{center}
+\begin{tikzpicture}[scale=0.9]
+  % Magnetic field region — crosses (into page)
+  \foreach \x in {0,1,2,3,4}{
+    \foreach \y in {0,1,2}{
+      \node[darkgray] at (\x,\y) {$\times$};
+    }
+  }
+  % Wire
+  \draw[darkblue, very thick] (2,-0.6) -- (2,2.6);
+  \node[darkblue, font=\small, anchor=west] at (2.15,2.3) {$I$ (upward)};
+  % Force arrow
+  \draw[->, pinkframe, very thick] (2,1) -- (0.2,1)
+    node[anchor=east, font=\small, pinkframe] {$F$};
+  % B label
+  \node[darkgray, font=\small] at (4.5,1) {$B$ (into page)};
+\end{tikzpicture}
+\end{center}
+
+% ===== SECTION 3: FORCE ON A MOVING CHARGE =====
+\section{Force on a Moving Charge}
+
+\begin{formulabox}{Force on a Moving Charge}
+\begin{center}
+\Large $F = BQv\sin\theta$
+\end{center}
+\vspace{0.3em}
+\begin{tabular}{@{}ll@{}}
+$F$ & = magnetic force (N) \\
+$B$ & = magnetic flux density (T) \\
+$Q$ & = charge (C) \\
+$v$ & = speed of the charge (m s$^{-1}$) \\
+$\theta$ & = angle between velocity and field \\
+\end{tabular}
+\vspace{0.4em}
+
+For $\theta = 90°$: $F = BQv$, directed perpendicular to both $v$ and $B$.
+\end{formulabox}
+
+\begin{keybox}{Circular Motion in a Magnetic Field}
+When a charged particle moves \textbf{perpendicular} to a uniform magnetic field, the magnetic force is always perpendicular to the velocity, so no work is done and the \textbf{speed is constant}. The particle moves in a \textbf{circle}:
+$$BQv = \frac{mv^2}{r} \quad \Rightarrow \quad r = \frac{mv}{BQ}$$
+A larger momentum or smaller $B$ gives a larger radius.
+\end{keybox}
+
+\subsection{The Hall Effect}
+
+\begin{definitionbox}{Hall Voltage}
+When a current-carrying conductor is placed in a magnetic field perpendicular to the current, charge carriers experience a sideways force. They accumulate on one face until the electric force balances the magnetic force, producing the \textbf{Hall voltage}:
+$$V_H = \frac{BI}{ntq}$$
+\begin{tabular}{@{}ll@{}}
+$V_H$ & = Hall voltage (V) \\
+$B$ & = magnetic flux density (T) \\
+$I$ & = current through the conductor (A) \\
+$n$ & = number density of charge carriers (m$^{-3}$) \\
+$t$ & = thickness of the conductor in the direction of $B$ (m) \\
+$q$ & = charge on each carrier (C) \\
+\end{tabular}
+\vspace{0.3em}
+
+A \textbf{Hall probe} uses this effect to measure $B$: since $V_H \propto B$ at constant $I$.
+\end{definitionbox}
+
+\subsection{Velocity Selector}
+
+\begin{keybox}{Velocity Selector}
+A velocity selector uses \textbf{crossed} electric and magnetic fields so that only particles with a specific speed pass through undeflected:
+$$qE = BQv \quad \Rightarrow \quad v = \frac{E}{B}$$
+\begin{itemize}[itemsep=2pt]
+  \item Electric force $qE$ and magnetic force $BQv$ act in \textbf{opposite} directions.
+  \item Only particles where these forces balance travel in a straight line.
+  \item Faster particles are deflected one way; slower particles the other.
+\end{itemize}
+\end{keybox}
+
+% ===== SECTION 4: FIELDS DUE TO CURRENTS =====
+\section{Magnetic Fields due to Currents}
+
+\begin{keybox}{Field Patterns}
+\begin{itemize}[itemsep=3pt]
+  \item \textbf{Long straight wire}: concentric circles centred on the wire. Direction given by the \textbf{right-hand grip rule} — thumb points in direction of current, fingers curl in direction of field.
+  \item \textbf{Flat circular coil}: field lines pass through the centre of the coil. Field at the centre is approximately uniform over a small region.
+  \item \textbf{Long solenoid}: nearly uniform field inside, similar to a bar magnet outside. A \textbf{ferrous (iron) core} greatly increases the field strength.
+\end{itemize}
+\end{keybox}
+
+\begin{center}
+\begin{tikzpicture}[scale=0.85]
+  % Long straight wire field
+  \begin{scope}[xshift=0cm]
+    \draw[darkblue, very thick] (0,-2) -- (0,2);
+    \foreach \r in {0.5, 1.0, 1.5}{
+      \draw[midblue, thin] (0,0) circle (\r);
+    }
+    \draw[->, midblue, thin] (0,0.5) -- (-0.05, 0.5);
+    \draw[->, midblue, thin] (0,1.0) -- (-0.05, 1.0);
+    \node[darkblue, font=\small, anchor=north] at (0,-2.3) {Straight wire};
+    \node[darkblue, font=\scriptsize] at (0.3, 1.6) {$B$};
+  \end{scope}
+  % Solenoid field
+  \begin{scope}[xshift=5.5cm]
+    \draw[darkblue, thick] (-2,-0.7) rectangle (2,0.7);
+    \foreach \y in {-0.3, 0.0, 0.3}{
+      \draw[->, midblue, thin] (-1.8,\y) -- (1.8,\y);
+    }
+    \draw[midblue, thin] (2,0) .. controls (3,1.5) and (-3,1.5) .. (-2,0);
+    \draw[midblue, thin] (2,0) .. controls (3,-1.5) and (-3,-1.5) .. (-2,0);
+    \node[darkblue, font=\small, anchor=north] at (0,-2.3) {Solenoid};
+    \node[darkblue, font=\scriptsize, anchor=west] at (2.1,0) {N};
+    \node[darkblue, font=\scriptsize, anchor=east] at (-2.1,0) {S};
+  \end{scope}
+\end{tikzpicture}
+\end{center}
+
+\begin{keybox}{Forces Between Parallel Conductors}
+\begin{itemize}[itemsep=2pt]
+  \item \textbf{Same direction currents}: conductors \textbf{attract} each other.
+  \item \textbf{Opposite direction currents}: conductors \textbf{repel} each other.
+  \item Each conductor sits in the magnetic field produced by the other; the force is given by $F = BIL$.
+\end{itemize}
+\end{keybox}
+
+% ===== SECTION 5: ELECTROMAGNETIC INDUCTION =====
+\section{Electromagnetic Induction}
+
+\begin{definitionbox}{Magnetic Flux}
+\textbf{Magnetic flux} $\Phi$ is the product of the magnetic flux density and the cross-sectional area perpendicular to the field:
+$$\Phi = BA\cos\theta \qquad \text{units: Wb (weber) } \equiv \text{T m}^2$$
+When $B$ is perpendicular to the area: $\Phi = BA$.\\[0.3em]
+\textbf{Flux linkage} $N\Phi$ is the flux through a single turn multiplied by the number of turns $N$ of the coil: units Wb-turns.
+\end{definitionbox}
+
+\begin{formulabox}{Faraday's Law and Lenz's Law}
+\begin{center}
+\large $\mathcal{E} = -\dfrac{\Delta(N\Phi)}{\Delta t}$
+\end{center}
+\vspace{0.3em}
+\textbf{Faraday's Law}: the induced e.m.f. is proportional to the rate of change of flux linkage.\\[0.3em]
+\textbf{Lenz's Law}: the induced e.m.f. (and hence current) acts in a direction that \textbf{opposes} the change in flux that caused it (the minus sign above).
+\vspace{0.3em}
+\begin{tabular}{@{}ll@{}}
+$\mathcal{E}$ & = induced e.m.f. (V) \\
+$N$ & = number of turns \\
+$\Delta\Phi/\Delta t$ & = rate of change of flux (Wb s$^{-1}$ $\equiv$ V) \\
+\end{tabular}
+\end{formulabox}
+
+\begin{keybox}{Factors Affecting the Induced E.M.F.}
+\begin{itemize}[itemsep=2pt]
+  \item \textbf{Rate of change} of flux: faster change $\Rightarrow$ larger e.m.f.
+  \item \textbf{Number of turns} $N$: more turns $\Rightarrow$ larger e.m.f.
+  \item \textbf{Strength of field} $B$: stronger field $\Rightarrow$ larger flux change.
+  \item \textbf{Area} of coil: larger area $\Rightarrow$ more flux.
+\end{itemize}
+Lenz's law is a consequence of conservation of energy — the induced current creates a force that opposes the motion causing induction.
+\end{keybox}
+
+\begin{warningbox}{Common Mistake}
+An e.m.f. is induced only when the flux is \textbf{changing}. A conductor stationary in a steady field has zero induced e.m.f., even if the field is strong.
+\end{warningbox}
+
+% ===== SECTION 6: FORMULA SUMMARY =====
+\section{Formula Summary Sheet}
+
+\begin{minipage}{\linewidth}
+\begin{tcolorbox}[colback=lightgold, colframe=accentgold]
+\renewcommand{\arraystretch}{1.8}
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Formula} & \textbf{Quantity} & \textbf{Units} \\
+\midrule
+$F = BIL\sin\theta$ & Force on current-carrying conductor & N \\
+$F = BQv\sin\theta$ & Force on moving charge & N \\
+$r = mv/(BQ)$ & Radius of circular orbit in $B$ field & m \\
+$V_H = BI/(ntq)$ & Hall voltage & V \\
+$v = E/B$ & Velocity selector condition & m s$^{-1}$ \\
+$\Phi = BA\cos\theta$ & Magnetic flux & Wb \\
+$\mathcal{E} = -\Delta(N\Phi)/\Delta t$ & Faraday's / Lenz's law & V \\
+\bottomrule
+\end{tabular}
+\end{tcolorbox}
+
+\vspace{0.5em}
+\begin{tcolorbox}[colback=lightblue, colframe=darkblue]
+\textbf{Units:}\quad $1\ \text{T} = 1\ \text{N A}^{-1}\text{m}^{-1}$;\quad
+$1\ \text{Wb} = 1\ \text{T m}^2 = 1\ \text{V s}$\\[0.3em]
+\textbf{Right-hand grip rule}: thumb $\parallel$ current, fingers curl in direction of $B$ field.
+\end{tcolorbox}
+\end{minipage}
+
+% ===== SECTION 7: WORKED EXAMPLES =====
+\section{Worked Examples}
+
+\subsection*{Example 1 — Force on a Conductor}
+
+\textbf{Question:} A wire of length $0.15\ \text{m}$ carries a current of $3.0\ \text{A}$ at $60°$ to a uniform field of $0.25\ \text{T}$. Calculate the force on the wire.
+
+\begin{examplebox}{Solution}
+$$F = BIL\sin\theta = 0.25 \times 3.0 \times 0.15 \times \sin 60°$$
+$$F = 0.25 \times 3.0 \times 0.15 \times 0.866 = \mathbf{9.7\times10^{-2}\ \text{N}}$$
+\end{examplebox}
+
+\subsection*{Example 2 — Circular Motion of a Charged Particle}
+
+\textbf{Question:} A proton (mass $1.67\times10^{-27}\ \text{kg}$, charge $1.6\times10^{-19}\ \text{C}$) moves at $2.0\times10^6\ \text{m s}^{-1}$ perpendicular to a field of $0.15\ \text{T}$. Calculate the radius of its circular path.
+
+\begin{examplebox}{Solution}
+$$r = \frac{mv}{BQ} = \frac{1.67\times10^{-27} \times 2.0\times10^6}{0.15 \times 1.6\times10^{-19}} = \frac{3.34\times10^{-21}}{2.40\times10^{-20}} = \mathbf{0.14\ \text{m}}$$
+\end{examplebox}
+
+\subsection*{Example 3 — Induced E.M.F.}
+
+\textbf{Question:} A coil of 200 turns and area $50\ \text{cm}^2$ is in a field of $0.30\ \text{T}$ perpendicular to the plane of the coil. The field drops to zero in $0.040\ \text{s}$. Calculate the induced e.m.f.
+
+\begin{examplebox}{Solution}
+$$\Delta\Phi = B \times A = 0.30 \times 50\times10^{-4} = 1.5\times10^{-3}\ \text{Wb}$$
+$$\mathcal{E} = N\frac{\Delta\Phi}{\Delta t} = 200 \times \frac{1.5\times10^{-3}}{0.040} = \mathbf{7.5\ \text{V}}$$
+\end{examplebox}
+
+% ===== SECTION 8: PRACTICE QUESTIONS =====
+\section{Practice Exam Questions}
+
+\subsection*{Section A — Short Answer Questions}
+
+\begin{tcolorbox}[colback=white, colframe=midblue, breakable]
+
+\begin{minipage}{\linewidth}
+\textbf{Q1.} Define magnetic flux density and state its SI unit.
+\par\hfill\textit{[2 marks]}
+\vspace{2.5cm}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+\textbf{Q2.} A wire of length $8.0\ \text{cm}$ is placed perpendicular to a field of flux density $0.40\ \text{T}$ and carries a current of $2.5\ \text{A}$. Calculate the force on the wire.
+\par\hfill\textit{[2 marks]}
+\vspace{2.5cm}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+\textbf{Q3.} State Faraday's Law and Lenz's Law of electromagnetic induction.
+\par\hfill\textit{[3 marks]}
+\vspace{3cm}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+\textbf{Q4.} Explain why the speed of a charged particle moving perpendicular to a uniform magnetic field remains constant.
+\par\hfill\textit{[2 marks]}
+\vspace{3cm}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+\textbf{Q5.} A Hall probe gives a voltage of $3.2\ \text{mV}$ when a current of $50\ \text{mA}$ passes through a slice of thickness $2.0\ \text{mm}$ in a field $B$. Given $n = 8.5\times10^{28}\ \text{m}^{-3}$ and $q = 1.6\times10^{-19}\ \text{C}$, calculate $B$.
+\par\hfill\textit{[3 marks]}
+\vspace{3.5cm}
+\end{minipage}
+
+\end{tcolorbox}
+
+\subsection*{Section B — Longer Structured Questions}
+
+\begin{tcolorbox}[colback=white, colframe=midblue, breakable]
+
+\begin{minipage}{\linewidth}
+\textbf{Q6.} An electron (mass $9.11\times10^{-31}\ \text{kg}$, charge $1.6\times10^{-19}\ \text{C}$) enters a uniform magnetic field of $2.0\times10^{-3}\ \text{T}$ perpendicular to the field with speed $5.0\times10^6\ \text{m s}^{-1}$.
+\end{minipage}
+
+\begin{enumerate}[label=(\alph*)]
+  \item \begin{minipage}[t]{\linewidth}
+  Calculate the radius of the circular path followed by the electron.
+  \par\hfill\textit{[2 marks]}
+  \vspace{3cm}
+  \end{minipage}
+
+  \item \begin{minipage}[t]{\linewidth}
+  The field strength is doubled. State and explain the effect on the radius.
+  \par\hfill\textit{[2 marks]}
+  \vspace{3cm}
+  \end{minipage}
+
+  \item \begin{minipage}[t]{\linewidth}
+  An electric field is now applied perpendicular to $B$ so that the electron travels in a straight line. Calculate the electric field strength required.
+  \par\hfill\textit{[2 marks]}
+  \vspace{3cm}
+  \end{minipage}
+\end{enumerate}
+
+\begin{minipage}{\linewidth}
+\textbf{Q7.} A rectangular coil of 80 turns and dimensions $4.0\ \text{cm} \times 6.0\ \text{cm}$ is placed with its plane perpendicular to a uniform field of $0.50\ \text{T}$.
+
+\begin{enumerate}[label=(\alph*)]
+  \item Calculate the flux linkage through the coil.
+  \par\hfill\textit{[2 marks]}
+  \vspace{3cm}
+
+  \item The coil is rotated so that its plane becomes parallel to the field in $0.030\ \text{s}$. Calculate the mean induced e.m.f.
+  \par\hfill\textit{[2 marks]}
+  \vspace{3cm}
+
+  \item State and explain the direction of the induced current using Lenz's law.
+  \par\hfill\textit{[2 marks]}
+  \vspace{3cm}
+\end{enumerate}
+\end{minipage}
+
+\end{tcolorbox}
+
+% ===== SECTION 9: MARK SCHEME =====
+\section{Mark Scheme and Answers}
+
+\begin{markscheme}
+
+\textbf{Q1.} Magnetic flux density is the force per unit current per unit length on a wire placed at right angles to the field [1]; unit: tesla (T) or N A$^{-1}$ m$^{-1}$ [1].
+
+\vspace{0.5em}\textbf{Q2.} $F = BIL\sin90° = 0.40 \times 2.5 \times 0.080 = \mathbf{0.080\ \text{N}}$ [2].
+
+\vspace{0.5em}\textbf{Q3.} Faraday's Law: the induced e.m.f. is proportional to the rate of change of flux linkage [1]; $\mathcal{E} = -\Delta(N\Phi)/\Delta t$ [1]. Lenz's Law: the induced e.m.f. acts in a direction to oppose the change in flux that caused it [1].
+
+\vspace{0.5em}\textbf{Q4.} The magnetic force is always perpendicular to the velocity [1]; a perpendicular force does no work, so kinetic energy and hence speed remain unchanged [1].
+
+\vspace{0.5em}\textbf{Q5.} $B = V_H ntq / I = (3.2\times10^{-3} \times 8.5\times10^{28} \times 2.0\times10^{-3} \times 1.6\times10^{-19}) / (50\times10^{-3})$ [2] $= \mathbf{0.174\ \text{T}}$ [1].
+
+\vspace{0.5em}\textbf{Q6(a).} $r = mv/(BQ) = (9.11\times10^{-31}\times5.0\times10^6)/(2.0\times10^{-3}\times1.6\times10^{-19})$ [1] $= \mathbf{1.4\times10^{-2}\ \text{m}}$ [1].
+
+\vspace{0.5em}\textbf{Q6(b).} Radius halves [1]; $r = mv/BQ$, so $r \propto 1/B$; doubling $B$ halves $r$ [1].
+
+\vspace{0.5em}\textbf{Q6(c).} For straight-line motion: $qE = BQv$; $E = Bv = 2.0\times10^{-3}\times5.0\times10^6 = \mathbf{1.0\times10^4\ \text{V m}^{-1}}$ [2].
+
+\vspace{0.5em}\textbf{Q7(a).} $\Phi = BA = 0.50\times(0.040\times0.060) = 1.2\times10^{-3}\ \text{Wb}$ [1]; flux linkage $= N\Phi = 80\times1.2\times10^{-3} = \mathbf{9.6\times10^{-2}\ \text{Wb-turns}}$ [1].
+
+\vspace{0.5em}\textbf{Q7(b).} $\Delta(N\Phi) = 9.6\times10^{-2}\ \text{Wb-turns}$ (falls to zero) [1]; $\mathcal{E} = 9.6\times10^{-2}/0.030 = \mathbf{3.2\ \text{V}}$ [1].
+
+\vspace{0.5em}\textbf{Q7(c).} By Lenz's law the induced current opposes the decrease in flux [1]; the current flows in the direction that would create a field to oppose the rotation / maintain the flux through the coil [1].
+
+\end{markscheme}
+
+% ===== SECTION 10: REVISION CHECKLIST =====
+\newpage
+\section{Revision Checklist}
+
+Use this checklist to track your understanding. Tick each box when you are confident:
+
+\begin{tcolorbox}[colback=white, colframe=darkblue, breakable]
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{@{} c p{10.5cm} r @{}}
+\toprule
+ & \textbf{Learning Objective} & \textbf{Confidence (1--3)} \\
+\midrule
+$\square$ & Define magnetic flux density; use \nf{F = BIL\sin\theta} & \\
+$\square$ & Apply Fleming's left-hand rule to find force directions & \\
+$\square$ & Use \nf{F = BQv\sin\theta} for force on a moving charge & \\
+$\square$ & Derive and use \nf{r = mv/(BQ)} for circular orbit radius & \\
+$\square$ & Explain and use the Hall effect; use \nf{V_H = BI/(ntq)} & \\
+$\square$ & Explain the velocity selector condition \nf{v = E/B} & \\
+$\square$ & Sketch field patterns for straight wire, circular coil and solenoid & \\
+$\square$ & Apply the right-hand grip rule for field direction around a wire & \\
+$\square$ & Explain forces between parallel current-carrying conductors & \\
+$\square$ & Define magnetic flux \nf{\Phi = BA\cos\theta} and flux linkage \nf{N\Phi} & \\
+$\square$ & State and apply Faraday's and Lenz's laws & \\
+$\square$ & Identify factors that affect the magnitude of induced e.m.f. & \\
+\bottomrule
+\end{tabular}
+\vspace{0.5em}
+
+\textit{Key: 1 = Need more work \quad 2 = Getting there \quad 3 = Confident}
+\end{tcolorbox}
+
+\vspace{1em}
+\begin{motivationbox}
+\centering
+\textbf{\color{darkblue}Good luck with your revision!}\\[0.2em]
+{\color{darkgray}\small Faraday's law — one equation — explains the generator, the transformer, and the electric motor. Master flux linkage and you understand how almost all electrical power is generated.}
+\end{motivationbox}
