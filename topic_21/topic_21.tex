@@ -216,26 +216,6 @@ A capacitor connected in \textbf{parallel with the load} reduces the ripple on a
 }
 \end{axis}
 \end{tikzpicture}
-\def\arch{1.7*pi/3}   %
-\begin{figure}[!hbt]
-\centering
-\begin{tikzpicture}
-\begin{axis}[xlabel={$t$},xmin=-3,xmax=21,
-             ylabel={$i_D$},ymin=0,ymax=5,
-             axis x line=center, 
-             axis y line=left, enlargelimits=upper]
-% draw sine functions
-\addplot [dashed,thin,domain=-pi:6*pi,smooth]{-2*sin(deg(0.5*x))};
-\addplot [dashed,thin,domain=-pi:6*pi,smooth]{ 2*sin(deg(0.5*x))};
-
-% draw the rectified curves automatically via foreach skill
-\foreach \i/\j/\k in {-1/0/1,1/2/3,3/4/5,5/6/7}{
-\addplot [thick,domain=\i*pi:{\j*pi+\arch}, ] {2*e^(-0.05*(x-\i*pi)};  % exponentially decay curves, not a line
-\addplot [thick,domain={\j*pi+\arch}:\k*pi, smooth]{ 2*sin(deg(0.5*x))};
-\addplot [thick,domain={\j*pi+\arch}:\k*pi, smooth]{-2*sin(deg(0.5*x))};
-}
-\end{axis}
-\end{tikzpicture}
 \caption{Half-Wave Rectifier Waveform}
 \label{halfcycle}
 \end{figure}
