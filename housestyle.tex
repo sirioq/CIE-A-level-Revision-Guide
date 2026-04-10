@@ -120,6 +120,10 @@
 \let\oldsubsection\subsection
 \renewcommand{\subsection}{\needspace{4\baselineskip}\oldsubsection}
 
+% ── Suppress blank pages from \chapter* in report class ─────
+\let\origcleardoublepage\cleardoublepage
+\renewcommand{\cleardoublepage}{\clearpage}
+
 % ── Head height fix ─────────────────────────────────────────
 \setlength{\headheight}{24.02pt}
 \addtolength{\topmargin}{-12.02pt}
@@ -227,18 +231,20 @@
     \end{tcolorbox}
   \end{center}
   \newpage
-  % Per-chapter TOC — works in both article and report class
-  \begingroup
-    \etocsetstyle{section}
-      {}
-      {\leavevmode\leftskip1em}
-      {\bfseries\color{darkblue}\etocnumber\quad\etocname\hfill\etocpage\par}
-      {}
-    \etocsettocstyle
-      {\vspace{0.5em}\color{midgray}\hrule\vspace{0.3em}}
-      {\vspace{0.3em}\color{midgray}\hrule\vspace{1em}}
-    \etocsetnexttocdepth{1}
-    \localtableofcontents
-  \endgroup
-  \newpage
+  % Per-chapter TOC — standalone only
+  \ifstandalone
+    \begingroup
+      \etocsetstyle{section}
+        {}
+        {\leavevmode\leftskip1em}
+        {\bfseries\color{darkblue}\etocnumber\quad\etocname\hfill\etocpage\par}
+        {}
+      \etocsettocstyle
+        {\vspace{0.5em}\color{midgray}\hrule\vspace{0.3em}}
+        {\vspace{0.3em}\color{midgray}\hrule\vspace{1em}}
+      \etocsetnexttocdepth{1}
+      \localtableofcontents
+    \endgroup
+    \newpage
+  \fi
 }
