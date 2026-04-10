@@ -196,48 +196,44 @@ A capacitor connected in \textbf{parallel with the load} reduces the ripple on a
 
 \subsubsection*{Effect of smoothing capacitor on full-wave rectified output}
 
-% arch = x value where exponential decay meets the rising sine in next half-cycle
-% Decay: 1.2*e^{-0.15*(x - peak)}; peak at x = pi/2 + n*pi (in units where omega=0.5, peaks at 3.14, 9.42, ...)
-% Using same x-scale as rectification plots (omega=0.5, so period=4*pi~12.6, half-period~6.28)
 \begin{center}
 \begin{tikzpicture}
-\pgfmathsetmacro{\arch}{4.3}% x-offset within half-cycle where decay meets sine
+\pgfmathsetmacro{\arch}{2.8}
 \begin{axis}[
   width=11cm, height=5cm,
   xlabel={$t$}, ylabel={$V$},
-  xmin=0, xmax=19,
+  xmin=-3, xmax=21,
   ymin=0, ymax=1.55,
-  axis x line=bottom,
+  axis x line=center,
   axis y line=left,
   xtick=\empty, ytick=\empty,
   axis line style={darkblue},
-  clip=true,
+  clip=false,
 ]
-  % Dashed unsmoothed full-wave background
-  \addplot[darkgray, dashed, thin, domain=0:19, samples=400, smooth]
+  % Dashed unsmoothed full-wave
+  \addplot[darkgray, dashed, thin, domain=-3:21, samples=400, smooth]
     {abs(1.2*sin(deg(0.5*x)))};
 
-  % Smoothed output: for each half-cycle starting at i*2*pi/omega = i*4*pi (period), 
-  % using half-period 2*pi (in these x-units period is ~12.57, half-period ~6.28)
-  % Peaks of |sin(0.5x)| at x = pi, 3pi, 5pi, 7pi = 3.14, 9.42, 15.71, 21.99
-  % Four segments: decay from each peak until sine overtakes, then ride sine to next peak
-  \foreach \peakx/\nextpeakx in {3.14/9.42, 9.42/15.71, 15.71/21.99}{
-    % Exponential decay from peak
-    \addplot[midblue, thick, domain=\peakx:{\peakx+\arch}, samples=80, smooth]
-      {1.2*exp(-0.12*(x-\peakx))};
-    % Sine recharge up to next peak
-    \addplot[midblue, thick, domain={\peakx+\arch}:\nextpeakx, samples=80, smooth]
+  % Smoothed output using same foreach pattern as user's example
+  % Half-period = 2*pi ~ 6.28; peaks at x = pi, 3pi, 5pi, 7pi ~ 3.14, 9.42, 15.71
+  % Start from x=0 already charged (capacitor pre-charged to peak)
+  \addplot[midblue, thick, domain=0:{\arch}, samples=80, smooth]
+    {1.2*exp(-0.05*x)};
+  \foreach \i/\j/\k in {-1/0/1, 1/2/3, 3/4/5}{
+    \addplot[midblue, thick, domain={\i*3.14159+\arch}:{\j*3.14159+\arch}, samples=80, smooth]
+      {1.2*exp(-0.05*(x-\i*3.14159))};
+    \addplot[midblue, thick, domain={\j*3.14159+\arch}:{\k*3.14159}, samples=80, smooth]
       {abs(1.2*sin(deg(0.5*x)))};
   }
 
-  % Labels
-  \node[midblue,  font=\small, anchor=west] at (axis cs:16, 1.28) {smoothed};
-  \node[darkgray, font=\small, anchor=west] at (axis cs:16, 0.60) {unsmoothed};
+  % Labels inside plot area
+  \node[midblue,  font=\small] at (axis cs:18, 1.35) {smoothed};
+  \node[darkgray, font=\small] at (axis cs:18, 0.55) {unsmoothed};
 
-  % Ripple arrow on first decay segment
+  % Ripple annotation
   \draw[<->, pinkframe, thin]
-    (axis cs:{3.14+\arch}, {1.2*exp(-0.12*\arch)})
-    -- (axis cs:{3.14+\arch}, {abs(1.2*sin(deg(0.5*(3.14+\arch))))})
+    (axis cs:{3.14159+\arch}, {1.2*exp(-0.05*\arch)})
+    -- (axis cs:{3.14159+\arch}, {1.2})
     node[midway, right, pinkframe, font=\scriptsize] {ripple};
 \end{axis}
 \end{tikzpicture}
