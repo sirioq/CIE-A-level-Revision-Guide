@@ -35,6 +35,8 @@
 \usepackage{minipage-marginpar}
 \usepackage{needspace}
 \usepackage[hidelinks]{hyperref}  % must be last
+% Make \& safe when hyperref writes strings to aux/PDF
+\pdfstringdefDisableCommands{\renewcommand{\&}{\&}}
 
 % ── Colours ──────────────────────────────────────────────────
 \definecolor{darkblue}{RGB}{0,51,102}
@@ -181,23 +183,26 @@
 }
 
 % ── Chapter opener command ───────────────────────────────────
-%  \chapteropener{Topic number}{Topic title}{Bullet list of \items}
+%  \chapteropener{Topic number (display)}{Topic title}{Bullet list}{label (optional, defaults to #1)}
 %
 %  In report class (main.tex):   registers a \chapter* for the TOC
 %  In article class (standalone): registers via \addcontentsline
 %
-\newcommand{\chapteropener}[3]{%
+\newcommand{\chapteropener}[4][]{%
+  % #1 = safe label (optional), #2 = topic number display, #3 = title, #4 = bullet items
+  % Determine label: use #1 if given, else #2
+  \def\topicLabel{#1}\ifx\topicLabel\empty\def\topicLabel{#2}\fi
   \ifstandalone\else\clearpage\fi
   \thispagestyle{empty}
   % TOC registration and hyperlink anchor
   \ifstandalone
     \refstepcounter{section}%
-    \addcontentsline{toc}{section}{#2}%
+    \addcontentsline{toc}{section}{#3}%
     \setcounter{section}{0}%
   \else
-    \chapter*{#2}%
-    \addcontentsline{toc}{chapter}{#2}%
-    \label{topic:#1}%
+    \chapter*{\texorpdfstring{#3}{#3}}%
+    \addcontentsline{toc}{chapter}{\texorpdfstring{#3}{#3}}%
+    \phantomsection\label{topic:\topicLabel}%
   \fi
   % Visual banner
   \begin{tikzpicture}[remember picture, overlay]
@@ -210,11 +215,11 @@
     \node[anchor=north, text=white, font=\fontsize{16}{20}\selectfont]
       at ([yshift=-1.5cm]current page.north) {CIE International A Level Physics};
     \node[anchor=north, text=white, font=\fontsize{28}{34}\selectfont\bfseries]
-      at ([yshift=-3.2cm]current page.north) {Topic #1};
+      at ([yshift=-3.2cm]current page.north) {Topic #2};
   \end{tikzpicture}
   \vspace*{4.5cm}
   \begin{center}
-    {\color{darkgray}\fontsize{32}{38}\selectfont\bfseries #2}\\[0.2cm]
+    {\color{darkgray}\fontsize{32}{38}\selectfont\bfseries #3}\\[0.2cm]
     {\color{pinkframe}\rule{0.6\textwidth}{1.5pt}}\\[0.3cm]
     {\color{darkgray}\fontsize{14}{18}\selectfont Revision Booklet}
     \vspace{2.5cm}
@@ -223,7 +228,7 @@
       \centering
       \textbf{\color{darkblue}This booklet covers:}\\[0.3cm]
       \begin{itemize}[leftmargin=1.5em, itemsep=2pt]
-        #3
+        #4
       \end{itemize}
     \end{tcolorbox}
   \end{center}
