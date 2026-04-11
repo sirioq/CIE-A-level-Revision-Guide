@@ -34,7 +34,6 @@
 \usepackage{titlesec}
 \usepackage{minipage-marginpar}
 \usepackage{needspace}
-\usepackage{etoc}
 \usepackage{hyperref}  % must be last
 
 % ── Colours ──────────────────────────────────────────────────
@@ -192,12 +191,10 @@
   \thispagestyle{empty}
   % TOC registration
   \ifstandalone
-    % article class — no \chapter, use addcontentsline at section level
     \refstepcounter{section}%
     \addcontentsline{toc}{section}{#2}%
     \setcounter{section}{0}%
   \else
-    % report class — starred chapter (no number, no default heading)
     \chapter*{#2}%
     \addcontentsline{toc}{chapter}{#2}%
   \fi
@@ -229,21 +226,5 @@
       \end{itemize}
     \end{tcolorbox}
   \end{center}
-  \clearpage
-  % Per-chapter TOC — standalone only
-  \ifstandalone
-    \begingroup
-      \etocsetstyle{section}
-        {}
-        {\leavevmode\leftskip1em}
-        {\bfseries\color{darkblue}\etocnumber\quad\etocname\hfill\etocpage\par}
-        {}
-      \etocsettocstyle
-        {\vspace{0.5em}\color{midgray}\hrule\vspace{0.3em}}
-        {\vspace{0.3em}\color{midgray}\hrule\vspace{1em}}
-      \etocsetnexttocdepth{1}
-      \localtableofcontents
-    \endgroup
-    \clearpage
-  \fi
+  \newpage
 }
