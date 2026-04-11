@@ -1,38 +1,609 @@
-% topic_22.tex — Content only. Compiled via main.tex.
+% topic_22.tex — Content only. Compiled via main.tex or standalone wrapper.
 % ── No \documentclass, \begin{document} or \end{document} here ──
 
 \chapteropener{22}{Quantum Physics}{%
-  \item Energy and Momentum of a Photon
   \item The Photoelectric Effect
-  \item Wave-Particle Duality
+  \item Photon Energy and the Planck Relation
+  \item Einstein's Photoelectric Equation
+  \item Wave--Particle Duality \& de Broglie Wavelength
   \item Energy Levels and Line Spectra
+  \item X-Ray Spectra (characteristic and continuous)
 }
 
-% ===== SECTION: ENERGY AND MOMENTUM OF A PHOTON =====
-\section{Energy and Momentum of a Photon}
+% ===== SECTION 1: KEY CONCEPTS =====
+\section{Core Concepts and Definitions}
 
-% Content to be written.
+\begin{definitionbox}{The Quantum Model of Light}
+Classical wave theory cannot explain certain phenomena involving light and matter. Quantum theory proposes that electromagnetic radiation is emitted and absorbed in discrete packets of energy called \textbf{photons}.
+\begin{itemize}[itemsep=2pt]
+  \item A \textbf{photon} is a quantum of electromagnetic energy.
+  \item The energy of a photon depends only on its \textbf{frequency}, not its intensity.
+  \item Intensity is proportional to the \textbf{number of photons} per unit time, not the energy of each photon.
+\end{itemize}
+\end{definitionbox}
 
+\begin{formulabox}{Photon Energy — The Planck Relation}
+\begin{center}
+\Large $E = hf = \dfrac{hc}{\lambda}$
+\end{center}
+\vspace{0.3em}
+\begin{tabular}{@{}ll@{}}
+$E$ & = energy of one photon (J) \\
+$h$ & = Planck's constant $= 6.63 \times 10^{-34}\ \text{J s}$ \\
+$f$ & = frequency of the radiation (Hz) \\
+$c$ & = speed of light $= 3.00 \times 10^{8}\ \text{m s}^{-1}$ \\
+$\lambda$ & = wavelength (m) \\
+\end{tabular}
+\end{formulabox}
 
-% ===== SECTION: THE PHOTOELECTRIC EFFECT =====
+\begin{keybox}{The Electronvolt}
+The \textbf{electronvolt} (eV) is a convenient unit of energy at the atomic scale.
+$$1\ \text{eV} = 1.60 \times 10^{-19}\ \text{J}$$
+To convert eV $\to$ J: multiply by $1.60\times10^{-19}$.\\
+To convert J $\to$ eV: divide by $1.60\times10^{-19}$.
+\end{keybox}
+
+% ===== SECTION 2: PHOTOELECTRIC EFFECT =====
 \section{The Photoelectric Effect}
 
-% Content to be written.
+\begin{definitionbox}{The Photoelectric Effect}
+The \textbf{photoelectric effect} is the emission of electrons from a metal surface when electromagnetic radiation of sufficiently high frequency is incident on it.
+\begin{itemize}[itemsep=2pt]
+  \item Electrons emitted are called \textbf{photoelectrons}.
+  \item Emission occurs \textbf{instantaneously} if the frequency is above a threshold — there is no time delay.
+  \item Below the \textbf{threshold frequency} $f_0$, no electrons are emitted regardless of intensity.
+  \item Above $f_0$, increasing the intensity increases the \textbf{number} of photoelectrons per second, not their energy.
+\end{itemize}
+\end{definitionbox}
 
+\begin{warningbox}{Why Classical Wave Theory Fails}
+\begin{itemize}[itemsep=3pt]
+  \item Wave theory predicts that any frequency of sufficient intensity should eventually eject electrons — \textbf{not observed}.
+  \item Wave theory predicts a time delay before emission as energy builds up — \textbf{not observed} (emission is instantaneous).
+  \item Wave theory predicts that intensity should increase the electron's kinetic energy — \textbf{not observed}.
+\end{itemize}
+These failures led Einstein to propose the photon model.
+\end{warningbox}
 
-% ===== SECTION: WAVE-PARTICLE DUALITY =====
-\section{Wave-Particle Duality}
+\vspace{0.5em}
+\begin{center}
+\begin{tikzpicture}[scale=0.9]
+  % Metal surface
+  \fill[darkgray!30] (-3,-1.5) rectangle (3,-0.6);
+  \draw[darkgray, thick] (-3,-0.6) -- (3,-0.6);
+  \node[darkgray, font=\small\bfseries] at (0,-1.1) {Metal surface};
 
-% Content to be written.
+  % Incoming photons (arrows from upper-left)
+  \foreach \y in {0.2, 0.8, 1.4}{
+    \draw[->, >=stealth, midblue, thick] (-2.8, \y+0.6) -- (-1.2, \y-0.4);
+    \node[midblue, font=\scriptsize] at (-2.5, \y+0.75) {$hf$};
+  }
 
+  % Emitted electrons
+  \draw[->, >=stealth, pinkframe, very thick] (0.2,-0.6) -- (1.4, 0.9);
+  \draw[->, >=stealth, pinkframe, very thick] (0.8,-0.6) -- (2.2, 0.5);
+  \draw[->, >=stealth, pinkframe, very thick] (-0.5,-0.6) -- (0.5, 1.1);
+  \node[pinkframe, font=\small\bfseries] at (2.6,1.0) {$e^-$};
+  \node[pinkframe, font=\small\bfseries] at (1.2,1.4) {$e^-$};
 
-% ===== SECTION: ENERGY LEVELS AND LINE SPECTRA =====
+  % Labels
+  \node[midblue, font=\small\bfseries] at (-2.5,-0.1) {photons};
+\end{tikzpicture}
+\end{center}
+
+\begin{formulabox}{Einstein's Photoelectric Equation}
+\begin{center}
+\Large $hf = \phi + \tfrac{1}{2}mv^2_{\max}$
+\end{center}
+\vspace{0.3em}
+\begin{tabular}{@{}ll@{}}
+$hf$ & = energy of the incident photon (J) \\
+$\phi$ & = \textbf{work function} — minimum energy to remove an electron from the surface (J) \\
+$\tfrac{1}{2}mv^2_{\max}$ & = maximum kinetic energy of emitted photoelectron (J) \\
+\end{tabular}
+\vspace{0.5em}
+
+The \textbf{work function} $\phi = hf_0$, where $f_0$ is the threshold frequency.\\
+Maximum KE can also be written as $eV_s$, where $V_s$ is the \textbf{stopping potential}.
+\end{formulabox}
+
+\begin{definitionbox}{Stopping Potential $V_s$}
+The \textbf{stopping potential} is the minimum opposing potential difference required to prevent all photoelectrons from reaching the collecting electrode.
+$$eV_s = \tfrac{1}{2}mv^2_{\max} = hf - \phi$$
+Measuring $V_s$ at different frequencies allows $h$ and $\phi$ to be determined experimentally.
+\end{definitionbox}
+
+\subsubsection*{Graph of Maximum KE against Frequency}
+
+\begin{center}
+\begin{tikzpicture}[xscale=1.4, yscale=1.1]
+  % Axes
+  \draw[->, darkblue, thick] (0,0) -- (5.5,0)
+    node[right, font=\small, darkblue] {$f\ /\ \text{Hz}$};
+  \draw[->, darkblue, thick] (0,-1.3) -- (0,3.5)
+    node[above, font=\small, darkblue] {$E_{k(\max)}\ /\ \text{J}$};
+
+  % Zero label
+  \node[darkgray, font=\small, anchor=north east] at (0,0) {$0$};
+
+  % Line: starts at f0 on x-axis, slope h
+  \draw[darkblue, thick] (1.8,0) -- (5.0, 2.9);
+
+  % x-intercept label f0
+  \draw[darkblue, thin] (1.8, 0.08) -- (1.8,-0.08);
+  \node[darkgray, font=\small, anchor=north] at (1.8,-0.12) {$f_0$};
+
+  % y-intercept extrapolation (dashed, gives -phi)
+  \draw[dashed, darkgray, thin] (1.8,0) -- (0,-1.0);
+  \draw[darkblue, thin] (-0.08,-1.0) -- (0.08,-1.0);
+  \node[darkgray, font=\small, anchor=east] at (-0.1,-1.0) {$-\phi$};
+
+  % Gradient label
+  \node[darkblue, font=\small] at (4.2, 1.4) {gradient $= h$};
+
+  % Annotations
+  \node[midblue, font=\scriptsize, anchor=west] at (1.9, 0.15) {threshold frequency};
+\end{tikzpicture}
+\end{center}
+
+\begin{keybox}{Reading the Graph}
+\begin{itemize}[itemsep=2pt]
+  \item The \textbf{gradient} of the $E_{k(\max)}$ vs $f$ graph equals Planck's constant $h$.
+  \item The \textbf{x-intercept} gives the threshold frequency $f_0$.
+  \item The \textbf{y-intercept} (extrapolated) gives $-\phi$ (the negative of the work function).
+  \item Different metals give \textbf{parallel lines} — same gradient ($h$), different intercepts ($\phi$).
+\end{itemize}
+\end{keybox}
+
+% ===== SECTION 3: WAVE-PARTICLE DUALITY =====
+\section{Wave--Particle Duality}
+
+\begin{definitionbox}{Wave--Particle Duality}
+\textbf{Wave--particle duality} is the property of matter and radiation by which they exhibit both wave-like and particle-like behaviour depending on the experimental context.
+\begin{itemize}[itemsep=2pt]
+  \item Light behaves as a \textbf{wave}: diffraction, interference, polarisation.
+  \item Light behaves as \textbf{particles (photons)}: photoelectric effect, Compton scattering.
+  \item Electrons (and other particles) also show \textbf{wave behaviour}: electron diffraction.
+\end{itemize}
+\end{definitionbox}
+
+\begin{formulabox}{de Broglie Wavelength}
+\begin{center}
+\Large $\lambda = \dfrac{h}{p} = \dfrac{h}{mv}$
+\end{center}
+\vspace{0.3em}
+\begin{tabular}{@{}ll@{}}
+$\lambda$ & = de Broglie wavelength (m) \\
+$h$ & = Planck's constant ($6.63 \times 10^{-34}$ J s) \\
+$p$ & = momentum of the particle (kg m s$^{-1}$) \\
+$m$ & = mass of the particle (kg) \\
+$v$ & = speed of the particle (m s$^{-1}$) \\
+\end{tabular}
+\end{formulabox}
+
+\begin{keybox}{Electron Diffraction}
+When electrons are accelerated through a potential difference $V$ and directed at a thin crystal or graphite film, a \textbf{diffraction pattern} of rings is observed — confirming their wave nature.
+\begin{itemize}[itemsep=2pt]
+  \item The kinetic energy gained: $\tfrac{1}{2}mv^2 = eV$, giving $v = \sqrt{2eV/m}$.
+  \item Therefore: $\lambda = \dfrac{h}{\sqrt{2meV}}$
+  \item Increasing $V$ increases $p$, decreasing $\lambda$ $\Rightarrow$ rings become \textbf{smaller}.
+  \item The wavelength must be comparable to the atomic spacing for diffraction to occur ($\sim 10^{-10}$ m).
+\end{itemize}
+\end{keybox}
+
+\begin{warningbox}{Common Mistake — Confusing Photon and Particle Momentum}
+For a \textbf{photon} (massless): $p = E/c = hf/c = h/\lambda$.\\
+For a \textbf{particle with mass}: $p = mv = h/\lambda$ (de Broglie).\\
+Both use $\lambda = h/p$, but the relationship between energy and momentum differs. Do not use $E = hf$ for material particles.
+\end{warningbox}
+
+% ===== SECTION 4: ENERGY LEVELS AND LINE SPECTRA =====
 \section{Energy Levels and Line Spectra}
 
-% Content to be written.
+\begin{definitionbox}{Atomic Energy Levels}
+Electrons in an atom can only occupy discrete \textbf{energy levels}. These are quantised — only specific energies are allowed.
+\begin{itemize}[itemsep=2pt]
+  \item The \textbf{ground state} is the lowest energy level (most stable; most negative value).
+  \item \textbf{Excited states} have higher (less negative) energy.
+  \item The \textbf{ionisation energy} is the energy required to remove an electron from the ground state to infinity ($E = 0$).
+  \item Energy levels are usually expressed in electronvolts (eV) and are \textbf{negative} (bound states).
+\end{itemize}
+\end{definitionbox}
 
+\vspace{0.3em}
+\begin{center}
+\begin{tikzpicture}[xscale=1.0, yscale=1.0]
+  % Energy levels (hydrogen-like, schematic)
+  % n=1 (ground): E = -13.6 eV -> draw at y=0
+  % n=2: E = -3.4  -> y=2.5
+  % n=3: E = -1.5  -> y=3.5
+  % n=4: E = -0.85 -> y=4.0
+  % continuum: y=4.6
+
+  \def\lw{5.5}
+  % Levels
+  \draw[darkblue, very thick] (0,0) -- (\lw,0)
+    node[right, font=\small, darkgray] {$n=1 \quad -13.6\ \text{eV}$ (ground state)};
+  \draw[midblue, thick] (0,2.5) -- (\lw,2.5)
+    node[right, font=\small, darkgray] {$n=2 \quad -3.4\ \text{eV}$};
+  \draw[midblue, thick] (0,3.5) -- (\lw,3.5)
+    node[right, font=\small, darkgray] {$n=3 \quad -1.5\ \text{eV}$};
+  \draw[midblue, thick] (0,4.0) -- (\lw,4.0)
+    node[right, font=\small, darkgray] {$n=4 \quad -0.85\ \text{eV}$};
+  \draw[dashed, darkgray] (0,4.6) -- (\lw,4.6)
+    node[right, font=\small, darkgray] {$n=\infty \quad 0\ \text{eV}$ (ionisation)};
+
+  % Transitions: emission arrow n=3 to n=1
+  \draw[->, >=stealth, pinkframe, very thick] (1.8,3.5) -- (1.8,0.05);
+  \node[pinkframe, font=\scriptsize, anchor=west] at (2.0,1.8) {emission};
+  \node[pinkframe, font=\scriptsize, anchor=west] at (2.0,1.4) {photon};
+
+  % Absorption arrow n=1 to n=2
+  \draw[->, >=stealth, accentgold, very thick] (1.0,0.05) -- (1.0,2.45);
+  \node[accentgold, font=\scriptsize, anchor=east] at (0.8,1.2) {absorbed};
+  \node[accentgold, font=\scriptsize, anchor=east] at (0.8,0.8) {photon};
+
+  % Label
+  \node[darkblue, font=\small\bfseries] at (2.75,-0.7) {Hydrogen Energy Level Diagram (schematic)};
+\end{tikzpicture}
+\end{center}
+\vspace{0.3em}
+
+\begin{formulabox}{Photon Energy from a Transition}
+When an electron moves between energy levels $E_1$ (lower) and $E_2$ (higher):
+\begin{center}
+\Large $hf = E_2 - E_1$
+\end{center}
+\begin{itemize}[itemsep=2pt]
+  \item \textbf{Emission}: electron falls to lower level $\Rightarrow$ photon \textbf{emitted} with $hf = E_2 - E_1$.
+  \item \textbf{Absorption}: electron promoted to higher level $\Rightarrow$ photon \textbf{absorbed} with $hf = E_2 - E_1$.
+\end{itemize}
+\end{formulabox}
+
+\subsection{Emission and Absorption Spectra}
+
+\begin{definitionbox}{Line Spectra}
+\begin{itemize}[itemsep=4pt]
+  \item \textbf{Emission spectrum}: a series of \textbf{bright coloured lines} on a dark background. Each line corresponds to a specific photon frequency emitted during a downward electron transition. Produced by excited gases.
+  \item \textbf{Absorption spectrum}: a \textbf{continuous spectrum} crossed by dark lines at the same frequencies as the emission lines. Cool gas in front of a broad-spectrum source absorbs specific photon energies.
+  \item The \textbf{line positions are unique} to each element — used for identification (spectroscopy).
+\end{itemize}
+\end{definitionbox}
+
+\begin{keybox}{Why Line Spectra Prove Quantisation}
+Because electrons can only occupy discrete energy levels, only photons of specific energies (frequencies) can be absorbed or emitted. This produces a \textbf{line} spectrum rather than a continuous one. A continuous spectrum would imply electrons can have any energy — which they cannot.
+\end{keybox}
+
+% ===== SECTION 5: X-RAY SPECTRA =====
+\section{X-Ray Spectra}
+
+\begin{definitionbox}{Production of X-Rays}
+X-rays are produced when fast-moving electrons are rapidly decelerated by a metal target (anode) in an X-ray tube. Two distinct processes contribute to the X-ray spectrum:
+\begin{itemize}[itemsep=3pt]
+  \item \textbf{Continuous (bremsstrahlung) spectrum}: caused by deceleration of electrons; produces a range of wavelengths with a sharp \textbf{minimum wavelength} $\lambda_{\min}$.
+  \item \textbf{Characteristic spectrum}: caused by electron transitions in target atoms; produces sharp \textbf{peaks} at specific wavelengths.
+\end{itemize}
+\end{definitionbox}
+
+\begin{formulabox}{Minimum Wavelength of X-Rays}
+When an electron gives up all its kinetic energy to a single photon:
+$$eV = hf_{\max} = \frac{hc}{\lambda_{\min}}$$
+\begin{center}
+\Large $\lambda_{\min} = \dfrac{hc}{eV}$
+\end{center}
+\vspace{0.3em}
+where $V$ is the accelerating voltage of the X-ray tube.\\
+Increasing $V$ decreases $\lambda_{\min}$ and shifts the spectrum to shorter wavelengths.
+\end{formulabox}
+
+\vspace{0.3em}
+\begin{center}
+\begin{tikzpicture}[xscale=1.3, yscale=1.2]
+  % Axes
+  \draw[->, darkblue, thick] (0,0) -- (5.5,0)
+    node[right, font=\small, darkblue] {$\lambda\ /\ \text{m}$};
+  \draw[->, darkblue, thick] (0,0) -- (0,3.8)
+    node[above, font=\small, darkblue] {Intensity};
+
+  % Continuous spectrum curve (bremsstrahlung)
+  \draw[darkblue, thick, domain=1.0:5.0, samples=150, smooth]
+    plot (\x, {2.0*(\x-1.0)*exp(-0.6*(\x-1.0))});
+
+  % lambda_min marker
+  \draw[dashed, darkgray, thin] (1.0,0) -- (1.0,0.8);
+  \draw[darkblue, thin] (1.0, 0.08) -- (1.0,-0.08);
+  \node[darkgray, font=\small, anchor=north] at (1.0,-0.12) {$\lambda_{\min}$};
+
+  % Characteristic peaks
+  \draw[pinkframe, very thick] (2.0,0) -- (2.0,3.3);
+  \draw[pinkframe, very thick] (2.8,0) -- (2.8,2.4);
+  \node[pinkframe, font=\scriptsize, anchor=south] at (2.0,3.35) {K$\alpha$};
+  \node[pinkframe, font=\scriptsize, anchor=south] at (2.8,2.45) {K$\beta$};
+
+  % Labels
+  \node[darkblue, font=\scriptsize] at (4.0, 1.0) {bremsstrahlung};
+  \node[pinkframe, font=\scriptsize] at (3.8, 2.6) {characteristic lines};
+\end{tikzpicture}
+\end{center}
+
+\begin{keybox}{Characteristic X-Ray Lines}
+\begin{itemize}[itemsep=3pt]
+  \item An incident electron knocks out an inner-shell electron, creating a vacancy.
+  \item An outer-shell electron falls into the vacancy, emitting a photon with energy equal to the difference in shell energies.
+  \item Because energy levels are fixed for a given element, the emitted photon has a \textbf{fixed, characteristic wavelength}.
+  \item Characteristic lines are \textbf{element-specific}: changing the target metal changes the line positions, not $\lambda_{\min}$.
+\end{itemize}
+\end{keybox}
+
+% ===== SECTION 6: FORMULA SUMMARY =====
+\section{Formula Summary Sheet}
+
+\begin{minipage}{\linewidth}
+\begin{tcolorbox}[colback=lightgold, colframe=accentgold]
+\renewcommand{\arraystretch}{1.8}
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Formula} & \textbf{Quantity} & \textbf{Units} \\
+\midrule
+$E = hf$ & Photon energy & J \\
+$E = hc/\lambda$ & Photon energy from wavelength & J \\
+$hf = \phi + \tfrac{1}{2}mv^2_{\max}$ & Einstein's photoelectric equation & J \\
+$\phi = hf_0$ & Work function & J \\
+$eV_s = \tfrac{1}{2}mv^2_{\max}$ & Stopping potential & J, V \\
+$\lambda = h/p = h/mv$ & de Broglie wavelength & m \\
+$\lambda = h/\!\sqrt{2meV}$ & de Broglie $\lambda$ from accelerating pd & m \\
+$hf = E_2 - E_1$ & Photon from energy transition & J \\
+$\lambda_{\min} = hc/eV$ & Minimum X-ray wavelength & m \\
+\bottomrule
+\end{tabular}
+\end{tcolorbox}
+
+\vspace{0.5em}
+\begin{tcolorbox}[colback=lightblue, colframe=darkblue]
+\textbf{Constants:}\quad
+$h = 6.63\times10^{-34}\ \text{J s}$,\quad
+$c = 3.00\times10^{8}\ \text{m s}^{-1}$,\quad
+$e = 1.60\times10^{-19}\ \text{C}$,\quad
+$m_e = 9.11\times10^{-31}\ \text{kg}$
+\end{tcolorbox}
+\end{minipage}
+
+% ===== SECTION 7: EXAM TECHNIQUE =====
+\section{Exam Technique and Problem-Solving Strategy}
+
+\begin{keybox}{Step-by-Step Strategy for Calculation Questions}
+\begin{enumerate}[itemsep=3pt]
+  \item \textbf{Identify} the relevant formula — is it a photon, a particle, or a transition?
+  \item \textbf{Convert units}: eV to J ($\times 1.60\times10^{-19}$); nm to m ($\times 10^{-9}$).
+  \item \textbf{Substitute} values carefully, showing all working.
+  \item \textbf{Quote} the final answer in appropriate units with correct significant figures.
+\end{enumerate}
+\end{keybox}
+
+\begin{warningbox}{Common Errors — Avoid These!}
+\begin{itemize}[itemsep=3pt]
+  \item Using the \textbf{wrong energy unit} — forgetting to convert eV to J before substituting.
+  \item Confusing \textbf{threshold frequency} $f_0$ with threshold wavelength: a higher $f_0$ corresponds to a \textbf{shorter} threshold wavelength $\lambda_0$.
+  \item Applying \textbf{intensity} changes to change photon energy — intensity only changes the \textbf{number} of photons.
+  \item Using $E = hf$ for the de Broglie relation — this is for photons only; for matter use $\lambda = h/mv$.
+  \item Forgetting that energy levels are \textbf{negative} — the transition energy is $|E_2 - E_1|$, not just $E_2 - E_1$ as magnitudes.
+  \item Confusing \textbf{emission} (bright lines) and \textbf{absorption} (dark lines) spectra.
+\end{itemize}
+\end{warningbox}
+
+% ===== SECTION 8: WORKED EXAMPLES =====
+\section{Worked Examples}
+
+\subsection*{Example 1 — Photoelectric Effect Calculation}
+
+\textbf{Question:} Light of wavelength $250\ \text{nm}$ is incident on a metal surface with a work function of $4.5\ \text{eV}$. Calculate the maximum kinetic energy of emitted photoelectrons and the stopping potential.
+
+\begin{examplebox}{Solution}
+\textbf{Solution:}\\
+Convert work function: $\phi = 4.5 \times 1.60\times10^{-19} = 7.20\times10^{-19}\ \text{J}$
+
+Photon energy:
+$$E = \frac{hc}{\lambda} = \frac{6.63\times10^{-34} \times 3.00\times10^{8}}{250\times10^{-9}} = 7.96\times10^{-19}\ \text{J}$$
+
+Maximum KE:
+$$E_{k(\max)} = hf - \phi = 7.96\times10^{-19} - 7.20\times10^{-19} = \mathbf{7.6\times10^{-20}\ \text{J}}$$
+
+Stopping potential:
+$$V_s = \frac{E_{k(\max)}}{e} = \frac{7.6\times10^{-20}}{1.60\times10^{-19}} = \mathbf{0.48\ \text{V}}$$
+\end{examplebox}
+
+\subsection*{Example 2 — de Broglie Wavelength}
+
+\textbf{Question:} An electron is accelerated from rest through a potential difference of $3.0\ \text{kV}$. Calculate its de Broglie wavelength.
+
+\begin{examplebox}{Solution}
+\textbf{Solution:}\\
+Energy gained: $E_k = eV = 1.60\times10^{-19} \times 3000 = 4.80\times10^{-16}\ \text{J}$
+
+Speed: $v = \sqrt{\dfrac{2E_k}{m_e}} = \sqrt{\dfrac{2\times4.80\times10^{-16}}{9.11\times10^{-31}}} = 3.25\times10^7\ \text{m s}^{-1}$
+
+de Broglie wavelength:
+$$\lambda = \frac{h}{m_e v} = \frac{6.63\times10^{-34}}{9.11\times10^{-31}\times 3.25\times10^7} = \mathbf{2.24\times10^{-11}\ \text{m}}$$
+
+This is comparable to atomic spacings ($\sim 10^{-10}$ m), confirming why electron diffraction is observed.
+\end{examplebox}
+
+\subsection*{Example 3 — Energy Level Transition}
+
+\textbf{Question:} An electron in a hydrogen-like atom falls from an energy level of $-1.5\ \text{eV}$ to $-3.4\ \text{eV}$. Find the frequency and wavelength of the emitted photon.
+
+\begin{examplebox}{Solution}
+\textbf{Solution:}\\
+Energy of emitted photon:
+$$hf = E_2 - E_1 = -1.5 - (-3.4) = 1.9\ \text{eV} = 1.9\times1.60\times10^{-19} = 3.04\times10^{-19}\ \text{J}$$
+
+Frequency:
+$$f = \frac{3.04\times10^{-19}}{6.63\times10^{-34}} = \mathbf{4.59\times10^{14}\ \text{Hz}} \quad \text{(visible light — red/orange)}$$
+
+Wavelength:
+$$\lambda = \frac{c}{f} = \frac{3.00\times10^8}{4.59\times10^{14}} = \mathbf{654\ \text{nm}}$$
+\end{examplebox}
+
+% ===== SECTION 9: PRACTICE QUESTIONS =====
+\section{Practice Exam Questions}
+
+\subsection*{Section A — Short Answer Questions}
+
+\begin{tcolorbox}[colback=white, colframe=midblue, breakable]
+
+\begin{minipage}{\linewidth}
+\textbf{Q1.} State what is meant by the \emph{threshold frequency} in the photoelectric effect.
+\par\hfill\textit{[2 marks]}
+\vspace{2.5cm}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+\textbf{Q2.} Explain why the photoelectric effect cannot be explained by the wave model of light. Give two reasons.
+\par\hfill\textit{[2 marks]}
+\vspace{3.0cm}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+\textbf{Q3.} Light of frequency $8.0\times10^{14}\ \text{Hz}$ is incident on a metal surface with work function $2.5\ \text{eV}$. Show whether photoelectric emission will occur and, if so, calculate the maximum kinetic energy of the emitted electrons.
+\par\hfill\textit{[4 marks]}
+\vspace{4.0cm}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+\textbf{Q4.} Calculate the de Broglie wavelength of a proton ($m_p = 1.67\times10^{-27}\ \text{kg}$) moving at $2.0\times10^6\ \text{m s}^{-1}$.
+\par\hfill\textit{[2 marks]}
+\vspace{3.0cm}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+\textbf{Q5.} An X-ray tube operates at an accelerating voltage of $80\ \text{kV}$. Calculate the minimum wavelength of X-rays produced.
+\par\hfill\textit{[3 marks]}
+\vspace{3.5cm}
+\end{minipage}
+
+\end{tcolorbox}
+
+\subsection*{Section B — Longer Structured Questions}
+
+\begin{tcolorbox}[colback=white, colframe=midblue, breakable]
+
+\begin{minipage}{\linewidth}
+\textbf{Q6.} A student investigates the photoelectric effect using a metal surface. The graph of maximum kinetic energy against frequency is a straight line. The threshold frequency of the metal is $5.5\times10^{14}\ \text{Hz}$.
+\end{minipage}
+
+\begin{enumerate}[label=(\alph*)]
+  \item \begin{minipage}[t]{\linewidth}
+  Calculate the work function of the metal in joules.
+  \par\hfill\textit{[2 marks]}
+  \vspace{3.0cm}
+  \end{minipage}
+
+  \item \begin{minipage}[t]{\linewidth}
+  Light of frequency $9.0\times10^{14}\ \text{Hz}$ is incident on the surface. Calculate the stopping potential.
+  \par\hfill\textit{[3 marks]}
+  \vspace{3.5cm}
+  \end{minipage}
+
+  \item \begin{minipage}[t]{\linewidth}
+  The intensity of the incident light is doubled whilst keeping its frequency the same. State and explain what happens to (i) the rate of electron emission, and (ii) the maximum kinetic energy of emitted electrons.
+  \par\hfill\textit{[4 marks]}
+  \vspace{4.0cm}
+  \end{minipage}
+\end{enumerate}
+
+\begin{minipage}{\linewidth}
+\textbf{Q7.} The energy levels of atomic hydrogen include $E_1 = -13.6\ \text{eV}$ (ground state), $E_2 = -3.4\ \text{eV}$, and $E_3 = -1.5\ \text{eV}$.
+\end{minipage}
+
+\begin{enumerate}[label=(\alph*)]
+  \item \begin{minipage}[t]{\linewidth}
+  Calculate the frequency of the photon emitted when an electron transitions from $n = 3$ to $n = 1$.
+  \par\hfill\textit{[3 marks]}
+  \vspace{3.5cm}
+  \end{minipage}
+
+  \item \begin{minipage}[t]{\linewidth}
+  A photon of energy $12.1\ \text{eV}$ is incident on a hydrogen atom in the ground state. Explain whether this photon will be absorbed.
+  \par\hfill\textit{[2 marks]}
+  \vspace{3.0cm}
+  \end{minipage}
+
+  \item \begin{minipage}[t]{\linewidth}
+  Describe how the line spectrum of hydrogen provides evidence for the existence of discrete energy levels in atoms.
+  \par\hfill\textit{[3 marks]}
+  \vspace{4.0cm}
+  \end{minipage}
+\end{enumerate}
+
+\end{tcolorbox}
+
+% ===== SECTION 10: MARK SCHEME =====
+\section{Mark Scheme and Answers}
+
+\begin{markscheme}
+
+\textbf{Q1.} The threshold frequency is the minimum frequency of electromagnetic radiation [1] that is capable of causing photoelectric emission from the surface [1].
+
+\vspace{0.5em}\textbf{Q2.} Any two from: wave theory predicts a time delay before emission, but emission is instantaneous [1]; wave theory predicts any frequency of sufficient intensity should cause emission, but no emission occurs below $f_0$ regardless of intensity [1]; wave theory predicts intensity should increase electron KE, but maximum KE depends only on frequency [1].
+
+\vspace{0.5em}\textbf{Q3.} Photon energy: $E = hf = 6.63\times10^{-34}\times8.0\times10^{14} = 5.30\times10^{-19}\ \text{J} = 3.32\ \text{eV}$ [1]. Since $3.32\ \text{eV} > 2.5\ \text{eV}$, emission \textbf{will} occur [1]. Maximum KE $= 3.32 - 2.5 = 0.82\ \text{eV} = 1.31\times10^{-19}\ \text{J}$ [2].
+
+\vspace{0.5em}\textbf{Q4.} $\lambda = h/(m_p v) = 6.63\times10^{-34}/(1.67\times10^{-27}\times2.0\times10^6) = \mathbf{1.98\times10^{-13}\ \text{m}}$ [2].
+
+\vspace{0.5em}\textbf{Q5.} $\lambda_{\min} = hc/eV = (6.63\times10^{-34}\times3.00\times10^8)/(1.60\times10^{-19}\times80\times10^3)$ [2] $= \mathbf{1.55\times10^{-11}\ \text{m}}$ [1].
+
+\vspace{0.5em}\textbf{Q6(a).} $\phi = hf_0 = 6.63\times10^{-34}\times5.5\times10^{14} = \mathbf{3.65\times10^{-19}\ \text{J}}$ [2].
+
+\vspace{0.5em}\textbf{Q6(b).} $E_{k(\max)} = hf - \phi = 6.63\times10^{-34}\times9.0\times10^{14} - 3.65\times10^{-19} = 5.97\times10^{-19} - 3.65\times10^{-19} = 2.32\times10^{-19}\ \text{J}$ [2]; $V_s = E_{k(\max)}/e = 2.32\times10^{-19}/1.60\times10^{-19} = \mathbf{1.45\ \text{V}}$ [1].
+
+\vspace{0.5em}\textbf{Q6(c).} (i) Rate of electron emission \textbf{doubles} [1]: greater intensity $\Rightarrow$ more photons per second $\Rightarrow$ more photoelectron emissions per second [1]. (ii) Maximum KE is \textbf{unchanged} [1]: each photon still has the same energy ($f$ unchanged); intensity affects number of photons, not energy per photon [1].
+
+\vspace{0.5em}\textbf{Q7(a).} $\Delta E = -1.5 - (-13.6) = 12.1\ \text{eV} = 12.1\times1.60\times10^{-19} = 1.936\times10^{-18}\ \text{J}$ [1]; $f = \Delta E/h = 1.936\times10^{-18}/6.63\times10^{-34} = \mathbf{2.92\times10^{15}\ \text{Hz}}$ (ultraviolet) [2].
+
+\vspace{0.5em}\textbf{Q7(b).} The energy difference from $n=1$ to $n=3$ is $-1.5 - (-13.6) = 12.1\ \text{eV}$ [1]; the photon energy exactly matches this transition, so it \textbf{will} be absorbed and the electron promoted to $n=3$ [1].
+
+\vspace{0.5em}\textbf{Q7(c).} Each line in the emission spectrum corresponds to a specific photon frequency [1]; each frequency corresponds to a specific photon energy, given by $hf = E_2 - E_1$ [1]; the existence of discrete lines (rather than a continuum) shows that electrons can only transition between fixed energy values — i.e.\ energy levels are quantised [1].
+
+\end{markscheme}
+
+% ===== SECTION 11: REVISION CHECKLIST =====
+\newpage
+\section{Revision Checklist}
+
+Use this checklist to track your understanding. Tick each box when you are confident:
+
+\begin{tcolorbox}[colback=white, colframe=darkblue, breakable]
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{@{} c p{10.5cm} r @{}}
+\toprule
+ & \textbf{Learning Objective} & \textbf{Confidence (1--3)} \\
+\midrule
+$\square$ & State that electromagnetic radiation is quantised into photons & \\
+$\square$ & Use \nf{E = hf} and \nf{E = hc/\lambda} to calculate photon energy & \\
+$\square$ & Convert between joules and electronvolts & \\
+$\square$ & Describe the photoelectric effect and state its key observations & \\
+$\square$ & Explain why wave theory fails to explain the photoelectric effect & \\
+$\square$ & Apply Einstein's equation \nf{hf = \phi + \tfrac{1}{2}mv^2_{\max}} & \\
+$\square$ & Define work function and threshold frequency; relate via \nf{\phi = hf_0} & \\
+$\square$ & Explain the significance of stopping potential and use \nf{eV_s = E_{k(\max)}} & \\
+$\square$ & State and apply the de Broglie relation \nf{\lambda = h/p} & \\
+$\square$ & Describe electron diffraction as evidence for wave--particle duality & \\
+$\square$ & Explain what is meant by atomic energy levels and ground/excited states & \\
+$\square$ & Use \nf{hf = E_2 - E_1} for emission and absorption transitions & \\
+$\square$ & Interpret emission and absorption line spectra & \\
+$\square$ & Explain how line spectra provide evidence for energy quantisation & \\
+$\square$ & Describe the origin of continuous and characteristic X-ray spectra & \\
+$\square$ & Use \nf{\lambda_{\min} = hc/eV} for minimum X-ray wavelength & \\
+\bottomrule
+\end{tabular}
+\vspace{0.5em}
+
+\textit{Key: 1 = Need more work \quad 2 = Getting there \quad 3 = Confident}
+\end{tcolorbox}
+
+\vspace{1em}
 \begin{motivationbox}
 \centering
 \textbf{\color{darkblue}Good luck with your revision!}\\[0.2em]
-{\color{darkgray}\small Remember: understanding \emph{why} formulas work is more powerful than memorising them.}
+{\color{darkgray}\small Quantum physics is genuinely strange — but the maths is manageable. Focus on understanding \emph{why} classical physics fails, and let the photon model guide the rest. The equations follow naturally from the physics.}
 \end{motivationbox}
