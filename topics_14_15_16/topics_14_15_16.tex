@@ -199,9 +199,7 @@ The pressure exerted by a gas arises from molecules colliding with the container
 \usetikzlibrary{quotes,arrows,arrows.meta}
 \tikzset{>=latex} % for LaTeX arrow head
 
-\colorlet{myblue}{blue!20}
-\colorlet{mydarkblue}{blue!50!black}
-\colorlet{myred}{black!50!red}
+
 
 % CUBE
 \tikzset{
@@ -230,8 +228,8 @@ The pressure exerted by a gas arises from molecules colliding with the container
 \tikzset{
   gasparticle/.pic={
     \tikzset{/gasparticle/.cd,#1}
-    \draw[->,green!60!black] (0,0) -- (\vec);
-    \node[circle,fill,inner sep=.8,fill=black!80!blue] at (0,0,0) {};
+    \draw[->,midblue] (0,0) -- (\vec);
+    \node[circle,fill,inner sep=.8,fill=midblue] at (0,0,0) {};
   }
   /gasparticle/.search also={/tikz},
   /gasparticle/.cd,
@@ -242,6 +240,7 @@ The pressure exerted by a gas arises from molecules colliding with the container
 
 
 % GAS in a box
+\begin{center}
 \begin{tikzpicture}
   \pic at (0,0,0) {cube={size=1}};
   \pic at (0.6,1.0,-1.0) {gasparticle={vec={-40:0.5}}};
@@ -259,6 +258,7 @@ The pressure exerted by a gas arises from molecules colliding with the container
   \pic at (1.9,0.2,-0.7) {gasparticle={vec={30:0.3}}};
   \pic at (1.2,1.2,-1.1) {gasparticle={vec={30:0.5}}};
 \end{tikzpicture}
+\end{center}
 % IMPORTED PICTURE
 
 
