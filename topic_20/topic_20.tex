@@ -69,13 +69,13 @@ Remember: the rule gives the force on \emph{positive} charges / conventional cur
     }
   }
   % Wire
-  \draw[->,darkblue, very thick] (2,-0.6) -- (2,2.6);
+  \draw[darkblue, very thick] (2,-0.6) -- (2,2.6);
   \node[darkblue, font=\small, anchor=west] at (2.15,2.3) {$I$ (upward)};
   % Force arrow
-  \draw[->, pinkframe, very thick] (2,1) -- (.6,1)
+  \draw[->, pinkframe, very thick] (2,1) -- (0.2,1)
     node[anchor=east, font=\small, pinkframe] {$F$};
   % B label
-  \node[darkgray, font=\small] at (4.5,0.5) {$B$ (into page)};
+  \node[darkgray, font=\small] at (4.5,1) {$B$ (into page)};
 \end{tikzpicture}
 \end{center}
 
@@ -147,30 +147,60 @@ $$qE = BQv \quad \Rightarrow \quad v = \frac{E}{B}$$
 \end{keybox}
 
 \begin{center}
+% 3D wire with circular B field loops
+\begin{tikzpicture}[
+    z={(0.8,0.28)}, x={(0.58,-0.45)},
+    BFieldLine/.style={midblue, thick,
+      decoration={markings, mark=at position 0.5 with {\arrow[midblue]{latex}}},
+      postaction={decorate}},
+]
+  \def\L{6}       % wire length
+  \def\W{0.09}    % wire radius
+  \def\R{0.85}    % B field loop radius
+  \def\ang{-35}   % viewing angle for loop start
+  \def\NB{5}      % number of B field loops
+
+  % B field loops — back half (drawn before wire)
+  \foreach \i [evaluate={\x=(\i-\NB/2-0.5)*\L/\NB;}] in {1,...,\NB}{
+    \draw[BFieldLine] (0,0,\x)++(\ang+1:\R) arc (\ang+1:\ang-181:\R);
+  }
+
+  % Wire — cylindrical shading using darkblue fills
+  \fill[darkblue!60] (0,0,-\L/2)++(120:\W/2) --++ (0,0,\L)
+    arc (120:-60:\W/2) --++ (0,0,-\L) arc (-60:120:\W/2);
+  \fill[darkblue!80] (0,0,-\L/2) circle (\W/2);
+
+  % Current arrow and label
+  \draw[-{Latex[length=5pt]}, darkblue, very thick]
+    (0.12*\R, -0.12*\R, 0.35*\L) --++ (0,0,0.22*\L)
+    node[below=2pt, right, font=\small] {$I$};
+
+  % B field loops — front half (drawn after wire)
+  \foreach \i [evaluate={\x=(\i-\NB/2-0.5)*\L/\NB;}] in {1,...,\NB}{
+    \draw[midblue, thick]
+      (0,0,\x)++(\ang+180:\R) arc (\ang+180:\ang:\R);
+  }
+
+  % B label
+  \node[midblue, font=\small\bfseries] at (-0.85*\R, 0.85*\R, -0.22*\L) {$B$};
+
+  % Caption
+  \node[darkblue, font=\small\bfseries] at (0,-1.6,0) {Magnetic field around a straight wire};
+\end{tikzpicture}
+
+\vspace{1.2em}
+
+% Solenoid field (kept as before)
 \begin{tikzpicture}[scale=0.85]
-  % Long straight wire field
-  \begin{scope}[xshift=0cm]
-    \draw[darkblue, very thick] (0,-2) -- (0,2);
-    \foreach \r in {0.5, 1.0, 1.5}{
-      \draw[midblue, thin] (0,0) circle (\r);
-    }
-    \draw[->, midblue, thin] (0,0.5) -- (-0.05, 0.5);
-    \draw[->, midblue, thin] (0,1.0) -- (-0.05, 1.0);
-    \node[darkblue, font=\small, anchor=north] at (0,-2.3) {Straight wire};
-    \node[darkblue, font=\scriptsize] at (0.3, 1.6) {$B$};
-  \end{scope}
-  % Solenoid field
-  \begin{scope}[xshift=5.5cm]
-    \draw[darkblue, thick] (-2,-0.7) rectangle (2,0.7);
-    \foreach \y in {-0.3, 0.0, 0.3}{
-      \draw[->, midblue, thin] (-1.8,\y) -- (1.8,\y);
-    }
-    \draw[midblue, thin] (2,0) .. controls (3,1.5) and (-3,1.5) .. (-2,0);
-    \draw[midblue, thin] (2,0) .. controls (3,-1.5) and (-3,-1.5) .. (-2,0);
-    \node[darkblue, font=\small, anchor=north] at (0,-2.3) {Solenoid};
-    \node[darkblue, font=\scriptsize, anchor=west] at (2.1,0) {N};
-    \node[darkblue, font=\scriptsize, anchor=east] at (-2.1,0) {S};
-  \end{scope}
+  \draw[darkblue, thick] (-2,-0.7) rectangle (2,0.7);
+  \foreach \y in {-0.3, 0.0, 0.3}{
+    \draw[-{Latex[length=4pt]}, midblue, thin] (-1.8,\y) -- (1.8,\y);
+  }
+  \draw[midblue, thin] (2,0) .. controls (3,1.5) and (-3,1.5) .. (-2,0);
+  \draw[midblue, thin] (2,0) .. controls (3,-1.5) and (-3,-1.5) .. (-2,0);
+  \node[darkblue, font=\small, anchor=north] at (0,-1.0) {Solenoid};
+  \node[darkblue, font=\scriptsize, anchor=west] at (2.1,0) {N};
+  \node[darkblue, font=\scriptsize, anchor=east] at (-2.1,0) {S};
 \end{tikzpicture}
 \end{center}
 
