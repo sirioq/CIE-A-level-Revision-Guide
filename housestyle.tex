@@ -100,17 +100,16 @@
 \standalonefalse
 
 % ── Section numbering ────────────────────────────────────────
-%  Always show plain arabic numbers — no chapter prefix
+%  Suppress section numbers in headings; keep counters for TOC/hyperref
 \renewcommand{\thesection}{\arabic{section}}
 \renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}}
 
 % ── Section formatting ───────────────────────────────────────
 \newcommand{\sectionbox}[1]{%
-  \colorbox{lightblue}{\parbox{\dimexpr\textwidth-2\fboxsep}{%
-    \thesection\quad#1}}}
+  \colorbox{lightblue}{\parbox{\dimexpr\textwidth-2\fboxsep}{#1}}}
 \titleformat{\section}{\large\bfseries\color{darkblue}}{}{0em}{\sectionbox}
 \titlespacing*{\section}{0pt}{*3}{*1}
-\titleformat{\subsection}{\bfseries\color{midblue}}{\thesubsection}{0.5em}{}
+\titleformat{\subsection}{\bfseries\color{midblue}}{}{0em}{}
 \titlespacing*{\subsection}{0pt}{*2}{*0.5}
 \titleformat{\subsubsection}{\bfseries\color{darkgray}}{}{0em}{}
 
@@ -189,7 +188,7 @@
 %  In article class (standalone): registers via \addcontentsline
 %
 \newcommand{\chapteropener}[3]{%
-  \clearpage
+  \ifstandalone\else\clearpage\fi
   \thispagestyle{empty}
   % TOC registration
   \ifstandalone
@@ -230,7 +229,7 @@
       \end{itemize}
     \end{tcolorbox}
   \end{center}
-  \newpage
+  \clearpage
   % Per-chapter TOC — standalone only
   \ifstandalone
     \begingroup
@@ -245,6 +244,6 @@
       \etocsetnexttocdepth{1}
       \localtableofcontents
     \endgroup
-    \newpage
+    \clearpage
   \fi
 }
