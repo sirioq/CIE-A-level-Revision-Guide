@@ -176,7 +176,7 @@ A bridge rectifier uses \textbf{four diodes} arranged in a diamond so that:
   \draw (7.5, 5.7) to[R, l=$R_L$, *-*] (7.5, -1.2);
 
   % +/- output labels
-  \node[darkblue, anchor=south] at (7.5, 5.7)  {$+$};
+  \node[darkblue, anchor=south] at (7.5, 6)  {$+$};
   \node[darkblue, anchor=north] at (7.5, -1.2) {$-$};
 \end{circuitikz}
 \end{center}
@@ -199,7 +199,7 @@ A capacitor connected in \textbf{parallel with the load} reduces the ripple on a
 
 \def\arch{1.7*pi/3}   
 
-\centering
+\begin{center}
 \begin{tikzpicture}
 \begin{axis}[xlabel={$t$},xmin=-3,xmax=21,
              ylabel={$V$},ymin=0,ymax=2,
@@ -217,6 +217,7 @@ A capacitor connected in \textbf{parallel with the load} reduces the ripple on a
 }
 \end{axis}
 \end{tikzpicture}
+\end{center}
 
 \begin{warningbox}{Common Mistake}
 In exam questions, always link ripple size explicitly to the time constant $\tau = CR_L$ — just saying ``bigger capacitor'' without explanation will not earn full marks.
