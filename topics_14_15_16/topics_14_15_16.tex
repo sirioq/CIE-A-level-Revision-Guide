@@ -178,23 +178,6 @@ Always use \textbf{thermodynamic temperature in kelvin} in gas law calculations 
 \subsection{Pressure from Kinetic Theory}
 
 The pressure exerted by a gas arises from molecules colliding with the container walls. Each collision exerts a force; the average of many such collisions gives a steady pressure.
-
-\begin{center}
-\begin{tikzpicture}[scale=0.9]
-  \draw[darkblue, thick] (0,0) rectangle (5,3.5);
-  \foreach \x/\y in {0.6/0.5, 1.5/1.8, 2.8/0.7, 3.6/2.4, 4.2/1.0, 1.0/2.9, 2.2/2.0, 4.0/3.0}{
-    \fill[midblue] (\x,\y) circle (3.5pt);
-  }
-  \draw[->, midblue, thick] (0.6,0.5) -- (1.3,1.0);
-  \draw[->, midblue, thick] (2.8,0.7) -- (3.5,0.3);
-  \draw[->, midblue, thick] (3.6,2.4) -- (4.55,2.7);
-  \draw[->, midblue, thick] (1.5,1.8) -- (0.7,2.3);
-  \draw[->, pinkframe, very thick] (4.2,1.0) -- (4.95,0.75);
-  \node[pinkframe, font=\small, right] at (5.05, 0.75) {collision $\Rightarrow$ pressure};
-  \node[darkgray, font=\small] at (2.5,-0.35) {Random molecular motion causes pressure on walls};
-\end{tikzpicture}
-\end{center}
-
 % IMPORTED PICTURE
 \usetikzlibrary{quotes,arrows,arrows.meta}
 \tikzset{>=latex} % for LaTeX arrow head
@@ -241,7 +224,7 @@ The pressure exerted by a gas arises from molecules colliding with the container
 
 % GAS in a box
 \begin{center}
-\begin{tikzpicture}
+\begin{tikzpicture}[scale=2, transform shape]
   \pic at (0,0,0) {cube={size=1}};
   \pic at (0.6,1.0,-1.0) {gasparticle={vec={-40:0.5}}};
   \pic at (0.2,1.0,-0.6) {gasparticle={vec={-110:0.6}}};
@@ -260,6 +243,24 @@ The pressure exerted by a gas arises from molecules colliding with the container
 \end{tikzpicture}
 \end{center}
 % IMPORTED PICTURE
+
+\begin{center}
+\begin{tikzpicture}[scale=0.9]
+  \draw[darkblue, thick] (0,0) rectangle (5,3.5);
+  \foreach \x/\y in {0.6/0.5, 1.5/1.8, 2.8/0.7, 3.6/2.4, 4.2/1.0, 1.0/2.9, 2.2/2.0, 4.0/3.0}{
+    \fill[midblue] (\x,\y) circle (3.5pt);
+  }
+  \draw[->, midblue, thick] (0.6,0.5) -- (1.3,1.0);
+  \draw[->, midblue, thick] (2.8,0.7) -- (3.5,0.3);
+  \draw[->, midblue, thick] (3.6,2.4) -- (4.55,2.7);
+  \draw[->, midblue, thick] (1.5,1.8) -- (0.7,2.3);
+  \draw[->, pinkframe, very thick] (4.2,1.0) -- (4.95,0.75);
+  \node[pinkframe, font=\small, right] at (5.05, 0.75) {collision $\Rightarrow$ pressure};
+  \node[darkgray, font=\small] at (2.5,-0.35) {Random molecular motion causes pressure on walls};
+\end{tikzpicture}
+\end{center}
+
+
 
 
 \begin{formulabox}{Kinetic Theory Equation}
