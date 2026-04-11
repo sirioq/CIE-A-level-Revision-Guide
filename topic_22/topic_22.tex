@@ -7,7 +7,6 @@
   \item Einstein's Photoelectric Equation
   \item Wave--Particle Duality \& de Broglie Wavelength
   \item Energy Levels and Line Spectra
-  \item X-Ray Spectra (characteristic and continuous)
 }
 
 % ===== SECTION 1: KEY CONCEPTS =====
@@ -18,7 +17,7 @@ Classical wave theory cannot explain certain phenomena involving light and matte
 \begin{itemize}[itemsep=2pt]
   \item A \textbf{photon} is a quantum of electromagnetic energy.
   \item The energy of a photon depends only on its \textbf{frequency}, not its intensity.
-  \item Intensity is proportional to the \textbf{number of photons} per unit time, not the energy of each photon.
+  \item At a fixed frequency, intensity is proportional to the \textbf{number of photons} per unit time. Increasing intensity does \textbf{not} increase the energy of individual photons.
 \end{itemize}
 \end{definitionbox}
 
@@ -120,7 +119,7 @@ Measuring $V_s$ at different frequencies allows $h$ and $\phi$ to be determined 
   % Axes
   \draw[->, darkblue, thick] (0,0) -- (5.5,0)
     node[right, font=\small, darkblue] {$f\ /\ \text{Hz}$};
-  \draw[->, darkblue, thick] (0,-1.3) -- (0,3.5)
+  \draw[->, darkblue, thick] (0,-2.0) -- (0,3.5)
     node[above, font=\small, darkblue] {$E_{k(\max)}\ /\ \text{J}$};
 
   % Zero label
@@ -133,10 +132,11 @@ Measuring $V_s$ at different frequencies allows $h$ and $\phi$ to be determined 
   \draw[darkblue, thin] (1.8, 0.08) -- (1.8,-0.08);
   \node[darkgray, font=\small, anchor=north] at (1.8,-0.12) {$f_0$};
 
-  % y-intercept extrapolation (dashed, gives -phi)
-  \draw[dashed, darkgray, thin] (1.8,0) -- (0,-1.0);
-  \draw[darkblue, thin] (-0.08,-1.0) -- (0.08,-1.0);
-  \node[darkgray, font=\small, anchor=east] at (-0.1,-1.0) {$-\phi$};
+  % y-intercept extrapolation (dashed, gives -phi) — collinear with solid line
+  % gradient = 2.9/3.2 = 0.906; at x=0: y = -1.8*0.906 = -1.63
+  \draw[dashed, darkgray, thin] (0,-1.63) -- (1.8,0);
+  \draw[darkblue, thin] (-0.08,-1.63) -- (0.08,-1.63);
+  \node[darkgray, font=\small, anchor=east] at (-0.1,-1.63) {$-\phi$};
 
   % Gradient label
   \node[darkblue, font=\small] at (4.2, 1.4) {gradient $= h$};
@@ -274,68 +274,7 @@ When an electron moves between energy levels $E_1$ (lower) and $E_2$ (higher):
 Because electrons can only occupy discrete energy levels, only photons of specific energies (frequencies) can be absorbed or emitted. This produces a \textbf{line} spectrum rather than a continuous one. A continuous spectrum would imply electrons can have any energy — which they cannot.
 \end{keybox}
 
-% ===== SECTION 5: X-RAY SPECTRA =====
-\section{X-Ray Spectra}
-
-\begin{definitionbox}{Production of X-Rays}
-X-rays are produced when fast-moving electrons are rapidly decelerated by a metal target (anode) in an X-ray tube. Two distinct processes contribute to the X-ray spectrum:
-\begin{itemize}[itemsep=3pt]
-  \item \textbf{Continuous (bremsstrahlung) spectrum}: caused by deceleration of electrons; produces a range of wavelengths with a sharp \textbf{minimum wavelength} $\lambda_{\min}$.
-  \item \textbf{Characteristic spectrum}: caused by electron transitions in target atoms; produces sharp \textbf{peaks} at specific wavelengths.
-\end{itemize}
-\end{definitionbox}
-
-\begin{formulabox}{Minimum Wavelength of X-Rays}
-When an electron gives up all its kinetic energy to a single photon:
-$$eV = hf_{\max} = \frac{hc}{\lambda_{\min}}$$
-\begin{center}
-\Large $\lambda_{\min} = \dfrac{hc}{eV}$
-\end{center}
-\vspace{0.3em}
-where $V$ is the accelerating voltage of the X-ray tube.\\
-Increasing $V$ decreases $\lambda_{\min}$ and shifts the spectrum to shorter wavelengths.
-\end{formulabox}
-
-\vspace{0.3em}
-\begin{center}
-\begin{tikzpicture}[xscale=1.3, yscale=1.2]
-  % Axes
-  \draw[->, darkblue, thick] (0,0) -- (5.5,0)
-    node[right, font=\small, darkblue] {$\lambda\ /\ \text{m}$};
-  \draw[->, darkblue, thick] (0,0) -- (0,3.8)
-    node[above, font=\small, darkblue] {Intensity};
-
-  % Continuous spectrum curve (bremsstrahlung)
-  \draw[darkblue, thick, domain=1.0:5.0, samples=150, smooth]
-    plot (\x, {2.0*(\x-1.0)*exp(-0.6*(\x-1.0))});
-
-  % lambda_min marker
-  \draw[dashed, darkgray, thin] (1.0,0) -- (1.0,0.8);
-  \draw[darkblue, thin] (1.0, 0.08) -- (1.0,-0.08);
-  \node[darkgray, font=\small, anchor=north] at (1.0,-0.12) {$\lambda_{\min}$};
-
-  % Characteristic peaks
-  \draw[pinkframe, very thick] (2.0,0) -- (2.0,3.3);
-  \draw[pinkframe, very thick] (2.8,0) -- (2.8,2.4);
-  \node[pinkframe, font=\scriptsize, anchor=south] at (2.0,3.35) {K$\alpha$};
-  \node[pinkframe, font=\scriptsize, anchor=south] at (2.8,2.45) {K$\beta$};
-
-  % Labels
-  \node[darkblue, font=\scriptsize] at (4.0, 1.0) {bremsstrahlung};
-  \node[pinkframe, font=\scriptsize] at (3.8, 2.6) {characteristic lines};
-\end{tikzpicture}
-\end{center}
-
-\begin{keybox}{Characteristic X-Ray Lines}
-\begin{itemize}[itemsep=3pt]
-  \item An incident electron knocks out an inner-shell electron, creating a vacancy.
-  \item An outer-shell electron falls into the vacancy, emitting a photon with energy equal to the difference in shell energies.
-  \item Because energy levels are fixed for a given element, the emitted photon has a \textbf{fixed, characteristic wavelength}.
-  \item Characteristic lines are \textbf{element-specific}: changing the target metal changes the line positions, not $\lambda_{\min}$.
-\end{itemize}
-\end{keybox}
-
-% ===== SECTION 6: FORMULA SUMMARY =====
+% ===== SECTION 5: FORMULA SUMMARY =====
 \section{Formula Summary Sheet}
 
 \begin{minipage}{\linewidth}
@@ -353,7 +292,6 @@ $eV_s = \tfrac{1}{2}mv^2_{\max}$ & Stopping potential & J, V \\
 $\lambda = h/p = h/mv$ & de Broglie wavelength & m \\
 $\lambda = h/\!\sqrt{2meV}$ & de Broglie $\lambda$ from accelerating pd & m \\
 $hf = E_2 - E_1$ & Photon from energy transition & J \\
-$\lambda_{\min} = hc/eV$ & Minimum X-ray wavelength & m \\
 \bottomrule
 \end{tabular}
 \end{tcolorbox}
@@ -476,7 +414,7 @@ $$\lambda = \frac{c}{f} = \frac{3.00\times10^8}{4.59\times10^{14}} = \mathbf{654
 \end{minipage}
 
 \begin{minipage}{\linewidth}
-\textbf{Q5.} An X-ray tube operates at an accelerating voltage of $80\ \text{kV}$. Calculate the minimum wavelength of X-rays produced.
+\textbf{Q5.} An electron and a proton are each accelerated from rest through the same potential difference $V$. Show that the de Broglie wavelength of the electron is greater than that of the proton. ($m_e = 9.11\times10^{-31}\ \text{kg}$, $m_p = 1.67\times10^{-27}\ \text{kg}$)
 \par\hfill\textit{[3 marks]}
 \vspace{3.5cm}
 \end{minipage}
@@ -550,7 +488,7 @@ $$\lambda = \frac{c}{f} = \frac{3.00\times10^8}{4.59\times10^{14}} = \mathbf{654
 
 \vspace{0.5em}\textbf{Q4.} $\lambda = h/(m_p v) = 6.63\times10^{-34}/(1.67\times10^{-27}\times2.0\times10^6) = \mathbf{1.98\times10^{-13}\ \text{m}}$ [2].
 
-\vspace{0.5em}\textbf{Q5.} $\lambda_{\min} = hc/eV = (6.63\times10^{-34}\times3.00\times10^8)/(1.60\times10^{-19}\times80\times10^3)$ [2] $= \mathbf{1.55\times10^{-11}\ \text{m}}$ [1].
+\vspace{0.5em}\textbf{Q5.} Both particles gain the same kinetic energy $eV$, so $\tfrac{1}{2}mv^2 = eV \Rightarrow p = mv = \sqrt{2meV}$ [1]; therefore $\lambda = h/\sqrt{2meV}$ [1]; since $m_e \ll m_p$, the denominator is smaller for the electron, giving a \textbf{larger} $\lambda$ for the electron [1].
 
 \vspace{0.5em}\textbf{Q6(a).} $\phi = hf_0 = 6.63\times10^{-34}\times5.5\times10^{14} = \mathbf{3.65\times10^{-19}\ \text{J}}$ [2].
 
@@ -592,8 +530,6 @@ $\square$ & Explain what is meant by atomic energy levels and ground/excited sta
 $\square$ & Use \nf{hf = E_2 - E_1} for emission and absorption transitions & \\
 $\square$ & Interpret emission and absorption line spectra & \\
 $\square$ & Explain how line spectra provide evidence for energy quantisation & \\
-$\square$ & Describe the origin of continuous and characteristic X-ray spectra & \\
-$\square$ & Use \nf{\lambda_{\min} = hc/eV} for minimum X-ray wavelength & \\
 \bottomrule
 \end{tabular}
 \vspace{0.5em}
