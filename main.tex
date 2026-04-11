@@ -1,38 +1,36 @@
 \documentclass[12pt,a4paper]{report}
 \input{housestyle}
 
-% Main combined PDF — TOC shows chapter titles only
-\setcounter{tocdepth}{0}
-
 % =============================================================================
 % main.tex — Master file: compiles ALL topic booklets into one document.
 % To add a new topic:
 %   1. Create topic_XX/topic_XX.tex  (content only, no \documentclass,
 %      no \begin{document}, no \end{document})
 %   2. Add a \renewcommand and \include line below.
-%   3. Add a compile step and cp line in build.yml.
+%   3. Add the matching \linkitem line in \maketitlepage below.
 % =============================================================================
 
 \begin{document}
 
 % ── Book cover page ───────────────────────────────────────────────────────────
-\maketitlepage{}{CIE A-Level Physics}{
-  \item Topic 13 — Gravitational Fields
-  \item Topics 14, 15 \& 16 — Thermal Physics
-  \item Topic 17 — Oscillations
-  \item Topic 18 — Electric Fields
-  \item Topic 19 — Capacitance
-  \item Topic 20 — Magnetic Fields
-  \item Topic 21 — Alternating Currents
-  \item Topic 22 — Quantum Physics
-  \item Topic 23 — Nuclear Physics
-  \item Topic 24 — Medical Physics
-  \item Topic 25 — Astronomy and Cosmology
+% Each \linkitem{label}{text} creates a clickable hyperlink to that chapter.
+\newcommand{\linkitem}[2]{%
+  \item \hyperref[topic:#1]{\color{darkblue}#2}%
 }
 
-% ── Combined table of contents ────────────────────────────────────────────────
-\tableofcontents
-\newpage
+\maketitlepage{}{CIE A-Level Physics}{
+  \linkitem{13}{Topic 13 — Gravitational Fields}
+  \linkitem{14-16}{Topics 14, 15 \& 16 — Thermal Physics}
+  \linkitem{17}{Topic 17 — Oscillations}
+  \linkitem{18}{Topic 18 — Electric Fields}
+  \linkitem{19}{Topic 19 — Capacitance}
+  \linkitem{20}{Topic 20 — Magnetic Fields}
+  \linkitem{21}{Topic 21 — Alternating Currents}
+  \linkitem{22}{Topic 22 — Quantum Physics}
+  \linkitem{23}{Topic 23 — Nuclear Physics}
+  \linkitem{24}{Topic 24 — Medical Physics}
+  \linkitem{25}{Topic 25 — Astronomy and Cosmology}
+}
 
 % ── Topic 13 — Gravitational Fields ──────────────────────────────────────────
 \renewcommand{\bookletheader}{Topic 13 — Gravitational Fields}

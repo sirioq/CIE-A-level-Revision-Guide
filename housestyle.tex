@@ -34,7 +34,7 @@
 \usepackage{titlesec}
 \usepackage{minipage-marginpar}
 \usepackage{needspace}
-\usepackage{hyperref}  % must be last
+\usepackage[hidelinks]{hyperref}  % must be last
 
 % ── Colours ──────────────────────────────────────────────────
 \definecolor{darkblue}{RGB}{0,51,102}
@@ -189,7 +189,7 @@
 \newcommand{\chapteropener}[3]{%
   \ifstandalone\else\clearpage\fi
   \thispagestyle{empty}
-  % TOC registration
+  % TOC registration and hyperlink anchor
   \ifstandalone
     \refstepcounter{section}%
     \addcontentsline{toc}{section}{#2}%
@@ -197,6 +197,7 @@
   \else
     \chapter*{#2}%
     \addcontentsline{toc}{chapter}{#2}%
+    \label{topic:#1}%
   \fi
   % Visual banner
   \begin{tikzpicture}[remember picture, overlay]
