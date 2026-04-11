@@ -98,42 +98,43 @@ Do not use peak values in power calculations. Always convert to r.m.s. first: $V
 % Half-wave rectification
 \begin{tikzpicture}
 \begin{axis}[
-  width=10cm, height=3.8cm,
-  xlabel={$t$}, ylabel={$V$},
+  width=10cm, height=5cm,
+  xlabel={}, ylabel={$V$},
   xmin=0, xmax=19,
-  ymin=-0.3, ymax=1.5,
+  ymin=-1, ymax=2,
   axis x line=center,
   axis y line=left,
   xtick=\empty, ytick=\empty,
   axis line style={darkblue},
-  clip=true,
+  clip=false,
 ]
   \addplot[midblue, thick, domain=0:19, samples=300, smooth]
     {max(0, 1.2*sin(deg(0.5*x)))};
-  \node[darkblue, font=\small\bfseries, anchor=north] at (axis cs:9.5,-0.28)
+  \node[darkblue, font=\small\bfseries, anchor=north] at (axis cs:9.5,-0.1)
     {Half-wave rectification};
+  \node[anchor=west] at (axis cs:19,0) {$t$};
 \end{axis}
 \end{tikzpicture}
-
 \vspace{0.8em}
 
 % Full-wave rectification
 \begin{tikzpicture}
 \begin{axis}[
-  width=10cm, height=3.8cm,
-  xlabel={$t$}, ylabel={$V$},
+  width=10cm, height=5cm,
+  xlabel={}, ylabel={$V$},
   xmin=0, xmax=19,
-  ymin=-0.3, ymax=1.5,
+  ymin=-1, ymax=2,
   axis x line=center,
   axis y line=left,
   xtick=\empty, ytick=\empty,
   axis line style={darkblue},
-  clip=true,
+  clip=false,
 ]
   \addplot[midblue, thick, domain=0:19, samples=300, smooth]
     {abs(1.2*sin(deg(0.5*x)))};
-  \node[darkblue, font=\small\bfseries, anchor=north] at (axis cs:9.5,-0.28)
+  \node[darkblue, font=\small\bfseries, anchor=north] at (axis cs:9.5,-0.1)
     {Full-wave rectification};
+  \node[anchor=west] at (axis cs:19,0) {$t$};
 \end{axis}
 \end{tikzpicture}
 \end{center}
