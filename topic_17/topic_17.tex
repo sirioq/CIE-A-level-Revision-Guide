@@ -276,12 +276,12 @@ $x_0$ & = amplitude (m) \\
   % Light damping — sharp peak, very close to f0
   % Peak of driven oscillator: f_peak = f0 * sqrt(1 - gamma^2/2), gamma=0.09 -> ~f0
   \draw[midblue, thick, domain=0.05:2.0, samples=400, smooth]
-    plot (\x, { 0.065 / sqrt( (\x*\x - 1)^2 + 0.008*\x*\x ) });
+    plot (\x, { 0.15 / sqrt( (\x*\x - 1)^2 + 0.008*\x*\x ) });
   \node[midblue, font=\small, anchor=west] at (1.18, 1.85) {light};
 
   % Medium damping — lower broader peak, shifted slightly left
   \draw[darkgray, thick, domain=0.05:2.0, samples=400, smooth]
-    plot (\x, { 0.065 / sqrt( (\x*\x - 1)^2 + 0.08*\x*\x ) });
+    plot (\x, { 0.095 / sqrt( (\x*\x - 1)^2 + 0.08*\x*\x ) });
   \node[darkgray, font=\small, anchor=west] at (1.12, 0.88) {medium};
 
   % Heavy damping — broad low peak, noticeably left of f0
