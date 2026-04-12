@@ -194,7 +194,8 @@ A \textbf{hotter} star has its peak at a \textbf{shorter} wavelength (bluer colo
       %enlargelimits=upper, % extend the axes a bit to the right and top
       tick style={black,thick},
       ticklabel style={scale=0.8},
-      %xtick style={draw=none},xticklabels=none,
+      scaled ticks=false,
+      ytick style={draw=none},yticklabels=none,
       max space between ticks=26,
       xlabel={Wavelength $\lambda$ [nm]},
       ylabel={Power $P$ },
@@ -202,7 +203,7 @@ A \textbf{hotter} star has its peak at a \textbf{shorter} wavelength (bluer colo
       ylabel style={at={(rel axis cs:-0.11,0.5)},rotate=90},
       width=9cm, height=7cm,
       %clip=false
-      tick scale binop=\times,
+      %tick scale binop=\times,
       every y tick scale label/.style={at={(rel axis cs:0,1)},anchor=south}]
     ]
     
