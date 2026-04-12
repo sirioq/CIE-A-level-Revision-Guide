@@ -197,7 +197,7 @@ A \textbf{hotter} star has its peak at a \textbf{shorter} wavelength (bluer colo
       %xtick style={draw=none},xticklabels=none,
       max space between ticks=26,
       xlabel={Wavelength $\lambda$ [nm]},
-      ylabel={Power $P$ [kW/sr\,m$^2$\,nm]},
+      ylabel={Power $P$ },
       xlabel style={at={(rel axis cs:0.5,0)},below=-1pt,font=\small},
       ylabel style={at={(rel axis cs:-0.11,0.5)},rotate=90},
       width=9cm, height=7cm,
@@ -208,9 +208,7 @@ A \textbf{hotter} star has its peak at a \textbf{shorter} wavelength (bluer colo
     
     % RAINBOW
     \shade[shading=rainbow,shading angle=90,opacity=0.5] (380,0) rectangle (740,\ymax);
-    \node[above=-1pt,scale=0.8] at (200,\ymax) {\strut UV}; % 10 - 400 nm
-    \node[above=-1pt,scale=0.8] at (570,\ymax) {\strut optical}; % 380 - 740 nm
-    \node[above=-1pt,scale=0.8] at (920,\ymax) {\strut IR}; % 740 - 1050 nm
+   
     
     % PLANCK
     \addplot[red]    {planck(x,3000)};
