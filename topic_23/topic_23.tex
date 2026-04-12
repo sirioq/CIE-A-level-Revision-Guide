@@ -1,31 +1,538 @@
-% topic_23.tex — Content only. Compiled via main.tex.
+% topic_23.tex — Content only. Compiled via main.tex or standalone wrapper.
 % ── No \documentclass, \begin{document} or \end{document} here ──
 
 \chapteropener{23}{Nuclear Physics}{%
+  \item Mass--Energy Equivalence: $E = mc^2$
   \item Mass Defect and Binding Energy
+  \item Binding Energy per Nucleon and Nuclear Stability
   \item Nuclear Fission and Fusion
-  \item Radioactive Decay
+  \item Radioactive Decay: Activity and Decay Constant
+  \item Half-Life and Exponential Decay
 }
 
-% ===== SECTION: MASS DEFECT AND BINDING ENERGY =====
+% ===== SECTION 1: MASS-ENERGY EQUIVALENCE =====
+\section{Mass--Energy Equivalence}
+
+\begin{definitionbox}{Einstein's Mass--Energy Relation}
+Einstein's special theory of relativity establishes that mass and energy are equivalent. A mass $m$ at rest has an intrinsic energy given by:
+$$E = mc^2$$
+\begin{itemize}[itemsep=2pt]
+  \item $c = 3.00 \times 10^8\ \text{m s}^{-1}$ (speed of light in free space)
+  \item A small mass corresponds to an enormous amount of energy.
+  \item In nuclear reactions, small changes in mass $\Delta m$ release measurable amounts of energy.
+\end{itemize}
+\end{definitionbox}
+
+\begin{definitionbox}{Atomic Mass Unit}
+The \textbf{unified atomic mass unit} (u) is defined as one-twelfth of the mass of a carbon-12 atom.
+$$1\ \text{u} = 1.661 \times 10^{-27}\ \text{kg}$$
+The energy equivalent of 1 u:
+$$E = mc^2 = 1.661\times10^{-27} \times (3.00\times10^8)^2 = 1.49\times10^{-10}\ \text{J} = 931.5\ \text{MeV}$$
+So $1\ \text{u} \equiv 931.5\ \text{MeV}/c^2$.
+\end{definitionbox}
+
+\begin{keybox}{Nuclear Notation and Equations}
+A nuclide is written $^A_Z\text{X}$, where $A$ is the \textbf{nucleon number} (mass number) and $Z$ is the \textbf{proton number} (atomic number).\\[0.5em]
+Nuclear equations must conserve:
+\begin{itemize}[itemsep=2pt]
+  \item \textbf{Nucleon number} $A$ (top numbers balance)
+  \item \textbf{Proton number} $Z$ (bottom numbers balance)
+  \item \textbf{Mass--energy} (energy is released or absorbed)
+  \item \textbf{Charge} and \textbf{momentum}
+\end{itemize}
+Example: $^{14}_{7}\text{N} + ^{4}_{2}\text{He} \rightarrow ^{17}_{8}\text{O} + ^{1}_{1}\text{H}$
+\end{keybox}
+
+% ===== SECTION 2: MASS DEFECT AND BINDING ENERGY =====
 \section{Mass Defect and Binding Energy}
 
-% Content to be written.
+\begin{definitionbox}{Mass Defect}
+The \textbf{mass defect} $\Delta m$ of a nucleus is the difference between the total mass of the separate constituent nucleons and the actual mass of the nucleus.
+$$\Delta m = Z\,m_p + (A-Z)\,m_n - m_{\text{nucleus}}$$
+\begin{tabular}{@{}ll@{}}
+$m_p$ & = mass of a proton $= 1.6726\times10^{-27}\ \text{kg}$ \\
+$m_n$ & = mass of a neutron $= 1.6749\times10^{-27}\ \text{kg}$ \\
+$m_{\text{nucleus}}$ & = actual measured mass of the nucleus \\
+\end{tabular}\\[0.4em]
+The mass defect is always \textbf{positive}: the nucleus is always less massive than its parts.
+\end{definitionbox}
 
+\begin{definitionbox}{Binding Energy}
+The \textbf{binding energy} of a nucleus is the energy required to completely separate a nucleus into its constituent protons and neutrons (i.e.\ to infinity).
+$$E_B = \Delta m \cdot c^2$$
+Equivalently, it is the energy \emph{released} when the nucleus is assembled from separate nucleons.
+\end{definitionbox}
 
-% ===== SECTION: NUCLEAR FISSION AND FUSION =====
+\begin{formulabox}{Energy Released in a Nuclear Reaction}
+\begin{center}
+\Large $E = c^2\,\Delta m$
+\end{center}
+\vspace{0.3em}
+where $\Delta m$ is the difference between the total mass of reactants and the total mass of products.\\
+If $\Delta m > 0$ (reactants heavier than products): energy is \textbf{released}.\\
+If $\Delta m < 0$: energy must be \textbf{supplied}.
+\end{formulabox}
+
+\begin{warningbox}{Common Mistake — Mass Defect vs Binding Energy}
+Students often confuse the \emph{sign convention}. The mass defect is always defined as a positive quantity (how much mass is ``missing''). The binding energy is the energy equivalent of this missing mass. A \textbf{larger} binding energy means a \textbf{more stable} nucleus — it takes more energy to pull it apart.
+\end{warningbox}
+
+% ===== SECTION 3: BINDING ENERGY PER NUCLEON =====
+\section{Binding Energy per Nucleon}
+
+\begin{definitionbox}{Binding Energy per Nucleon}
+The \textbf{binding energy per nucleon} is the total binding energy of a nucleus divided by its nucleon number $A$. It is a measure of nuclear stability: the higher the value, the more stable the nucleus.
+$$\text{BE per nucleon} = \frac{E_B}{A} = \frac{c^2 \Delta m}{A}$$
+\end{definitionbox}
+
+\subsubsection*{Variation of Binding Energy per Nucleon with Nucleon Number}
+
+\begin{center}
+\begin{tikzpicture}[xscale=0.055, yscale=1.1]
+  % Axes
+  \draw[->, darkblue, thick] (0,0) -- (240,0)
+    node[right, font=\small, darkblue] {Nucleon number $A$};
+  \draw[->, darkblue, thick] (0,0) -- (0,9.8)
+    node[above, font=\small, darkblue] {BE per nucleon / MeV};
+
+  % Approximate curve: rises steeply, peaks near Fe-56 (~8.8 MeV), then slowly decreases
+  \draw[darkblue, thick, smooth] plot coordinates {
+    (2,1.1) (4,7.1) (8,7.5) (12,7.7) (16,8.0) (20,8.0) (28,8.4)
+    (40,8.6) (56,8.79) (80,8.7) (100,8.6) (120,8.5)
+    (140,8.4) (160,8.2) (180,8.1) (200,7.9) (208,7.87) (235,7.6)
+  };
+
+  % Peak marker — Fe-56
+  \draw[dashed, darkgray, thin] (56,0) -- (56,8.79);
+  \draw[dashed, darkgray, thin] (0,8.79) -- (56,8.79);
+  \fill[darkblue] (56,8.79) circle (3pt);
+  \node[darkgray, font=\scriptsize, anchor=north] at (56,-0.15) {$^{56}_{26}$Fe};
+  \node[darkgray, font=\scriptsize, anchor=east] at (-2,8.79) {$8.8$};
+
+  % Fusion/fission labels
+  \draw[->, pinkframe, thick] (20,5.5) -- (45,7.8);
+  \node[pinkframe, font=\scriptsize, anchor=east] at (19,5.2) {\textbf{fusion}};
+  \node[pinkframe, font=\scriptsize, anchor=east] at (19,4.75) {releases energy};
+
+  \draw[->, pinkframe, thick] (200,6.5) -- (130,8.0);
+  \node[pinkframe, font=\scriptsize, anchor=west] at (201,6.5) {\textbf{fission}};
+  \node[pinkframe, font=\scriptsize, anchor=west] at (201,6.05) {releases energy};
+
+  % He-4 annotation
+  \node[darkblue, font=\scriptsize, anchor=south] at (4,7.1) {$^4$He};
+
+  % U-235 annotation
+  \node[darkblue, font=\scriptsize, anchor=north] at (235,7.6) {$^{235}$U};
+\end{tikzpicture}
+\end{center}
+
+\begin{keybox}{Key Features of the Graph}
+\begin{itemize}[itemsep=3pt]
+  \item The curve \textbf{rises steeply} for light nuclei, peaks near $^{56}_{26}$Fe at approximately $8.8\ \text{MeV}$ per nucleon — the most stable nucleus.
+  \item The curve \textbf{decreases gradually} for heavy nuclei ($A > 56$).
+  \item \textbf{Fusion} of light nuclei (left of peak) moves up the curve $\Rightarrow$ products are more stable $\Rightarrow$ energy is released.
+  \item \textbf{Fission} of heavy nuclei (right of peak) also moves up the curve $\Rightarrow$ products are more stable $\Rightarrow$ energy is released.
+  \item $^4_2$He (helium-4) lies notably \emph{above} the curve — it is exceptionally stable for its mass number.
+\end{itemize}
+\end{keybox}
+
+% ===== SECTION 4: FISSION AND FUSION =====
 \section{Nuclear Fission and Fusion}
 
-% Content to be written.
+\begin{definitionbox}{Nuclear Fission}
+\textbf{Nuclear fission} is the splitting of a large, unstable nucleus into two smaller (daughter) nuclei of roughly equal mass, accompanied by the release of neutrons and energy.
+\begin{itemize}[itemsep=2pt]
+  \item Induced fission: a slow (thermal) neutron is absorbed by a heavy nucleus (e.g.\ $^{235}$U), which then splits.
+  \item The products have greater binding energy per nucleon than the original nucleus $\Rightarrow$ energy is released.
+  \item Typically releases 2--3 fast neutrons which can trigger further fissions (\textbf{chain reaction}).
+\end{itemize}
+Example: $^{235}_{92}\text{U} + ^{1}_{0}\text{n} \rightarrow ^{141}_{56}\text{Ba} + ^{92}_{36}\text{Kr} + 3\,^{1}_{0}\text{n}$
+\end{definitionbox}
 
+\begin{definitionbox}{Nuclear Fusion}
+\textbf{Nuclear fusion} is the combining of two light nuclei to form a heavier nucleus, releasing energy.
+\begin{itemize}[itemsep=2pt]
+  \item The product nucleus has greater binding energy per nucleon than the reactants $\Rightarrow$ energy is released.
+  \item Requires \textbf{extremely high temperatures} ($\sim 10^7\ \text{K}$) to overcome electrostatic repulsion between nuclei.
+  \item Powers stars; the basis of proposed fusion reactors.
+\end{itemize}
+Example: $^{2}_{1}\text{H} + ^{3}_{1}\text{H} \rightarrow ^{4}_{2}\text{He} + ^{1}_{0}\text{n}$
+\end{definitionbox}
 
-% ===== SECTION: RADIOACTIVE DECAY =====
+\begin{keybox}{Why These Reactions Release Energy}
+In both fission and fusion, the total mass of the \textbf{products} is less than the total mass of the \textbf{reactants}. This mass difference $\Delta m$ is converted to kinetic energy of the products via $E = c^2\Delta m$. The reactions move nuclei \emph{towards} the peak of the BE per nucleon curve (towards $^{56}$Fe).
+\end{keybox}
+
+% ===== SECTION 5: RADIOACTIVE DECAY =====
 \section{Radioactive Decay}
 
-% Content to be written.
+\begin{definitionbox}{Spontaneous and Random Decay}
+\textbf{Radioactive decay} is the spontaneous emission of radiation from an unstable nucleus.
+\begin{itemize}[itemsep=2pt]
+  \item \textbf{Spontaneous}: the decay is not triggered by external conditions (temperature, pressure, chemical state); it cannot be predicted or controlled.
+  \item \textbf{Random}: it is impossible to predict \emph{when} any particular nucleus will decay. Each nucleus has the same probability of decaying per unit time.
+  \item \textbf{Evidence for randomness}: fluctuations (statistical variation) in the measured count rate from a radioactive source.
+\end{itemize}
+\end{definitionbox}
 
+\begin{definitionbox}{Activity and Decay Constant}
+The \textbf{activity} $A$ of a source is the number of nuclei that decay per unit time.
+$$A = \lambda N$$
+\begin{tabular}{@{}ll@{}}
+$A$ & = activity (Bq, where $1\ \text{Bq} = 1\ \text{decay s}^{-1}$) \\
+$\lambda$ & = \textbf{decay constant} — the probability of decay of a nucleus per unit time (s$^{-1}$) \\
+$N$ & = number of undecayed nuclei present \\
+\end{tabular}
+\end{definitionbox}
+
+\begin{definitionbox}{Half-Life}
+The \textbf{half-life} $t_{1/2}$ is the time taken for the number of undecayed nuclei (or the activity) of a radioactive sample to fall to half its initial value.
+$$\lambda = \frac{\ln 2}{t_{1/2}} = \frac{0.693}{t_{1/2}}$$
+Half-life is constant for a given isotope — it does not depend on the number of nuclei present or external conditions.
+\end{definitionbox}
+
+% ===== SECTION 6: EXPONENTIAL DECAY =====
+\section{Exponential Decay}
+
+\begin{formulabox}{Exponential Decay Equations}
+\begin{center}
+\Large $x = x_0\,e^{-\lambda t}$
+\end{center}
+\vspace{0.3em}
+where $x$ can represent:
+\begin{itemize}[itemsep=2pt]
+  \item $N$ = number of undecayed nuclei: \quad $N = N_0\,e^{-\lambda t}$
+  \item $A$ = activity of the source: \quad $A = A_0\,e^{-\lambda t}$
+  \item $C$ = received count rate: \quad $C = C_0\,e^{-\lambda t}$
+\end{itemize}
+\vspace{0.4em}
+\begin{tabular}{@{}ll@{}}
+$x_0$ & = initial value at $t = 0$ \\
+$\lambda$ & = decay constant (s$^{-1}$) \\
+$t$ & = time elapsed (s) \\
+\end{tabular}
+\end{formulabox}
+
+\subsubsection*{Graph of $N$ against $t$}
+
+\begin{center}
+\begin{tikzpicture}[xscale=1.0, yscale=0.9]
+  % Axes
+  \draw[->, darkblue, thick] (0,0) -- (7.0,0)
+    node[right, font=\small, darkblue] {Time $t$};
+  \draw[->, darkblue, thick] (0,0) -- (0,5.5)
+    node[above, font=\small, darkblue] {$N$ (or $A$)};
+
+  % Exponential decay curve
+  \draw[darkblue, thick, domain=0:6.5, samples=200, smooth]
+    plot (\x, {4.5*exp(-0.45*\x)});
+
+  % N0 marker
+  \draw[dashed, darkgray, thin] (0,4.5) -- (0.05,4.5);
+  \node[darkgray, font=\small, anchor=east] at (-0.05,4.5) {$N_0$};
+
+  % N0/2 marker at t = t_half = ln2/0.45 ~ 1.54
+  \draw[dashed, darkgray, thin] (1.54,0) -- (1.54,2.25);
+  \draw[dashed, darkgray, thin] (0,2.25) -- (1.54,2.25);
+  \fill[darkblue] (1.54,2.25) circle (2pt);
+  \node[darkgray, font=\small, anchor=north] at (1.54,-0.05) {$t_{1/2}$};
+  \node[darkgray, font=\small, anchor=east] at (-0.05,2.25) {$\dfrac{N_0}{2}$};
+
+  % N0/4 marker at 2*t_half
+  \draw[dashed, darkgray, thin] (3.08,0) -- (3.08,1.125);
+  \draw[dashed, darkgray, thin] (0,1.125) -- (3.08,1.125);
+  \fill[darkblue] (3.08,1.125) circle (2pt);
+  \node[darkgray, font=\small, anchor=north] at (3.08,-0.05) {$2t_{1/2}$};
+  \node[darkgray, font=\small, anchor=east] at (-0.05,1.125) {$\dfrac{N_0}{4}$};
+
+  % Origin
+  \node[darkgray, font=\small, anchor=north east] at (0,0) {$0$};
+\end{tikzpicture}
+\end{center}
+
+\begin{keybox}{Linearising the Decay Equation}
+Taking the natural logarithm of $N = N_0 e^{-\lambda t}$:
+$$\ln N = \ln N_0 - \lambda t$$
+A graph of $\ln N$ (or $\ln A$) against $t$ gives a \textbf{straight line} with:
+\begin{itemize}[itemsep=2pt]
+  \item Gradient $= -\lambda$
+  \item y-intercept $= \ln N_0$
+\end{itemize}
+This is the standard experimental method to determine $\lambda$ and hence $t_{1/2}$.
+\end{keybox}
+
+\begin{warningbox}{Common Errors with Decay Calculations}
+\begin{itemize}[itemsep=3pt]
+  \item Using $t_{1/2}$ directly in the exponential formula — you must use $\lambda$, not $t_{1/2}$. Convert first: $\lambda = 0.693/t_{1/2}$.
+  \item Forgetting to convert time units: if $t_{1/2}$ is in days, convert to seconds before finding $\lambda$ in s$^{-1}$.
+  \item Confusing \textbf{activity} $A = \lambda N$ (Bq) with \textbf{count rate} — the count rate is always less than activity due to detector efficiency and geometry.
+  \item Applying the exponential formula to something that \emph{increases} over time — it only applies to $N$, $A$, or count rate, which all decay.
+\end{itemize}
+\end{warningbox}
+
+% ===== SECTION 7: FORMULA SUMMARY =====
+\section{Formula Summary Sheet}
+
+\begin{minipage}{\linewidth}
+\begin{tcolorbox}[colback=lightgold, colframe=accentgold]
+\renewcommand{\arraystretch}{1.8}
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Formula} & \textbf{Quantity} & \textbf{Units} \\
+\midrule
+$E = mc^2$ & Mass--energy equivalence & J \\
+$E = c^2\Delta m$ & Energy from mass change & J \\
+$\Delta m = Zm_p + (A{-}Z)m_n - m_\text{nuc}$ & Mass defect & kg \\
+$E_B = \Delta m\,c^2$ & Binding energy & J \\
+$A = \lambda N$ & Activity & Bq \\
+$\lambda = 0.693/t_{1/2}$ & Decay constant from half-life & s$^{-1}$ \\
+$N = N_0 e^{-\lambda t}$ & Number of undecayed nuclei & --- \\
+$A = A_0 e^{-\lambda t}$ & Activity & Bq \\
+$\ln N = \ln N_0 - \lambda t$ & Linearised decay & --- \\
+\bottomrule
+\end{tabular}
+\end{tcolorbox}
+
+\vspace{0.5em}
+\begin{tcolorbox}[colback=lightblue, colframe=darkblue]
+\textbf{Constants:}\quad
+$c = 3.00\times10^{8}\ \text{m s}^{-1}$,\quad
+$1\ \text{u} = 1.661\times10^{-27}\ \text{kg} \equiv 931.5\ \text{MeV}$,\quad
+$m_p = 1.6726\times10^{-27}\ \text{kg}$,\quad
+$m_n = 1.6749\times10^{-27}\ \text{kg}$
+\end{tcolorbox}
+\end{minipage}
+
+% ===== SECTION 8: EXAM TECHNIQUE =====
+\section{Exam Technique and Problem-Solving Strategy}
+
+\begin{keybox}{Step-by-Step Strategy for Nuclear Calculations}
+\begin{enumerate}[itemsep=3pt]
+  \item \textbf{Balance the equation} — check nucleon numbers and proton numbers sum correctly on both sides.
+  \item \textbf{Find} $\Delta m$ — total reactant mass minus total product mass; work in kg or u.
+  \item \textbf{Apply} $E = c^2\Delta m$ to find energy released (convert u to kg if needed, or use $1\ \text{u} = 931.5\ \text{MeV}$).
+  \item For decay: \textbf{convert} $t_{1/2}$ to seconds, find $\lambda = 0.693/t_{1/2}$, then apply $x = x_0 e^{-\lambda t}$.
+\end{enumerate}
+\end{keybox}
+
+\begin{warningbox}{Common Errors — Avoid These!}
+\begin{itemize}[itemsep=3pt]
+  \item Using \textbf{atomic masses} (including electron masses) rather than nuclear masses without accounting for electron masses — take care with data provided in exam questions.
+  \item Forgetting that $\Delta m$ must be in \textbf{kg} when using $E = mc^2$ in SI units.
+  \item Confusing \textbf{binding energy} with \textbf{ionisation energy} — binding energy refers to the nucleus.
+  \item Stating that a higher binding energy per nucleon means \textbf{less} stable — it means \textbf{more} stable.
+  \item Mixing up the direction of fusion and fission on the BE/nucleon graph.
+\end{itemize}
+\end{warningbox}
+
+% ===== SECTION 9: WORKED EXAMPLES =====
+\section{Worked Examples}
+
+\subsection*{Example 1 — Mass Defect and Binding Energy}
+
+\textbf{Question:} Calculate the mass defect and binding energy of a helium-4 nucleus ($^4_2$He). \\
+($m_p = 1.6726\times10^{-27}\ \text{kg}$, $m_n = 1.6749\times10^{-27}\ \text{kg}$, $m_{^4\text{He}} = 6.6447\times10^{-27}\ \text{kg}$)
+
+\begin{examplebox}{Solution}
+\textbf{Solution:}\\
+Mass of constituents: $2m_p + 2m_n = 2(1.6726) + 2(1.6749) = 6.6950\times10^{-27}\ \text{kg}$
+
+Mass defect:
+$$\Delta m = 6.6950\times10^{-27} - 6.6447\times10^{-27} = \mathbf{5.03\times10^{-29}\ \text{kg}}$$
+
+Binding energy:
+$$E_B = \Delta m\,c^2 = 5.03\times10^{-29} \times (3.00\times10^8)^2 = \mathbf{4.53\times10^{-12}\ \text{J}}\ (= 28.3\ \text{MeV})$$
+
+Binding energy per nucleon: $4.53\times10^{-12}/4 = 1.13\times10^{-12}\ \text{J} = 7.07\ \text{MeV per nucleon}$
+\end{examplebox}
+
+\subsection*{Example 2 — Energy Released in Fission}
+
+\textbf{Question:} In a fission reaction, the total mass of products is $3.09\times10^{-28}\ \text{kg}$ less than the total mass of reactants. Calculate the energy released in MeV.
+
+\begin{examplebox}{Solution}
+\textbf{Solution:}\\
+$$E = c^2\Delta m = (3.00\times10^8)^2 \times 3.09\times10^{-28} = 2.78\times10^{-11}\ \text{J}$$
+$$E = \frac{2.78\times10^{-11}}{1.60\times10^{-13}} = \mathbf{174\ \text{MeV}}$$
+\end{examplebox}
+
+\subsection*{Example 3 — Radioactive Decay Calculation}
+
+\textbf{Question:} A radioactive isotope has a half-life of $12.0$ hours. A sample initially contains $8.00\times10^{20}$ undecayed nuclei. Calculate (a) the decay constant, (b) the initial activity, (c) the number of undecayed nuclei after 30.0 hours.
+
+\begin{examplebox}{Solution}
+\textbf{Solution:}\\
+(a) Convert: $t_{1/2} = 12.0 \times 3600 = 4.32\times10^4\ \text{s}$
+$$\lambda = \frac{0.693}{4.32\times10^4} = \mathbf{1.60\times10^{-5}\ \text{s}^{-1}}$$
+
+(b) $A_0 = \lambda N_0 = 1.60\times10^{-5} \times 8.00\times10^{20} = \mathbf{1.28\times10^{16}\ \text{Bq}}$
+
+(c) $t = 30.0 \times 3600 = 1.08\times10^5\ \text{s}$
+$$N = N_0\,e^{-\lambda t} = 8.00\times10^{20} \times e^{-1.60\times10^{-5}\times1.08\times10^5}$$
+$$N = 8.00\times10^{20} \times e^{-1.728} = 8.00\times10^{20} \times 0.178 = \mathbf{1.42\times10^{20}}$$
+\end{examplebox}
+
+% ===== SECTION 10: PRACTICE QUESTIONS =====
+\section{Practice Exam Questions}
+
+\subsection*{Section A — Short Answer Questions}
+
+\begin{tcolorbox}[colback=white, colframe=midblue, breakable]
+
+\begin{minipage}{\linewidth}
+\textbf{Q1.} Define the terms \emph{mass defect} and \emph{binding energy} of a nucleus.
+\par\hfill\textit{[4 marks]}
+\vspace{3.5cm}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+\textbf{Q2.} State two features of the binding energy per nucleon graph that explain why both nuclear fusion and nuclear fission can release energy.
+\par\hfill\textit{[2 marks]}
+\vspace{3.0cm}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+\textbf{Q3.} A radioactive source has an activity of $6.4\times10^5\ \text{Bq}$ and a decay constant of $2.0\times10^{-3}\ \text{s}^{-1}$. Calculate the number of undecayed nuclei present and the half-life of the source.
+\par\hfill\textit{[4 marks]}
+\vspace{3.5cm}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+\textbf{Q4.} Explain what is meant by saying that radioactive decay is \emph{spontaneous} and \emph{random}.
+\par\hfill\textit{[2 marks]}
+\vspace{3.0cm}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+\textbf{Q5.} Complete and balance the following nuclear equation, identifying the unknown particle X:
+$$^{238}_{92}\text{U} \rightarrow ^{234}_{90}\text{Th} + \text{X}$$
+\par\hfill\textit{[2 marks]}
+\vspace{2.5cm}
+\end{minipage}
+
+\end{tcolorbox}
+
+\subsection*{Section B — Longer Structured Questions}
+
+\begin{tcolorbox}[colback=white, colframe=midblue, breakable]
+
+\begin{minipage}{\linewidth}
+\textbf{Q6.} The fusion reaction between deuterium and tritium is:
+$$^{2}_{1}\text{H} + ^{3}_{1}\text{H} \rightarrow ^{4}_{2}\text{He} + ^{1}_{0}\text{n}$$
+Relevant masses: $m(^2\text{H}) = 2.01410\ \text{u}$, $m(^3\text{H}) = 3.01605\ \text{u}$, $m(^4\text{He}) = 4.00260\ \text{u}$, $m_n = 1.00867\ \text{u}$.
+\end{minipage}
+
+\begin{enumerate}[label=(\alph*)]
+  \item \begin{minipage}[t]{\linewidth}
+  Calculate the mass defect of this reaction in kg.
+  \par\hfill\textit{[3 marks]}
+  \vspace{3.5cm}
+  \end{minipage}
+
+  \item \begin{minipage}[t]{\linewidth}
+  Calculate the energy released in this reaction in joules and in MeV.
+  \par\hfill\textit{[2 marks]}
+  \vspace{3.5cm}
+  \end{minipage}
+
+  \item \begin{minipage}[t]{\linewidth}
+  Explain, with reference to the binding energy per nucleon graph, why this reaction releases energy.
+  \par\hfill\textit{[3 marks]}
+  \vspace{4.0cm}
+  \end{minipage}
+\end{enumerate}
+
+\begin{minipage}{\linewidth}
+\textbf{Q7.} The isotope iodine-131 ($^{131}_{53}$I) is used in medical treatment. It has a half-life of $8.04$ days.
+\end{minipage}
+
+\begin{enumerate}[label=(\alph*)]
+  \item \begin{minipage}[t]{\linewidth}
+  Calculate the decay constant of iodine-131 in s$^{-1}$.
+  \par\hfill\textit{[2 marks]}
+  \vspace{3.0cm}
+  \end{minipage}
+
+  \item \begin{minipage}[t]{\linewidth}
+  A patient is given a dose with an initial activity of $4.0\times10^8\ \text{Bq}$. Calculate the activity after 24 days.
+  \par\hfill\textit{[2 marks]}
+  \vspace{3.5cm}
+  \end{minipage}
+
+  \item \begin{minipage}[t]{\linewidth}
+  Sketch a graph of $\ln A$ against $t$ for this source, labelling the y-intercept and stating the gradient in terms of $\lambda$.
+  \par\hfill\textit{[3 marks]}
+  \vspace{5.0cm}
+  \end{minipage}
+\end{enumerate}
+
+\end{tcolorbox}
+
+% ===== SECTION 11: MARK SCHEME =====
+\section{Mark Scheme and Answers}
+
+\begin{markscheme}
+
+\textbf{Q1.} \textit{Mass defect}: the difference between the total mass of the separate nucleons (protons and neutrons) and the actual mass of the nucleus [2]. \textit{Binding energy}: the energy required to completely separate a nucleus into its constituent protons and neutrons [2].
+
+\vspace{0.5em}\textbf{Q2.} The curve rises steeply for light nuclei — fusion of light nuclei produces a product with greater BE/nucleon, so energy is released [1]. The curve falls for heavy nuclei — fission of a heavy nucleus produces fragments with greater BE/nucleon, so energy is released [1].
+
+\vspace{0.5em}\textbf{Q3.} $N = A/\lambda = 6.4\times10^5 / 2.0\times10^{-3} = \mathbf{3.2\times10^8}$ [2]. $t_{1/2} = 0.693/\lambda = 0.693/2.0\times10^{-3} = \mathbf{347\ \text{s}}$ [2].
+
+\vspace{0.5em}\textbf{Q4.} \textit{Spontaneous}: the decay is not triggered or affected by external conditions; it cannot be induced or prevented [1]. \textit{Random}: it is impossible to predict which nucleus will decay next, or when; each nucleus has the same fixed probability of decaying per unit time [1].
+
+\vspace{0.5em}\textbf{Q5.} Nucleon: $238 = 234 + A \Rightarrow A = 4$; proton: $92 = 90 + Z \Rightarrow Z = 2$. X is $^4_2\text{He}$ (an alpha particle) [2].
+
+\vspace{0.5em}\textbf{Q6(a).} $\Delta m = (2.01410 + 3.01605) - (4.00260 + 1.00867) = 5.03015 - 5.01127 = 0.01888\ \text{u}$ [1]; $= 0.01888 \times 1.661\times10^{-27} = \mathbf{3.14\times10^{-29}\ \text{kg}}$ [2].
+
+\vspace{0.5em}\textbf{Q6(b).} $E = c^2\Delta m = (3.00\times10^8)^2 \times 3.14\times10^{-29} = \mathbf{2.82\times10^{-12}\ \text{J}}$ [1]; $= 2.82\times10^{-12}/1.60\times10^{-13} = \mathbf{17.6\ \text{MeV}}$ [1].
+
+\vspace{0.5em}\textbf{Q6(c).} The reactants ($^2$H and $^3$H) lie to the left of the peak of the BE/nucleon curve [1]; the product $^4$He has a higher binding energy per nucleon than the reactants [1]; since the products are more tightly bound, mass is converted to energy and released [1].
+
+\vspace{0.5em}\textbf{Q7(a).} $t_{1/2} = 8.04 \times 24 \times 3600 = 6.95\times10^5\ \text{s}$; $\lambda = 0.693/6.95\times10^5 = \mathbf{9.97\times10^{-7}\ \text{s}^{-1}}$ [2].
+
+\vspace{0.5em}\textbf{Q7(b).} 24 days $= 3 \times t_{1/2}$; $A = 4.0\times10^8 \times (1/2)^3 = 4.0\times10^8/8 = \mathbf{5.0\times10^7\ \text{Bq}}$ [2].
+
+\vspace{0.5em}\textbf{Q7(c).} Straight line [1]; y-intercept at $\ln(4.0\times10^8) = 19.8$ labelled $\ln A_0$ [1]; gradient $= -\lambda$ (negative slope) [1].
+
+\end{markscheme}
+
+% ===== SECTION 12: REVISION CHECKLIST =====
+\newpage
+\section{Revision Checklist}
+
+Use this checklist to track your understanding. Tick each box when you are confident:
+
+\begin{tcolorbox}[colback=white, colframe=darkblue, breakable]
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{@{} c p{10.5cm} r @{}}
+\toprule
+ & \textbf{Learning Objective} & \textbf{Confidence (1--3)} \\
+\midrule
+$\square$ & State and apply Einstein's mass--energy relation \nf{E = mc^2} & \\
+$\square$ & Write and balance nuclear equations, conserving $A$ and $Z$ & \\
+$\square$ & Define mass defect and calculate it from nuclear masses & \\
+$\square$ & Define binding energy and use \nf{E_B = \Delta m\,c^2} & \\
+$\square$ & Sketch the binding energy per nucleon vs nucleon number graph & \\
+$\square$ & Identify the most stable nucleus and the peak of the curve & \\
+$\square$ & Explain using the graph why fusion of light nuclei releases energy & \\
+$\square$ & Explain using the graph why fission of heavy nuclei releases energy & \\
+$\square$ & Calculate energy released in a nuclear reaction using \nf{E = c^2\Delta m} & \\
+$\square$ & Explain what is meant by spontaneous and random decay & \\
+$\square$ & Define activity and decay constant; use \nf{A = \lambda N} & \\
+$\square$ & Define half-life and use \nf{\lambda = 0.693/t_{1/2}} & \\
+$\square$ & Apply \nf{x = x_0 e^{-\lambda t}} to $N$, $A$, or count rate & \\
+$\square$ & Linearise the decay equation and interpret the graph of \nf{\ln N} vs \nf{t} & \\
+\bottomrule
+\end{tabular}
+\vspace{0.5em}
+
+\textit{Key: 1 = Need more work \quad 2 = Getting there \quad 3 = Confident}
+\end{tcolorbox}
+
+\vspace{1em}
 \begin{motivationbox}
 \centering
 \textbf{\color{darkblue}Good luck with your revision!}\\[0.2em]
-{\color{darkgray}\small Remember: understanding \emph{why} formulas work is more powerful than memorising them.}
+{\color{darkgray}\small Nuclear physics connects the very small to the very large — from the stability of a single nucleus to the energy source of stars. Master the binding energy curve and the exponential decay equation and most of this topic follows naturally.}
 \end{motivationbox}
