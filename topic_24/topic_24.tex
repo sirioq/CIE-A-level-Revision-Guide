@@ -1,31 +1,446 @@
-% topic_24.tex — Content only. Compiled via main.tex.
+% topic_24.tex — Content only. Compiled via main.tex or standalone wrapper.
 % ── No \documentclass, \begin{document} or \end{document} here ──
 
 \chapteropener{24}{Medical Physics}{%
-  \item Production and Use of Ultrasound
-  \item Production and Use of X-rays
-  \item PET Scanning
+  \item Ultrasound: Generation, Detection and Imaging
+  \item Acoustic Impedance and Reflection
+  \item Attenuation of Ultrasound
+  \item Production and Use of X-Rays
+  \item Attenuation of X-Rays and CT Scanning
+  \item PET Scanning and Annihilation
 }
 
-% ===== SECTION: PRODUCTION AND USE OF ULTRASOUND =====
+% ===== SECTION 1: ULTRASOUND =====
 \section{Production and Use of Ultrasound}
 
-% Content to be written.
+\begin{definitionbox}{Ultrasound}
+\textbf{Ultrasound} is sound with a frequency above the upper limit of human hearing ($> 20\ \text{kHz}$). In medical imaging, frequencies of $1$--$20\ \text{MHz}$ are typical.
+\end{definitionbox}
 
+\begin{definitionbox}{Piezoelectric Transducer}
+A \textbf{piezoelectric crystal} exhibits two related effects:
+\begin{itemize}[itemsep=2pt]
+  \item When a \textbf{p.d. is applied} across the crystal, it changes shape (contracts or expands). Applying an alternating p.d. at the crystal's resonant frequency causes it to \textbf{vibrate and emit ultrasound}.
+  \item Conversely, when the crystal's shape \textbf{changes} (e.g.\ due to an incoming pressure wave), it \textbf{generates an e.m.f.} — it acts as a detector.
+\end{itemize}
+The same transducer can therefore act as both \textbf{emitter and receiver}.
+\end{definitionbox}
 
-% ===== SECTION: PRODUCTION AND USE OF X-RAYS =====
-\section{Production and Use of X-rays}
+\begin{keybox}{A-Scan Imaging (Pulse-Echo)}
+\begin{itemize}[itemsep=3pt]
+  \item A short pulse of ultrasound is emitted into the body.
+  \item At each \textbf{boundary between tissues} of different acoustic impedance, part of the pulse is \textbf{reflected} (echo) and part is \textbf{transmitted}.
+  \item The time delay between emission and detection of each echo gives the \textbf{depth} of the boundary: $d = \tfrac{1}{2}vt$.
+  \item The amplitude of each echo gives information about the nature of the boundary.
+\end{itemize}
+\end{keybox}
 
-% Content to be written.
+% ===== SECTION 2: ACOUSTIC IMPEDANCE =====
+\section{Acoustic Impedance and Reflection}
 
+\begin{definitionbox}{Specific Acoustic Impedance}
+The \textbf{specific acoustic impedance} $Z$ of a medium is defined as:
+$$Z = \rho c$$
+\begin{tabular}{@{}ll@{}}
+$Z$ & = specific acoustic impedance (kg m$^{-2}$ s$^{-1}$) \\
+$\rho$ & = density of the medium (kg m$^{-3}$) \\
+$c$ & = speed of sound in the medium (m s$^{-1}$) \\
+\end{tabular}
+\end{definitionbox}
 
-% ===== SECTION: PET SCANNING =====
+\begin{formulabox}{Intensity Reflection Coefficient}
+The fraction of intensity reflected at a boundary between two media with impedances $Z_1$ and $Z_2$:
+\begin{center}
+\Large $\dfrac{I_R}{I_0} = \dfrac{(Z_1 - Z_2)^2}{(Z_1 + Z_2)^2}$
+\end{center}
+\vspace{0.3em}
+\begin{itemize}[itemsep=2pt]
+  \item If $Z_1 = Z_2$ (matched impedances): $I_R/I_0 = 0$ — no reflection, all transmitted.
+  \item If $Z_1 \gg Z_2$ or $Z_1 \ll Z_2$ (large mismatch): $I_R/I_0 \approx 1$ — almost all reflected.
+  \item Air--tissue boundary: huge impedance mismatch $\Rightarrow$ almost complete reflection.
+\end{itemize}
+\end{formulabox}
+
+\begin{keybox}{Coupling Gel}
+Because the acoustic impedance of air is much lower than that of tissue, a large fraction of ultrasound would be reflected at the skin--air boundary if no gel were used. A \textbf{coupling gel} (with impedance close to that of tissue) is applied between the transducer and the skin to \textbf{minimise reflection} and allow ultrasound to enter the body efficiently.
+\end{keybox}
+
+% ===== SECTION 3: ATTENUATION OF ULTRASOUND =====
+\section{Attenuation of Ultrasound}
+
+\begin{formulabox}{Attenuation of Ultrasound in Matter}
+As ultrasound travels through a medium, its intensity decreases exponentially:
+\begin{center}
+\Large $I = I_0\,e^{-\mu x}$
+\end{center}
+\vspace{0.3em}
+\begin{tabular}{@{}ll@{}}
+$I$ & = intensity at depth $x$ (W m$^{-2}$) \\
+$I_0$ & = initial intensity (W m$^{-2}$) \\
+$\mu$ & = \textbf{absorption (attenuation) coefficient} of the medium (m$^{-1}$) \\
+$x$ & = distance travelled in the medium (m) \\
+\end{tabular}
+\vspace{0.4em}
+
+A larger $\mu$ means the medium absorbs ultrasound more strongly. Higher frequency ultrasound has a larger $\mu$ (greater attenuation) but better resolution.
+\end{formulabox}
+
+\begin{warningbox}{Resolution vs Penetration Trade-off}
+\begin{itemize}[itemsep=2pt]
+  \item \textbf{Higher frequency}: shorter wavelength $\Rightarrow$ better resolution, but higher attenuation $\Rightarrow$ less depth penetration.
+  \item \textbf{Lower frequency}: greater penetration but poorer resolution.
+  \item The choice of frequency is a compromise depending on the depth of the structure being imaged.
+\end{itemize}
+\end{warningbox}
+
+% ===== SECTION 4: X-RAYS =====
+\section{Production and Use of X-Rays}
+
+\begin{definitionbox}{Production of X-Rays}
+X-rays are produced in an X-ray tube when fast-moving electrons are rapidly decelerated by a metal target (anode).
+\begin{itemize}[itemsep=2pt]
+  \item Electrons are accelerated from a heated cathode through a high potential difference $V$.
+  \item On striking the target, electrons lose kinetic energy, producing X-rays by two processes:
+    \begin{itemize}
+      \item \textbf{Bremsstrahlung} (braking radiation): continuous spectrum from deceleration.
+      \item \textbf{Characteristic radiation}: discrete lines from inner-shell electron transitions in target atoms.
+    \end{itemize}
+\end{itemize}
+\end{definitionbox}
+
+\begin{formulabox}{Minimum X-Ray Wavelength}
+The maximum photon energy (minimum wavelength) occurs when an electron gives all its kinetic energy to a single photon:
+$$eV = hf_{\max} = \frac{hc}{\lambda_{\min}}$$
+\begin{center}
+\Large $\lambda_{\min} = \dfrac{hc}{eV}$
+\end{center}
+Increasing the accelerating voltage $V$ decreases $\lambda_{\min}$ and increases the penetrating power of the X-rays.
+\end{formulabox}
+
+\begin{definitionbox}{Contrast in X-Ray Imaging}
+\textbf{Contrast} refers to the difference in image intensity between adjacent structures, allowing them to be distinguished.
+\begin{itemize}[itemsep=2pt]
+  \item Dense materials (e.g.\ bone, containing calcium) absorb X-rays strongly $\Rightarrow$ appear \textbf{white} on the image.
+  \item Soft tissues absorb less $\Rightarrow$ appear \textbf{grey}.
+  \item Air absorbs very little $\Rightarrow$ appears \textbf{black}.
+  \item \textbf{Contrast agents} (e.g.\ barium meal, iodine compounds) can be introduced to increase contrast for soft tissue structures such as the gut or blood vessels.
+\end{itemize}
+\end{definitionbox}
+
+\begin{formulabox}{Attenuation of X-Rays in Matter}
+\begin{center}
+\Large $I = I_0\,e^{-\mu x}$
+\end{center}
+The same exponential attenuation law applies as for ultrasound, where $\mu$ is now the \textbf{linear attenuation coefficient} for X-rays in the medium. Dense materials have larger $\mu$.
+\end{formulabox}
+
+\begin{definitionbox}{CT Scanning (Computed Tomography)}
+A \textbf{CT scanner} produces a three-dimensional image of internal structures:
+\begin{itemize}[itemsep=3pt]
+  \item Multiple X-ray images of the \textbf{same cross-sectional slice} are taken from \textbf{different angles}.
+  \item These are combined computationally to produce a \textbf{2D image of one slice}.
+  \item The process is \textbf{repeated along the body's axis}, producing multiple 2D slice images.
+  \item The 2D slice images are \textbf{combined} to build a full \textbf{3D image}.
+\end{itemize}
+CT gives much better contrast for soft tissues than a plain X-ray, but involves a significantly higher radiation dose.
+\end{definitionbox}
+
+% ===== SECTION 5: PET SCANNING =====
 \section{PET Scanning}
 
-% Content to be written.
+\begin{definitionbox}{Radioactive Tracers}
+A \textbf{tracer} is a substance containing radioactive nuclei that is introduced into the body and absorbed by the tissue under investigation. The emitted radiation is detected externally to produce an image of the tracer distribution.
+\begin{itemize}[itemsep=2pt]
+  \item In PET scanning, a tracer that decays by \textbf{$\beta^+$ (positron) emission} is used.
+  \item A common example is fluorine-18 labelled glucose ($^{18}$F-FDG), which is preferentially absorbed by metabolically active tissue (e.g.\ tumours).
+\end{itemize}
+\end{definitionbox}
 
+\begin{definitionbox}{Annihilation}
+\textbf{Annihilation} occurs when a particle meets its \textbf{antiparticle}: both are destroyed and their combined mass--energy is converted entirely into radiation.
+\begin{itemize}[itemsep=2pt]
+  \item A positron ($\beta^+$) emitted by the tracer quickly meets an electron in the surrounding tissue.
+  \item Both are annihilated, producing \textbf{two gamma-ray photons} travelling in \textbf{exactly opposite directions} (to conserve momentum).
+  \item \textbf{Conservation laws}: mass--energy and momentum are both conserved in the process.
+\end{itemize}
+\end{definitionbox}
+
+\begin{formulabox}{Energy of Annihilation Photons}
+Each photon carries energy equal to the rest-mass energy of one electron (the two particles have negligible kinetic energy at annihilation):
+$$E_\gamma = m_e c^2 = 9.11\times10^{-31} \times (3.00\times10^8)^2 = 8.20\times10^{-14}\ \text{J} = \mathbf{0.511\ \text{MeV}}$$
+Both photons have this energy (total energy released = $2m_e c^2 = 1.02\ \text{MeV}$).
+\end{formulabox}
+
+\begin{keybox}{How PET Produces an Image}
+\begin{itemize}[itemsep=3pt]
+  \item Detectors arranged around the patient detect the \textbf{coincident arrival} of the two gamma photons.
+  \item Because the photons travel in opposite directions, the annihilation event must have occurred \textbf{somewhere along the line} joining the two detectors.
+  \item By processing the \textbf{arrival times} from many such coincidences, the positions of annihilation events are reconstructed, producing a map of \textbf{tracer concentration} in the tissue.
+  \item High tracer uptake indicates high metabolic activity — useful for identifying tumours, heart disease, and neurological conditions.
+\end{itemize}
+\end{keybox}
+
+\begin{warningbox}{PET vs CT vs Ultrasound}
+\begin{itemize}[itemsep=2pt]
+  \item \textbf{Ultrasound}: no ionising radiation; good for soft tissue and real-time imaging (e.g.\ foetal scans); cannot penetrate bone or air.
+  \item \textbf{X-ray / CT}: high contrast for bone; CT gives 3D information; ionising radiation dose (CT significantly higher than plain X-ray).
+  \item \textbf{PET}: images \emph{function} (metabolic activity), not just structure; requires a cyclotron to produce the short-lived tracer; relatively high radiation dose.
+\end{itemize}
+\end{warningbox}
+
+% ===== SECTION 6: FORMULA SUMMARY =====
+\section{Formula Summary Sheet}
+
+\begin{minipage}{\linewidth}
+\begin{tcolorbox}[colback=lightgold, colframe=accentgold]
+\renewcommand{\arraystretch}{1.8}
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Formula} & \textbf{Quantity} & \textbf{Units} \\
+\midrule
+$Z = \rho c$ & Specific acoustic impedance & kg m$^{-2}$ s$^{-1}$ \\
+$I_R/I_0 = (Z_1-Z_2)^2/(Z_1+Z_2)^2$ & Intensity reflection coefficient & --- \\
+$I = I_0 e^{-\mu x}$ & Attenuation (ultrasound or X-ray) & W m$^{-2}$ \\
+$d = \tfrac{1}{2}vt$ & Depth from echo time & m \\
+$\lambda_{\min} = hc/eV$ & Minimum X-ray wavelength & m \\
+$E_\gamma = m_e c^2$ & Energy of annihilation photon & J \\
+\bottomrule
+\end{tabular}
+\end{tcolorbox}
+
+\vspace{0.5em}
+\begin{tcolorbox}[colback=lightblue, colframe=darkblue]
+\textbf{Constants:}\quad
+$h = 6.63\times10^{-34}\ \text{J s}$,\quad
+$c = 3.00\times10^8\ \text{m s}^{-1}$,\quad
+$e = 1.60\times10^{-19}\ \text{C}$,\quad
+$m_e = 9.11\times10^{-31}\ \text{kg}$
+\end{tcolorbox}
+\end{minipage}
+
+% ===== SECTION 7: EXAM TECHNIQUE =====
+\section{Exam Technique and Problem-Solving Strategy}
+
+\begin{keybox}{Key Strategies}
+\begin{enumerate}[itemsep=3pt]
+  \item For \textbf{attenuation} questions: identify $I_0$, $\mu$ and $x$; substitute into $I = I_0 e^{-\mu x}$.
+  \item For \textbf{reflection coefficient}: identify $Z_1$ and $Z_2$; substitute directly — the formula is symmetric in $Z_1$ and $Z_2$.
+  \item For \textbf{echo depth}: $d = \tfrac{1}{2}vt$ (factor of $\tfrac{1}{2}$ because pulse travels to the boundary \emph{and back}).
+  \item For \textbf{annihilation photon energy}: always $0.511\ \text{MeV}$ per photon; quote this or calculate from $m_e c^2$.
+\end{enumerate}
+\end{keybox}
+
+\begin{warningbox}{Common Errors — Avoid These!}
+\begin{itemize}[itemsep=3pt]
+  \item Forgetting the \textbf{factor of 2} in $d = vt/2$ for pulse-echo depth calculations.
+  \item Confusing the \textbf{attenuation coefficient} $\mu$ with decay constant $\lambda$ from Topic 23 — both appear in exponential decay equations but refer to completely different physical processes.
+  \item Stating that annihilation produces \textbf{one} photon — it must produce \textbf{two} travelling in opposite directions to conserve momentum.
+  \item Confusing \textbf{CT} (multiple X-ray angles $\Rightarrow$ 3D image) with a plain X-ray (single image, 2D projection).
+  \item Applying the reflection coefficient formula with \textbf{intensities} instead of \textbf{impedances}.
+\end{itemize}
+\end{warningbox}
+
+% ===== SECTION 8: WORKED EXAMPLES =====
+\section{Worked Examples}
+
+\subsection*{Example 1 — Acoustic Impedance and Reflection}
+
+\textbf{Question:} The specific acoustic impedance of muscle is $1.70\times10^6\ \text{kg m}^{-2}\text{s}^{-1}$ and of bone is $7.80\times10^6\ \text{kg m}^{-2}\text{s}^{-1}$. Calculate the intensity reflection coefficient at a muscle--bone boundary.
+
+\begin{examplebox}{Solution}
+\textbf{Solution:}\\
+$$\frac{I_R}{I_0} = \frac{(Z_1-Z_2)^2}{(Z_1+Z_2)^2} = \frac{(1.70\times10^6 - 7.80\times10^6)^2}{(1.70\times10^6 + 7.80\times10^6)^2}$$
+$$= \frac{(-6.10\times10^6)^2}{(9.50\times10^6)^2} = \frac{3.72\times10^{13}}{9.02\times10^{13}} = \mathbf{0.413}$$
+
+About 41\% of the ultrasound intensity is reflected at this boundary.
+\end{examplebox}
+
+\subsection*{Example 2 — Ultrasound Attenuation}
+
+\textbf{Question:} Ultrasound with an initial intensity of $250\ \text{W m}^{-2}$ passes through $4.0\ \text{cm}$ of tissue with attenuation coefficient $\mu = 23\ \text{m}^{-1}$. Calculate the transmitted intensity.
+
+\begin{examplebox}{Solution}
+\textbf{Solution:}\\
+$$I = I_0 e^{-\mu x} = 250 \times e^{-23 \times 0.040} = 250 \times e^{-0.92}$$
+$$I = 250 \times 0.399 = \mathbf{99.7\ \text{W m}^{-2}}$$
+\end{examplebox}
+
+\subsection*{Example 3 — PET Scanning Annihilation Energy}
+
+\textbf{Question:} In a PET scan, a positron emitted by the tracer annihilates with an electron. Calculate the energy and frequency of each gamma-ray photon produced.
+
+\begin{examplebox}{Solution}
+\textbf{Solution:}\\
+Energy of each photon:
+$$E = m_e c^2 = 9.11\times10^{-31} \times (3.00\times10^8)^2 = 8.20\times10^{-14}\ \text{J}$$
+$$= 8.20\times10^{-14} / 1.60\times10^{-13} = \mathbf{0.511\ \text{MeV}}$$
+
+Frequency:
+$$f = \frac{E}{h} = \frac{8.20\times10^{-14}}{6.63\times10^{-34}} = \mathbf{1.24\times10^{20}\ \text{Hz}}$$
+
+(This lies in the gamma-ray region of the electromagnetic spectrum.)
+\end{examplebox}
+
+% ===== SECTION 9: PRACTICE QUESTIONS =====
+\section{Practice Exam Questions}
+
+\subsection*{Section A — Short Answer Questions}
+
+\begin{tcolorbox}[colback=white, colframe=midblue, breakable]
+
+\begin{minipage}{\linewidth}
+\textbf{Q1.} Describe how a piezoelectric transducer can act as both an emitter and a detector of ultrasound.
+\par\hfill\textit{[4 marks]}
+\vspace{4.0cm}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+\textbf{Q2.} The specific acoustic impedance of soft tissue is $1.63\times10^6\ \text{kg m}^{-2}\text{s}^{-1}$ and of air is $430\ \text{kg m}^{-2}\text{s}^{-1}$. Show that almost all ultrasound is reflected at an air--tissue boundary.
+\par\hfill\textit{[3 marks]}
+\vspace{3.5cm}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+\textbf{Q3.} An ultrasound pulse is emitted and an echo is received $85\ \mu\text{s}$ later. The speed of ultrasound in tissue is $1500\ \text{m s}^{-1}$. Calculate the depth of the reflecting boundary.
+\par\hfill\textit{[2 marks]}
+\vspace{2.5cm}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+\textbf{Q4.} An X-ray beam of initial intensity $I_0$ passes through $8.0\ \text{cm}$ of tissue with linear attenuation coefficient $\mu = 12\ \text{m}^{-1}$. Calculate the ratio $I/I_0$.
+\par\hfill\textit{[2 marks]}
+\vspace{2.5cm}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+\textbf{Q5.} State \textbf{two} conservation laws that apply during electron--positron annihilation in PET scanning.
+\par\hfill\textit{[2 marks]}
+\vspace{2.0cm}
+\end{minipage}
+
+\end{tcolorbox}
+
+\subsection*{Section B — Longer Structured Questions}
+
+\begin{tcolorbox}[colback=white, colframe=midblue, breakable]
+
+\begin{minipage}{\linewidth}
+\textbf{Q6.} A medical ultrasound system uses a piezoelectric transducer operating at $5.0\ \text{MHz}$.
+\end{minipage}
+
+\begin{enumerate}[label=(\alph*)]
+  \item \begin{minipage}[t]{\linewidth}
+  Explain why a coupling gel is applied between the transducer and the patient's skin.
+  \par\hfill\textit{[3 marks]}
+  \vspace{3.5cm}
+  \end{minipage}
+
+  \item \begin{minipage}[t]{\linewidth}
+  The attenuation coefficient of soft tissue at this frequency is $40\ \text{m}^{-1}$. Calculate the depth at which the intensity has fallen to $5.0\%$ of its initial value.
+  \par\hfill\textit{[3 marks]}
+  \vspace{4.0cm}
+  \end{minipage}
+
+  \item \begin{minipage}[t]{\linewidth}
+  Suggest why a lower frequency might be chosen when imaging deep structures, and state one disadvantage.
+  \par\hfill\textit{[2 marks]}
+  \vspace{2.5cm}
+  \end{minipage}
+\end{enumerate}
+
+\begin{minipage}{\linewidth}
+\textbf{Q7.} PET scanning uses a tracer that emits positrons.
+\end{minipage}
+
+\begin{enumerate}[label=(\alph*)]
+  \item \begin{minipage}[t]{\linewidth}
+  Explain what happens when a positron emitted by the tracer encounters an electron in the body tissue.
+  \par\hfill\textit{[3 marks]}
+  \vspace{3.5cm}
+  \end{minipage}
+
+  \item \begin{minipage}[t]{\linewidth}
+  Explain why two detectors placed on opposite sides of the patient must detect photons simultaneously for the event to be recorded.
+  \par\hfill\textit{[2 marks]}
+  \vspace{3.0cm}
+  \end{minipage}
+
+  \item \begin{minipage}[t]{\linewidth}
+  Calculate the wavelength of the gamma-ray photons produced in the annihilation.
+  \par\hfill\textit{[2 marks]}
+  \vspace{3.0cm}
+  \end{minipage}
+\end{enumerate}
+
+\end{tcolorbox}
+
+% ===== SECTION 10: MARK SCHEME =====
+\section{Mark Scheme and Answers}
+
+\begin{markscheme}
+
+\textbf{Q1.} Emitter: an alternating p.d. at the resonant frequency is applied across the crystal [1]; the crystal vibrates at that frequency [1]; emitting ultrasound waves. Detector: incoming pressure wave causes the crystal to change shape [1]; this generates an e.m.f. which is detected as an electrical signal [1].
+
+\vspace{0.5em}\textbf{Q2.} $I_R/I_0 = (1.63\times10^6 - 430)^2/(1.63\times10^6 + 430)^2$ [1] $\approx (1.63\times10^6)^2/(1.63\times10^6)^2$ [1] $\approx 0.9995$ (i.e.\ $\approx 1$, almost total reflection) [1].
+
+\vspace{0.5em}\textbf{Q3.} $d = \tfrac{1}{2}vt = \tfrac{1}{2} \times 1500 \times 85\times10^{-6} = \mathbf{6.4\times10^{-2}\ \text{m}}\ (= 6.4\ \text{cm})$ [2].
+
+\vspace{0.5em}\textbf{Q4.} $I/I_0 = e^{-\mu x} = e^{-12\times0.080} = e^{-0.96} = \mathbf{0.383}$ [2].
+
+\vspace{0.5em}\textbf{Q5.} Any two of: conservation of mass--energy [1]; conservation of momentum [1]; conservation of charge [1].
+
+\vspace{0.5em}\textbf{Q6(a).} The acoustic impedance of air is much lower than that of tissue [1]; this large mismatch means nearly all ultrasound would be reflected at the skin--air interface [1]; the gel has impedance close to that of tissue, minimising reflection and allowing ultrasound to enter the body [1].
+
+\vspace{0.5em}\textbf{Q6(b).} $I/I_0 = 0.050$, so $e^{-40x} = 0.050$ [1]; $-40x = \ln(0.050) = -3.00$; $x = 3.00/40 = \mathbf{0.075\ \text{m}}\ (= 7.5\ \text{cm})$ [2].
+
+\vspace{0.5em}\textbf{Q6(c).} Lower frequency has a smaller attenuation coefficient, so ultrasound penetrates more deeply [1]; disadvantage: lower frequency has a longer wavelength, giving \textbf{poorer spatial resolution} [1].
+
+\vspace{0.5em}\textbf{Q7(a).} The positron meets an electron [1]; both are annihilated (annihilation) [1]; two gamma-ray photons are produced travelling in exactly opposite directions [1].
+
+\vspace{0.5em}\textbf{Q7(b).} The two photons travel in exactly opposite directions (to conserve momentum) [1]; simultaneous detection at opposite detectors confirms the annihilation occurred on the line joining the two detectors [1].
+
+\vspace{0.5em}\textbf{Q7(c).} $E = m_e c^2 = 8.20\times10^{-14}\ \text{J}$; $\lambda = hc/E = (6.63\times10^{-34}\times3.00\times10^8)/8.20\times10^{-14} = \mathbf{2.42\times10^{-12}\ \text{m}}$ [2].
+
+\end{markscheme}
+
+% ===== SECTION 11: REVISION CHECKLIST =====
+\newpage
+\section{Revision Checklist}
+
+Use this checklist to track your understanding. Tick each box when you are confident:
+
+\begin{tcolorbox}[colback=white, colframe=darkblue, breakable]
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{@{} c p{10.5cm} r @{}}
+\toprule
+ & \textbf{Learning Objective} & \textbf{Confidence (1--3)} \\
+\midrule
+$\square$ & Explain the piezoelectric effect in both directions (emitter and detector) & \\
+$\square$ & Describe how pulse-echo ultrasound produces diagnostic information & \\
+$\square$ & Define specific acoustic impedance using \nf{Z = \rho c} & \\
+$\square$ & Use the intensity reflection coefficient formula & \\
+$\square$ & Explain the purpose of coupling gel & \\
+$\square$ & Apply \nf{I = I_0 e^{-\mu x}} for attenuation of ultrasound & \\
+$\square$ & Explain the resolution vs penetration trade-off for ultrasound frequency & \\
+$\square$ & Explain how X-rays are produced (bremsstrahlung and characteristic) & \\
+$\square$ & Use \nf{\lambda_{\min} = hc/eV} for X-ray tube calculations & \\
+$\square$ & Explain contrast in X-ray imaging & \\
+$\square$ & Apply \nf{I = I_0 e^{-\mu x}} for attenuation of X-rays & \\
+$\square$ & Describe how CT scanning builds a 3D image from multiple 2D slices & \\
+$\square$ & Explain what a radioactive tracer is and why a $\beta^+$ emitter is used in PET & \\
+$\square$ & Describe electron--positron annihilation and apply conservation laws & \\
+$\square$ & Calculate the energy of annihilation photons using \nf{E = m_e c^2} & \\
+$\square$ & Explain how coincidence detection produces a PET image & \\
+\bottomrule
+\end{tabular}
+\vspace{0.5em}
+
+\textit{Key: 1 = Need more work \quad 2 = Getting there \quad 3 = Confident}
+\end{tcolorbox}
+
+\vspace{1em}
 \begin{motivationbox}
 \centering
 \textbf{\color{darkblue}Good luck with your revision!}\\[0.2em]
-{\color{darkgray}\small Remember: understanding \emph{why} formulas work is more powerful than memorising them.}
+{\color{darkgray}\small Medical physics is where fundamental physics saves lives. The same exponential attenuation, the same $E = mc^2$, the same wave properties — seen in a new and important context. Make sure you can explain \emph{why} each technique works, not just apply the formulas.}
 \end{motivationbox}
