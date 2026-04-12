@@ -112,35 +112,6 @@ $b$ & = Wien's constant $= 2.90\times10^{-3}\ \text{m K}$ \\
 A \textbf{hotter} star has its peak at a \textbf{shorter} wavelength (bluer colour). A \textbf{cooler} star peaks at a \textbf{longer} wavelength (redder colour).
 \end{formulabox}
 
-\vspace{0.3em}
-\begin{center}
-\begin{tikzpicture}[xscale=1.2, yscale=0.9]
-  % Axes
-  \draw[->, darkblue, thick] (0,0) -- (6.5,0)
-    node[right, font=\small, darkblue] {Wavelength $\lambda$};
-  \draw[->, darkblue, thick] (0,0) -- (0,4.5)
-    node[above, font=\small, darkblue] {Intensity};
-
-  % Hot star curve (peaks early, high intensity)
-  \draw[pinkframe, thick, domain=0.4:6.2, samples=200, smooth]
-    plot (\x, {3.5*(\x/1.0)^3 / (exp(3.0/\x)-1) * 0.08});
-
-  % Cooler star curve (peaks later, lower peak)
-  \draw[midblue, thick, domain=0.5:6.2, samples=200, smooth]
-    plot (\x, {3.5*(\x/1.6)^3 / (exp(3.0/1.6*1.0/\x * 1.6)-1) * 0.045});
-
-  % Peak markers
-  \draw[dashed, pinkframe, thin] (1.0,0) -- (1.0, 2.62);
-  \draw[dashed, midblue, thin] (1.8,0) -- (1.8, 1.8);
-  \node[pinkframe, font=\scriptsize, anchor=north] at (1.0,-0.1) {$\lambda_1$};
-  \node[midblue, font=\scriptsize, anchor=north] at (1.8,-0.1) {$\lambda_2$};
-
-  % Labels
-  \node[pinkframe, font=\scriptsize] at (4.5,3.0) {hotter star ($T_1$)};
-  \node[midblue, font=\scriptsize] at (5.0,1.5) {cooler star ($T_2$)};
-  \node[darkgray, font=\scriptsize] at (3.2,-0.7) {$\lambda_1 < \lambda_2$ since $T_1 > T_2$};
-\end{tikzpicture}
-\end{center}
 
 \pgfplotsset{
   compat=1.13, % TikZ coordinates <-> axes coordinates
@@ -150,7 +121,7 @@ A \textbf{hotter} star has its peak at a \textbf{shorter} wavelength (bluer colo
     plot coordinates {(0cm,0cm) (0.22cm,0cm) (0.44cm,0cm)};%
   }
 } 
-\usepackage{siunitx}
+
 
 % redraw axis on top
 \makeatletter \newcommand{\pgfplotsdrawaxis}{\pgfplots@draw@axis} \makeatother
