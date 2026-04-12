@@ -1,0 +1,465 @@
+% topic_12.tex — Content only. Compiled via main.tex or standalone wrapper.
+% ── No \documentclass, \begin{document} or \end{document} here ──
+
+\chapteropener{12}{Motion in a Circle}{%
+  \item Angular Displacement and the Radian
+  \item Angular Speed and Period
+  \item Centripetal Acceleration
+  \item Centripetal Force
+  \item Examples of Circular Motion
+}
+
+% ===== SECTION 1: ANGULAR DISPLACEMENT =====
+\section{Angular Displacement and the Radian}
+
+\begin{definitionbox}{The Radian}
+The \textbf{radian} (rad) is the SI unit of angle. One radian is the angle subtended at the centre of a circle by an arc whose length equals the radius.
+$$\theta\ (\text{rad}) = \frac{\text{arc length}}{\text{radius}} = \frac{s}{r}$$
+\end{definitionbox}
+
+\vspace{0.3em}
+\begin{center}
+\begin{tikzpicture}[scale=1.1]
+  % Circle
+  \draw[darkblue, thick] (0,0) circle (1.8);
+  % Radii
+  \draw[darkblue, thick] (0,0) -- (1.8,0);
+  \draw[darkblue, thick] (0,0) -- ({1.8*cos(57.3)},{1.8*sin(57.3)});
+  % Arc
+  \draw[pinkframe, very thick] (1.8,0) arc (0:57.3:1.8);
+  % Labels
+  \node[darkblue, font=\small] at (1.0,-0.2) {$r$};
+  \node[darkblue, font=\small] at ({0.6*cos(28.6)+0.15},{0.6*sin(28.6)}) {$\theta$};
+  \node[pinkframe, font=\small] at (2.4,0.9) {$s = r\theta$};
+  % Dot at centre
+  \fill[darkblue] (0,0) circle (2pt);
+  \node[darkgray, font=\scriptsize, anchor=north] at (0,-0.15) {$1\ \text{rad when}\ s = r$};
+\end{tikzpicture}
+\end{center}
+
+\begin{keybox}{Key Angle Conversions}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{@{}ll@{}}
+Full circle: & $360° = 2\pi\ \text{rad}$ \\
+Half circle: & $180° = \pi\ \text{rad}$ \\
+Quarter circle: & $90° = \pi/2\ \text{rad}$ \\
+To convert degrees to radians: & multiply by $\pi/180$ \\
+To convert radians to degrees: & multiply by $180/\pi$ \\
+\end{tabular}
+\end{keybox}
+
+% ===== SECTION 2: ANGULAR SPEED =====
+\section{Angular Speed and Linear Speed}
+
+\begin{definitionbox}{Angular Speed}
+The \textbf{angular speed} $\omega$ of an object moving in a circle is the rate of change of angular displacement:
+$$\omega = \frac{\Delta\theta}{\Delta t} \qquad \text{units: rad s}^{-1}$$
+For uniform circular motion (constant speed), $\omega$ is constant.
+\end{definitionbox}
+
+\begin{formulabox}{Angular Speed and Period}
+\begin{center}
+\Large $\omega = \dfrac{2\pi}{T} = 2\pi f$
+\end{center}
+\vspace{0.3em}
+\begin{tabular}{@{}ll@{}}
+$\omega$ & = angular speed (rad s$^{-1}$) \\
+$T$ & = period — time for one complete revolution (s) \\
+$f$ & = frequency (Hz $= $ s$^{-1}$) \\
+\end{tabular}
+\end{formulabox}
+
+\begin{formulabox}{Linear Speed and Angular Speed}
+\begin{center}
+\Large $v = r\omega$
+\end{center}
+\vspace{0.3em}
+\begin{tabular}{@{}ll@{}}
+$v$ & = linear (tangential) speed (m s$^{-1}$) \\
+$r$ & = radius of the circular path (m) \\
+$\omega$ & = angular speed (rad s$^{-1}$) \\
+\end{tabular}
+\vspace{0.4em}
+
+Although $\omega$ is constant for uniform circular motion, the \textbf{velocity} is not — its direction changes continuously. The speed $v$ is constant but the direction of motion is always \textbf{tangential} to the circle.
+\end{formulabox}
+
+\begin{warningbox}{Speed vs Velocity in Circular Motion}
+In uniform circular motion:
+\begin{itemize}[itemsep=2pt]
+  \item \textbf{Speed} is constant — the magnitude of velocity does not change.
+  \item \textbf{Velocity} is not constant — its direction changes at every point.
+  \item Because velocity changes, the object is \textbf{accelerating}, even though its speed is constant.
+\end{itemize}
+\end{warningbox}
+
+% ===== SECTION 3: CENTRIPETAL ACCELERATION =====
+\section{Centripetal Acceleration}
+
+\begin{definitionbox}{Centripetal Acceleration}
+For an object moving in a circle at constant speed, the acceleration is directed \textbf{towards the centre} of the circle. This is called \textbf{centripetal acceleration}.
+\begin{itemize}[itemsep=2pt]
+  \item It arises because the \textbf{direction} of velocity is continuously changing.
+  \item A force of \textbf{constant magnitude} that is always \textbf{perpendicular to the velocity} produces centripetal acceleration.
+  \item Because the force is perpendicular to motion, it does \textbf{no work} — kinetic energy (and hence speed) remains constant.
+\end{itemize}
+\end{definitionbox}
+
+\begin{formulabox}{Centripetal Acceleration}
+\begin{center}
+\Large $a = r\omega^2 = \dfrac{v^2}{r}$
+\end{center}
+\vspace{0.3em}
+\begin{tabular}{@{}ll@{}}
+$a$ & = centripetal acceleration, directed towards centre (m s$^{-2}$) \\
+$r$ & = radius of circular path (m) \\
+$\omega$ & = angular speed (rad s$^{-1}$) \\
+$v$ & = linear speed (m s$^{-1}$) \\
+\end{tabular}
+\end{formulabox}
+
+\vspace{0.5em}
+\begin{center}
+\begin{tikzpicture}[scale=1.1]
+  % Circle
+  \draw[darkblue, dashed, thick] (0,0) circle (2.0);
+  \fill[darkblue] (0,0) circle (2pt);
+
+  % Object at top of circle
+  \fill[pinkframe] (0,2.0) circle (5pt);
+
+  % Velocity vector (tangential, to the right)
+  \draw[->, >=stealth, midblue, very thick] (0,2.0) -- (1.4,2.0)
+    node[right, font=\small, midblue] {$v$ (tangential)};
+
+  % Acceleration vector (towards centre, downward)
+  \draw[->, >=stealth, pinkframe, very thick] (0,2.0) -- (0,1.0)
+    node[right, font=\small, pinkframe] {$a$ (centripetal)};
+
+  % Centre label
+  \node[darkblue, font=\small, anchor=north] at (0,-0.15) {centre};
+
+  % Radius
+  \draw[darkgray, thin] (0,0) -- (0,2.0);
+  \node[darkgray, font=\small, anchor=east] at (-0.1,1.0) {$r$};
+\end{tikzpicture}
+\end{center}
+
+% ===== SECTION 4: CENTRIPETAL FORCE =====
+\section{Centripetal Force}
+
+\begin{definitionbox}{Centripetal Force}
+The \textbf{centripetal force} is the resultant force directed towards the centre of the circle that causes centripetal acceleration. It is not a new type of force — it is whatever force (or combination of forces) acts towards the centre in a given situation.
+\end{definitionbox}
+
+\begin{formulabox}{Centripetal Force}
+Applying Newton's second law ($F = ma$) with $a = r\omega^2 = v^2/r$:
+\begin{center}
+\Large $F = mr\omega^2 = \dfrac{mv^2}{r}$
+\end{center}
+\vspace{0.3em}
+\begin{tabular}{@{}ll@{}}
+$F$ & = centripetal force, directed towards centre (N) \\
+$m$ & = mass of the object (kg) \\
+$r$ & = radius of circular path (m) \\
+$\omega$ & = angular speed (rad s$^{-1}$) \\
+$v$ & = linear speed (m s$^{-1}$) \\
+\end{tabular}
+\end{formulabox}
+
+\begin{keybox}{What Provides the Centripetal Force?}
+The centripetal force is provided by different physical forces depending on the situation:
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{@{}p{5.5cm} p{6cm}@{}}
+\textbf{Situation} & \textbf{Force providing centripetal force} \\
+\hline
+Planet/satellite orbiting a star & Gravitational attraction \\
+Car turning on a flat road & Friction between tyres and road \\
+Ball on a string, horizontal circle & Tension in the string \\
+Electron orbiting nucleus (Bohr model) & Electrostatic (Coulomb) attraction \\
+Object on the inside of a curved loop & Normal contact force \\
+\end{tabular}
+\end{keybox}
+
+\begin{warningbox}{``Centrifugal Force'' is Not Real}
+There is no outward ``centrifugal force'' acting on the object. In the reference frame of the ground (inertial frame), the only horizontal force on an object in circular motion is the \textbf{inward} centripetal force. The sensation of being ``pushed outward'' is the result of inertia — the body's tendency to continue in a straight line.
+\end{warningbox}
+
+% ===== SECTION 5: EXAMPLES OF CIRCULAR MOTION =====
+\section{Examples of Circular Motion}
+
+\subsection{Conical Pendulum}
+
+A mass on a string of length $L$ makes angle $\theta$ with the vertical, moving in a horizontal circle of radius $r = L\sin\theta$.
+
+\begin{formulabox}{Conical Pendulum}
+Resolving forces:
+\begin{align*}
+\text{Vertical:} \quad & T\cos\theta = mg \\
+\text{Horizontal (centripetal):} \quad & T\sin\theta = \frac{mv^2}{r} = mr\omega^2
+\end{align*}
+Dividing: $\tan\theta = \dfrac{r\omega^2}{g} = \dfrac{v^2}{rg}$
+\end{formulabox}
+
+\subsection{Car on a Banked Track}
+
+On a banked track (angle $\theta$), the horizontal component of the normal force provides the centripetal force, reducing the need for friction.
+
+\begin{formulabox}{Ideal Banking Angle}
+For a vehicle travelling at speed $v$ on a track banked at angle $\theta$, with no friction:
+$$\tan\theta = \frac{v^2}{rg}$$
+\end{formulabox}
+
+\subsection{Vertical Circular Motion}
+
+For an object on the inside of a vertical loop of radius $r$ at the \textbf{top} of the loop:
+$$mg + N = \frac{mv^2}{r}$$
+The minimum speed for the object to maintain contact: $N \geq 0 \Rightarrow v_{\min} = \sqrt{gr}$.
+
+% ===== SECTION 6: FORMULA SUMMARY =====
+\section{Formula Summary Sheet}
+
+\begin{minipage}{\linewidth}
+\begin{tcolorbox}[colback=lightgold, colframe=accentgold]
+\renewcommand{\arraystretch}{1.8}
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Formula} & \textbf{Quantity} & \textbf{Units} \\
+\midrule
+$\theta = s/r$ & Angular displacement & rad \\
+$\omega = \Delta\theta/\Delta t$ & Angular speed & rad s$^{-1}$ \\
+$\omega = 2\pi/T = 2\pi f$ & Angular speed from period & rad s$^{-1}$ \\
+$v = r\omega$ & Linear speed & m s$^{-1}$ \\
+$a = r\omega^2 = v^2/r$ & Centripetal acceleration & m s$^{-2}$ \\
+$F = mr\omega^2 = mv^2/r$ & Centripetal force & N \\
+\bottomrule
+\end{tabular}
+\end{tcolorbox}
+
+\vspace{0.5em}
+\begin{tcolorbox}[colback=lightblue, colframe=darkblue]
+\textbf{Useful:}\quad $2\pi\ \text{rad} = 360°$;\quad
+$1\ \text{revolution} = 2\pi\ \text{rad}$;\quad
+$v = r\omega$ links linear and angular quantities.
+\end{tcolorbox}
+\end{minipage}
+
+% ===== SECTION 7: EXAM TECHNIQUE =====
+\section{Exam Technique and Problem-Solving Strategy}
+
+\begin{keybox}{Step-by-Step Strategy}
+\begin{enumerate}[itemsep=3pt]
+  \item \textbf{Find $\omega$}: use $\omega = 2\pi/T$ or $\omega = 2\pi f$ — convert rpm or revolutions per second to rad s$^{-1}$ first.
+  \item \textbf{Find $v$}: use $v = r\omega$ if needed.
+  \item \textbf{Identify the centripetal force}: decide which physical force (tension, gravity, normal force, friction) provides it.
+  \item \textbf{Apply $F = mr\omega^2$ or $F = mv^2/r$}: equate to the expression for that force and solve.
+\end{enumerate}
+\end{keybox}
+
+\begin{warningbox}{Common Errors — Avoid These!}
+\begin{itemize}[itemsep=3pt]
+  \item Using \textbf{degrees} instead of radians in $v = r\omega$ or $a = r\omega^2$ — $\omega$ must always be in rad s$^{-1}$.
+  \item Confusing \textbf{period} $T$ with frequency $f$ — remember $T = 1/f$.
+  \item Forgetting to \textbf{identify the centripetal force} physically — in a free-body diagram, only real forces appear; there is no ``centripetal force'' arrow separate from, say, tension or gravity.
+  \item In vertical circle problems, failing to account for \textbf{the component of gravity} that contributes to (or subtracts from) the centripetal force.
+  \item Confusing \textbf{$r$} (radius) with \textbf{diameter} — always halve the diameter if that is what is given.
+\end{itemize}
+\end{warningbox}
+
+% ===== SECTION 8: WORKED EXAMPLES =====
+\section{Worked Examples}
+
+\subsection*{Example 1 — Angular and Linear Speed}
+
+\textbf{Question:} A CD rotates at $500\ \text{rpm}$. Calculate (a) the angular speed, and (b) the linear speed of a point $6.0\ \text{cm}$ from the centre.
+
+\begin{examplebox}{Solution}
+\textbf{Solution:}\\
+(a) Convert rpm to rad s$^{-1}$:
+$$\omega = \frac{500 \times 2\pi}{60} = \mathbf{52.4\ \text{rad s}^{-1}}$$
+
+(b) $v = r\omega = 0.060 \times 52.4 = \mathbf{3.14\ \text{m s}^{-1}}$
+\end{examplebox}
+
+\subsection*{Example 2 — Centripetal Force on a Car}
+
+\textbf{Question:} A car of mass $1200\ \text{kg}$ travels at $18\ \text{m s}^{-1}$ around a flat circular bend of radius $45\ \text{m}$. Calculate the centripetal force required and state what provides it.
+
+\begin{examplebox}{Solution}
+\textbf{Solution:}\\
+$$F = \frac{mv^2}{r} = \frac{1200 \times 18^2}{45} = \frac{1200 \times 324}{45} = \mathbf{8640\ \text{N}}$$
+
+This force is provided by \textbf{friction} between the tyres and the road surface, acting towards the centre of the bend.
+\end{examplebox}
+
+\subsection*{Example 3 — Satellite Orbit}
+
+\textbf{Question:} A satellite orbits Earth at a radius of $7.5\times10^6\ \text{m}$. The gravitational field strength at this altitude is $7.1\ \text{N kg}^{-1}$. Calculate the orbital period.
+
+\begin{examplebox}{Solution}
+\textbf{Solution:}\\
+Gravitational force provides centripetal force:
+$$mg = mr\omega^2 \quad \Rightarrow \quad \omega = \sqrt{\frac{g}{r}} = \sqrt{\frac{7.1}{7.5\times10^6}} = 9.73\times10^{-4}\ \text{rad s}^{-1}$$
+
+Period:
+$$T = \frac{2\pi}{\omega} = \frac{2\pi}{9.73\times10^{-4}} = 6454\ \text{s} \approx \mathbf{1.79\ \text{hours}}$$
+\end{examplebox}
+
+% ===== SECTION 9: PRACTICE QUESTIONS =====
+\section{Practice Exam Questions}
+
+\subsection*{Section A — Short Answer Questions}
+
+\begin{tcolorbox}[colback=white, colframe=midblue, breakable]
+
+\begin{minipage}{\linewidth}
+\textbf{Q1.} Define the radian.
+\par\hfill\textit{[1 mark]}
+\vspace{2.0cm}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+\textbf{Q2.} A wheel of radius $0.35\ \text{m}$ completes $120$ revolutions per minute. Calculate (a) the angular speed and (b) the linear speed of a point on the rim.
+\par\hfill\textit{[3 marks]}
+\vspace{3.5cm}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+\textbf{Q3.} Explain why an object moving in a circle at constant speed is accelerating, and state the direction of this acceleration.
+\par\hfill\textit{[2 marks]}
+\vspace{3.0cm}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+\textbf{Q4.} A stone of mass $0.15\ \text{kg}$ is attached to a string and swung in a horizontal circle of radius $0.80\ \text{m}$ at $3.0\ \text{rev s}^{-1}$. Calculate the tension in the string. (Assume the string is horizontal.)
+\par\hfill\textit{[3 marks]}
+\vspace{3.5cm}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+\textbf{Q5.} Explain why the centripetal force does no work on an object moving in a circle at constant speed.
+\par\hfill\textit{[2 marks]}
+\vspace{2.5cm}
+\end{minipage}
+
+\end{tcolorbox}
+
+\subsection*{Section B — Longer Structured Questions}
+
+\begin{tcolorbox}[colback=white, colframe=midblue, breakable]
+
+\begin{minipage}{\linewidth}
+\textbf{Q6.} A car of mass $950\ \text{kg}$ travels over the top of a hill that has a circular cross-section of radius $120\ \text{m}$.
+\end{minipage}
+
+\begin{enumerate}[label=(\alph*)]
+  \item \begin{minipage}[t]{\linewidth}
+  Draw a free-body diagram for the car at the top of the hill, showing and labelling the forces acting.
+  \par\hfill\textit{[2 marks]}
+  \vspace{4.5cm}
+  \end{minipage}
+
+  \item \begin{minipage}[t]{\linewidth}
+  Write an equation relating the forces at the top of the hill to the centripetal acceleration. Hence find the speed at which the car just loses contact with the road.
+  \par\hfill\textit{[4 marks]}
+  \vspace{4.5cm}
+  \end{minipage}
+
+  \item \begin{minipage}[t]{\linewidth}
+  At a speed of $20\ \text{m s}^{-1}$, calculate the normal contact force on the car at the top of the hill.
+  \par\hfill\textit{[2 marks]}
+  \vspace{3.5cm}
+  \end{minipage}
+\end{enumerate}
+
+\begin{minipage}{\linewidth}
+\textbf{Q7.} A conical pendulum consists of a mass of $0.25\ \text{kg}$ on a string of length $0.60\ \text{m}$, rotating so that the string makes an angle of $30°$ with the vertical.
+\end{minipage}
+
+\begin{enumerate}[label=(\alph*)]
+  \item \begin{minipage}[t]{\linewidth}
+  Calculate the radius of the circular path.
+  \par\hfill\textit{[1 mark]}
+  \vspace{2.0cm}
+  \end{minipage}
+
+  \item \begin{minipage}[t]{\linewidth}
+  Calculate the tension in the string.
+  \par\hfill\textit{[2 marks]}
+  \vspace{3.0cm}
+  \end{minipage}
+
+  \item \begin{minipage}[t]{\linewidth}
+  Calculate the angular speed of the mass.
+  \par\hfill\textit{[3 marks]}
+  \vspace{4.0cm}
+  \end{minipage}
+\end{enumerate}
+
+\end{tcolorbox}
+
+% ===== SECTION 10: MARK SCHEME =====
+\section{Mark Scheme and Answers}
+
+\begin{markscheme}
+
+\textbf{Q1.} The radian is the angle subtended at the centre of a circle by an arc whose length is equal to the radius of the circle [1].
+
+\vspace{0.5em}\textbf{Q2.} (a) $\omega = 120 \times 2\pi/60 = \mathbf{4\pi = 12.6\ \text{rad s}^{-1}}$ [2]. (b) $v = r\omega = 0.35 \times 12.6 = \mathbf{4.4\ \text{m s}^{-1}}$ [1].
+
+\vspace{0.5em}\textbf{Q3.} The direction of the velocity changes continuously [1]; acceleration is the rate of change of velocity — a change in direction (even at constant speed) constitutes acceleration, directed towards the centre of the circle [1].
+
+\vspace{0.5em}\textbf{Q4.} $\omega = 3.0 \times 2\pi = 18.85\ \text{rad s}^{-1}$ [1]; $T = F = mr\omega^2 = 0.15 \times 0.80 \times 18.85^2$ [1] $= \mathbf{42.6\ \text{N}}$ [1].
+
+\vspace{0.5em}\textbf{Q5.} The centripetal force is always perpendicular to the velocity (direction of motion) [1]; work done $= F\cos 90° \times d = 0$ — a perpendicular force does no work [1].
+
+\vspace{0.5em}\textbf{Q6(a).} Diagram showing weight $mg$ downward and normal force $N$ upward, with $mg > N$ at speed [2].
+
+\vspace{0.5em}\textbf{Q6(b).} At top of hill, net downward force provides centripetal force: $mg - N = mv^2/r$ [1]; at the point of losing contact, $N = 0$: $mg = mv^2/r$ [1]; $v = \sqrt{gr} = \sqrt{9.81 \times 120}$ [1] $= \mathbf{34.3\ \text{m s}^{-1}}$ [1].
+
+\vspace{0.5em}\textbf{Q6(c).} $mg - N = mv^2/r$; $N = m(g - v^2/r) = 950(9.81 - 20^2/120) = 950(9.81 - 3.33)$ [1] $= 950 \times 6.48 = \mathbf{6160\ \text{N}}$ [1].
+
+\vspace{0.5em}\textbf{Q7(a).} $r = L\sin\theta = 0.60\sin 30° = \mathbf{0.30\ \text{m}}$ [1].
+
+\vspace{0.5em}\textbf{Q7(b).} $T\cos\theta = mg$; $T = mg/\cos 30° = (0.25 \times 9.81)/\cos 30°$ [1] $= \mathbf{2.83\ \text{N}}$ [1].
+
+\vspace{0.5em}\textbf{Q7(c).} $T\sin\theta = mr\omega^2$ [1]; $\omega^2 = T\sin\theta/(mr) = 2.83\times\sin 30°/(0.25\times 0.30)$ [1]; $\omega = \sqrt{2.83\times0.5/0.075} = \sqrt{18.9} = \mathbf{4.34\ \text{rad s}^{-1}}$ [1].
+
+\end{markscheme}
+
+% ===== SECTION 11: REVISION CHECKLIST =====
+\newpage
+\section{Revision Checklist}
+
+Use this checklist to track your understanding. Tick each box when you are confident:
+
+\begin{tcolorbox}[colback=white, colframe=darkblue, breakable]
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{@{} c p{10.5cm} r @{}}
+\toprule
+ & \textbf{Learning Objective} & \textbf{Confidence (1--3)} \\
+\midrule
+$\square$ & Define the radian and convert between degrees and radians & \\
+$\square$ & Define angular speed $\omega$ and use \nf{\omega = 2\pi/T = 2\pi f} & \\
+$\square$ & Use \nf{v = r\omega} to relate linear and angular speed & \\
+$\square$ & Explain why an object in uniform circular motion is accelerating & \\
+$\square$ & State that centripetal acceleration is directed towards the centre & \\
+$\square$ & Use \nf{a = r\omega^2} and \nf{a = v^2/r} & \\
+$\square$ & Use \nf{F = mr\omega^2} and \nf{F = mv^2/r} & \\
+$\square$ & Identify the physical force providing centripetal force in a given situation & \\
+$\square$ & Explain why centripetal force does no work & \\
+$\square$ & Solve problems involving objects at the top/bottom of vertical circles & \\
+$\square$ & Solve conical pendulum problems by resolving tension components & \\
+\bottomrule
+\end{tabular}
+\vspace{0.5em}
+
+\textit{Key: 1 = Need more work \quad 2 = Getting there \quad 3 = Confident}
+\end{tcolorbox}
+
+\vspace{1em}
+\begin{motivationbox}
+\centering
+\textbf{\color{darkblue}Good luck with your revision!}\\[0.2em]
+{\color{darkgray}\small Circular motion is the bridge between mechanics and fields — once you are confident with centripetal force and acceleration, gravitational and electric field problems fall into place naturally. Always ask: what real force is pointing towards the centre?}
+\end{motivationbox}
