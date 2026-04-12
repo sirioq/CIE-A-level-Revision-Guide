@@ -245,78 +245,8 @@ The pressure exerted by a gas arises from molecules colliding with the container
 % IMPORTED PICTURE
 
 
-\begin{tikzpicture}[
-    % Define styles for consistent styling
-    molecule/.style={circle, fill=blue!60, draw=blue!80!black, thick, inner sep=0pt, minimum size=4mm},
-    velocity/.style={->, >=Stealth, thick, blue!80!black},
-    bounce/.style={->, >=Stealth, thick, red!80!black},
-    wall/.style={ultra thick, black!70}
-]
-
-    % Draw the main container (left, top, bottom walls)
-    \draw[wall] (0,0) -- (0,5) -- (6,5);
-    \draw[wall] (0,0) -- (6,0);
-
-    % Draw the active wall being struck (right wall, thicker and red)
-    \draw[line width=3pt, red!70!black] (5.95,0) -- (5.95,5);
-    \node[right, red!70!black, font=\large\bfseries, align=left] at (6, 2) {Wall \\ (Area $A$)};
-
-    % Draw background molecules with random velocity vectors
-    \node[molecule] (m1) at (1.9, .95) {};
-    \draw[velocity] (m1.center) -- ++(1.5, 0.8) node[above] {$\vec{v}$};
-
-    %\node[molecule] (m2) at (2.5, 4.0) {};
-    %\draw[velocity] (m2.center) -- ++(-1.0, -0.4);
-
-    %\node[molecule] (m3) at (3.8, 1.0) {};
-    %\draw[velocity] (m3.center) -- ++(-0.8, 1.2);
-
-    %\node[molecule] (m4) at (1.0, 3.5) {};
-    %\draw[velocity] (m4.center) -- ++(0.6, -1.2);
-
-    % Draw the colliding molecule
-    % Placed exactly so its edge touches the wall (x = 6.0 - 0.2 radius = 5.8)
-    \node[molecule] (m_col) at (5.7, 3.0) {}; 
-    
-    % Incoming path (dashed)
-    \draw[->, >=Stealth, dashed, gray, thick] (3.3, 1.7) -- (m_col.center);
-    
-    % Outgoing path (bounce) showing change in momentum
-    \draw[bounce] (m_col.center) -- ++(-1.5, 0.8) node[above right, text=red!80!black] {$\vec{v}'$};
-
-    % Visual impact sparks at the wall
-    %\draw[orange, thick] (6.0, 3.3) -- ++(-0.25, 0.25);
-    %\draw[orange, thick] (6.0, 3.0) -- ++(-0.35, 0);
-    %\draw[orange, thick] (6.0, 2.7) -- ++(-0.25, -0.25);
-
-    % Macroscopic Force Vector exerted ON the wall
-    \draw[->, >=Stealth, line width=1pt, red!80!black] (6, 3.0) -- ++(1, 0) node[right, font=\large] {Force $\vec{F}$};
-\end{tikzpicture}
-    % Explanatory Formula Box
-   \begin{keybox}{Collisions Cause Pressure} 
-        Molecules collide with the wall, causing a change in momentum ($\Delta p$). \\
-        By Newton's Laws, this exerts a macroscopic force ($F$) on the wall. \\
-        \vspace{2mm}
-        Pressure is Force per unit Area: \Large $\mathbf{P = \frac{F}{A}}$
-    
-\end{keybox}
 
 
-\begin{center}
-\begin{tikzpicture}[scale=0.9]
-  \draw[darkblue, thick] (0,0) rectangle (5,3.5);
-  \foreach \x/\y in {0.6/0.5, 1.5/1.8, 2.8/0.7, 3.6/2.4, 4.2/1.0, 1.0/2.9, 2.2/2.0, 4.0/3.0}{
-    \fill[midblue] (\x,\y) circle (3.5pt);
-  }
-  \draw[->, midblue, thick] (0.6,0.5) -- (1.3,1.0);
-  \draw[->, midblue, thick] (2.8,0.7) -- (3.5,0.3);
-  \draw[->, midblue, thick] (3.6,2.4) -- (4.55,2.7);
-  \draw[->, midblue, thick] (1.5,1.8) -- (0.7,2.3);
-  \draw[->, pinkframe, very thick] (4.2,1.0) -- (4.95,0.75);
-  \node[pinkframe, font=\small, right] at (5.05, 0.75) {collision $\Rightarrow$ pressure};
-  \node[darkgray, font=\small] at (2.5,-0.35) {Random molecular motion causes pressure on walls};
-\end{tikzpicture}
-\end{center}
 
 
 
