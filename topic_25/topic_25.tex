@@ -1,31 +1,525 @@
-% topic_25.tex — Content only. Compiled via main.tex.
+% topic_25.tex — Content only. Compiled via main.tex or standalone wrapper.
 % ── No \documentclass, \begin{document} or \end{document} here ──
 
 \chapteropener{25}{Astronomy and Cosmology}{%
-  \item Standard Candles
-  \item Stellar Radii
+  \item Luminosity and Radiant Flux Intensity
+  \item Standard Candles and Distance Measurement
+  \item Wien's Displacement Law and Stellar Temperature
+  \item The Stefan--Boltzmann Law and Stellar Radii
+  \item Redshift and the Expanding Universe
   \item Hubble's Law and the Big Bang
 }
 
-% ===== SECTION: STANDARD CANDLES =====
+% ===== SECTION 1: LUMINOSITY AND FLUX =====
+\section{Luminosity and Radiant Flux Intensity}
+
+\begin{definitionbox}{Luminosity}
+The \textbf{luminosity} $L$ of a star is the total power of electromagnetic radiation emitted by the star in all directions.
+$$L \quad \text{units: W (watts)}$$
+Luminosity depends on the star's \textbf{surface temperature} and \textbf{surface area} — not on its distance from us.
+\end{definitionbox}
+
+\begin{definitionbox}{Radiant Flux Intensity}
+The \textbf{radiant flux intensity} $F$ (sometimes called apparent brightness) is the power of radiation received per unit area at a detector (e.g.\ a telescope on Earth).
+$$F \quad \text{units: W m}^{-2}$$
+$F$ depends on both the luminosity of the source and its distance $d$.
+\end{definitionbox}
+
+\begin{formulabox}{Inverse Square Law for Radiant Flux}
+Assuming the star radiates uniformly in all directions and there is no absorption by the intervening medium, the radiation spreads over a sphere of area $4\pi d^2$:
+\begin{center}
+\Large $F = \dfrac{L}{4\pi d^2}$
+\end{center}
+\vspace{0.3em}
+\begin{tabular}{@{}ll@{}}
+$F$ & = radiant flux intensity at distance $d$ (W m$^{-2}$) \\
+$L$ & = luminosity of the star (W) \\
+$d$ & = distance from the star (m) \\
+\end{tabular}
+\end{formulabox}
+
+\vspace{0.3em}
+\begin{center}
+\begin{tikzpicture}[scale=0.85]
+  % Star at centre
+  \draw[fill=accentgold, draw=accentgold] (0,0) circle (0.22);
+  \node[accentgold, font=\small\bfseries] at (0,-0.5) {star};
+
+  % Two concentric circles (spheres of radiation)
+  \draw[darkblue, dashed] (0,0) circle (1.8);
+  \draw[darkblue, dashed] (0,0) circle (3.2);
+
+  % Radii
+  \draw[darkblue, thin] (0,0) -- (1.27,1.27);
+  \draw[darkblue, thin] (0,0) -- (2.26,2.26);
+  \node[darkblue, font=\scriptsize] at (0.55,0.9) {$d$};
+  \node[darkblue, font=\scriptsize] at (1.1,1.8) {$2d$};
+
+  % Area elements
+  \fill[pinkframe, opacity=0.5] (1.6,0.7) rectangle (1.9,1.0);
+  \fill[pinkframe, opacity=0.3] (2.85,1.25) rectangle (3.45,1.85);
+  \node[pinkframe, font=\scriptsize] at (2.8,0.5) {area $A$};
+  \node[pinkframe, font=\scriptsize] at (4.1,1.2) {area $4A$};
+
+  % Labels
+  \node[darkblue, font=\scriptsize] at (0,-3.7) {$F \propto 1/d^2$: double the distance, quarter the flux};
+\end{tikzpicture}
+\end{center}
+
+% ===== SECTION 2: STANDARD CANDLES =====
 \section{Standard Candles}
 
-% Content to be written.
+\begin{definitionbox}{Standard Candle}
+A \textbf{standard candle} is an astronomical object whose \textbf{luminosity is known} (or can be determined independently of distance). By measuring the radiant flux intensity $F$ received from the object and using $F = L/(4\pi d^2)$, its distance $d$ can be calculated:
+$$d = \sqrt{\frac{L}{4\pi F}}$$
+\end{definitionbox}
 
+\begin{keybox}{Standard Candles Used in Practice}
+\begin{itemize}[itemsep=3pt]
+  \item \textbf{Cepheid variable stars}: pulsating stars whose \emph{period of variation} is related to their luminosity (period--luminosity relation). Measure the period $\Rightarrow$ know $L$ $\Rightarrow$ measure $F$ $\Rightarrow$ find $d$.
+  \item \textbf{Type Ia supernovae}: thermonuclear explosions of white dwarf stars that all reach approximately the same peak luminosity. Visible across enormous distances (billions of light-years), making them useful for measuring distances to distant galaxies.
+\end{itemize}
+\end{keybox}
 
-% ===== SECTION: STELLAR RADII =====
-\section{Stellar Radii}
+\begin{warningbox}{Assumptions and Limitations}
+The inverse square law assumes:
+\begin{itemize}[itemsep=2pt]
+  \item No absorption of radiation between source and detector (no dust or gas in the way).
+  \item The source radiates \textbf{isotropically} (equally in all directions).
+\end{itemize}
+Dust absorption causes stars to appear \textbf{dimmer} than expected, which would lead to an \textbf{overestimate} of distance if uncorrected.
+\end{warningbox}
 
-% Content to be written.
+% ===== SECTION 3: WIEN'S DISPLACEMENT LAW =====
+\section{Wien's Displacement Law and Stellar Temperature}
 
+\begin{definitionbox}{Black-Body Radiation}
+Stars approximate \textbf{black bodies} — objects that absorb all incident radiation and emit a characteristic continuous spectrum that depends only on temperature. The peak wavelength of this spectrum shifts with temperature.
+\end{definitionbox}
 
-% ===== SECTION: HUBBLE'S LAW AND THE BIG BANG =====
-\section{Hubble's Law and the Big Bang}
+\begin{formulabox}{Wien's Displacement Law}
+\begin{center}
+\Large $\lambda_{\max} \propto \dfrac{1}{T}$ \qquad equivalently \qquad $\lambda_{\max} T = b$
+\end{center}
+\vspace{0.3em}
+\begin{tabular}{@{}ll@{}}
+$\lambda_{\max}$ & = wavelength at peak intensity of the spectrum (m) \\
+$T$ & = surface temperature of the star (K) \\
+$b$ & = Wien's constant $= 2.90\times10^{-3}\ \text{m K}$ \\
+\end{tabular}
+\vspace{0.4em}
 
-% Content to be written.
+A \textbf{hotter} star has its peak at a \textbf{shorter} wavelength (bluer colour). A \textbf{cooler} star peaks at a \textbf{longer} wavelength (redder colour).
+\end{formulabox}
 
+\vspace{0.3em}
+\begin{center}
+\begin{tikzpicture}[xscale=1.2, yscale=0.9]
+  % Axes
+  \draw[->, darkblue, thick] (0,0) -- (6.5,0)
+    node[right, font=\small, darkblue] {Wavelength $\lambda$};
+  \draw[->, darkblue, thick] (0,0) -- (0,4.5)
+    node[above, font=\small, darkblue] {Intensity};
+
+  % Hot star curve (peaks early, high intensity)
+  \draw[pinkframe, thick, domain=0.4:6.2, samples=200, smooth]
+    plot (\x, {3.5*(\x/1.0)^3 / (exp(3.0/\x)-1) * 0.08});
+
+  % Cooler star curve (peaks later, lower peak)
+  \draw[midblue, thick, domain=0.5:6.2, samples=200, smooth]
+    plot (\x, {3.5*(\x/1.6)^3 / (exp(3.0/1.6*1.0/\x * 1.6)-1) * 0.045});
+
+  % Peak markers
+  \draw[dashed, pinkframe, thin] (1.0,0) -- (1.0, 2.62);
+  \draw[dashed, midblue, thin] (1.8,0) -- (1.8, 1.8);
+  \node[pinkframe, font=\scriptsize, anchor=north] at (1.0,-0.1) {$\lambda_1$};
+  \node[midblue, font=\scriptsize, anchor=north] at (1.8,-0.1) {$\lambda_2$};
+
+  % Labels
+  \node[pinkframe, font=\scriptsize] at (4.5,3.0) {hotter star ($T_1$)};
+  \node[midblue, font=\scriptsize] at (5.0,1.5) {cooler star ($T_2$)};
+  \node[darkgray, font=\scriptsize] at (3.2,-0.7) {$\lambda_1 < \lambda_2$ since $T_1 > T_2$};
+\end{tikzpicture}
+\end{center}
+
+% ===== SECTION 4: STEFAN-BOLTZMANN LAW =====
+\section{The Stefan--Boltzmann Law and Stellar Radii}
+
+\begin{formulabox}{Stefan--Boltzmann Law}
+For a black-body sphere (approximating a star) of radius $r$ and surface temperature $T$:
+\begin{center}
+\Large $L = 4\pi r^2 \sigma T^4$
+\end{center}
+\vspace{0.3em}
+\begin{tabular}{@{}ll@{}}
+$L$ & = luminosity (W) \\
+$r$ & = radius of the star (m) \\
+$\sigma$ & = Stefan--Boltzmann constant $= 5.67\times10^{-8}\ \text{W m}^{-2}\text{K}^{-4}$ \\
+$T$ & = surface temperature (K) \\
+\end{tabular}
+\end{formulabox}
+
+\begin{keybox}{Estimating Stellar Radius}
+By combining Wien's law and the Stefan--Boltzmann law:
+\begin{enumerate}[itemsep=3pt]
+  \item Measure $\lambda_{\max}$ from the star's spectrum $\Rightarrow$ use Wien's law to find $T$.
+  \item Measure $F$ (radiant flux intensity) and find $d$ (e.g.\ via a standard candle or parallax).
+  \item Find $L$ from $L = 4\pi d^2 F$.
+  \item Rearrange Stefan--Boltzmann: $r = \sqrt{\dfrac{L}{4\pi\sigma T^4}}$
+\end{enumerate}
+\end{keybox}
+
+\begin{warningbox}{Using Ratios}
+Exam questions often ask you to \emph{compare} two stars rather than calculate absolute values. In that case, form a ratio to cancel constants:
+$$\frac{L_1}{L_2} = \frac{r_1^2 T_1^4}{r_2^2 T_2^4}$$
+This avoids large numbers and reduces the risk of errors.
+\end{warningbox}
+
+% ===== SECTION 5: REDSHIFT =====
+\section{Redshift and the Expanding Universe}
+
+\begin{definitionbox}{Redshift}
+When a source of light moves \textbf{away} from an observer, the observed wavelength is \textbf{longer} (shifted towards the red end of the spectrum) than the wavelength emitted. This is the \textbf{Doppler effect} applied to light.
+
+The lines in the emission or absorption spectrum of a distant galaxy are observed at \textbf{longer wavelengths} than those of the same element measured in the laboratory.
+\end{definitionbox}
+
+\begin{formulabox}{Redshift Formula}
+For a source moving at speed $v \ll c$ relative to an observer:
+\begin{center}
+\Large $z = \dfrac{\Delta\lambda}{\lambda} \approx \dfrac{\Delta f}{f} \approx \dfrac{v}{c}$
+\end{center}
+\vspace{0.3em}
+\begin{tabular}{@{}ll@{}}
+$z$ & = redshift (dimensionless) \\
+$\Delta\lambda$ & = shift in wavelength (= observed $\lambda$ $-$ emitted $\lambda$) (m) \\
+$\lambda$ & = emitted (rest-frame) wavelength (m) \\
+$\Delta f$ & = shift in frequency (Hz) \\
+$v$ & = recession speed of the source (m s$^{-1}$) \\
+\end{tabular}
+\end{formulabox}
+
+\begin{keybox}{Redshift as Evidence for Expansion}
+\begin{itemize}[itemsep=3pt]
+  \item Observations of distant galaxies show that their spectral lines are \textbf{all redshifted}.
+  \item The greater the distance of a galaxy, the greater its redshift.
+  \item This indicates that distant galaxies are moving \textbf{away} from us, and the further away they are, the faster they recede.
+  \item This is consistent with the \textbf{Universe expanding}: it is space itself that is stretching, carrying galaxies apart, rather than the galaxies moving through space.
+\end{itemize}
+\end{keybox}
+
+% ===== SECTION 6: HUBBLE'S LAW AND THE BIG BANG =====
+\section{Hubble's Law and the Big Bang Theory}
+
+\begin{formulabox}{Hubble's Law}
+\begin{center}
+\Large $v \approx H_0\,d$
+\end{center}
+\vspace{0.3em}
+\begin{tabular}{@{}ll@{}}
+$v$ & = recession speed of a galaxy (m s$^{-1}$) \\
+$H_0$ & = Hubble constant (s$^{-1}$, though often quoted in km s$^{-1}$ Mpc$^{-1}$) \\
+$d$ & = distance of the galaxy from Earth (m) \\
+\end{tabular}
+\vspace{0.4em}
+
+In CIE examinations, SI units are used: $H_0$ in s$^{-1}$ and $d$ in metres.
+\end{formulabox}
+
+\begin{keybox}{Hubble's Law and the Big Bang Theory}
+\begin{itemize}[itemsep=3pt]
+  \item Hubble's law states that the recession speed of a galaxy is proportional to its distance.
+  \item If all galaxies are currently moving apart, then in the past they must have been \textbf{closer together}.
+  \item Extrapolating back in time, all matter was once concentrated in an extremely hot, dense state — the \textbf{Big Bang}.
+  \item An estimate of the \textbf{age of the Universe} can be obtained from:
+  $$t \approx \frac{1}{H_0}$$
+  (This assumes a constant rate of expansion, which is a simplification.)
+\end{itemize}
+\end{keybox}
+
+\subsubsection*{Hubble Plot: Recession Speed vs Distance}
+
+\begin{center}
+\begin{tikzpicture}[xscale=1.3, yscale=1.1]
+  % Axes
+  \draw[->, darkblue, thick] (0,0) -- (5.5,0)
+    node[right, font=\small, darkblue] {Distance $d$ / m};
+  \draw[->, darkblue, thick] (0,0) -- (0,4.5)
+    node[above, font=\small, darkblue] {Recession speed $v$ / m s$^{-1}$};
+
+  % Hubble line
+  \draw[darkblue, thick] (0,0) -- (5.0, 3.8);
+
+  % Scatter points (approximate)
+  \foreach \x/\y in {0.5/0.4, 1.0/0.75, 1.5/1.1, 2.0/1.6, 2.5/1.8, 3.0/2.3, 3.5/2.7, 4.0/3.1, 4.5/3.4}{
+    \fill[midblue] (\x,\y) circle (2.5pt);
+  }
+
+  % Gradient label
+  \node[darkblue, font=\small] at (3.8,1.8) {gradient $= H_0$};
+  \draw[->, darkblue, thin] (3.6,1.75) -- (3.0,2.3);
+
+  % Origin
+  \node[darkgray, font=\small, anchor=north east] at (0,0) {$0$};
+\end{tikzpicture}
+\end{center}
+
+\begin{keybox}{Determining $H_0$ from a Graph}
+A graph of recession speed $v$ against distance $d$ gives a straight line through the origin. The \textbf{gradient} of this line is the Hubble constant $H_0$. In practice, there is significant scatter due to the difficulty of measuring distances to distant galaxies accurately.
+\end{keybox}
+
+% ===== SECTION 7: FORMULA SUMMARY =====
+\section{Formula Summary Sheet}
+
+\begin{minipage}{\linewidth}
+\begin{tcolorbox}[colback=lightgold, colframe=accentgold]
+\renewcommand{\arraystretch}{1.8}
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Formula} & \textbf{Quantity} & \textbf{Units} \\
+\midrule
+$F = L/(4\pi d^2)$ & Inverse square law / flux & W m$^{-2}$ \\
+$\lambda_{\max} T = b$ & Wien's displacement law & m K \\
+$L = 4\pi r^2\sigma T^4$ & Stefan--Boltzmann law & W \\
+$\Delta\lambda/\lambda \approx \Delta f/f \approx v/c$ & Redshift formula & --- \\
+$v \approx H_0 d$ & Hubble's law & m s$^{-1}$, m \\
+$t \approx 1/H_0$ & Age of Universe estimate & s \\
+\bottomrule
+\end{tabular}
+\end{tcolorbox}
+
+\vspace{0.5em}
+\begin{tcolorbox}[colback=lightblue, colframe=darkblue]
+\textbf{Constants:}\quad
+$\sigma = 5.67\times10^{-8}\ \text{W m}^{-2}\text{K}^{-4}$,\quad
+$b = 2.90\times10^{-3}\ \text{m K}$,\quad
+$c = 3.00\times10^{8}\ \text{m s}^{-1}$
+\end{tcolorbox}
+\end{minipage}
+
+% ===== SECTION 8: EXAM TECHNIQUE =====
+\section{Exam Technique and Problem-Solving Strategy}
+
+\begin{keybox}{Step-by-Step for Stellar Radius Problems}
+\begin{enumerate}[itemsep=3pt]
+  \item Find $T$: measure $\lambda_{\max}$ from spectrum $\Rightarrow$ $T = b/\lambda_{\max}$.
+  \item Find $L$: use standard candle or parallax to get $d$; then $L = 4\pi d^2 F$.
+  \item Find $r$: rearrange Stefan--Boltzmann: $r = \sqrt{L/(4\pi\sigma T^4)}$.
+\end{enumerate}
+\end{keybox}
+
+\begin{warningbox}{Common Errors — Avoid These!}
+\begin{itemize}[itemsep=3pt]
+  \item Forgetting the \textbf{$4\pi$} in both $F = L/4\pi d^2$ and $L = 4\pi r^2\sigma T^4$.
+  \item Confusing \textbf{luminosity} (intrinsic power, independent of distance) with \textbf{flux intensity} (observed brightness, depends on distance).
+  \item Using $\Delta\lambda = \lambda_{\text{obs}} - \lambda_{\text{emitted}}$ but getting the \textbf{sign wrong}: for a receding source, $\Delta\lambda > 0$ (observed wavelength is longer).
+  \item Applying $v = H_0 d$ with $d$ in Mpc and $H_0$ in km s$^{-1}$ Mpc$^{-1}$ — in CIE exams \textbf{always convert to SI} (metres and s$^{-1}$).
+  \item Stating that the Big Bang means galaxies are moving \textbf{through space} — more accurately, \textbf{space itself is expanding}.
+\end{itemize}
+\end{warningbox}
+
+% ===== SECTION 9: WORKED EXAMPLES =====
+\section{Worked Examples}
+
+\subsection*{Example 1 — Stellar Radius from Wien and Stefan--Boltzmann}
+
+\textbf{Question:} A star has a peak emission wavelength of $480\ \text{nm}$ and a luminosity of $5.2\times10^{26}\ \text{W}$. Estimate its radius. ($b = 2.90\times10^{-3}\ \text{m K}$, $\sigma = 5.67\times10^{-8}\ \text{W m}^{-2}\text{K}^{-4}$)
+
+\begin{examplebox}{Solution}
+\textbf{Solution:}\\
+Step 1 — Surface temperature:
+$$T = \frac{b}{\lambda_{\max}} = \frac{2.90\times10^{-3}}{480\times10^{-9}} = 6040\ \text{K}$$
+
+Step 2 — Rearrange Stefan--Boltzmann:
+$$r = \sqrt{\frac{L}{4\pi\sigma T^4}} = \sqrt{\frac{5.2\times10^{26}}{4\pi \times 5.67\times10^{-8} \times (6040)^4}}$$
+
+$$T^4 = (6.04\times10^3)^4 = 1.33\times10^{15}\ \text{K}^4$$
+
+$$r = \sqrt{\frac{5.2\times10^{26}}{4\pi \times 5.67\times10^{-8} \times 1.33\times10^{15}}} = \sqrt{\frac{5.2\times10^{26}}{9.47\times10^8}} = \sqrt{5.49\times10^{17}} = \mathbf{7.4\times10^8\ \text{m}}$$
+\end{examplebox}
+
+\subsection*{Example 2 — Distance Using Flux and Luminosity}
+
+\textbf{Question:} A type Ia supernova has a peak luminosity of $2.0\times10^{36}\ \text{W}$. It is observed with a radiant flux intensity of $3.5\times10^{-14}\ \text{W m}^{-2}$. Calculate its distance.
+
+\begin{examplebox}{Solution}
+\textbf{Solution:}\\
+$$d = \sqrt{\frac{L}{4\pi F}} = \sqrt{\frac{2.0\times10^{36}}{4\pi \times 3.5\times10^{-14}}}$$
+$$d = \sqrt{\frac{2.0\times10^{36}}{4.40\times10^{-13}}} = \sqrt{4.55\times10^{48}} = \mathbf{2.1\times10^{24}\ \text{m}}$$
+\end{examplebox}
+
+\subsection*{Example 3 — Recession Speed and Age of Universe}
+
+\textbf{Question:} A galaxy shows a spectral line at $656\ \text{nm}$ that is observed at $689\ \text{nm}$. The Hubble constant is $H_0 = 2.2\times10^{-18}\ \text{s}^{-1}$. Calculate (a) the recession speed of the galaxy, (b) its distance, and (c) an estimate of the age of the Universe.
+
+\begin{examplebox}{Solution}
+\textbf{Solution:}\\
+(a) $\dfrac{\Delta\lambda}{\lambda} = \dfrac{689 - 656}{656} = \dfrac{33}{656} = 0.0503$
+
+$v = 0.0503 \times c = 0.0503 \times 3.00\times10^8 = \mathbf{1.51\times10^7\ \text{m s}^{-1}}$
+
+(b) $d = v/H_0 = 1.51\times10^7 / 2.2\times10^{-18} = \mathbf{6.9\times10^{24}\ \text{m}}$
+
+(c) $t \approx 1/H_0 = 1/(2.2\times10^{-18}) = \mathbf{4.5\times10^{17}\ \text{s}}\ (\approx 14\ \text{billion years})$
+\end{examplebox}
+
+% ===== SECTION 10: PRACTICE QUESTIONS =====
+\section{Practice Exam Questions}
+
+\subsection*{Section A — Short Answer Questions}
+
+\begin{tcolorbox}[colback=white, colframe=midblue, breakable]
+
+\begin{minipage}{\linewidth}
+\textbf{Q1.} Define (a) luminosity and (b) radiant flux intensity. State the relationship between them and the distance $d$ to the source.
+\par\hfill\textit{[4 marks]}
+\vspace{3.5cm}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+\textbf{Q2.} The Sun has a surface temperature of $5800\ \text{K}$. Calculate the peak wavelength of its emission spectrum and state what colour this corresponds to.
+\par\hfill\textit{[2 marks]}
+\vspace{2.5cm}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+\textbf{Q3.} Explain what is meant by a \emph{standard candle} and describe one example of a standard candle used in astronomy.
+\par\hfill\textit{[3 marks]}
+\vspace{3.0cm}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+\textbf{Q4.} A hydrogen spectral line has a rest wavelength of $434\ \text{nm}$. In the spectrum of a distant galaxy it is observed at $461\ \text{nm}$. Calculate the recession speed of the galaxy.
+\par\hfill\textit{[3 marks]}
+\vspace{3.0cm}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+\textbf{Q5.} Explain how observations of redshift from distant galaxies lead to the conclusion that the Universe is expanding.
+\par\hfill\textit{[3 marks]}
+\vspace{3.5cm}
+\end{minipage}
+
+\end{tcolorbox}
+
+\subsection*{Section B — Longer Structured Questions}
+
+\begin{tcolorbox}[colback=white, colframe=midblue, breakable]
+
+\begin{minipage}{\linewidth}
+\textbf{Q6.} Star A has surface temperature $12\,000\ \text{K}$ and radius $3.5\times10^9\ \text{m}$. Star B has the same luminosity as Star A but a surface temperature of $4500\ \text{K}$.
+\end{minipage}
+
+\begin{enumerate}[label=(\alph*)]
+  \item \begin{minipage}[t]{\linewidth}
+  Calculate the luminosity of Star A.
+  \par\hfill\textit{[2 marks]}
+  \vspace{3.5cm}
+  \end{minipage}
+
+  \item \begin{minipage}[t]{\linewidth}
+  Calculate the radius of Star B.
+  \par\hfill\textit{[3 marks]}
+  \vspace{4.0cm}
+  \end{minipage}
+
+  \item \begin{minipage}[t]{\linewidth}
+  State which star would appear bluer and explain why.
+  \par\hfill\textit{[2 marks]}
+  \vspace{2.5cm}
+  \end{minipage}
+\end{enumerate}
+
+\begin{minipage}{\linewidth}
+\textbf{Q7.} A galaxy is observed to have a recession speed of $4.8\times10^6\ \text{m s}^{-1}$. The Hubble constant is $H_0 = 2.2\times10^{-18}\ \text{s}^{-1}$.
+\end{minipage}
+
+\begin{enumerate}[label=(\alph*)]
+  \item \begin{minipage}[t]{\linewidth}
+  Calculate the distance of the galaxy.
+  \par\hfill\textit{[2 marks]}
+  \vspace{3.0cm}
+  \end{minipage}
+
+  \item \begin{minipage}[t]{\linewidth}
+  A spectral line in the galaxy's spectrum has an emitted wavelength of $589\ \text{nm}$. Calculate the observed wavelength.
+  \par\hfill\textit{[2 marks]}
+  \vspace{3.0cm}
+  \end{minipage}
+
+  \item \begin{minipage}[t]{\linewidth}
+  Explain how Hubble's law provides evidence for the Big Bang theory.
+  \par\hfill\textit{[3 marks]}
+  \vspace{4.0cm}
+  \end{minipage}
+\end{enumerate}
+
+\end{tcolorbox}
+
+% ===== SECTION 11: MARK SCHEME =====
+\section{Mark Scheme and Answers}
+
+\begin{markscheme}
+
+\textbf{Q1.} (a) Luminosity: the total power of electromagnetic radiation emitted by a star (in all directions) [2]. (b) Radiant flux intensity: the power of radiation received per unit area at the observer's location [1]; $F = L/(4\pi d^2)$ [1].
+
+\vspace{0.5em}\textbf{Q2.} $\lambda_{\max} = b/T = 2.90\times10^{-3}/5800 = \mathbf{500\ \text{nm}}$ [1]; this corresponds to green light (near the centre of the visible spectrum) [1].
+
+\vspace{0.5em}\textbf{Q3.} A standard candle is an astronomical object of known luminosity [1]; example: type Ia supernova (all reach the same peak luminosity) [1]; or Cepheid variable (period of brightness variation gives luminosity via period--luminosity relation) [1].
+
+\vspace{0.5em}\textbf{Q4.} $\Delta\lambda = 461 - 434 = 27\ \text{nm}$ [1]; $v = c\Delta\lambda/\lambda = 3.00\times10^8 \times 27/434$ [1] $= \mathbf{1.87\times10^7\ \text{m s}^{-1}}$ [1].
+
+\vspace{0.5em}\textbf{Q5.} Spectral lines from distant galaxies are observed at longer wavelengths (redshifted) than expected [1]; this indicates the galaxies are moving away from us [1]; the greater the distance, the greater the redshift/recession speed — consistent with all space expanding uniformly [1].
+
+\vspace{0.5em}\textbf{Q6(a).} $L = 4\pi r^2\sigma T^4 = 4\pi\times(3.5\times10^9)^2\times5.67\times10^{-8}\times(12000)^4$ [1]; $= 4\pi\times1.225\times10^{19}\times5.67\times10^{-8}\times2.07\times10^{16} = \mathbf{1.80\times10^{29}\ \text{W}}$ [1].
+
+\vspace{0.5em}\textbf{Q6(b).} Same $L$; $r_B^2 T_B^4 = r_A^2 T_A^4$ [1]; $r_B = r_A(T_A/T_B)^2 = 3.5\times10^9 \times (12000/4500)^2 = 3.5\times10^9 \times 7.11$ [1] $= \mathbf{2.49\times10^{10}\ \text{m}}$ [1].
+
+\vspace{0.5em}\textbf{Q6(c).} Star A is bluer [1]; it has a higher surface temperature, so by Wien's law its peak wavelength is shorter (towards the blue end of the spectrum) [1].
+
+\vspace{0.5em}\textbf{Q7(a).} $d = v/H_0 = 4.8\times10^6/2.2\times10^{-18} = \mathbf{2.18\times10^{24}\ \text{m}}$ [2].
+
+\vspace{0.5em}\textbf{Q7(b).} $\Delta\lambda = \lambda v/c = 589\times10^{-9}\times4.8\times10^6/3.00\times10^8 = 9.42\times10^{-9}\ \text{m}$ [1]; observed $\lambda = 589 + 9.4 = \mathbf{598\ \text{nm}}$ [1].
+
+\vspace{0.5em}\textbf{Q7(c).} Hubble's law shows recession speed is proportional to distance — the further away a galaxy, the faster it recedes [1]; this means all galaxies are moving apart from one another, implying the Universe is expanding [1]; extrapolating back in time, all matter must have originated from a single point — the Big Bang [1].
+
+\end{markscheme}
+
+% ===== SECTION 12: REVISION CHECKLIST =====
+\newpage
+\section{Revision Checklist}
+
+Use this checklist to track your understanding. Tick each box when you are confident:
+
+\begin{tcolorbox}[colback=white, colframe=darkblue, breakable]
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{@{} c p{10.5cm} r @{}}
+\toprule
+ & \textbf{Learning Objective} & \textbf{Confidence (1--3)} \\
+\midrule
+$\square$ & Define luminosity and radiant flux intensity & \\
+$\square$ & Use the inverse square law \nf{F = L/(4\pi d^2)} & \\
+$\square$ & Define a standard candle and explain how it is used to find distance & \\
+$\square$ & Give examples of standard candles (Cepheid variables, Type Ia supernovae) & \\
+$\square$ & State and apply Wien's displacement law \nf{\lambda_{\max} T = b} & \\
+$\square$ & State and apply the Stefan--Boltzmann law \nf{L = 4\pi r^2\sigma T^4} & \\
+$\square$ & Combine Wien and Stefan--Boltzmann to estimate stellar radius & \\
+$\square$ & Explain what redshift is and how it is observed in galaxy spectra & \\
+$\square$ & Use \nf{\Delta\lambda/\lambda \approx v/c} to find recession speeds & \\
+$\square$ & Explain how redshift provides evidence for an expanding Universe & \\
+$\square$ & State and apply Hubble's law \nf{v \approx H_0 d} (SI units) & \\
+$\square$ & Use \nf{t \approx 1/H_0} as an estimate for the age of the Universe & \\
+$\square$ & Explain how Hubble's law leads to the Big Bang theory & \\
+\bottomrule
+\end{tabular}
+\vspace{0.5em}
+
+\textit{Key: 1 = Need more work \quad 2 = Getting there \quad 3 = Confident}
+\end{tcolorbox}
+
+\vspace{1em}
 \begin{motivationbox}
 \centering
 \textbf{\color{darkblue}Good luck with your revision!}\\[0.2em]
-{\color{darkgray}\small Remember: understanding \emph{why} formulas work is more powerful than memorising them.}
+{\color{darkgray}\small Cosmology asks the biggest questions in physics — and answers them with the same tools you've used all year. A few formulas, careful unit conversions, and the ability to interpret a graph are all you need to explore the scale of the Universe itself.}
 \end{motivationbox}
