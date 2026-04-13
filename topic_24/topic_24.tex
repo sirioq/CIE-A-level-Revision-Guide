@@ -136,7 +136,7 @@ X-rays are produced in an X-ray tube when fast-moving electrons are rapidly dece
 \addplot[thick, color=midblue, smooth, domain=18:115, samples=60] {
     (x-18)^1.5 * exp(-0.045*(x-18)) * 0.012
 };
-\addlegendentry{Bremsstrahlung (continuum)}
+\addlegendentry{Bremsstrahlung}
 
 \addplot[very thick, pinkframe, smooth, domain=57:69, samples=30] {
     (x-18)^1.5 * exp(-0.045*(x-18)) * 0.012
@@ -147,7 +147,7 @@ X-rays are produced in an X-ray tube when fast-moving electrons are rapidly dece
     (x-18)^1.5 * exp(-0.045*(x-18)) * 0.012
     + .75 * exp(-0.5*((x-71)/1.2)^2)
 };
-\addlegendentry{Characteristic radiation ($K$ lines)}
+\addlegendentry{Characteristic radiation}
 
 \draw[dashed, midgray, thick] (axis cs:18,0) -- (axis cs:18,0.28);
 \node[below, font=\footnotesize, gray!70!black] at (axis cs:18,-0.06) {$\lambda_{\min}$};
