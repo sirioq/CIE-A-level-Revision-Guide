@@ -148,7 +148,7 @@ $$qE = BQv \quad \Rightarrow \quad v = \frac{E}{B}$$
 
 \begin{center}
 % 3D wire with circular B field loops
-\begin{tikzpicture}[
+\begin{tikzpicture}[scale=1.4,
     z={(0.8,0.28)}, x={(0.58,-0.45)},
     BFieldLine/.style={midblue, thick,
       decoration={markings, mark=at position 0.5 with {\arrow[midblue]{latex}}},
@@ -202,7 +202,7 @@ $$qE = BQv \quad \Rightarrow \quad v = \frac{E}{B}$$
 \pgfmathsetmacro{\xmid}{(\xstart+\xend)/2}
 \def\ext{1.5}
 \def\lh{2.1}
-\begin{tikzpicture}[scale=1.8]
+\begin{tikzpicture}[scale=1.4]
 
   % ── Dot symbols on top ─────────────────────────────────────
   \foreach \i in {0,1,...,\N}{
@@ -278,7 +278,7 @@ $$qE = BQv \quad \Rightarrow \quad v = \frac{E}{B}$$
   \node[midblue, font=\small\bfseries] at (\xmid, 0.65) {$B$};
 
    % Caption
-  \node[darkblue, font=\small\bfseries] at (0,-1.9,0) {Magnetic field around a Solenoid};
+  \node[darkblue, font=\small\bfseries] at (2.2,-1.9,0) {Magnetic field around a Solenoid};
 
 \end{tikzpicture}
 \end{center}
