@@ -191,16 +191,84 @@ $$qE = BQv \quad \Rightarrow \quad v = \frac{E}{B}$$
 \vspace{1.2em}
 
 % Solenoid field (kept as before)
-\begin{tikzpicture}[scale=0.85]
-  \draw[darkblue, thick] (-2,-0.7) rectangle (2,0.7);
-  \foreach \y in {-0.3, 0.0, 0.3}{
-    \draw[-{Latex[length=4pt]}, midblue, thin] (-1.8,\y) -- (1.8,\y);
+\begin{tikzpicture}[scale=1.8]
+
+  % ── Dot symbols on top ─────────────────────────────────────
+  \foreach \i in {0,1,...,\N}{
+    \draw[darkblue, thick] (\xstart+\i*\dx, \ytop) circle [radius=0.09];
+    \filldraw[darkblue]    (\xstart+\i*\dx, \ytop) circle [radius=0.035];
   }
-  \draw[midblue, thin] (2,0) .. controls (3,1.5) and (-3,1.5) .. (-2,0);
-  \draw[midblue, thin] (2,0) .. controls (3,-1.5) and (-3,-1.5) .. (-2,0);
-  \node[darkblue, font=\small, anchor=north] at (0,-1.0) {Solenoid};
-  \node[darkblue, font=\scriptsize, anchor=west] at (2.1,0) {N};
-  \node[darkblue, font=\scriptsize, anchor=east] at (-2.1,0) {S};
+
+  % ── Cross symbols on bottom ────────────────────────────────
+  \foreach \i in {0,1,...,\N}{
+    \pgfmathsetmacro{\cx}{\xstart+\i*\dx}
+    \draw[darkblue, thick] (\cx, \ybot) circle [radius=0.09];
+    \draw[darkblue, thick]
+      (\cx-0.063, \ybot-0.063) -- (\cx+0.063, \ybot+0.063)
+      (\cx-0.063, \ybot+0.063) -- (\cx+0.063, \ybot-0.063);
+  }
+
+  % ── Front semi-circles (solid) ─────────────────────────────
+  \foreach \i in {0,1,...,\N}{
+    \pgfmathsetmacro{\cx}{\xstart+\i*\dx}
+    \draw[midblue, line width=1.4]
+      (\cx, \ybot) arc (270:90: 0.35 and 0.9);
+  }
+
+  % ── Back semi-circles (dashed) ─────────────────────────────
+  \foreach \i in {0,...,\N}{
+    \pgfmathsetmacro{\cx}{\xstart+\i*\dx}
+    \pgfmathsetmacro{\lw}{ifthenelse(\i==0, 1.4, 1.0)}
+    \draw[midblue, dashed, line width=\lw]
+      (\cx, \ytop) arc (90:-90: 0.35 and 0.9);
+  }
+
+  % ── MIDDLE field line ──────────────────────────────────────
+  \draw[midblue, line width=1.6,
+    postaction={decorate, decoration={markings,
+      mark=at position 0.5 with {\arrow[midblue]{Stealth[length=9pt, width=6pt]}}}}]
+    (\xstart-\ext, 0) -- (\xend+\ext, 0);
+
+  % ── TOP field line: internal ───────────────────────────────
+  \draw[midblue, line width=1.6,
+    postaction={decorate, decoration={markings,
+      mark=at position 0.5 with {\arrow[midblue]{Stealth[length=9pt, width=6pt]}}}}]
+    (\xstart, 0.45) -- (\xend, 0.45);
+  % external loop
+  \draw[midblue, line width=1.4,
+    postaction={decorate, decoration={markings,
+      mark=at position 0.5 with {\arrow[midblue]{Stealth[length=9pt, width=6pt]}}}}]
+    (\xend, 0.45)
+    .. controls (\xend+\ext, 0.45) and (\xend+\ext, \lh)
+    .. (\xmid, \lh)
+    .. controls (\xstart-\ext, \lh) and (\xstart-\ext, 0.45)
+    .. (\xstart, 0.45);
+
+  % ── BOTTOM field line: internal ────────────────────────────
+  \draw[midblue, line width=1.6,
+    postaction={decorate, decoration={markings,
+      mark=at position 0.5 with {\arrow[midblue]{Stealth[length=9pt, width=6pt]}}}}]
+    (\xstart, -0.45) -- (\xend, -0.45);
+  % external loop
+  \draw[midblue, line width=1.4,
+    postaction={decorate, decoration={markings,
+      mark=at position 0.5 with {\arrow[midblue]{Stealth[length=9pt, width=6pt]}}}}]
+    (\xend, -0.45)
+    .. controls (\xend+\ext, -0.45) and (\xend+\ext, -\lh)
+    .. (\xmid, -\lh)
+    .. controls (\xstart-\ext, -\lh) and (\xstart-\ext, -0.45)
+    .. (\xstart, -0.45);
+
+  % ── N and S pole labels ────────────────────────────────────
+  \node[darkblue, font=\large\bfseries] at (\xend+0.5, .13) {N};
+  \node[darkblue, font=\large\bfseries] at (\xstart-.5, .13) {S};
+
+  % ── B label ───────────────────────────────────────────────
+  \node[midblue, font=\small\bfseries] at (\xmid, 0.65) {$B$};
+
+   % Caption
+  \node[darkblue, font=\small\bfseries] at (0,-1.9,0) {Magnetic field around a Solenoid};
+
 \end{tikzpicture}
 \end{center}
 
