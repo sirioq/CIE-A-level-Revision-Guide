@@ -395,19 +395,17 @@ The \textbf{area under a $p$--$V$ curve} equals the work done by the gas during 
 
 \begin{center}
 \begin{tikzpicture}[xscale=1.8, yscale=1.4]
-  % Axes
-  \draw[->, darkblue, thick] (0,0) -- (3.2,0) node[right, font=\small] {$V$ / m$^3$};
-  \draw[->, darkblue, thick] (0,0) -- (0,2.8) node[above, font=\small] {$p$ / Pa};
+  
   % Isothermal curve
   \draw[darkblue, very thick, domain=0.5:2.8, samples=100]
     plot (\x, {1.4/\x});
   \node[darkblue, font=\small, right] at (2.8,{1.4/2.8}) {Constant temperature ($\Delta U=0$)};
   % Isobaric line
-  \draw[pinkframe, very thick] (0.5,1.6) -- (2.5,1.6);
-  \node[pinkframe, font=\small, right] at (2.5,1.6) {Constant pressure};
+  %\draw[pinkframe, very thick] (0.5,1.6) -- (2.5,1.6);
+  %\node[pinkframe, font=\small, right] at (2.5,1.6) {Constant pressure};
   % Isochoric line
-  \draw[examgreen, very thick] (1.8,0.3) -- (1.8,2.5);
-  \node[examgreen, font=\small, above] at (1.8,2.5) {Constant volume};
+  %\draw[examgreen, very thick] (1.8,0.3) -- (1.8,2.5);
+  %\node[examgreen, font=\small, above] at (1.8,2.5) {Constant volume};
   % Shaded area under isothermal A to B
   \fill[darkblue!15, domain=0.5:2.0, samples=100]
     plot (\x, {1.4/\x}) -- (2.0,0) -- (0.5,0) -- cycle;
@@ -416,6 +414,9 @@ The \textbf{area under a $p$--$V$ curve} equals the work done by the gas during 
   \fill[darkblue] (0.5,{1.4/0.5}) circle (2.5pt) node[left, font=\small] {A};
   \fill[darkblue] (2.0,{1.4/2.0}) circle (2.5pt) node[below right, font=\small] {B};
   \node[darkgray, font=\small, anchor=north east] at (0,0) {O};
+  % Axes
+  \draw[->, darkblue, thick] (0,0) -- (3.2,0) node[right, font=\small] {$V$ / m$^3$};
+  \draw[->, darkblue, thick] (0,0) -- (0,2.8) node[above, font=\small] {$p$ / Pa};
 \end{tikzpicture}
 \end{center}
 
@@ -532,6 +533,8 @@ Internal energy \textbf{increases} by 450 J.
 \end{minipage}
 
 \end{tcolorbox}
+
+\pagebreak
 
 {\bfseries\color{midblue}\large Section B --- Longer Structured Questions}
 
