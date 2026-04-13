@@ -195,13 +195,13 @@ A \textbf{hotter} star has its peak at a \textbf{shorter} wavelength (bluer colo
     
     
     % MAXIMUM (Wien's displacement law)
-    \addplot[pinkframe,thick,variable=T,domain=2200:4000,samples=40]
+    \addplot[darkgray,thick,variable=T,domain=2200:4000,samples=40]
       ({lampeak(T)},{planck(lampeak(T),T)});
-    \addplot[pinkframe,thick,variable=T,domain=4000:5200,samples=100]
+    \addplot[darkgray,thick,variable=T,domain=4000:5200,samples=100]
       ({lampeak(T)},{planck(lampeak(T),T)});
-    \fill[pinkframe] ({lampeak(3000)},{planck(lampeak(3000),3000)}) circle(1.5pt);
-    \fill[pinkframe] ({lampeak(4000)},{planck(lampeak(4000),4000)}) circle(1.5pt);
-    \fill[pinkframe] ({lampeak(5000)},{planck(lampeak(5000),5000)}) circle(1.5pt);
+    \fill[darkgray] ({lampeak(3000)},{planck(lampeak(3000),3000)}) circle(1.5pt);
+    \fill[darkgray] ({lampeak(4000)},{planck(lampeak(4000),4000)}) circle(1.5pt);
+    \fill[darkgray] ({lampeak(5000)},{planck(lampeak(5000),5000)}) circle(1.5pt);
     
     % LABELS
     \node[above=0pt,scale=0.75,warningorange] at (1150,{planck(1150,3000)}) {\SI{3000}{K}};
