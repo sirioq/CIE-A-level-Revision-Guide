@@ -100,29 +100,29 @@ $$\text{BE per nucleon} = \frac{E_B}{A} = \frac{c^2 \Delta m}{A}$$
 
   % Approximate curve: rises steeply, peaks near Fe-56 (~8.8 MeV), then slowly decreases
   \draw[darkblue, thick, smooth] plot coordinates {
-    (2,1.1) (4,7.1) (8,7.5) (12,7.7) (16,8.0) (20,8.0) (28,8.4)
-    (40,8.6) (56,8.79) (80,8.7) (100,8.6) (120,8.5)
+    (2,1.1) (4,7.1) (7,5.7)  (11,6.9) (12,7.4) (16,8.0) (20,8.0) (28,8.4)
+    (40,8.6) (56,8.79) (80,8.7) (100,8.6) (107,8.55) (120,8.5)
     (140,8.4) (160,8.2) (180,8.1) (200,7.9) (208,7.87) (235,7.6)
   };
 
   % Peak marker — Fe-56
   \draw[dashed, darkgray, thin] (56,0) -- (56,8.79);
   \draw[dashed, darkgray, thin] (0,8.79) -- (56,8.79);
-  \fill[darkblue] (56,8.79) circle (3pt);
+  %\fill[darkblue] (56,8.79) circle (3pt);
   \node[darkgray, font=\scriptsize, anchor=north] at (56,-0.15) {$^{56}_{26}$Fe};
   \node[darkgray, font=\scriptsize, anchor=east] at (-2,8.79) {$8.8$};
 
   % Fusion/fission labels
   \draw[->, pinkframe, thick] (20,5.5) -- (45,7.8);
-  \node[pinkframe, font=\scriptsize, anchor=east] at (19,5.2) {\textbf{fusion}};
-  \node[pinkframe, font=\scriptsize, anchor=east] at (19,4.75) {releases energy};
+  \node[pinkframe, font=\scriptsize, anchor=east] at (22,5.2) {\textbf{fusion}};
+  \node[pinkframe, font=\scriptsize, anchor=east] at (40,4.75) {releases energy};
 
   \draw[->, pinkframe, thick] (200,6.5) -- (130,8.0);
   \node[pinkframe, font=\scriptsize, anchor=west] at (201,6.5) {\textbf{fission}};
   \node[pinkframe, font=\scriptsize, anchor=west] at (201,6.05) {releases energy};
 
   % He-4 annotation
-  \node[darkblue, font=\scriptsize, anchor=south] at (4,7.1) {$^4$He};
+  \node[darkblue, font=\scriptsize, anchor=south] at (5,7.6) {$^4$He};
 
   % U-235 annotation
   \node[darkblue, font=\scriptsize, anchor=north] at (235,7.6) {$^{235}$U};
