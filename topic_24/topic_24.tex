@@ -108,6 +108,73 @@ X-rays are produced in an X-ray tube when fast-moving electrons are rapidly dece
 \end{itemize}
 \end{definitionbox}
 
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+    width=13cm, height=8.5cm,
+    xlabel={Wavelength $\lambda$ / pm},
+    ylabel={Intensity / arbitrary units},
+    xmin=0, xmax=120,
+    ymin=0, ymax=1.35,
+    xtick={0,20,40,60,80,100,120},
+    ytick={0,0.2,0.4,0.6,0.8,1.0},
+    axis lines=left,
+    tick align=outside,
+    grid=both,
+    grid style={line width=0.3pt, draw=gray!30},
+    major grid style={line width=0.5pt, draw=gray!50},
+    legend style={at={(0.78,0.18)}, anchor=north east,
+                  draw=black, fill=white, font=\small, row sep=3pt},
+    label style={font=\small},
+    tick label style={font=\small},
+    title style={font=\normalsize\bfseries},
+    title={X-ray Emission Spectrum (Tungsten Target, 70\,kV)},
+    clip=false,
+]
+
+\addplot[thick, color=midblue, smooth, domain=18:115, samples=60] {
+    (x-18)^1.5 * exp(-0.045*(x-18)) * 0.012
+};
+\addlegendentry{Bremsstrahlung (continuum)}
+
+\addplot[very thick, pinkframe, smooth, domain=57:69, samples=30] {
+    (x-18)^1.5 * exp(-0.045*(x-18)) * 0.012
+    + 0.45 * exp(-0.5*((x-63)/1.0)^2)
+};
+
+\addplot[very thick, pinkframe, smooth, domain=67:75, samples=30, forget plot] {
+    (x-18)^1.5 * exp(-0.045*(x-18)) * 0.012
+    + .75 * exp(-0.5*((x-71)/1.2)^2)
+};
+\addlegendentry{Characteristic radiation ($K$ lines)}
+
+\draw[dashed, midgray, thick] (axis cs:18,0) -- (axis cs:18,0.28);
+\node[below, font=\footnotesize, gray!70!black] at (axis cs:18,-0.06) {$\lambda_{\min}$};
+
+\node[above, font=\footnotesize, pinkframe] at (axis cs:58,0.59) {$K_\beta$};
+\node[above, font=\footnotesize, pinkframe] at (axis cs:67,1.09) {$K_\alpha$};
+
+\draw[thick] (axis cs:0,1.22) -- (axis cs:120,1.22);
+\draw[thick] (axis cs:20,1.22)  -- (axis cs:20,1.20);
+\node[above, font=\scriptsize] at (axis cs:20,1.22)  {62};
+\draw[thick] (axis cs:40,1.22)  -- (axis cs:40,1.20);
+\node[above, font=\scriptsize] at (axis cs:40,1.22)  {31};
+\draw[thick] (axis cs:60,1.22)  -- (axis cs:60,1.20);
+\node[above, font=\scriptsize] at (axis cs:60,1.22)  {20.7};
+\draw[thick] (axis cs:80,1.22)  -- (axis cs:80,1.20);
+\node[above, font=\scriptsize] at (axis cs:80,1.22)  {15.5};
+\draw[thick] (axis cs:100,1.22) -- (axis cs:100,1.20);
+\node[above, font=\scriptsize] at (axis cs:100,1.22) {12.4};
+\draw[thick] (axis cs:120,1.22) -- (axis cs:120,1.20);
+\node[above, font=\scriptsize] at (axis cs:120,1.22) {10.3};
+\node[font=\scriptsize] at (axis cs:60,1.32) {Photon energy $E$ / keV};
+
+\end{axis}
+\end{tikzpicture}
+
+\end{center}
+
 \begin{formulabox}{Minimum X-Ray Wavelength}
 The maximum photon energy (minimum wavelength) occurs when an electron gives all its kinetic energy to a single photon:
 $$eV = hf_{\max} = \frac{hc}{\lambda_{\min}}$$
