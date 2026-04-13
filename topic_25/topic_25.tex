@@ -190,22 +190,22 @@ A \textbf{hotter} star has its peak at a \textbf{shorter} wavelength (bluer colo
     
     % PLANCK
     \addplot[warningorange]    {planck(x,3000)};
-    \addplot[warninglight] {planck(x,4000)};
+    \addplot[examgreen] {planck(x,4000)};
     \addplot[midblue,samples=3*\N] {planck(x,5000)};
     
     
     % MAXIMUM (Wien's displacement law)
-    \addplot[examgreen,thick,variable=T,domain=2200:4000,samples=40]
+    \addplot[pinkframe,thick,variable=T,domain=2200:4000,samples=40]
       ({lampeak(T)},{planck(lampeak(T),T)});
-    \addplot[examgreen,thick,variable=T,domain=4000:5200,samples=100]
+    \addplot[pinkframe,thick,variable=T,domain=4000:5200,samples=100]
       ({lampeak(T)},{planck(lampeak(T),T)});
-    \fill[examgreen] ({lampeak(3000)},{planck(lampeak(3000),3000)}) circle(1.5pt);
-    \fill[examgreen] ({lampeak(4000)},{planck(lampeak(4000),4000)}) circle(1.5pt);
-    \fill[examgreen] ({lampeak(5000)},{planck(lampeak(5000),5000)}) circle(1.5pt);
+    \fill[pinkframe] ({lampeak(3000)},{planck(lampeak(3000),3000)}) circle(1.5pt);
+    \fill[pinkframe] ({lampeak(4000)},{planck(lampeak(4000),4000)}) circle(1.5pt);
+    \fill[pinkframe] ({lampeak(5000)},{planck(lampeak(5000),5000)}) circle(1.5pt);
     
     % LABELS
     \node[above=0pt,scale=0.75,warningorange] at (1150,{planck(1150,3000)}) {\SI{3000}{K}};
-    \node[above right=-1pt,scale=0.75,warninglight] at (740,{planck(740,4000)}) {\SI{4000}{K}};
+    \node[above right=-1pt,scale=0.75,examgreen] at (740,{planck(740,4000)}) {\SI{4000}{K}};
     \node[above right=-1pt,scale=0.75,midblue] at (800,{planck(800,5000)}) {\SI{5000}{K}};
    
     
