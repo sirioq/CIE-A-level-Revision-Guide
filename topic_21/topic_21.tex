@@ -165,22 +165,22 @@ A bridge rectifier uses \textbf{four diodes} arranged in a diamond so that:
 
   % Four diodes — conventional current flows: LEFT->TOP, BOT->LEFT, TOP->RIGHT, RIGHT->BOT
   \draw (LEFT)  to[full diode, l=$D_1$, *-*] (TOP);
-  \draw (BOT)   to[full diode, l_=$D_2$, *-*] (LEFT);
-  \draw (TOP)   to[full diode, l=$D_3$, *-*] (RIGHT);
-  \draw (RIGHT) to[full diode, l_=$D_4$, *-*] (BOT);
+  \draw (LEFT)   to[diode, l_=$D_2$, *-*] (BOT);
+  \draw (TOP)   to[diode, l=$D_3$, *-*] (RIGHT);
+  \draw (BOT) to[full diode, l_=$D_4$, *-*] (RIGHT);
 
   % AC source on the left (LEFT to BOT via external wire)
-  \draw (LEFT) -- (-1.5, 2.25);
-  \draw (BOT)  -- (3, -1.2) -- (-1.5, -1.2);
-  \draw (-1.5, -1.2) to[sV, l=a.c.] (-1.5, 2.25);
+  \draw (TOP) -- (-1,6) ;
+  \draw (BOT)  -- (3, -.5) -- (-1, -.5);
+  \draw (-1, -.5) to[sV, l=a.c.] (-1, 6);
 
   % Load resistor on the right (TOP to BOT via external wire)
-  \draw (TOP)   -- (3, 6) -- (7.5, 6);
-  \draw (BOT)   -- (3, -1.2) -- (7.5, -1.2);
-  \draw (7.5, 6) to[R, l=$R_L$, *-*] (7.5, -1.2);
+  \draw (RIGHT)   -- (7.5, 3) ;
+  \draw (LEFT)   -- (0, -1.2) -- (7.5, -1.2);
+  \draw (7.5, 3) to[R, l=$R_L$, *-*] (7.5, -1.2);
 
   % +/- output labels
-  \node[darkblue, anchor=south] at (7.5, 6)  {$+$};
+  \node[darkblue, anchor=south] at (7.5, 3)  {$+$};
   \node[darkblue, anchor=north] at (7.5, -1.2) {$-$};
 \end{circuitikz}
 \end{center}
