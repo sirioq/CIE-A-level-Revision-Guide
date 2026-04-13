@@ -189,8 +189,8 @@ A \textbf{hotter} star has its peak at a \textbf{shorter} wavelength (bluer colo
    
     
     % PLANCK
-    \addplot[pinkframe]    {planck(x,3000)};
-    \addplot[warningorange] {planck(x,4000)};
+    \addplot[warningorange]    {planck(x,3000)};
+    \addplot[warninglight] {planck(x,4000)};
     \addplot[midblue,samples=3*\N] {planck(x,5000)};
     
     
@@ -204,8 +204,8 @@ A \textbf{hotter} star has its peak at a \textbf{shorter} wavelength (bluer colo
     \fill[examgreen] ({lampeak(5000)},{planck(lampeak(5000),5000)}) circle(1.5pt);
     
     % LABELS
-    \node[above=0pt,scale=0.75,pinkframe] at (1150,{planck(1150,3000)}) {\SI{3000}{K}};
-    \node[above right=-1pt,scale=0.75,warningorange] at (740,{planck(740,4000)}) {\SI{4000}{K}};
+    \node[above=0pt,scale=0.75,warningorange] at (1150,{planck(1150,3000)}) {\SI{3000}{K}};
+    \node[above right=-1pt,scale=0.75,warninglight] at (740,{planck(740,4000)}) {\SI{4000}{K}};
     \node[above right=-1pt,scale=0.75,midblue] at (800,{planck(800,5000)}) {\SI{5000}{K}};
    
     
