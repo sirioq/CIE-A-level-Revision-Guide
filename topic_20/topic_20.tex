@@ -190,7 +190,18 @@ $$qE = BQv \quad \Rightarrow \quad v = \frac{E}{B}$$
 
 \vspace{1.2em}
 
-% Solenoid field (kept as before)
+% Solenoid field 
+
+
+\def\dx{0.45}
+\def\N{10}
+\def\xstart{0}
+\def\ytop{0.9}
+\def\ybot{-0.9}
+\pgfmathsetmacro{\xend}{\xstart+\N*\dx}
+\pgfmathsetmacro{\xmid}{(\xstart+\xend)/2}
+\def\ext{1.5}
+\def\lh{2.1}
 \begin{tikzpicture}[scale=1.8]
 
   % ── Dot symbols on top ─────────────────────────────────────
