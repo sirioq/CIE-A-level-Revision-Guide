@@ -115,15 +115,16 @@ $$W = \text{area of triangle} = \tfrac{1}{2} \times Q \times V = \tfrac{1}{2}QV$
 
 \begin{center}
 \begin{tikzpicture}[scale=4]
+% Shaded triangle = energy
+  \fill[pinklight] (0,0) -- (1.0,1.0) -- (1.0,0) -- cycle;
+  \draw[pinkframe, thick] (0,0) -- (1.0,1.0) -- (1.0,0) -- cycle;
   \draw[->, darkblue, thick] (0,0) -- (1.4,0)
     node[anchor=north, font=\small] {Charge $Q$};
   \draw[->, darkblue, thick] (0,0) -- (0,1.4)
     node[anchor=east, font=\small] {Voltage $V$};
   % Line V = Q/C (gradient = 1/C)
   \draw[midblue, thick] (0,0) -- (1.1,1.1);
-  % Shaded triangle = energy
-  \fill[pinklight] (0,0) -- (1.0,1.0) -- (1.0,0) -- cycle;
-  \draw[pinkframe, thick] (0,0) -- (1.0,1.0) -- (1.0,0) -- cycle;
+  
   % Labels
   \node[darkgray, font=\small, anchor=north] at (1.0,-0.03) {$Q_0$};
   \node[darkgray, font=\small, anchor=east]  at (-0.03,1.0) {$V_0$};
@@ -320,6 +321,8 @@ $$C_T = \mathbf{1.0\ \mu\text{F}}$$
 \end{minipage}
 
 \end{tcolorbox}
+
+\pagebreak
 
 \subsection*{Section B — Longer Structured Questions}
 
