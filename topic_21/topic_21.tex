@@ -164,10 +164,10 @@ A bridge rectifier uses \textbf{four diodes} arranged in a diamond so that:
   \coordinate (RIGHT) at (6, 3);
 
   % Four diodes — conventional current flows: LEFT->TOP, BOT->LEFT, TOP->RIGHT, RIGHT->BOT
-  \draw (LEFT)  to[full diode, l=$D_1$, *-*] (TOP);
-  \draw (LEFT)   to[diode, l_=$D_2$, *-*] (BOT);
-  \draw (TOP)   to[diode, l=$D_3$, *-*] (RIGHT);
-  \draw (BOT) to[full diode, l_=$D_4$, *-*] (RIGHT);
+  \draw (LEFT)  to[full diode, l=$D_3$, *-*] (TOP);
+  \draw (LEFT)   to[diode, l_=$D_4$, *-*] (BOT);
+  \draw (TOP)   to[diode, l=$D_1$, *-*] (RIGHT);
+  \draw (BOT) to[full diode, l_=$D_2$, *-*] (RIGHT);
 
   % AC source on the left (LEFT to BOT via external wire)
   \draw (TOP) -- (-1,6) ;
