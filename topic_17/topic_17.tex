@@ -265,7 +265,7 @@ $x_0$ & = amplitude (m) \\
 \subsubsection*{Amplitude–frequency graph (resonance curves)}
 
 \begin{center}
-\begin{tikzpicture}[xscale=2.8, yscale=1.6]
+\begin{tikzpicture}[xscale=3.2, yscale=2]
   % Axes
   \draw[->, darkblue, thick] (-0.1,0) -- (2.2,0)
     node[anchor=north, font=\small] {Driving frequency $f$};
@@ -283,12 +283,12 @@ $x_0$ & = amplitude (m) \\
 
   % Medium damping — lower broader peak, shifted slightly left
   \draw[darkgray, thick, domain=0.05:2.0, samples=400, smooth]
-    plot (\x, { 0.095 / sqrt( (\x*\x - 1)^2 + 0.08*\x*\x ) });
+    plot (\x, { 0.15 / sqrt( (\x*\x - 1)^2 + 0.08*\x*\x ) });
   \node[darkgray, font=\small, anchor=west] at (1.12, 0.88) {medium};
 
   % Heavy damping — broad low peak, noticeably left of f0
   \draw[pinkframe, thick, domain=0.05:2.0, samples=400, smooth]
-    plot (\x, { 0.065 / sqrt( (\x*\x - 1)^2 + 0.50*\x*\x ) });
+    plot (\x, { 0.15 / sqrt( (\x*\x - 1)^2 + 0.50*\x*\x ) });
   \node[pinkframe, font=\small, anchor=east] at (0.78, 0.40) {heavy};
 \end{tikzpicture}
 \end{center}
