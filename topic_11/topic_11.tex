@@ -1,0 +1,667 @@
+% topic_11.tex — Content only. Compiled via main.tex.
+% ── No \documentclass, \begin{document} or \end{document} here ──
+
+\chapteropener{11}{Particle Physics}{%
+  \item Atoms, Nuclei and Radiation
+  \item Types of Radiation: $\alpha$, $\beta$ and $\gamma$
+  \item Radioactive Decay Equations
+  \item Fundamental Particles: Quarks
+  \item Hadrons, Baryons and Mesons
+  \item Leptons and Beta Decay
+}
+
+% ===== SECTION 1: THE NUCLEAR ATOM =====
+\section{Atoms, Nuclei and Radiation}
+
+\begin{definitionbox}{The Nuclear Atom}
+The \textbf{Geiger--Marsden} $\alpha$-particle scattering experiment (directed $\alpha$-particles at thin gold foil) showed:
+\begin{itemize}[itemsep=2pt]
+  \item Most $\alpha$-particles passed straight through $\Rightarrow$ the atom is mostly empty space.
+  \item A small fraction were deflected through large angles $\Rightarrow$ a dense, positively charged nucleus exists.
+  \item A very few bounced back ($> 90^\circ$) $\Rightarrow$ the nucleus is very small compared to the atom.
+\end{itemize}
+\end{definitionbox}
+
+\subsubsection*{Rutherford scattering diagram}
+
+\begin{center}
+\begin{tikzpicture}[scale=1.0]
+  % Nucleus
+  \filldraw[fill=pinkframe!40, draw=pinkframe, thick] (0,0) circle (0.18);
+  \node[pinkframe, font=\footnotesize\bfseries, anchor=west] at (0.22,0) {nucleus ($+$)};
+
+  % Most pass straight through
+  \foreach \y in {0.7, 1.1, 1.5} {
+    \draw[->, darkblue, thick] (-2.5,\y) -- (2.5,\y);
+  }
+
+  % Slightly deflected
+  \draw[->, midblue, thick] (-2.5, 0.25) -- (0.0, 0.25) -- (2.5, 0.5);
+
+  % Large angle deflection
+  \draw[->, pinkframe, thick] (-2.5,-0.1) -- (-0.22, 0.02) -- (-1.2, 1.4);
+
+  % Back-scatter
+  %\draw[->, pinkframe, thick] (-2.5,-0.4) -- (-0.21, -0.05) -- (-2.0,-0.4);
+
+  % Labels
+  \node[darkblue, font=\footnotesize, anchor=west] at (2.55, 1.1) {undeflected};
+  \node[midblue, font=\footnotesize, anchor=west] at (2.55, 0.5) {small deflection};
+  \node[pinkframe, font=\footnotesize, anchor=south] at (-1.2, 1.45) {large deflection};
+ % \node[pinkframe, font=\footnotesize, anchor=east] at (-2.05, -0.4) {back-scattered};
+
+  % Incoming label
+  \node[darkblue, font=\footnotesize, anchor=east] at (-2.6, 1.1) {$\alpha$-particles};
+\end{tikzpicture}
+\end{center}
+
+\begin{definitionbox}{Nuclear Notation}
+A \textbf{nuclide} is a specific nuclear species characterised by its proton and nucleon numbers:
+$$\isotope[A][Z]{X}$$
+\begin{itemize}[itemsep=2pt]
+  \item $A$ = \textbf{nucleon number} (mass number): total number of protons + neutrons.
+  \item $Z$ = \textbf{proton number} (atomic number): number of protons.
+  \item Number of neutrons $N = A - Z$.
+  \item \textbf{Isotopes}: atoms of the same element (same $Z$) with different numbers of neutrons (different $A$).
+\end{itemize}
+\end{definitionbox}
+
+\begin{keybox}{Conservation Laws in Nuclear Processes}
+In every nuclear reaction or decay, the following are always conserved:
+\begin{itemize}[itemsep=2pt]
+  \item \textbf{Nucleon number} $A$ (total count of protons + neutrons).
+  \item \textbf{Charge} (equivalently, proton number $Z$).
+%  \item Mass--energy and momentum are also conserved (not required at this level).
+\end{itemize}
+These two conservation laws are the key tool for balancing decay equations.
+\end{keybox}
+
+\begin{definitionbox}{Unified Atomic Mass Unit}
+The \textbf{unified atomic mass unit} (u) is defined as exactly $\tfrac{1}{12}$ of the mass of a carbon-12 atom.
+$$1\ \text{u} = 1.661 \times 10^{-27}\ \text{kg}$$
+Approximate masses: proton $\approx 1\ \text{u}$; neutron $\approx 1\ \text{u}$; electron $\approx 0.00055\ \text{u}$.
+\end{definitionbox}
+
+% ===== SECTION 2: TYPES OF RADIATION =====
+\section{Types of Radiation: $\alpha$, $\beta$ and $\gamma$}
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{@{} l p{2.8cm} p{2.0cm} p{2.2cm} p{3.4cm} @{}}
+\toprule
+\textbf{Radiation} & \textbf{Composition} & \textbf{Charge} & \textbf{Mass} & \textbf{Stopped by} \\
+\midrule
+$\alpha$ (alpha) & 2 protons + 2 neutrons (helium-4 nucleus) & $+2e$ & $4\ \text{u}$ & A few cm of air; thin paper \\
+$\beta^-$ (beta-minus) & Electron ($\mathrm{e}^-$) & $-e$ & $\approx 0$ ($\tfrac{1}{1836}$ u) & A few mm of aluminium \\
+$\beta^+$ (beta-plus) & Positron ($\mathrm{e}^+$) & $+e$ & $\approx 0$ ($\tfrac{1}{1836}$ u) & Annihilates with electron \\
+$\gamma$ (gamma) & Electromagnetic wave / photon & $0$ & $0$ & Several cm of lead \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{keybox}{Antiparticles}
+Every particle has a corresponding \textbf{antiparticle} with:
+\begin{itemize}[itemsep=2pt]
+  \item The \textbf{same mass} as the particle.
+  \item The \textbf{opposite charge} (and opposite quantum numbers).
+  \item The \textbf{positron} ($\beta^+$, $\mathrm{e}^+$) is the antiparticle of the electron ($\mathrm{e}^-$).
+  \item When a particle meets its antiparticle they \textbf{annihilate}, producing energy (usually two $\gamma$-ray photons).
+\end{itemize}
+\end{keybox}
+
+\begin{keybox}{Energies of Emitted Particles}
+\begin{itemize}[itemsep=2pt]
+  \item \textbf{$\alpha$-particles} are emitted with \textbf{discrete (fixed) energies}: each decay of a given nuclide always releases an $\alpha$-particle of the same kinetic energy, giving a sharp line spectrum.
+  \item \textbf{$\beta$-particles} have a \textbf{continuous range of energies} from zero up to a maximum: the total energy of the decay is shared between the $\beta$-particle and an (anti)neutrino, which can take any share — hence the continuous spectrum.
+  \item \textbf{(Anti)neutrinos} are produced in $\beta$-decay to account for this energy sharing and to conserve momentum and angular momentum.
+\end{itemize}
+\end{keybox}
+
+\begin{center}
+% Beta spectrum sketch
+\begin{tikzpicture}[xscale=6, yscale=4.2]
+  \draw[->, darkblue, thick] (-0.05,0) -- (1.15,0)
+    node[anchor=north, font=\small] {$E_k$};
+  \draw[->, darkblue, thick] (0,-0.05) -- (0,1)
+    node[anchor=east, font=\small] {Number of $\beta$-particles};
+  % Continuous beta spectrum curve
+  \draw[midblue, thick, domain=0.02:1.0, samples=120, smooth]
+    plot (\x, {4.5*\x*(1-\x)^2});
+  % Maximum energy marker
+  \draw[dashed, darkgray] (0.9,0) node[anchor=north, font=\small] {$E_{\max}$} -- (0.9,0.01);
+  \node[darkblue, font=\small\bfseries, anchor=north] at (0.55,-0.22)
+    {Continuous $\beta$ energy spectrum};
+\end{tikzpicture}
+\end{center}
+
+\begin{warningbox}{Common Mistake}
+Students often state that $\beta$-particles have a fixed energy like $\alpha$-particles. They do not — the continuous spectrum is direct evidence for neutrino emission. The \textbf{maximum} $\beta$ energy equals the total energy available from the decay (as if no neutrino were present).
+\end{warningbox}
+
+% ===== SECTION 3: RADIOACTIVE DECAY EQUATIONS =====
+\section{Radioactive Decay Equations}
+
+\subsubsection*{Alpha decay}
+
+In $\alpha$-decay, the nucleus emits a helium-4 nucleus ($\isotope[4][2]{\alpha}$). Both $A$ and $Z$ decrease:
+$$\isotope[A][Z]{X} \longrightarrow \isotope[A-4][Z-2]{Y} + \isotope[4][2]{\alpha}$$
+
+\textit{Example:}
+$$\isotope[238][92]{U} \longrightarrow \isotope[234][90]{Th} + \isotope[4][2]{\alpha}$$
+
+Check: $A$: $238 = 234 + 4$ \checkmark;\quad $Z$: $92 = 90 + 2$ \checkmark
+
+\subsubsection*{Beta-minus decay ($\beta^-$)}
+
+A neutron converts to a proton; an electron and an electron antineutrino are emitted. $A$ is unchanged; $Z$ increases by 1:
+$$\isotope[A][Z]{X} \longrightarrow \isotope[A][Z+1]{Y} + \isotope[0][-1]{e} + \bar{\nu}_e$$
+
+\textit{Example:}
+$$\isotope[14][6]{C} \longrightarrow \isotope[14][7]{N} + \isotope[0][-1]{e} + \bar{\nu}_e$$
+
+\subsubsection*{Beta-plus decay ($\beta^+$)}
+
+A proton converts to a neutron; a positron and an electron neutrino are emitted. $A$ is unchanged; $Z$ decreases by 1:
+$$\isotope[A][Z]{X} \longrightarrow \isotope[A][Z-1]{Y} + \isotope[0][+1]{e} + \nu_e$$
+
+\subsubsection*{Gamma emission}
+
+$\gamma$-radiation accompanies $\alpha$ or $\beta$ decay when the daughter nucleus is left in an excited state. Neither $A$ nor $Z$ changes:
+$$\isotope[A][Z]{X^*} \longrightarrow \isotope[A][Z]{X} + \gamma$$
+
+\begin{formulabox}{Decay Equation Summary}
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{@{} l c c l @{}}
+\toprule
+\textbf{Decay} & $\Delta A$ & $\Delta Z$ & \textbf{Particles emitted} \\
+\midrule
+$\alpha$ & $-4$ & $-2$ & $\isotope[4][2]{\alpha}$ \\
+$\beta^-$ & $0$ & $+1$ & $\isotope[0][-1]{e}$, $\bar{\nu}_e$ \\
+$\beta^+$ & $0$ & $-1$ & $\isotope[0][+1]{e}$, $\nu_e$ \\
+$\gamma$ & $0$ & $0$ & $\gamma$ photon \\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{formulabox}
+
+% ===== SECTION 4: QUARKS =====
+\section{Fundamental Particles: Quarks}
+
+\begin{definitionbox}{Quarks}
+A \textbf{quark} is a fundamental, point-like particle. There are \textbf{six flavours} of quark (and six corresponding antiquarks):
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{@{} l c c @{}}
+\toprule
+\textbf{Flavour} & \textbf{Symbol} & \textbf{Charge} \\
+\midrule
+up    & u & $+\tfrac{2}{3}e$ \\
+down  & d & $-\tfrac{1}{3}e$ \\
+strange & s & $-\tfrac{1}{3}e$ \\
+charm & c & $+\tfrac{2}{3}e$ \\
+top   & t & $+\tfrac{2}{3}e$ \\
+bottom & b & $-\tfrac{1}{3}e$ \\
+\bottomrule
+\end{tabular}
+\qquad
+\begin{tabular}{@{} l c c @{}}
+\toprule
+\textbf{Antiquark} & \textbf{Symbol} & \textbf{Charge} \\
+\midrule
+anti-up    & $\bar{\text{u}}$ & $-\tfrac{2}{3}e$ \\
+anti-down  & $\bar{\text{d}}$ & $+\tfrac{1}{3}e$ \\
+anti-strange & $\bar{\text{s}}$ & $+\tfrac{1}{3}e$ \\
+anti-charm & $\bar{\text{c}}$ & $-\tfrac{2}{3}e$ \\
+anti-top   & $\bar{\text{t}}$ & $-\tfrac{2}{3}e$ \\
+anti-bottom & $\bar{\text{b}}$ & $+\tfrac{1}{3}e$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+\vspace{0.3em}
+\textit{Only up and down quarks are required for protons and neutrons; strange, charm, top and bottom are examined only for their charges.}
+\end{definitionbox}
+
+\begin{keybox}{Quark Composition of Proton and Neutron}
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{@{} l c c c @{}}
+\toprule
+\textbf{Particle} & \textbf{Quarks} & \textbf{Charge calculation} & \textbf{Total charge} \\
+\midrule
+Proton  & uud & $\tfrac{2}{3}e + \tfrac{2}{3}e - \tfrac{1}{3}e$ & $+e$ \\
+Neutron & udd & $\tfrac{2}{3}e - \tfrac{1}{3}e - \tfrac{1}{3}e$ & $0$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{keybox}
+
+\begin{center}
+% Quark diagram: proton and neutron side by side
+\begin{tikzpicture}[scale=1.0]
+  % --- Proton ---
+  \draw[thick, darkblue] (0,0) circle (1.1);
+  \node[darkblue, font=\small\bfseries, anchor=south] at (0,1.15) {Proton ($+e$)};
+  % u quark top-left
+  \filldraw[fill=midblue!30, draw=midblue, thick] (-0.45, 0.45) circle (0.3);
+  \node[font=\small\bfseries] at (-0.45, 0.45) {u};
+  % u quark top-right
+  \filldraw[fill=midblue!30, draw=midblue, thick] (0.45, 0.45) circle (0.3);
+  \node[font=\small\bfseries] at (0.45, 0.45) {u};
+  % d quark bottom
+  \filldraw[fill=pinkframe!30, draw=pinkframe, thick] (0, -0.45) circle (0.3);
+  \node[font=\small\bfseries] at (0, -0.45) {d};
+
+  % --- Neutron ---
+  \draw[thick, darkblue] (3.5,0) circle (1.1);
+  \node[darkblue, font=\small\bfseries, anchor=south] at (3.5,1.15) {Neutron ($0$)};
+  % u quark top
+  \filldraw[fill=midblue!30, draw=midblue, thick] (3.5, 0.45) circle (0.3);
+  \node[font=\small\bfseries] at (3.5, 0.45) {u};
+  % d quark bottom-left
+  \filldraw[fill=pinkframe!30, draw=pinkframe, thick] (3.05, -0.45) circle (0.3);
+  \node[font=\small\bfseries] at (3.05, -0.45) {d};
+  % d quark bottom-right
+  \filldraw[fill=pinkframe!30, draw=pinkframe, thick] (3.95, -0.45) circle (0.3);
+  \node[font=\small\bfseries] at (3.95, -0.45) {d};
+
+  % Legend
+  \filldraw[fill=midblue!30, draw=midblue] (5.5,0.45) circle (0.2);
+  \node[font=\footnotesize, anchor=west] at (5.75, 0.45) {u quark ($+\tfrac{2}{3}e$)};
+  \filldraw[fill=pinkframe!30, draw=pinkframe] (5.5,-0.1) circle (0.2);
+  \node[font=\footnotesize, anchor=west] at (5.75, -0.1) {d quark ($-\tfrac{1}{3}e$)};
+\end{tikzpicture}
+\end{center}
+
+% ===== SECTION 5: HADRONS, BARYONS AND MESONS =====
+\section{Hadrons, Baryons and Mesons}
+
+\begin{definitionbox}{Hadrons}
+A \textbf{hadron} is any particle made of quarks. Hadrons are subdivided into two classes:
+\begin{itemize}[itemsep=2pt]
+  \item \textbf{Baryons}: composed of \textbf{three quarks} (qqq). Examples: proton (uud), neutron (udd).
+  \item \textbf{Mesons}: composed of \textbf{one quark and one antiquark} (q$\bar{\text{q}}$). Examples: pion ($\pi^+$ = u$\bar{\text{d}}$).
+\end{itemize}
+Protons and neutrons are \textbf{not} fundamental particles — they are baryons made of quarks.
+\end{definitionbox}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{@{} l l l l @{}}
+\toprule
+\textbf{Class} & \textbf{Quark content} & \textbf{Example} & \textbf{Charge} \\
+\midrule
+Baryon & qqq (three quarks) & Proton (uud) & $+e$ \\
+Baryon & qqq (three quarks) & Neutron (udd) & $0$ \\
+Meson  & q$\bar{\text{q}}$ (quark + antiquark) & $\pi^+$ (u$\bar{\text{d}}$) & $+e$ \\
+Meson  & q$\bar{\text{q}}$ (quark + antiquark) & $\pi^-$ ($\bar{\text{u}}$d) & $-e$ \\
+Meson  & q$\bar{\text{q}}$ (quark + antiquark) & $\pi^0$ (u$\bar{\text{u}}$ or d$\bar{\text{d}}$) & $0$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+% ===== SECTION 6: LEPTONS AND BETA DECAY =====
+\section{Leptons and Beta Decay}
+
+\begin{definitionbox}{Leptons}
+\textbf{Leptons} are fundamental (point-like, not made of quarks) particles. The leptons required at A-level are:
+\begin{itemize}[itemsep=2pt]
+  \item \textbf{Electron} ($\mathrm{e}^-$) — charge $-e$.
+  \item \textbf{Positron} ($\mathrm{e}^+$) — antiparticle of electron; charge $+e$.
+  \item \textbf{Electron neutrino} ($\nu_e$) — charge $0$; produced in $\beta^+$ decay.
+  \item \textbf{Electron antineutrino} ($\bar{\nu}_e$) — charge $0$; produced in $\beta^-$ decay.
+\end{itemize}
+\end{definitionbox}
+
+\begin{keybox}{Quark Changes in Beta Decay}
+Beta decay occurs because a quark changes flavour inside a nucleon:
+
+\vspace{0.5em}
+\begin{center}
+\renewcommand{\arraystretch}{1.6}
+\begin{tabular}{@{} l l l l @{}}
+\toprule
+\textbf{Decay} & \textbf{Quark change} & \textbf{Nucleon change} & \textbf{Particles emitted} \\
+\midrule
+$\beta^-$ & $\mathrm{d} \to \mathrm{u}$ & Neutron $\to$ Proton & $\mathrm{e}^-$ + $\bar{\nu}_e$ \\
+$\beta^+$ & $\mathrm{u} \to \mathrm{d}$ & Proton $\to$ Neutron & $\mathrm{e}^+$ + $\nu_e$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{keybox}
+
+\subsubsection*{Quark-level picture of $\beta^-$ decay}
+
+\begin{center}
+\begin{tikzpicture}[scale=1.0, every node/.style={font=\small}]
+  % Neutron: udd
+  \node[darkblue, font=\small\bfseries] at (-2.5, 1.8) {Neutron (udd)};
+  \draw[thick, darkblue] (-2.5,0.8) circle (1.0);
+  \filldraw[fill=midblue!30, draw=midblue, thick] (-2.5, 1.3) circle (0.28);
+  \node[font=\small\bfseries] at (-2.5,1.3) {u};
+  \filldraw[fill=pinkframe!30, draw=pinkframe, thick] (-2.9, 0.5) circle (0.28);
+  \node[font=\small\bfseries] at (-2.9,0.5) {d};
+  \filldraw[fill=pinkframe!30, draw=pinkframe, thick] (-2.1, 0.5) circle (0.28);
+  \node[font=\small\bfseries] at (-2.1,0.5) {d};
+
+  % Arrow
+  \draw[->, very thick, darkblue] (-1.2, 0.8) -- (0.2, 0.8)
+    node[midway, above, font=\footnotesize] {$\beta^-$ decay};
+
+  % Proton: uud
+  \node[darkblue, font=\small\bfseries] at (1.5, 1.8) {Proton (uud)};
+  \draw[thick, darkblue] (1.5,0.8) circle (1.0);
+  \filldraw[fill=midblue!30, draw=midblue, thick] (1.5, 1.3) circle (0.28);
+  \node[font=\small\bfseries] at (1.5,1.3) {u};
+  \filldraw[fill=midblue!30, draw=midblue, thick] (1.1, 0.5) circle (0.28);
+  \node[font=\small\bfseries] at (1.1,0.5) {u};
+  \filldraw[fill=pinkframe!30, draw=pinkframe, thick] (1.9, 0.5) circle (0.28);
+  \node[font=\small\bfseries] at (1.9,0.5) {d};
+
+  % Products: e- and antineutrino
+  \draw[->, pinkframe, thick] (2.7,0.8) -- (3.8,1.4);
+  \node[pinkframe, anchor=west] at (3.85,1.4) {$\mathrm{e}^-$};
+  \draw[->, darkgray, thick] (2.7,0.7) -- (3.8,0.1);
+  \node[darkgray, anchor=west] at (3.85,0.1) {$\bar{\nu}_e$};
+
+  % Changed quark annotation
+  \draw[accentgold, dashed, thick, ->, rounded corners]
+    (-2.1, 0.22) .. controls (-1.0,-0.5) .. (1.1, 0.22);
+  \node[accentgold, font=\footnotesize] at (-0.5,-0.65) {d $\to$ u};
+\end{tikzpicture}
+\end{center}
+
+\begin{warningbox}{Neutrinos vs Antineutrinos}
+This is a common source of error in exams:
+\begin{itemize}[itemsep=2pt]
+  \item $\beta^-$ decay produces an \textbf{electron anti}neutrino ($\bar{\nu}_e$) — the antiparticle of the neutrino.
+  \item $\beta^+$ decay produces an \textbf{electron neutrino} ($\nu_e$).
+\end{itemize}
+A helpful check: the lepton number must be conserved. In $\beta^-$, a lepton of number $+1$ (the electron) is created alongside a lepton of number $-1$ (the antineutrino), giving net lepton number zero — matching the original nucleon.
+\end{warningbox}
+
+% ===== SECTION 7: FORMULA / FACT SUMMARY =====
+\section{Key Facts Summary}
+
+\begin{minipage}{\linewidth}
+\begin{tcolorbox}[colback=lightgold, colframe=accentgold]
+\begin{center}
+%\textbf{Particle Properties}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{@{} l c c c @{}}
+\toprule
+\textbf{Particle} & \textbf{Symbol} & \textbf{Charge} & \textbf{Type} \\
+\midrule
+Proton & p & $+e$ & Baryon (uud) \\
+Neutron & n & $0$ & Baryon (udd) \\
+Electron & $\mathrm{e}^-$ & $-e$ & Lepton \\
+Positron & $\mathrm{e}^+$ & $+e$ & Lepton (antiparticle of $\mathrm{e}^-$) \\
+Electron neutrino & $\nu_e$ & $0$ & Lepton \\
+Electron antineutrino & $\bar{\nu}_e$ & $0$ & Lepton \\
+$\alpha$-particle & $\isotope[4][2]{\alpha}$ & $+2e$ & Baryon (not fundamental) \\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{tcolorbox}
+
+\vspace{0.5em}
+\begin{tcolorbox}[colback=lightblue, colframe=darkblue]
+\textbf{Quark charges (to recall):}
+\quad u: $+\tfrac{2}{3}e$;\quad d: $-\tfrac{1}{3}e$;\quad s: $-\tfrac{1}{3}e$;\quad
+c: $+\tfrac{2}{3}e$;\quad t: $+\tfrac{2}{3}e$;\quad b: $-\tfrac{1}{3}e$
+
+\vspace{0.4em}
+\textbf{Antiquark charge = opposite of quark charge.}
+
+\vspace{0.4em}
+\textbf{Conservation laws in every nuclear/particle process:}
+nucleon number $A$; charge $Z$; lepton number.
+\end{tcolorbox}
+\end{minipage}
+
+% ===== SECTION 8: WORKED EXAMPLES =====
+\section{Worked Examples}
+
+\subsection*{Example 1 — Completing a Decay Equation}
+
+\textbf{Question:} Complete the following decay equation and identify the type of decay:
+$$\isotope[210][84]{Po} \longrightarrow \isotope[A][Z]{X} + \isotope[4][2]{\alpha}$$
+
+\begin{examplebox}{Solution}
+Conserve nucleon number $A$: \quad $210 = A + 4 \Rightarrow A = \mathbf{206}$
+
+Conserve charge $Z$: \quad $84 = Z + 2 \Rightarrow Z = \mathbf{82}$ (lead, Pb)
+
+$$\isotope[210][84]{Po} \longrightarrow \isotope[206][82]{Pb} + \isotope[4][2]{\alpha}$$
+
+This is \textbf{alpha decay} — the nucleon number decreases by 4 and the proton number by 2.
+\end{examplebox}
+
+\subsection*{Example 2 — Identifying Decay Type from Equation}
+
+\textbf{Question:} Identify the particle X and the type of decay in:
+$$\isotope[90][38]{Sr} \longrightarrow \isotope[90][39]{Y} + \isotope[0][-1]{e} + X$$
+
+\begin{examplebox}{Solution}
+$A$ is conserved: $90 = 90 + 0 + 0$ \checkmark
+
+$Z$: $38 = 39 + (-1) + 0$ \checkmark
+
+The emitted particles are an electron ($\beta^-$) and X. This is $\beta^-$ decay, so X must be an \textbf{electron antineutrino}: $X = \bar{\nu}_e$.
+
+$$\isotope[90][38]{Sr} \longrightarrow \isotope[90][39]{Y} + \isotope[0][-1]{e} + \bar{\nu}_e$$
+\end{examplebox}
+
+\subsection*{Example 3 — Quark Composition and Charge}
+
+\textbf{Question:} (a) State the quark composition of an antiproton. (b) Calculate its charge.
+
+\begin{examplebox}{Solution}
+\textbf{(a)} The proton has quark composition uud. The antiproton is its antiparticle, so every quark is replaced by its antiquark:
+$$\text{Antiproton} = \bar{\text{u}}\bar{\text{u}}\bar{\text{d}}$$
+
+\textbf{(b)} Charge $= -\tfrac{2}{3}e + (-\tfrac{2}{3}e) + \tfrac{1}{3}e = -\tfrac{3}{3}e = \mathbf{-e}$
+
+This confirms the antiproton has charge $-e$, equal in magnitude but opposite in sign to the proton.
+\end{examplebox}
+
+\pagebreak
+
+\subsection*{Example 4 — Quark Changes in $\beta^+$ Decay}
+
+\textbf{Question:} A proton undergoes $\beta^+$ decay. Write a full decay equation and describe the quark-level change.
+
+\begin{examplebox}{Solution}
+$$\isotope[1][1]{p} \longrightarrow \isotope[1][0]{n} + \isotope[0][+1]{e} + \nu_e$$
+
+At the quark level, one \textbf{up quark converts to a down quark}:
+$$\text{Proton (uud)} \longrightarrow \text{Neutron (udd)} + \mathrm{e}^+ + \nu_e$$
+
+Charge check: $+e \to 0 + e + 0$ \checkmark;\quad Nucleon number: $1 = 1 + 0 + 0$ \checkmark
+\end{examplebox}
+
+% ===== SECTION 9: PRACTICE QUESTIONS =====
+\section{Practice Exam Questions}
+
+\subsection*{Section A — Short Answer Questions}
+
+\begin{tcolorbox}[colback=white, colframe=midblue, breakable]
+
+\begin{minipage}{\linewidth}
+\textbf{Q1.} Describe the key observations from the $\alpha$-particle scattering experiment and explain what each tells us about atomic structure.
+\par\hfill\textit{[4 marks]}
+\vspace{4cm}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+\textbf{Q2.} Distinguish between nucleon number and proton number. Define the term \textit{isotope}.
+\par\hfill\textit{[3 marks]}
+\vspace{3cm}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+\textbf{Q3.} State the composition, charge and approximate mass (in u) of $\alpha$-, $\beta^-$- and $\gamma$-radiation.
+\par\hfill\textit{[5 marks]}
+\vspace{4.5cm}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+\textbf{Q4.} Explain why $\beta$-particles have a continuous energy spectrum, whereas $\alpha$-particles from a given nuclide have a fixed energy.
+\par\hfill\textit{[3 marks]}
+\vspace{3.5cm}
+\end{minipage}
+
+\end{tcolorbox}
+
+\subsection*{Section B — Longer Structured Questions}
+
+\begin{tcolorbox}[colback=white, colframe=midblue, breakable]
+
+\begin{minipage}{\linewidth}
+\textbf{Q5.} The nuclide $\isotope[226][88]{Ra}$ undergoes $\alpha$-decay.
+\end{minipage}
+
+\begin{enumerate}[label=(\alph*)]
+  \item \begin{minipage}[t]{\linewidth}
+  Write a balanced nuclear equation for this decay, identifying the daughter nuclide.
+  \par\hfill\textit{[2 marks]}
+  \vspace{3cm}
+  \end{minipage}
+
+  \item \begin{minipage}[t]{\linewidth}
+  State the two conservation laws used to balance the equation.
+  \par\hfill\textit{[2 marks]}
+  \vspace{2.5cm}
+  \end{minipage}
+
+  \item \begin{minipage}[t]{\linewidth}
+  Explain why the $\alpha$-particles emitted in this decay all have the same kinetic energy.
+  \par\hfill\textit{[2 marks]}
+  \vspace{3cm}
+  \end{minipage}
+\end{enumerate}
+
+\begin{minipage}{\linewidth}
+\textbf{Q6.} The nuclide $\isotope[14][6]{C}$ undergoes $\beta^-$ decay.
+\end{minipage}
+
+\begin{enumerate}[label=(\alph*)]
+  \item \begin{minipage}[t]{\linewidth}
+  Write a full balanced equation for this decay, including all particles emitted.
+  \par\hfill\textit{[2 marks]}
+  \vspace{3cm}
+  \end{minipage}
+
+  \item \begin{minipage}[t]{\linewidth}
+  Describe the quark-level change that occurs during this decay.
+  \par\hfill\textit{[2 marks]}
+  \vspace{3cm}
+  \end{minipage}
+
+  \item \begin{minipage}[t]{\linewidth}
+  State and explain whether the $\beta^-$ particles emitted have a fixed or continuous range of energies.
+  \par\hfill\textit{[2 marks]}
+  \vspace{3cm}
+  \end{minipage}
+\end{enumerate}
+
+\begin{minipage}{\linewidth}
+\textbf{Q7.} (a) State what is meant by a \textit{hadron} and distinguish between a baryon and a meson.
+\par\hfill\textit{[3 marks]}
+\vspace{3.5cm}
+
+(b) The particle $\pi^+$ is a meson with quark composition u$\bar{\text{d}}$. Show that this gives a charge of $+e$.
+\par\hfill\textit{[2 marks]}
+\vspace{3cm}
+
+(c) State the quark composition of an antiproton and calculate its charge.
+\par\hfill\textit{[2 marks]}
+\vspace{3cm}
+
+(d) Explain why electrons are \emph{not} classified as hadrons.
+\par\hfill\textit{[1 mark]}
+\vspace{2.5cm}
+\end{minipage}
+
+\end{tcolorbox}
+
+
+\pagebreak
+
+
+% ===== SECTION 10: MARK SCHEME =====
+\section{Mark Scheme and Answers}
+
+\begin{markscheme}
+
+\textbf{Q1.} Most $\alpha$-particles pass straight through $\Rightarrow$ atom is mostly empty space [1]; small fraction deflected through large angles $\Rightarrow$ concentrated positive charge (nucleus) exists [1]; very few back-scattered $\Rightarrow$ nucleus is very small / very dense [1]; all deflections from positive charge are consistent with electrostatic repulsion [1].
+
+\vspace{0.5em}\textbf{Q2.} \textbf{Nucleon number} ($A$): total number of protons + neutrons in a nucleus [1]; \textbf{proton number} ($Z$): number of protons only [1]; \textbf{isotopes}: atoms of the same element (same $Z$) with different numbers of neutrons (different $A$) [1].
+
+\vspace{0.5em}\textbf{Q3.} $\alpha$: 2 protons + 2 neutrons; charge $+2e$; mass $4\ \text{u}$ [2]. $\beta^-$: electron; charge $-e$; mass $\approx 0$ ($\tfrac{1}{1836}$ u) [2]. $\gamma$: electromagnetic radiation/photon; charge $0$; mass $0$ [1].
+
+\vspace{0.5em}\textbf{Q4.} In $\beta$-decay, an (anti)neutrino is also emitted [1]; the total energy is shared between the $\beta$-particle and the (anti)neutrino in varying proportions [1]; so the $\beta$-particle can have any energy from zero to a maximum — continuous spectrum [1]. For $\alpha$: only two products (daughter + $\alpha$); by conservation of energy and momentum, the $\alpha$ always takes the same fixed share [implied/bonus].
+
+\vspace{0.5em}\textbf{Q5(a).} $\isotope[226][88]{Ra} \to \isotope[222][86]{Rn} + \isotope[4][2]{\alpha}$ [2] (1 mark if equation has correct concept but arithmetic error).
+
+\vspace{0.5em}\textbf{Q5(b).} Conservation of nucleon number $A$ [1]; conservation of charge (proton number $Z$) [1].
+
+\vspace{0.5em}\textbf{Q5(c).} Only two products (daughter + $\alpha$) [1]; by conservation of energy and momentum, the $\alpha$ always receives the same fixed kinetic energy (discrete energy levels) [1].
+
+\vspace{0.5em}\textbf{Q6(a).} $\isotope[14][6]{C} \to \isotope[14][7]{N} + \isotope[0][-1]{e} + \bar{\nu}_e$ [2].
+
+\vspace{0.5em}\textbf{Q6(b).} A down quark converts to an up quark (d $\to$ u) [1]; inside a neutron, converting it to a proton [1].
+
+\vspace{0.5em}\textbf{Q6(c).} Continuous range [1]; because the energy is shared between the $\beta^-$ particle and the antineutrino in varying proportions [1].
+
+\vspace{0.5em}\textbf{Q7(a).} A hadron is a particle made of quarks [1]; a baryon consists of three quarks [1]; a meson consists of one quark and one antiquark [1].
+
+\vspace{0.5em}\textbf{Q7(b).} Charge $= +\tfrac{2}{3}e + \tfrac{1}{3}e$ [1] $= +e$ \checkmark [1].
+
+\vspace{0.5em}\textbf{Q7(c).} $\bar{\text{u}}\bar{\text{u}}\bar{\text{d}}$ [1]; charge $= -\tfrac{2}{3}e - \tfrac{2}{3}e + \tfrac{1}{3}e = -e$ [1].
+
+\vspace{0.5em}\textbf{Q7(d).} Electrons are leptons, not composed of quarks / not hadrons by definition [1].
+
+\end{markscheme}
+
+% ===== SECTION 11: REVISION CHECKLIST =====
+\newpage
+\section{Revision Checklist}
+
+Use this checklist to track your understanding. Tick each box when you are confident:
+
+\begin{tcolorbox}[colback=white, colframe=darkblue, breakable]
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{@{} c p{10.5cm} r @{}}
+\toprule
+ & \textbf{Learning Objective} & \textbf{Confidence (1--3)} \\
+\midrule
+$\square$ & Describe the $\alpha$-scattering experiment and interpret its results & \\
+$\square$ & Describe the nuclear model: protons, neutrons and orbital electrons & \\
+$\square$ & Distinguish nucleon number ($A$) from proton number ($Z$) & \\
+$\square$ & Define isotopes and use the notation \nf{^A_Z X} & \\
+$\square$ & State that nucleon number and charge are conserved in nuclear processes & \\
+$\square$ & Describe composition, mass and charge of $\alpha$, $\beta^-$, $\beta^+$ and $\gamma$ & \\
+$\square$ & State that a positron is the antiparticle of an electron (same mass, opposite charge) & \\
+$\square$ & State that $\bar{\nu}_e$ is produced in $\beta^-$ decay and $\nu_e$ in $\beta^+$ decay & \\
+$\square$ & Explain why $\beta$-particles have a continuous energy spectrum & \\
+$\square$ & Write balanced $\alpha$- and $\beta$-decay equations & \\
+$\square$ & Use the unified atomic mass unit (u) & \\
+$\square$ & State the six quark flavours and recall their charges & \\
+$\square$ & State the quark composition of the proton (uud) and neutron (udd) & \\
+$\square$ & Distinguish hadrons (baryons: qqq; mesons: q$\bar{\text{q}}$) from leptons & \\
+$\square$ & Describe the quark change in $\beta^-$ (d$\to$u) and $\beta^+$ (u$\to$d) decay & \\
+$\square$ & Recall that electrons and neutrinos are leptons & \\
+\bottomrule
+\end{tabular}
+\vspace{0.5em}
+
+\textit{Key: 1 = Need more work \quad 2 = Getting there \quad 3 = Confident}
+\end{tcolorbox}
+
+\vspace{1em}
+\begin{motivationbox}
+\centering
+\textbf{\color{darkblue}Good luck with your revision!}\\[0.2em]
+{\color{darkgray}\small Particle physics is really just careful bookkeeping. Every decay equation is balanced by two rules — conserve $A$, conserve $Z$ — and every quark change in $\beta$-decay is just one quark swapping flavour. Get those two ideas solid and the whole topic clicks into place.}
+\end{motivationbox}
+
