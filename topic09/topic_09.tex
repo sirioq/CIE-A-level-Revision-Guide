@@ -1,0 +1,620 @@
+% topic_09.tex — Content only. Compiled via main.tex.
+% ── No \documentclass, \begin{document} or \end{document} here ──
+
+\chapteropener{9}{Electricity}{%
+  \item Electric Current and Charge Carriers
+  \item Charge, Current and the Drift Velocity Equation
+  \item Potential Difference and Power
+  \item Resistance and Ohm's Law
+  \item I--V Characteristics
+  \item Resistivity, LDRs and Thermistors
+}
+
+% ===== SECTION 1: ELECTRIC CURRENT =====
+\section{Electric Current and Charge Carriers}
+
+\begin{definitionbox}{Electric Current}
+An \textbf{electric current} is a flow of \textbf{charge carriers}. In metals the charge carriers are free (conduction) electrons; in electrolytes and semiconductors, other carriers (ions, holes) may contribute.
+$$I = \frac{\Delta Q}{\Delta t} \qquad \Longrightarrow \qquad Q = It$$
+\begin{itemize}[itemsep=2pt]
+  \item $I$: current (A); \quad $Q$: charge (C); \quad $t$: time (s).
+  \item $1\ \text{A} = 1\ \text{C s}^{-1}$.
+  \item Conventional current flows from $+$ to $-$; electron flow is from $-$ to $+$.
+\end{itemize}
+\end{definitionbox}
+
+\begin{definitionbox}{Quantisation of Charge}
+The charge on any charge carrier is an \textbf{integer multiple} of the elementary charge $e$:
+$$Q = ne \qquad e = 1.60 \times 10^{-19}\ \text{C}$$
+Charge is \textbf{quantised} — it cannot take continuous values; it only exists in discrete packets of $e$.
+\end{definitionbox}
+
+% ===== SECTION 2: DRIFT VELOCITY =====
+\section{The Drift Velocity Equation}
+
+\tikzstyle{charge0}=[top color=green!80!black!50,bottom color=green!80!black,shading angle=20]
+\tikzstyle{charge+}=[top color=red!50,bottom color=red!70!black,shading angle=20]
+\tikzstyle{charge-}=[top color=blue!50,bottom color=blue!80,shading angle=20]
+\tikzstyle{metal}=[top color=black!15,bottom color=black!25,middle color=black!5,shading angle=10]
+\tikzset{
+  EField/.style={thick,decoration={markings,
+                 mark=at position #1 with {\arrow{latex}}},
+                 postaction={decorate}},
+  EField/.default=0.5}
+
+
+
+
+
+
+\begin{formulabox}{I = Anvq}
+For a conductor carrying current $I$:
+\begin{center}
+\Large $I = Anvq$
+\end{center}
+\vspace{0.3em}
+\begin{itemize}[itemsep=2pt]
+  \item $A$: cross-sectional area of conductor (m$^2$).
+  \item $n$: \textbf{number density} of charge carriers (m$^{-3}$) — number of carriers per unit volume.
+  \item $v$: \textbf{mean drift velocity} of carriers (m s$^{-1}$).
+  \item $q$: charge on each carrier (C); for electrons $q = e = 1.60\times10^{-19}\ \text{C}$.
+\end{itemize}
+\end{formulabox}
+
+
+\pagebreak
+
+\subsubsection*{Derivation of $I = Anvq$}
+
+\begin{center}
+
+
+% CONDUCTION MODEL
+\begin{tikzpicture}
+  \def\NE{3}
+  \def\L{6}
+  \def\a{0.3*\L}
+  \def\b{0.7*\L}
+  \def\Rx{0.4}
+  \def\Ry{1.0}
+  
+  \fill[metal] (0,-\Ry) arc (270:90:{\Rx} and {\Ry}) --++ ({\L},0) arc (90:-90:{\Rx} and {\Ry});
+  \draw[black!80] (0,-\Ry) arc (270:90:{\Rx} and {\Ry});
+  \draw[black!80,dashed] (\L,-\Ry) arc (270:90:{\Rx} and {\Ry});
+  \draw[black!40,dashed] (\a,-\Ry) arc (270:90:{\Rx} and {\Ry});
+  \draw[black!40,dashed] (\b,-\Ry) arc (270:90:{\Rx} and {\Ry});
+  
+ 
+    % Drift velocity arrow
+  \draw[->, thick, pinkframe] (2.5,0) -- (4,0)
+    node[midway, above, font=\footnotesize] {$v$};
+    
+      % Length label
+  \draw[<->, darkgray] (1.8,-1.2) -- (4.25,-1.2);
+  \node[darkgray, anchor=north] at (3,-1.2) {$\ell = vt$};
+    
+  \draw[black!80] (0,-\Ry) arc (-90:90:{\Rx} and {\Ry}) --++ (\L,0) arc (90:-90:{\Rx} and {\Ry}) -- cycle;
+  \draw[black!40] (\a,-\Ry) arc (-90:90:{\Rx} and {\Ry});
+  \draw[black!40] (\b,-\Ry) arc (-90:90:{\Rx} and {\Ry});
+
+  \node[left=6] at (0.5,0) {$A$};
+
+  
+    % Carriers
+  \foreach \x in {0.8,1.5,2.2,2.9,3.6,4.3,5.0,5.7} {
+    \filldraw[fill=midblue!40, draw=midblue] (\x, 0.15) circle (0.08);
+    \node[midblue, font=\tiny] at (\x, 0.15) {$-$};
+    \filldraw[fill=midblue!40, draw=midblue] (\x+0.3, -0.2) circle (0.08);
+    \node[midblue, font=\tiny] at (\x+0.3,-0.2) {$-$};
+        \filldraw[fill=midblue!40, draw=midblue] (\x+0.3, 0.5) circle (0.08);
+    \node[midblue, font=\tiny] at (\x+0.3,0.5) {$-$};
+    
+        \filldraw[fill=midblue!40, draw=midblue] (\x, -0.55) circle (0.08);
+    \node[midblue, font=\tiny] at (\x,-0.55) {$-$};
+  };
+  
+
+  
+\end{tikzpicture}
+
+\end{center}
+\begin{itemize}
+\item In time $t$, carriers travel distance $\ell = vt$. 
+
+\item Volume swept past the cross-section: $V = A\ell = Avt$.
+
+\item Number of carriers in this volume: $N = nAvt$.
+
+\item Total charge past the cross-section: $Q = Nq = nAvtq$.
+
+\item Therefore: $I = Q/t = nAvq$.
+\end{itemize}
+\begin{keybox}{Using I = Anvq to Compare Conductors}
+\begin{itemize}[itemsep=2pt]
+  \item \textbf{Metals} have very high $n$ ($\sim 10^{28}\ \text{m}^{-3}$) $\Rightarrow$ very slow drift velocity ($\sim$ mm s$^{-1}$) even for large currents.
+  \item \textbf{Semiconductors} have lower $n$ $\Rightarrow$ higher $v$ for the same current.
+  \item At a junction where the wire narrows ($A$ decreases), $v$ must increase (since $I$, $n$, $q$ are constant).
+  \item Increasing temperature in a metal barely changes $n$ but reduces $v$ (increased resistance).
+\end{itemize}
+\end{keybox}
+
+% ===== SECTION 3: POTENTIAL DIFFERENCE AND POWER =====
+\section{Potential Difference and Power}
+
+\begin{definitionbox}{Potential Difference}
+The \textbf{potential difference} (p.d.) across a component is defined as the \textbf{energy transferred per unit charge} passing through it.
+$$V = \frac{W}{Q}$$
+\begin{itemize}[itemsep=2pt]
+  \item $V$: potential difference (V); \quad $W$: energy transferred (J); \quad $Q$: charge (C).
+  \item Unit: volt (V) $\equiv$ J C$^{-1}$.
+  \item $1\ \text{V}$: 1 joule of energy transferred per coulomb of charge.
+\end{itemize}
+\end{definitionbox}
+
+\pagebreak
+
+\begin{formulabox}{Electrical Power}
+\begin{center}
+\Large $P = VI = I^2R = \dfrac{V^2}{R}$
+\end{center}
+\vspace{0.3em}
+\textit{Derivation:} Power is energy per unit time. $P = W/t = (QV)/t = IV$.
+Substituting $V = IR$: $P = I(IR) = I^2R$; or $I = V/R$: $P = (V/R)V = V^2/R$.
+\begin{itemize}[itemsep=2pt]
+  \item All three forms are equivalent for a resistor at any instant.
+  \item Use $P = VI$ when both $V$ and $I$ are known.
+  \item Use $P = I^2R$ when current and resistance are known.
+  \item Use $P = V^2/R$ when voltage and resistance are known.
+\end{itemize}
+\end{formulabox}
+
+\begin{warningbox}{Common Mistake}
+Energy is $W = Pt = VIt$, not $W = VI$. Always multiply power by time to get energy. Also, $P = V^2/R$ and $P = I^2R$ apply to a single resistor; for a circuit with multiple components, identify $V$ and $I$ for each component separately.
+\end{warningbox}
+
+% ===== SECTION 4: RESISTANCE AND OHM'S LAW =====
+\section{Resistance and Ohm's Law}
+
+\begin{definitionbox}{Resistance}
+The \textbf{resistance} of a component is defined as the ratio of the potential difference across it to the current flowing through it:
+$$R = \frac{V}{I}$$
+\begin{itemize}[itemsep=2pt]
+  \item Unit: ohm ($\Omega$) $\equiv$ V A$^{-1}$.
+  \item Resistance is a property of the component — it describes how much it opposes current flow.
+\end{itemize}
+\end{definitionbox}
+
+\begin{definitionbox}{Ohm's Law}
+\textbf{Ohm's law} states that the current through a metallic conductor is \textbf{directly proportional} to the potential difference across it, \textbf{provided the temperature remains constant}:
+$$V \propto I \quad \Leftrightarrow \quad V = IR \quad \text{($R$ constant)}$$
+A component that obeys Ohm's law is called \textbf{ohmic}. The $I$--$V$ graph for an ohmic conductor is a straight line through the origin.
+\end{definitionbox}
+
+\begin{warningbox}{Ohm's Law is not a Definition of Resistance}
+$R = V/I$ \emph{defines} resistance for any component. Ohm's law is a separate statement that $R$ is \emph{constant} (independent of $V$ and $I$) for a metallic conductor at constant temperature. Not all components obey Ohm's law.
+\end{warningbox}
+
+% ===== SECTION 5: I–V CHARACTERISTICS =====
+\section{$I$--$V$ Characteristics}
+
+\begin{center}
+% Three I-V graphs side by side
+\begin{tikzpicture}
+  % --- 1. Metallic conductor (ohmic) ---
+  \begin{scope}[xshift=0cm]
+    \draw[->, darkblue, thick] (-1.5,0) -- (1.7,0) node[anchor=north, font=\tiny] {$V$};
+    \draw[->, darkblue, thick] (0,-1.5) -- (0,1.7) node[anchor=east, font=\tiny] {$I$};
+    \draw[midblue, thick] (-1.3,-1.3) -- (1.3,1.3);
+    \node[darkblue, font=\footnotesize\bfseries, anchor=north] at (0,-1.8)
+      {Metallic conductor};
+    \node[darkgray, font=\tiny, anchor=north] at (0,-2.1) {(constant temp.)};
+  \end{scope}
+
+  % --- 2. Filament lamp ---
+  \begin{scope}[xshift=4.2cm]
+    \draw[->, darkblue, thick] (-1.5,0) -- (1.7,0) node[anchor=north, font=\tiny] {$V$};
+    \draw[->, darkblue, thick] (0,-1.5) -- (0,1.7) node[anchor=east, font=\tiny] {$I$};
+    % S-curve: gradient decreases (resistance increases) as V increases
+   % \draw[midblue, thick, domain=-1.3:1.3, samples=100, smooth]
+     % plot (\x, {1.2*(\x/abs(\x+0))*abs(\x)^0.55});
+      
+  \draw [midblue, thick](0,0) .. controls (.2,.2) and (.5,1.1) .. (1.7,1.2);
+     \draw [midblue, thick](0,0) .. controls (-.2,-.2) and (-.5,-1.1) ..(-1.7,-1.2);
+    
+    
+    
+    \node[darkblue, font=\footnotesize\bfseries, anchor=north] at (0,-1.8)
+      {Filament lamp};
+    \node[darkgray, font=\tiny, anchor=north] at (0,-2.1) {(gradient decreases)};
+  \end{scope}
+
+  % --- 3. Semiconductor diode ---
+  \begin{scope}[xshift=8.4cm]
+    \draw[->, darkblue, thick] (-1.5,0) -- (1.7,0) node[anchor=north, font=\tiny] {$V$};
+    \draw[->, darkblue, thick] (0,-1.5) -- (0,1.7) node[anchor=east, font=\tiny] {$I$};
+    % Forward bias: exponential-ish from ~0.6V
+  %  \draw[midblue, thick, domain=0:1.3, samples=80, smooth]
+     % plot (\x, {min(3, 0.12*exp(3.5*\x - 2))});
+      
+   %   \draw [midblue](0,0) -- (0.6,0) .. controls (1.2,.6) .. (1.5,1.3);
+      
+    % Reverse bias: tiny leakage then flat
+    %\draw[midblue, thick] (-1.3,-0.07) -- (-0.55,-0.07);
+    % Threshold voltage marker
+   \draw[dashed, darkgray, thin] (0.6,0) node[anchor=north, font=\tiny] {$\approx 0.6\ \text{V}$} -- (0.6,0.02);
+    \node[darkblue, font=\footnotesize\bfseries, anchor=north] at (0,-1.8)
+      {Semiconductor diode};
+    \node[darkgray, font=\tiny, anchor=north] at (0,-2.1) {(threshold $\approx 0.6\ \text{V}$)};
+    
+    \draw [rounded corners, midblue, thick] (-1.5,0)--(0.6,-0)--(1.3,1.4);
+    
+  \end{scope}
+\end{tikzpicture}
+
+
+
+\end{center}
+
+\begin{keybox}{Interpreting I--V Graphs}
+\begin{itemize}[itemsep=2pt]
+  \item \textbf{Metallic conductor (ohmic):} straight line through origin — gradient $= 1/R$ (constant). Both forward and reverse biased sections are identical straight lines.
+  \item \textbf{Filament lamp:} S-shaped curve — gradient decreases at high $V$ and $I$, meaning resistance increases. Cause: increasing current $\Rightarrow$ increasing temperature $\Rightarrow$ increased resistance (more collisions between electrons and vibrating lattice ions).
+  \item \textbf{Semiconductor diode:} conducts appreciably only above the \textbf{threshold voltage} ($\approx 0.6\ \text{V}$ for silicon) in the forward direction; in reverse bias, current is essentially zero (tiny reverse leakage).
+\end{itemize}
+\end{keybox}
+
+% ===== SECTION 6: RESISTIVITY, LDR AND THERMISTOR =====
+\section{Resistivity}
+
+\begin{formulabox}{Resistivity}
+The resistance of a uniform conductor depends on its material, length and cross-sectional area:
+\begin{center}
+\Large $R = \frac{\rho L}{A}$
+\end{center}
+\vspace{0.3em}
+\begin{itemize}[itemsep=2pt]
+  \item $\rho$: \textbf{resistivity} of the material ($\Omega\ \text{m}$).
+  \item $L$: length of conductor (m).
+  \item $A$: cross-sectional area (m$^2$).
+  \item Resistivity is a \textbf{material property} — it does not depend on the shape of the sample.
+  \item $R \propto L$ (double the length $\Rightarrow$ double the resistance).
+  \item $R \propto 1/A$ (double the area $\Rightarrow$ halve the resistance).
+\end{itemize}
+\end{formulabox}
+
+
+
+\begin{definitionbox}{Resistivity}
+The \textbf{resistivity} $\rho$ of a material is defined by:
+$$\rho = \frac{RA}{L}$$
+It is the resistance of a $1\ \text{m}$ cube of the material between opposite faces. Unit: $\Omega\ \text{m}$.
+\end{definitionbox}
+
+\section{LDRs and Thermistors}
+
+\begin{definitionbox}{Light-Dependent Resistor (LDR)}
+The \textbf{resistance of an LDR decreases} as \textbf{light intensity increases}.
+\begin{itemize}[itemsep=2pt]
+  \item In darkness: resistance can be $\sim\text{M}\Omega$.
+  \item In bright light: resistance falls to $\sim\text{k}\Omega$ or lower.
+  \item Mechanism: photons give electrons enough energy to break free and become charge carriers, increasing $n$ and thus conductivity.
+\end{itemize}
+\end{definitionbox}
+
+\begin{definitionbox}{Thermistor (NTC)}
+The \textbf{resistance of an NTC thermistor decreases} as \textbf{temperature increases}.
+\begin{itemize}[itemsep=2pt]
+  \item NTC = Negative Temperature Coefficient.
+  \item Mechanism: rising temperature gives more electrons enough energy to act as charge carriers, increasing $n$ and reducing resistivity.
+  \item Opposite behaviour to metals (where resistance \emph{increases} with temperature because $v$ is reduced).
+\end{itemize}
+\end{definitionbox}
+
+\begin{center}
+% Resistance vs temperature/light graphs side by side
+\begin{tikzpicture}
+  % --- Thermistor: R vs T ---
+  \begin{scope}[xshift=0cm, xscale=2.5, yscale=1.8]
+    \draw[->, darkblue, thick] (-0.1,0) -- (1.3,0)
+      node[anchor=north, font=\small] {Temperature};
+    \draw[->, darkblue, thick] (0,-0.1) -- (0,1.3)
+      node[anchor=east, font=\small] {$R$};
+    \draw[midblue, thick, domain=0.05:1.2, samples=60, smooth]
+      plot (\x, {0.9*exp(-3.0*\x) + 0.05});
+    \node[darkblue, font=\footnotesize\bfseries, anchor=north] at (0.6,-0.25)
+      {Thermistor (NTC)};
+  \end{scope}
+
+  % --- LDR: R vs light intensity ---
+  \begin{scope}[xshift=6cm, xscale=2.5, yscale=1.8]
+    \draw[->, darkblue, thick] (-0.1,0) -- (1.3,0)
+      node[anchor=north, font=\small] {Light intensity};
+    \draw[->, darkblue, thick] (0,-0.1) -- (0,1.3)
+      node[anchor=east, font=\small] {$R$};
+    \draw[midblue, thick, domain=0.05:1.2, samples=60, smooth]
+      plot (\x, {0.9*exp(-3.0*\x) + 0.05});
+    \node[darkblue, font=\footnotesize\bfseries, anchor=north] at (0.6,-0.25)
+      {LDR};
+  \end{scope}
+\end{tikzpicture}
+\end{center}
+
+\begin{keybox}{Comparing Metals Thermistors and LDRs}
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{@{} l l l @{}}
+\toprule
+\textbf{Component} & \textbf{Effect on resistance} & \textbf{Reason} \\
+\midrule
+Metal wire & Resistance \textbf{increases} with $T$ & More lattice vibration; $v$ decreases \\
+NTC Thermistor & Resistance \textbf{decreases} with $T$ & More charge carriers; $n$ increases \\
+LDR & Resistance \textbf{decreases} with light & More charge carriers; $n$ increases \\
+Filament lamp & Resistance \textbf{increases} with $I$ & Temperature rises (same as metal) \\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{keybox}
+
+% ===== SECTION 7: FORMULA SUMMARY =====
+\section{Formula Summary Sheet}
+
+\begin{minipage}{\linewidth}
+\begin{tcolorbox}[colback=lightgold, colframe=accentgold]
+\renewcommand{\arraystretch}{1.8}
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Formula} & \textbf{Quantity} & \textbf{Units} \\
+\midrule
+$Q = It$ & Charge & C \\
+$Q = ne$ & Quantisation of charge & C \\
+$I = Anvq$ & Current (drift velocity) & A \\
+$V = W/Q$ & Potential difference & V \\
+$P = VI = I^2R = V^2/R$ & Electrical power & W \\
+$W = VIt$ & Electrical energy & J \\
+$R = V/I$ & Resistance (definition) & $\Omega$ \\
+$V = IR$ & Ohm's law & V \\
+$R = \rho L / A$ & Resistivity & $\Omega$ \\
+\bottomrule
+\end{tabular}
+\end{tcolorbox}
+
+\vspace{0.5em}
+\begin{tcolorbox}[colback=lightblue, colframe=darkblue]
+\textbf{Key definitions to learn word-for-word:}\\[0.3em]
+\textbf{P.d.:} energy transferred per unit charge through a component.\\[0.2em]
+\textbf{Resistance:} ratio of p.d.\ across a component to current through it ($R = V/I$).\\[0.2em]
+\textbf{Ohm's law:} current is directly proportional to p.d.\ at constant temperature.\\[0.2em]
+\textbf{Resistivity:} $\rho = RA/L$; a material property independent of sample dimensions.
+\end{tcolorbox}
+\end{minipage}
+
+
+\pagebreak
+
+% ===== SECTION 8: WORKED EXAMPLES =====
+\section{Worked Examples}
+
+\subsection*{Example 1 — Drift Velocity}
+
+\textbf{Question:} A copper wire of cross-sectional area $1.5\ \text{mm}^2$ carries a current of $3.0\ \text{A}$. The number density of free electrons in copper is $8.5\times10^{28}\ \text{m}^{-3}$. Calculate the mean drift velocity of the electrons.
+
+\begin{examplebox}{Solution}
+Rearrange $I = Anvq$ for $v$:
+$$v = \frac{I}{Anq} = \frac{3.0}{(1.5\times10^{-6})(8.5\times10^{28})(1.60\times10^{-19})}$$
+$$v = \frac{3.0}{1.5\times10^{-6} \times 1.36\times10^{10}} = \frac{3.0}{2.04\times10^{4}} = \mathbf{1.47\times10^{-4}\ \text{m s}^{-1}}$$
+\textit{This is about $0.15\ \text{mm s}^{-1}$ — extremely slow, yet the effect of the current is felt almost instantaneously because the electric field propagates at close to the speed of light.}
+\end{examplebox}
+
+\subsection*{Example 2 — Power and Energy}
+
+\textbf{Question:} A $60\ \Omega$ resistor is connected to a $12\ \text{V}$ supply for $5.0\ \text{min}$. Calculate (a) the current, (b) the power dissipated, and (c) the total energy transferred.
+
+\begin{examplebox}{Solution}
+\textbf{(a)} \quad $I = V/R = 12/60 = \mathbf{0.20\ \text{A}}$
+
+\vspace{0.3em}
+\textbf{(b)} \quad $P = V^2/R = 144/60 = \mathbf{2.4\ \text{W}}$ \quad (or $P = I^2R = 0.04\times60 = 2.4\ \text{W}$  \checkmark)
+
+\vspace{0.3em}
+\textbf{(c)} \quad $W = Pt = 2.4 \times (5.0\times60) = 2.4\times300 = \mathbf{720\ \text{J}}$
+\end{examplebox}
+
+\subsection*{Example 3 — Resistivity}
+
+\textbf{Question:} A nichrome wire of length $0.80\ \text{m}$ and diameter $0.50\ \text{mm}$ has resistance $4.4\ \Omega$. Calculate the resistivity of nichrome.
+
+\begin{examplebox}{Solution}
+Cross-sectional area: $A = \pi r^2 = \pi(0.25\times10^{-3})^2 = 1.96\times10^{-7}\ \text{m}^2$
+
+$$\rho = \frac{RA}{L} = \frac{4.4 \times 1.96\times10^{-7}}{0.80} = \frac{8.63\times10^{-7}}{0.80} = \mathbf{1.08\times10^{-6}\ \Omega\ \text{m}}$$
+\end{examplebox}
+
+\subsection*{Example 4 — I--V Characteristic}
+
+\textbf{Question:} The current through a filament lamp increases from $0.20\ \text{A}$ to $0.60\ \text{A}$ when the voltage increases from $3.0\ \text{V}$ to $6.0\ \text{V}$. Show that the lamp does not obey Ohm's law.
+
+\begin{examplebox}{Solution}
+At $V = 3.0\ \text{V}$: $R_1 = V/I = 3.0/0.20 = 15\ \Omega$
+
+At $V = 6.0\ \text{V}$: $R_2 = V/I = 6.0/0.60 = 10\ \Omega$
+
+$R_1 \neq R_2$ — resistance is not constant; it decreases as current decreases (i.e.\ as temperature decreases). This is characteristic of a filament lamp: at higher current the filament is hotter and resistance is higher. The lamp \textbf{does not obey Ohm's law}.
+\end{examplebox}
+
+% ===== SECTION 9: PRACTICE QUESTIONS =====
+\section{Practice Exam Questions}
+
+\subsection*{Section A — Short Answer Questions}
+
+\begin{tcolorbox}[colback=white, colframe=midblue, breakable]
+
+\begin{minipage}{\linewidth}
+\textbf{Q1.} Define (a) electric current and (b) potential difference. State the SI unit of each.
+\par\hfill\textit{[4 marks]}
+\vspace{3.5cm}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+\textbf{Q2.} Explain what is meant by saying that charge is \textit{quantised}. A current of $2.5\ \text{mA}$ flows for $4.0\ \text{min}$. Calculate the charge transferred and the number of electrons passing a point.
+\par\hfill\textit{[4 marks]}
+\vspace{4cm}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+\textbf{Q3.} State Ohm's law and sketch the $I$--$V$ characteristics of (a) a metallic conductor at constant temperature and (b) a filament lamp. Explain why the graphs have different shapes.
+\par\hfill\textit{[5 marks]}
+\vspace{5.5cm}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+\textbf{Q4.} A semiconductor diode is connected in a circuit. Sketch the $I$--$V$ characteristic and mark the threshold voltage. Explain what happens in reverse bias.
+\par\hfill\textit{[3 marks]}
+\vspace{4cm}
+\end{minipage}
+
+\end{tcolorbox}
+
+\subsection*{Section B — Longer Structured Questions}
+
+\begin{tcolorbox}[colback=white, colframe=midblue, breakable]
+
+\begin{minipage}{\linewidth}
+\textbf{Q5.} A conductor has cross-sectional area $A$, number density of charge carriers $n$, and carries a current $I$.
+\end{minipage}
+
+\begin{enumerate}[label=(\alph*)]
+  \item \begin{minipage}[t]{\linewidth}
+  Derive the expression $I = Anvq$, defining all symbols.
+  \par\hfill\textit{[3 marks]}
+  \vspace{4cm}
+  \end{minipage}
+
+  \item \begin{minipage}[t]{\linewidth}
+  A copper wire ($n = 8.5\times10^{28}\ \text{m}^{-3}$, diameter $1.2\ \text{mm}$) carries a current of $5.0\ \text{A}$. Calculate the mean drift velocity of the electrons.
+  \par\hfill\textit{[3 marks]}
+  \vspace{3.5cm}
+  \end{minipage}
+
+  \item \begin{minipage}[t]{\linewidth}
+  The wire is replaced with one of the same material but half the diameter. The current remains $5.0\ \text{A}$. State and explain what happens to the drift velocity.
+  \par\hfill\textit{[2 marks]}
+  \vspace{3cm}
+  \end{minipage}
+\end{enumerate}
+
+\begin{minipage}{\linewidth}
+\textbf{Q6.} A uniform resistance wire of length $1.20\ \text{m}$ and cross-sectional area $3.5\times10^{-7}\ \text{m}^2$ is made of a material of resistivity $4.9\times10^{-7}\ \Omega\ \text{m}$.
+
+\begin{enumerate}[label=(\alph*)]
+  \item Calculate the resistance of the wire.
+  \par\hfill\textit{[2 marks]}
+  \vspace{3cm}
+
+  \item A potential difference of $6.0\ \text{V}$ is applied across the wire. Calculate the current through it and the power dissipated.
+  \par\hfill\textit{[3 marks]}
+  \vspace{3.5cm}
+
+  \item The wire is stretched so its length doubles but its volume remains constant. Show that the resistance increases by a factor of 4.
+  \par\hfill\textit{[3 marks]}
+  \vspace{4cm}
+\end{enumerate}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+\textbf{Q7.} A thermistor is connected in series with a $4.7\ \text{k}\Omega$ fixed resistor across a $9.0\ \text{V}$ supply. At $20\,^\circ\text{C}$ the thermistor has resistance $8.2\ \text{k}\Omega$.
+
+\begin{enumerate}[label=(\alph*)]
+  \item Calculate the current in the circuit and the voltage across the thermistor at $20\,^\circ\text{C}$.
+  \par\hfill\textit{[3 marks]}
+  \vspace{3.5cm}
+
+  \item Describe and explain what happens to the current as the temperature increases.
+  \par\hfill\textit{[2 marks]}
+  \vspace{3cm}
+
+  \item Calculate the power dissipated in the fixed resistor at $20\,^\circ\text{C}$.
+  \par\hfill\textit{[2 marks]}
+  \vspace{3cm}
+\end{enumerate}
+\end{minipage}
+
+\end{tcolorbox}
+
+
+\pagebreak
+
+% ===== SECTION 10: MARK SCHEME =====
+\section{Mark Scheme and Answers}
+
+\begin{markscheme}
+
+\textbf{Q1(a).} Electric current is the rate of flow of charge [1]; unit: ampere (A) [1].\\
+\textbf{Q1(b).} Potential difference is the energy transferred per unit charge through a component [1]; unit: volt (V) [1].
+
+\vspace{0.5em}\textbf{Q2.} Charge is quantised means it only exists in discrete multiples of $e = 1.60\times10^{-19}\ \text{C}$ [1]. $Q = It = 2.5\times10^{-3} \times 240 = \mathbf{0.60\ \text{C}}$ [1]. Number of electrons: $N = Q/e = 0.60/(1.60\times10^{-19}) = \mathbf{3.75\times10^{18}}$ [2].
+
+\vspace{0.5em}\textbf{Q3.} Ohm's law: current is proportional to p.d.\ at constant temperature [1]. Metallic conductor: straight line through origin [1]. Filament lamp: S-shaped curve, decreasing gradient [1]. Metal: $R$ constant so linear [1]; lamp: higher $I$ $\Rightarrow$ higher $T$ $\Rightarrow$ higher $R$, so gradient $I/V$ decreases [1].
+
+\vspace{0.5em}\textbf{Q4.} Correct exponential-ish forward curve with threshold $\approx 0.6\ \text{V}$ marked [2]; in reverse bias current is (approximately) zero — the diode blocks current [1].
+
+\vspace{0.5em}\textbf{Q5(a).} In time $t$, carriers move distance $vt$; volume $= Avt$; number $= nAvt$; charge $= nAvtq$; current $I = Q/t = nAvq$ [3].
+
+\vspace{0.5em}\textbf{Q5(b).} $A = \pi(0.6\times10^{-3})^2 = 1.131\times10^{-6}\ \text{m}^2$; $v = I/(Anq) = 5.0/(1.131\times10^{-6} \times 8.5\times10^{28} \times 1.60\times10^{-19}) = \mathbf{3.26\times10^{-4}\ \text{m s}^{-1}}$ [3].
+
+\vspace{0.5em}\textbf{Q5(c).} Diameter halves $\Rightarrow$ radius halves $\Rightarrow$ area reduces by factor 4 [1]; since $I = Anvq$ is constant and $A$ is quartered, $v$ must increase by factor 4 [1].
+
+\vspace{0.5em}\textbf{Q6(a).} $R = \rho L/A = (4.9\times10^{-7} \times 1.20)/(3.5\times10^{-7}) = \mathbf{1.68\ \Omega}$ [2].
+
+\vspace{0.5em}\textbf{Q6(b).} $I = V/R = 6.0/1.68 = \mathbf{3.57\ \text{A}}$ [1]; $P = VI = 6.0\times3.57 = \mathbf{21.4\ \text{W}}$ [2].
+
+\vspace{0.5em}\textbf{Q6(c).} Volume constant: $A'L' = AL$; $L' = 2L$ so $A' = A/2$ [1]; new $R' = \rho L'/A' = \rho(2L)/(A/2) = 4\rho L/A = 4R$ [2].
+
+\vspace{0.5em}\textbf{Q7(a).} $R_{\text{total}} = 8200 + 4700 = 12900\ \Omega$; $I = 9.0/12900 = \mathbf{6.98\times10^{-4}\ \text{A}}$ [2]; $V_T = IR_T = 6.98\times10^{-4}\times8200 = \mathbf{5.72\ \text{V}}$ [1].
+
+\vspace{0.5em}\textbf{Q7(b).} As temperature increases, thermistor resistance decreases [1]; total resistance decreases so current increases (from $V = IR$) [1].
+
+\vspace{0.5em}\textbf{Q7(c).} $P = I^2R = (6.98\times10^{-4})^2 \times 4700 = 4.87\times10^{-7}\times4700 = \mathbf{2.29\times10^{-3}\ \text{W}} \approx 2.3\ \text{mW}$ [2].
+
+\end{markscheme}
+
+% ===== SECTION 11: REVISION CHECKLIST =====
+\newpage
+\section{Revision Checklist}
+
+Use this checklist to track your understanding. Tick each box when you are confident:
+
+\begin{tcolorbox}[colback=white, colframe=darkblue, breakable]
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{@{} c p{10.5cm} r @{}}
+\toprule
+ & \textbf{Learning Objective} & \textbf{Confidence (1--3)} \\
+\midrule
+$\square$ & Understand that current is a flow of charge carriers & \\
+$\square$ & State that charge is quantised ($Q = ne$) & \\
+$\square$ & Use $Q = It$ to find charge, current or time & \\
+$\square$ & Use and derive $I = Anvq$, defining all terms & \\
+$\square$ & Define p.d.\ as energy transferred per unit charge; use $V = W/Q$ & \\
+$\square$ & Use all three power formulae: $P = VI$, $P = I^2R$, $P = V^2/R$ & \\
+$\square$ & Define resistance as $R = V/I$ & \\
+$\square$ & State Ohm's law and identify ohmic/non-ohmic behaviour & \\
+$\square$ & Sketch and interpret $I$--$V$ graphs for metal, filament lamp and diode & \\
+$\square$ & Explain why filament lamp resistance increases with current & \\
+$\square$ & Use $R = \rho L / A$ and define resistivity & \\
+$\square$ & Explain how resistance of an LDR depends on light intensity & \\
+$\square$ & Explain how resistance of an NTC thermistor depends on temperature & \\
+$\square$ & Distinguish the behaviour of metals from thermistors as temperature changes & \\
+\bottomrule
+\end{tabular}
+\vspace{0.5em}
+
+\textit{Key: 1 = Need more work \quad 2 = Getting there \quad 3 = Confident}
+\end{tcolorbox}
+
+\vspace{1em}
+\begin{motivationbox}
+\centering
+\textbf{\color{darkblue}Good luck with your revision!}\\[0.2em]
+{\color{darkgray}\small Everything in electricity connects through two equations: $Q = It$ and $V = W/Q$. All the power formulae, resistance definitions and drift velocity expression follow from those two ideas. Once you see that, the whole topic becomes a matter of careful substitution.}
+\end{motivationbox}
+
+
