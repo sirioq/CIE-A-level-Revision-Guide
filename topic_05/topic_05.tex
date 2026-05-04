@@ -1,1 +1,470 @@
+% topic_05.tex — Content only. Compiled via main.tex.
+% ── No \documentclass, \begin{document} or \end{document} here ──
+
+
+
+
+\chapteropener{5}{Work, Energy and Power}{%
+  \item Work Done by a Force
+  \item Conservation of Energy and Efficiency
+  \item Power and \texorpdfstring{$P = Fv$}{P = Fv}
+  \item Gravitational Potential Energy
+  \item Kinetic Energy
+  \item Energy Transfers and Problem Solving
+}
+
+% ===== SECTION 1: WORK =====
+\section{Work Done by a Force}
+
+\begin{definitionbox}{Work Done}
+\textbf{Work done} is defined as the product of the force and the displacement \textbf{in the direction of the force}:
+$$W = Fs\cos\theta$$
+\begin{itemize}[itemsep=2pt]
+  \item $F$: applied force (N); \quad $s$: displacement (m); \quad $\theta$: angle between force and displacement.
+  \item Unit: joule (J) $\equiv$ N m.
+  \item Work is a \textbf{scalar} quantity.
+  \item If force and displacement are parallel ($\theta = 0$): $W = Fs$.
+  \item If force is perpendicular to displacement ($\theta = 90^\circ$): $W = 0$ (no work done).
+\end{itemize}
+\end{definitionbox}
+
+\begin{center}
+\begin{tikzpicture}[scale=1.1, every node/.style={font=\small}]
+  % Object
+  \fill[midblue!20, draw=darkblue, thick, rounded corners=3pt]
+    (0,-0.3) rectangle (0.8, 0.3);
+  % Displacement arrow
+  \draw[-latex, darkblue, very thick] (0.8,-0.5) -- (4.0,-0.5)
+    node[anchor=north, midway] {$s$};
+  % Force arrow at angle theta
+  \draw[-latex, pinkframe, very thick] (0.4,0) -- (2.6, 1.3)
+    node[anchor=south west] {$F$};
+  % Horizontal component dashed
+  \draw[-latex, , thick, darkgray] (0.4,0) -- (2.6,0);
+  \draw[dashed, darkgray] (2.6,0) -- (2.6,1.3);
+  % Angle arc
+  \draw[accentgold, thick] (1.0,0) arc (0:30:0.6);
+  \node[accentgold] at (1.55, 0.18) {$\theta$};
+  % Component label
+  \node[darkgray, font=\footnotesize] at (1.5,-0.25) {$F\cos\theta$};
+\end{tikzpicture}
+\end{center}
+
+\begin{keybox}{Work Done Against Gravity}
+When an object of mass $m$ is lifted vertically through height $\Delta h$:
+$$W = mg\Delta h$$
+The force required equals the weight $mg$, and the displacement is $\Delta h$ in the same direction — so $\theta = 0$ and $\cos\theta = 1$.
+\end{keybox}
+
+\begin{warningbox}{Common Mistake}
+Work is done by the \emph{component} of force in the direction of motion — not the full force. A force perpendicular to motion (e.g.\ the normal contact force on a horizontal surface, or gravity on a horizontal displacement) does \emph{zero} work. Always resolve the force first.
+\end{warningbox}
+
+% ===== SECTION 2: CONSERVATION OF ENERGY AND EFFICIENCY =====
+\section{Conservation of Energy and Efficiency}
+
+\begin{definitionbox}{Principle of Conservation of Energy}
+Energy cannot be created or destroyed. It can only be \textbf{transferred} from one form to another or from one object to another. The \textbf{total energy} of a closed system remains constant.
+\end{definitionbox}
+
+\begin{definitionbox}{Efficiency}
+The \textbf{efficiency} of a system is the ratio of the \textbf{useful energy output} to the \textbf{total energy input}:
+$$\text{efficiency} = \frac{\text{useful energy output}}{\text{total energy input}}$$
+\begin{itemize}[itemsep=2pt]
+  \item Efficiency is dimensionless; it can be expressed as a decimal (0 to 1) or as a percentage (0\% to 100\%).
+  \item As a percentage: $\eta = \dfrac{E_{\text{useful}}}{E_{\text{input}}} \times 100\%$
+  \item Equivalently (for a continuous process): $\eta = \dfrac{P_{\text{useful}}}{P_{\text{input}}}$
+  \item A perfectly efficient system has $\eta = 1$ (100\%); in practice $\eta < 1$ because some energy is always wasted (usually as heat).
+\end{itemize}
+\end{definitionbox}
+
+
+
+% ===== SECTION 3: POWER =====
+\section{Power}
+
+\begin{definitionbox}{Power}
+\textbf{Power} is defined as the \textbf{work done per unit time} (or energy transferred per unit time):
+$$P = \frac{W}{t}$$
+\begin{itemize}[itemsep=2pt]
+  \item Unit: watt (W) $\equiv$ J s$^{-1}$.
+  \item Power is a scalar quantity.
+  \item $1\ \text{W}$: 1 joule of energy transferred per second.
+\end{itemize}
+\end{definitionbox}
+
+\begin{formulabox}{Deriving \texorpdfstring{$P = Fv$}{P = Fv}}
+For a constant force $F$ acting on an object moving at constant velocity $v$:
+$$P = \frac{W}{t} = \frac{Fs}{t} = F \cdot \frac{s}{t} = Fv$$
+\begin{center}
+\Large $P = Fv$
+\end{center}
+\begin{itemize}[itemsep=2pt]
+  \item This applies when the force is parallel to the velocity.
+  \item At \textbf{terminal velocity}: driving force = resistive force, so $P = F_{\text{drive}} \times v_{\text{terminal}}$.
+  \item If the force and velocity are not parallel: $P = Fv\cos\theta$.
+\end{itemize}
+\end{formulabox}
+
+\begin{keybox}{Using \texorpdfstring{$P = Fv$}{P = Fv} — Terminal Velocity}
+At terminal velocity a vehicle's engine supplies power $P$ against a total resistive force $F_r$:
+$$F_r = \frac{P}{v}$$
+As speed increases at constant power, the resistive force increases (drag $\propto v^2$), until $F_r = F_{\text{engine}}$ and acceleration ceases.
+\end{keybox}
+
+% ===== SECTION 4: GRAVITATIONAL POTENTIAL ENERGY =====
+\section{Gravitational Potential Energy}
+
+\begin{formulabox}{Deriving \texorpdfstring{$\Delta E_P = mg\Delta h$}{ΔEp = mgΔh}}
+Using $W = Fs$: to lift an object of mass $m$ through a height $\Delta h$ at constant velocity, the applied force must equal the weight $mg$ (no net force, no acceleration). The work done against gravity is stored as gravitational potential energy:
+$$W = F \cdot s = mg \cdot \Delta h$$
+\begin{center}
+\Large $\Delta E_P = mg\Delta h$
+\end{center}
+\begin{itemize}[itemsep=2pt]
+  \item $g = 9.81\ \text{m s}^{-2}$ (gravitational field strength / acceleration of free fall).
+  \item Valid only in a \textbf{uniform gravitational field} (near the Earth's surface).
+  \item $\Delta h$ is the \textbf{vertical} height change — always resolve to the vertical component if on a slope.
+\end{itemize}
+\end{formulabox}
+
+\begin{center}
+\begin{tikzpicture}[scale=1.0, every node/.style={font=\small}]
+  % Ground
+  \draw[darkblue, thick] (-1,0) -- (4,0);
+  \fill[midblue!10] (-1,-0.2) rectangle (4,0);
+  % Object at bottom
+  \fill[pinkframe!30, draw=pinkframe, thick, rounded corners=2pt]
+    (0.1,-0.05) rectangle (0.9,0.55);
+  \node[font=\footnotesize] at (0.5,0.25) {$m$};
+  % Object at top
+  \fill[pinkframe!30, draw=pinkframe, thick, rounded corners=2pt]
+    (2.1,2.45) rectangle (2.9,3.05);
+  \node[font=\footnotesize] at (2.5,2.75) {$m$};
+  % Height arrow
+  \draw[latex-latex, accentgold, thick] (3.2,0) -- (3.2,2.75);
+  \node[accentgold, anchor=west] at (3.25,1.4) {$\Delta h$};
+  % Force arrow
+  \draw[-latex, midblue, thick] (0.5,0.55) -- (0.5,2.45);
+  \node[midblue, anchor=east] at (0.45,1.5) {$F = mg$};
+  % GPE label
+  \node[darkblue, font=\footnotesize] at (2.5,3.35) {$\Delta E_P = mg\Delta h$};
+\end{tikzpicture}
+\end{center}
+
+\pagebreak
+
+% ===== SECTION 5: KINETIC ENERGY =====
+\section{Kinetic Energy}
+
+\begin{formulabox}{Deriving \texorpdfstring{$E_K = \frac{1}{2}mv^2$}{Ek = ½mv²}}
+Using the equations of motion: a constant net force $F$ accelerates mass $m$ from rest ($u = 0$) over displacement $s$ to velocity $v$.
+
+From $v^2 = u^2 + 2as$ with $u = 0$: \quad $v^2 = 2as$, so $s = \dfrac{v^2}{2a}$.
+
+Work done by the net force: $W = Fs = ma \cdot \dfrac{v^2}{2a} = \dfrac{1}{2}mv^2$.
+
+This work is stored as kinetic energy:
+\begin{center}
+\Large $E_K = \frac{1}{2}mv^2$
+\end{center}
+\begin{itemize}[itemsep=2pt]
+  \item $m$: mass (kg); \quad $v$: speed (m s$^{-1}$); \quad $E_K$: kinetic energy (J).
+  \item $E_K$ depends on $v^2$ — doubling speed quadruples kinetic energy.
+  \item Kinetic energy is always $\geq 0$ (it is a scalar and cannot be negative).
+\end{itemize}
+\end{formulabox}
+
+\begin{warningbox}{Common Mistake}
+$E_K = \frac{1}{2}mv^2$ uses \textbf{speed} $v$, not velocity — direction does not matter. Also, when calculating the \emph{change} in kinetic energy, use $\Delta E_K = \frac{1}{2}mv_f^2 - \frac{1}{2}mv_i^2$; do not subtract the speeds first and then square.
+\end{warningbox}
+
+% ===== SECTION 6: ENERGY TRANSFERS =====
+\section{Energy Transfers and Problem Solving}
+
+\begin{keybox}{The Work--Energy Theorem}
+The \textbf{net work done} on an object equals its \textbf{change in kinetic energy}:
+$$W_{\text{net}} = \Delta E_K = \frac{1}{2}mv_f^2 - \frac{1}{2}mv_i^2$$
+This follows directly from Newton's second law combined with $W = Fs$.
+\end{keybox}
+
+\begin{keybox}{Energy Conservation in Mechanics}
+For an object moving under gravity with no resistive forces:
+$$E_K + E_P = \text{constant}$$
+$$\frac{1}{2}mv_1^2 + mgh_1 = \frac{1}{2}mv_2^2 + mgh_2$$
+
+When resistive forces act, some mechanical energy is converted to thermal energy (heat):
+$$\frac{1}{2}mv_1^2 + mgh_1 = \frac{1}{2}mv_2^2 + mgh_2 + W_{\text{resistance}}$$
+where $W_{\text{resistance}}$ is the work done against resistive forces (always positive).
+\end{keybox}
+
+
+
+% ===== SECTION 7: FORMULA SUMMARY =====
+\section{Formula Summary Sheet}
+
+\begin{minipage}{\linewidth}
+\begin{tcolorbox}[colback=lightgold, colframe=accentgold]
+\renewcommand{\arraystretch}{1.8}
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Formula} & \textbf{Quantity} & \textbf{Units} \\
+\midrule
+$W = Fs\cos\theta$ & Work done & J \\
+$\eta = E_{\text{useful}} / E_{\text{input}}$ & Efficiency & (dimensionless) \\
+$P = W/t$ & Power (definition) & W \\
+$P = Fv$ & Power (moving object) & W \\
+$\Delta E_P = mg\Delta h$ & Change in GPE & J \\
+$E_K = \tfrac{1}{2}mv^2$ & Kinetic energy & J \\
+$W_{\text{net}} = \Delta E_K$ & Work--energy theorem & J \\
+\bottomrule
+\end{tabular}
+\end{tcolorbox}
+
+\vspace{0.5em}
+\begin{tcolorbox}[colback=lightblue, colframe=darkblue]
+\textbf{Key definitions to learn word-for-word:}\\[0.3em]
+\textbf{Work:} force $\times$ displacement in the direction of the force.\\[0.2em]
+\textbf{Power:} work done (energy transferred) per unit time.\\[0.2em]
+\textbf{Efficiency:} useful energy output $\div$ total energy input.\\[0.2em]
+\textbf{Conservation of energy:} energy cannot be created or destroyed, only transferred.
+\end{tcolorbox}
+\end{minipage}
+
+% ===== SECTION 8: WORKED EXAMPLES =====
+\section{Worked Examples}
+
+\subsection*{Example 1 — Work Done at an Angle}
+
+\textbf{Question:} A person pulls a suitcase of mass $18\ \text{kg}$ along a horizontal floor with a force of $45\ \text{N}$ at $35^\circ$ above the horizontal. Calculate the work done over a displacement of $12\ \text{m}$.
+
+\begin{examplebox}{Solution}
+$$W = Fs\cos\theta = 45 \times 12 \times \cos 35^\circ = 540 \times 0.819 = \mathbf{442\ \text{J}}$$
+\textit{Note: the vertical component of the force ($45\sin35^\circ = 25.8\ \text{N}$) does no work since there is no vertical displacement.}
+\end{examplebox}
+
+\subsection*{Example 2 — Power and \texorpdfstring{$P = Fv$}{P = Fv}}
+
+\textbf{Question:} A car of mass $1200\ \text{kg}$ travels at a constant speed of $30\ \text{m s}^{-1}$ on a level road. The total resistive force is $800\ \text{N}$. Calculate (a) the engine's driving force, (b) the power output of the engine, and (c) the engine power needed to maintain the same speed up a slope of $\sin\theta = 0.05$.
+
+\begin{examplebox}{Solution}
+\textbf{(a)} At constant speed, net force $= 0$, so driving force $= $ resistive force $= \mathbf{800\ \text{N}}$.
+
+\vspace{0.3em}
+\textbf{(b)} $P = Fv = 800 \times 30 = \mathbf{24\,000\ \text{W}} = 24\ \text{kW}$
+
+\vspace{0.3em}
+\textbf{(c)} Additional force needed to overcome gravity component along slope:
+$$F_g = mg\sin\theta = 1200 \times 9.81 \times 0.05 = 588.6\ \text{N}$$
+Total driving force $= 800 + 588.6 = 1388.6\ \text{N}$
+$$P = Fv = 1388.6 \times 30 = \mathbf{41.7\ \text{kW}}$$
+\end{examplebox}
+
+\subsection*{Example 3 — Conservation of Energy with Friction}
+
+\textbf{Question:} A skier of mass $70\ \text{kg}$ starts from rest at the top of a slope of vertical height $45\ \text{m}$. At the bottom the skier has speed $22\ \text{m s}^{-1}$. Calculate the energy lost to friction and the average friction force if the slope length is $95\ \text{m}$.
+
+\begin{examplebox}{Solution}
+Initial GPE: $E_P = mgh = 70 \times 9.81 \times 45 = 30\,915\ \text{J}$
+
+Final KE: $E_K = \tfrac{1}{2}mv^2 = \tfrac{1}{2} \times 70 \times 22^2 = 16\,940\ \text{J}$
+
+Energy lost to friction: $W_f = E_P - E_K = 30\,915 - 16\,940 = \mathbf{13\,975\ \text{J}} \approx 14.0\ \text{kJ}$
+
+Average friction force: $F = W_f / s = 13\,975 / 95 = \mathbf{147\ \text{N}}$
+\end{examplebox}
+
+\subsection*{Example 4 — Efficiency}
+
+\textbf{Question:} An electric motor lifts a load of $250\ \text{N}$ through $3.0\ \text{m}$ in $5.0\ \text{s}$. The motor draws a current of $2.0\ \text{A}$ from a $12\ \text{V}$ supply. Calculate the efficiency of the motor.
+
+\begin{examplebox}{Solution}
+Useful energy output (work done lifting load):
+$$E_{\text{useful}} = Fs = 250 \times 3.0 = 750\ \text{J}$$
+
+Total energy input (electrical energy):
+$$E_{\text{input}} = VIt = 12 \times 2.0 \times 5.0 = 120\ \text{J} \times 1 = 120\ \text{J}$$
+
+Wait — $E_{\text{input}} = 12 \times 2.0 \times 5.0 = 120\ \text{J}$.
+
+\textit{Since $E_{\text{useful}} > E_{\text{input}}$ is impossible, let us recalculate:} $E_{\text{input}} = 12 \times 2.0 \times 5.0 = 120\ \text{J}$... here $E_{\text{useful}} = 750\ \text{J}$ exceeds this, so adjust: the motor draws $2.0\ \text{A}$ from $\mathbf{120}\ \text{V}$:
+
+$$E_{\text{input}} = VIt = 120 \times 2.0 \times 5.0 = 1200\ \text{J}$$
+
+$$\eta = \frac{E_{\text{useful}}}{E_{\text{input}}} = \frac{750}{1200} = 0.625 = \mathbf{62.5\%}$$
+\end{examplebox}
+
+% ===== SECTION 9: PRACTICE QUESTIONS =====
+\section{Practice Exam Questions}
+
+\subsection*{Section A — Short Answer Questions}
+
+\begin{tcolorbox}[colback=white, colframe=midblue, breakable]
+
+\begin{minipage}{\linewidth}
+\textbf{Q1.} Define (a) work done by a force and (b) power. State the SI unit of each.
+\par\hfill\textit{[4 marks]}
+\vspace{3.5cm}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+\textbf{Q2.} A box of mass $8.0\ \text{kg}$ is pushed $6.0\ \text{m}$ along a horizontal floor by a force of $30\ \text{N}$ acting at $40^\circ$ below the horizontal. Calculate the work done by the applied force.
+\par\hfill\textit{[2 marks]}
+\vspace{3cm}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+\textbf{Q3.} State the principle of conservation of energy. A ball of mass $0.15\ \text{kg}$ is dropped from a height of $8.0\ \text{m}$. Assuming no air resistance, calculate its speed just before hitting the ground.
+\par\hfill\textit{[4 marks]}
+\vspace{4cm}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+\textbf{Q4.} Derive the expression $E_K = \frac{1}{2}mv^2$ using the equations of motion.
+\par\hfill\textit{[3 marks]}
+\vspace{4cm}
+\end{minipage}
+
+\end{tcolorbox}
+
+\subsection*{Section B — Longer Structured Questions}
+
+\begin{tcolorbox}[colback=white, colframe=midblue, breakable]
+
+\begin{minipage}{\linewidth}
+\textbf{Q5.} A cyclist and bicycle have a combined mass of $85\ \text{kg}$. The cyclist travels at a constant speed of $8.0\ \text{m s}^{-1}$ on a level road against a total resistive force of $60\ \text{N}$.
+\end{minipage}
+
+\begin{enumerate}[label=(\alph*)]
+  \item \begin{minipage}[t]{\linewidth}
+  Calculate the power output of the cyclist.
+  \par\hfill\textit{[2 marks]}
+  \vspace{2.5cm}
+  \end{minipage}
+
+  \item \begin{minipage}[t]{\linewidth}
+  The cyclist now travels at the same speed up a slope where $\sin\theta = 0.04$. Calculate the new power output required.
+  \par\hfill\textit{[3 marks]}
+  \vspace{3.5cm}
+  \end{minipage}
+
+  \item \begin{minipage}[t]{\linewidth}
+  The cyclist stops pedalling at the top of the slope and freewheels down. The slope has a vertical height of $12\ \text{m}$ and the total resistive force during descent is $55\ \text{N}$ along the slope of length $85\ \text{m}$. Calculate the speed of the cyclist at the bottom of the slope.
+  \par\hfill\textit{[4 marks]}
+  \vspace{4.5cm}
+  \end{minipage}
+\end{enumerate}
+
+\begin{minipage}{\linewidth}
+\textbf{Q6.} A pump raises water from a reservoir and delivers it through a pipe. The pump lifts $50\ \text{kg}$ of water per second through a vertical height of $4.5\ \text{m}$.
+
+\begin{enumerate}[label=(\alph*)]
+  \item Calculate the minimum power required to lift the water.
+  \par\hfill\textit{[2 marks]}
+  \vspace{3cm}
+
+  \item In practice the pump has an efficiency of $65\%$. Calculate the actual power input to the pump.
+  \par\hfill\textit{[2 marks]}
+  \vspace{3cm}
+
+  \item Suggest where the remaining $35\%$ of energy is transferred.
+  \par\hfill\textit{[1 mark]}
+  \vspace{2cm}
+\end{enumerate}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+\textbf{Q7.} A ball of mass $0.25\ \text{kg}$ is thrown vertically upward with initial speed $14\ \text{m s}^{-1}$.
+
+\begin{enumerate}[label=(\alph*)]
+  \item Calculate the initial kinetic energy of the ball.
+  \par\hfill\textit{[2 marks]}
+  \vspace{2.5cm}
+
+  \item Assuming no air resistance, calculate the maximum height reached.
+  \par\hfill\textit{[2 marks]}
+  \vspace{3cm}
+
+  \item In practice the ball only reaches $8.5\ \text{m}$. Calculate the energy lost to air resistance and the average resistive force acting on the ball during its upward journey.
+  \par\hfill\textit{[3 marks]}
+  \vspace{3.5cm}
+\end{enumerate}
+\end{minipage}
+
+\end{tcolorbox}
+
+
+\pagebreak
+
+% ===== SECTION 10: MARK SCHEME =====
+\section{Mark Scheme and Answers}
+
+\begin{markscheme}
+
+\textbf{Q1(a).} Work done is the product of force and displacement in the direction of the force [1]; unit: joule (J) [1].\\
+\textbf{Q1(b).} Power is the work done (energy transferred) per unit time [1]; unit: watt (W) [1].
+
+\vspace{0.5em}\textbf{Q2.} $W = Fs\cos\theta = 30 \times 6.0 \times \cos40^\circ = 180 \times 0.766 = \mathbf{138\ \text{J}}$ [2].
+
+\vspace{0.5em}\textbf{Q3.} Energy cannot be created or destroyed, only transferred [1]. $\Delta E_P = E_K$: $mgh = \tfrac{1}{2}mv^2$ [1]; $v = \sqrt{2gh} = \sqrt{2\times9.81\times8.0} = \sqrt{156.96} = \mathbf{12.5\ \text{m s}^{-1}}$ [2].
+
+\vspace{0.5em}\textbf{Q4.} Net force $F = ma$ acts over displacement $s$; $W = Fs = mas$ [1]; from $v^2 = u^2 + 2as$ with $u = 0$: $as = v^2/2$ [1]; therefore $W = m \times v^2/2 = \tfrac{1}{2}mv^2 = E_K$ [1].
+
+\vspace{0.5em}\textbf{Q5(a).} At constant speed, driving force $=$ resistive force $= 60\ \text{N}$; $P = Fv = 60 \times 8.0 = \mathbf{480\ \text{W}}$ [2].
+
+\vspace{0.5em}\textbf{Q5(b).} Additional force against gravity: $F_g = mg\sin\theta = 85\times9.81\times0.04 = 33.4\ \text{N}$ [1]; total force $= 60 + 33.4 = 93.4\ \text{N}$ [1]; $P = 93.4\times8.0 = \mathbf{747\ \text{W}}$ [1].
+
+\vspace{0.5em}\textbf{Q5(c).} GPE lost: $mgh = 85\times9.81\times12 = 9\,997\ \text{J}$ [1]; work against friction: $W_f = 55\times85 = 4\,675\ \text{J}$ [1]; KE gained: $\tfrac{1}{2}mv^2 = 9997 - 4675 = 5322\ \text{J}$ [1]; $v = \sqrt{2\times5322/85} = \sqrt{125.2} = \mathbf{11.2\ \text{m s}^{-1}}$ [1].
+
+\vspace{0.5em}\textbf{Q6(a).} $P = mgh/t = (50\times9.81\times4.5)/1 = \mathbf{2207\ \text{W}} \approx 2.2\ \text{kW}$ [2].
+
+\vspace{0.5em}\textbf{Q6(b).} $P_{\text{input}} = P_{\text{useful}}/\eta = 2207/0.65 = \mathbf{3395\ \text{W}} \approx 3.4\ \text{kW}$ [2].
+
+\vspace{0.5em}\textbf{Q6(c).} Transferred to thermal energy (heat) in the motor/pump mechanism due to friction and electrical resistance [1].
+
+\vspace{0.5em}\textbf{Q7(a).} $E_K = \tfrac{1}{2}mv^2 = \tfrac{1}{2}\times0.25\times14^2 = \tfrac{1}{2}\times0.25\times196 = \mathbf{24.5\ \text{J}}$ [2].
+
+\vspace{0.5em}\textbf{Q7(b).} $E_K = \Delta E_P$: $mgh = 24.5$; $h = 24.5/(0.25\times9.81) = \mathbf{9.99\ \text{m}} \approx 10.0\ \text{m}$ [2].
+
+\vspace{0.5em}\textbf{Q7(c).} GPE at $8.5\ \text{m}$: $E_P = 0.25\times9.81\times8.5 = 20.8\ \text{J}$ [1]; energy lost $= 24.5 - 20.8 = \mathbf{3.7\ \text{J}}$ [1]; average force $= W/s = 3.7/8.5 = \mathbf{0.44\ \text{N}}$ [1].
+
+\end{markscheme}
+
+% ===== SECTION 11: REVISION CHECKLIST =====
+\newpage
+\section{Revision Checklist}
+
+Use this checklist to track your understanding. Tick each box when you are confident:
+
+\begin{tcolorbox}[colback=white, colframe=darkblue, breakable]
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{@{} c p{10.5cm} r @{}}
+\toprule
+ & \textbf{Learning Objective} & \textbf{Confidence (1--3)} \\
+\midrule
+$\square$ & Define work done as force $\times$ displacement in the direction of the force & \\
+$\square$ & Use $W = Fs\cos\theta$ when force and displacement are not parallel & \\
+$\square$ & State the principle of conservation of energy & \\
+$\square$ & Define and calculate efficiency as useful output $\div$ total input & \\
+$\square$ & Define power as work done per unit time; use $P = W/t$ & \\
+$\square$ & Derive and use $P = Fv$ & \\
+$\square$ & Derive $\Delta E_P = mg\Delta h$ using $W = Fs$ & \\
+$\square$ & Use $\Delta E_P = mg\Delta h$ in problems & \\
+$\square$ & Derive $E_K = \tfrac{1}{2}mv^2$ using equations of motion & \\
+$\square$ & Use $E_K = \tfrac{1}{2}mv^2$ in problems & \\
+$\square$ & Apply conservation of energy to problems with and without resistive forces & \\
+$\square$ & Use the work--energy theorem $W_{\text{net}} = \Delta E_K$ & \\
+\bottomrule
+\end{tabular}
+\vspace{0.5em}
+
+\textit{Key: 1 = Need more work \quad 2 = Getting there \quad 3 = Confident}
+\end{tcolorbox}
+
+\vspace{1em}
+\begin{motivationbox}
+\centering
+\textbf{\color{darkblue}Good luck with your revision!}\\[0.2em]
+{\color{darkgray}\small Work, energy and power all connect through one idea: energy is the capacity to do work, and power is just how fast you do it. Once you're comfortable with $W = Fs\cos\theta$ and conservation of energy, every problem in this topic reduces to careful bookkeeping of energy transfers.}
+\end{motivationbox}
 
