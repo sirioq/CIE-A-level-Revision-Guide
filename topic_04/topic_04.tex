@@ -1,0 +1,595 @@
+% topic_04.tex — Content only. Compiled via main.tex.
+% ── No \documentclass, \begin{document} or \end{document} here ──
+
+\chapteropener{4}{Forces, Density and Pressure}{%
+  \item Turning Effects of Forces
+  \item Equilibrium of Forces
+  \item Density and Pressure
+  \item Hydrostatic Pressure
+  \item Upthrust and Archimedes' Principle
+}
+
+% ===== SECTION 1: TURNING EFFECTS =====
+\section{Turning Effects of Forces}
+
+\begin{definitionbox}{Centre of Gravity}
+The \textbf{centre of gravity} of an object is the single point at which the entire weight of the object may be considered to act.
+\begin{itemize}[itemsep=2pt]
+  \item For a uniform, regular object the centre of gravity lies at the geometric centre.
+  \item For irregular objects it can be found experimentally by suspension.
+  \item All gravitational calculations treat the object as a \textbf{point mass} at this location.
+\end{itemize}
+\end{definitionbox}
+
+\begin{definitionbox}{Moment of a Force}
+The \textbf{moment} of a force about a point is the product of the force and the perpendicular distance from the point to the line of action of the force.
+$$\text{moment} = F \times d_\perp \qquad \text{units: N\,m}$$
+where $d_\perp$ is the \textbf{perpendicular} distance from the pivot to the line of action.
+\end{definitionbox}
+
+\begin{center}
+\begin{tikzpicture}[scale=0.9]
+\usetikzlibrary{angles,quotes}
+\begin{scope}[xshift=0cm]
+  % Beam
+  \draw[darkblue, very thick] (-3,0) -- (3,0);
+  % Pivot triangle
+  \fill[darkblue!60] (-0.25,-0.5) -- (0.25,-0.5) -- (0,-0.1) -- cycle;
+  \draw[darkgray, thick] (-0.6,-0.5) -- (0.6,-0.5);
+  % Force arrow
+  \draw[-latex, midblue, very thick] (2.2,1.5) -- (2.2,0.05);
+  \node[midblue, font=\small\bfseries, anchor=west] at (2.35,0.9) {$F$};
+  % Perpendicular distance
+  \draw[latex-latex, darkgray, thick] (0,-0.85) -- (2.2,-0.85);
+  \node[darkgray, font=\small] at (1.1,-1.15) {$d_\perp$};
+  % Dashed line from pivot to force
+  \draw[dashed, darkgray] (0,0) -- (0,-0.85);
+  \draw[dashed, darkgray] (2.2,0) -- (2.2,-0.85);
+  \node[darkblue, font=\small\bfseries] at (0,-1.6) {Moment $= F \times d_\perp$};
+  \end{scope}
+
+\begin{scope}[xshift=4cm,scale = 0.8]
+
+   \coordinate (A) at (8,0);
+    \coordinate (O) at (6,0);
+    \coordinate (B) at (8,2);
+  % Beam
+  \draw[darkblue, very thick] (0,0) -- (6,0);
+  \draw[dashed, darkgray] (6,0) -- (9,0);
+ 
+  % Force arrow
+  \draw[-latex, midblue, very thick] (6,0) -- (8,2);
+  \node[midblue, font=\small\bfseries, anchor=west] at (5.7,1.1) {$F$};
+  
+   % distance
+  \draw[latex-latex, darkgray, thick] (0,0.2) -- (6,0.2);
+  \node[darkgray, font=\small] at (3,0.5) {$d$};
+  
+  % Perpendicular distance
+  \draw[latex-latex, darkgray, thick] (0,0) -- (3,-3);
+  \node[darkgray, font=\small,fill=white] at (1.1,-1.8) {$d_\perp=dsin\theta$};
+  % Dashed line from pivot to force
+  \draw[dashed, darkgray] (6,0) -- (3,-3);
+ % \draw[dashed, darkgray] (0,0) -- (3,-3);
+  %\node[darkblue, font=\small\bfseries] at (0,-1.6) {Moment $= F \times d_\perp$};
+   \pic [draw, ->, "$\theta$", angle radius=1cm, angle eccentricity=1.5] 
+        {angle = A--O--B};
+  \end{scope}
+\end{tikzpicture}
+\end{center}
+
+\begin{warningbox}{Common Mistake}
+Always use the \textbf{perpendicular} distance from the pivot to the \emph{line of action} of the force — not the distance along the beam or object. If the force is at an angle $\theta$, the moment is $F\sin\theta \times d$ or equivalently $F \times d\sin\theta$.
+\end{warningbox}
+
+\pagebreak
+
+\subsection{Couples and Torque}
+
+\begin{definitionbox}{Couple}
+A \textbf{couple} is a pair of forces that:
+\begin{itemize}[itemsep=2pt]
+  \item are \textbf{equal in magnitude},
+  \item act in \textbf{opposite directions},
+  \item have \textbf{parallel but different lines of action}.
+\end{itemize}
+A couple produces \textbf{rotation only} — it has zero resultant force, so it produces no translational acceleration.
+\end{definitionbox}
+
+\begin{formulabox}{Torque of a Couple}
+\begin{center}
+\Large $\tau = F \times d$
+\end{center}
+\vspace{0.3em}
+\begin{tabular}{@{}ll@{}}
+$\tau$ & = torque of the couple (N\,m) \\
+$F$   & = magnitude of one of the forces (N) \\
+$d$   & = perpendicular distance between the lines of action of the forces (m) \\
+\end{tabular}
+
+\vspace{0.5em}
+Note: unlike the moment of a single force, the torque of a couple is the \textbf{same about any point}.
+\end{formulabox}
+
+\vspace{4em}
+
+\begin{center}
+\begin{tikzpicture}[scale=1.6]
+  % Beam
+  \draw[darkblue, very thick] (-2.5,0) -- (2.5,0);
+  % Top force (left)
+  \draw[->, midblue, very thick] (-2,0.1) -- (-2,1.5);
+  \node[midblue, font=\small\bfseries, anchor=east] at (-2.15,0.9) {$F$};
+  % Bottom force (right)
+  \draw[->, midblue, very thick] (2,-0.1) -- (2,-1.5);
+  \node[midblue, font=\small\bfseries, anchor=west] at (2.15,-0.9) {$F$};
+  % Distance arrow
+  \draw[<->, darkgray, thick] (-2,-1.9) -- (2,-1.9);
+  \node[darkgray, font=\small] at (0,-2.2) {$d$};
+  \draw[dashed, darkgray] (-2,-0.1) -- (-2,-1.9);
+  \draw[dashed, darkgray] (2,-0.1) -- (2,-1.9);
+  % Label
+  \node[darkblue, font=\small\bfseries] at (0,1.7) {Torque $\tau = F \times d$};
+\end{tikzpicture}
+\end{center}
+
+\pagebreak
+
+% ===== SECTION 2: EQUILIBRIUM =====
+\section{Equilibrium of Forces}
+
+\begin{definitionbox}{Conditions for Equilibrium}
+A body is in \textbf{equilibrium} when:
+\begin{enumerate}[itemsep=2pt]
+  \item The \textbf{resultant force} is zero (no translational acceleration).
+  \item The \textbf{resultant torque} about any point is zero (no rotational acceleration).
+\end{enumerate}
+Both conditions must be satisfied simultaneously.
+\end{definitionbox}
+
+\begin{formulabox}{Principle of Moments}
+For a body in equilibrium:
+\begin{center}
+\large $\sum \text{clockwise moments} = \sum \text{anticlockwise moments}$
+\end{center}
+(about any chosen pivot point)
+\end{formulabox}
+
+\begin{keybox}{Using the Principle of Moments}
+\begin{itemize}[itemsep=2pt]
+  \item Choose a \textbf{convenient pivot} — often at the point of an unknown force, so that unknown disappears from the moment equation.
+  \item List all forces and their perpendicular distances from the chosen pivot.
+  \item Apply the principle; then use $\sum F = 0$ to find any remaining unknowns.
+  \item Check both conditions of equilibrium are satisfied.
+\end{itemize}
+\end{keybox}
+
+
+
+\subsection{Coplanar Forces in Equilibrium — Vector Triangle}
+
+\begin{keybox}{Three Coplanar Forces in Equilibrium}
+If exactly three coplanar forces act on a body in equilibrium, they must be \textbf{concurrent} (pass through a single point) and can be represented by the three sides of a \textbf{closed triangle} drawn head-to-tail.
+\begin{itemize}[itemsep=2pt]
+  \item Draw the force vectors end-to-end.
+  \item The triangle must close — meaning the resultant is zero.
+  \item Trigonometry (sine rule, cosine rule, or right-triangle ratios) can then be used to find unknown magnitudes or directions.
+\end{itemize}
+\end{keybox}
+
+\begin{center}
+\begin{tikzpicture}[scale=.9]
+ \begin{scope}[xshift=0cm]
+  % Three force coplanar forces
+  \coordinate (A) at (0,0);
+  \coordinate (B) at (3,1.5);
+  \coordinate (C) at (-3,1.5);
+  \coordinate (D) at (0,-3);
+  \draw[-latex, midblue, very thick] (A) -- (B) node[midway, below, font=\small] {$F_2$};
+  \draw[-latex, darkblue, very thick] (A) -- (C) node[midway, below, font=\small] {$F_1$};
+ \draw[-latex, pinkframe, very thick] (A) -- (D) node[midway, left, font=\small] {$F_3$};
+  %\node[darkgray, font=\small\itshape] at (1.4,-0.55) {Closed triangle $\Rightarrow$ equilibrium};
+  \end{scope}
+
+
+
+\begin{scope}[xshift=8cm, yshift=-2cm]
+ % Three force vectors forming a closed triangle
+  \coordinate (A) at (0,0);
+  \coordinate (B) at (-3,1.5);
+  \coordinate (C) at (0,3);
+ 
+  \draw[-latex, darkblue, very thick] (A) -- (B) node[midway, below, font=\small] {$F_1$};
+  \draw[-latex, midblue, very thick] (B) -- (C) node[midway, above, font=\small] {$F_2$};
+ \draw[-latex, pinkframe, very thick] (C) -- (A) node[midway, left, font=\small] {$F_3$};
+  \node[darkgray, font=\small\itshape] at (-1,-0.55) {Closed triangle $\Rightarrow$ equilibrium};
+  
+  \end{scope}
+\end{tikzpicture}
+\end{center}
+
+% ===== SECTION 3: DENSITY AND PRESSURE =====
+\section{Density and Pressure}
+
+\begin{definitionbox}{Density}
+\textbf{Density} is defined as mass per unit volume:
+$$\rho = \frac{m}{V} \qquad \text{units: kg\,m}^{-3}$$
+\begin{tabular}{@{}ll@{}}
+$\rho$ & = density (kg\,m$^{-3}$) \\
+$m$   & = mass (kg) \\
+$V$   & = volume (m$^3$) \\
+\end{tabular}
+\end{definitionbox}
+
+\begin{definitionbox}{Pressure}
+\textbf{Pressure} is defined as the normal force per unit area:
+$$P = \frac{F}{A} \qquad \text{units: Pa} \equiv \text{N\,m}^{-2}$$
+\begin{tabular}{@{}ll@{}}
+$P$ & = pressure (Pa) \\
+$F$ & = normal force acting on the surface (N) \\
+$A$ & = area over which the force acts (m$^2$) \\
+\end{tabular}
+\end{definitionbox}
+
+\begin{warningbox}{Pressure is a Scalar}
+Although pressure arises from a force (a vector), pressure itself is a \textbf{scalar} quantity — it acts equally in all directions at a point within a fluid. Do not give pressure a direction in your answers.
+\end{warningbox}
+
+
+\pagebreak
+% ===== SECTION 4: HYDROSTATIC PRESSURE =====
+\section{Hydrostatic Pressure}
+
+
+\begin{center}
+% WATER COLUMN WEIGHT
+\colorlet{mydarkblue}{blue!50!black}
+\colorlet{myred}{red!65!black}
+\colorlet{vcol}{green!45!black}
+\colorlet{watercol}{blue!80!cyan!10!white}
+\colorlet{darkwatercol}{blue!80!cyan!20!white}
+\colorlet{metalcol}{blue!40!black!10!white}
+\tikzstyle{water}=[draw=mydarkblue,top color=watercol!90,bottom color=watercol!90!black,shading angle=5]
+\tikzstyle{vertical water}=[water,
+  top color=watercol!90!black!90,bottom color=watercol!90!black!90,middle color=watercol!80,shading angle=90]
+\tikzstyle{dark water}=[draw=mydarkblue,top color=darkwatercol,bottom color=darkwatercol!80!black,shading angle=5]
+\begin{tikzpicture}
+  \def\Rx{1.1}      % tank horizontal radius
+  \def\Ry{0.5}      % tank vertical radius
+  \def\rx{0.22*\Rx} % column horizontal radius
+  \def\ry{0.22*\Ry} % column vertical radius
+  \def\H{2.6}       % height tank
+  \def\h{0.94*\H}   % height water
+  \def\y{0.40*\H}   % vertical position piece
+  \def\dy{0.10*\H}  % height piece
+  
+  % WATER
+  \draw[vertical water]
+    (-\Rx,\h) -- (-\Rx,0) arc (180:360:{\Rx} and {\Ry}) -- (\Rx,\h);
+  \draw[water]
+    (0,\h) ellipse ({\Rx} and {\Ry});
+  
+  % COLUMN + PIECE
+  \draw[dark water]
+    (-\rx,\y) -- (-\rx,\y-\dy) arc (180:360:{\rx} and {\ry}) -- (\rx,\y);
+  \draw[dark water]
+    (0,\y) ellipse ({\rx} and {\ry});
+  \draw[dark water,opacity=0.50,draw=none] % column
+    (-\rx,\h) -- (-\rx,\y) arc (180:360:{\rx} and {\ry}) -- (\rx,\h) arc(360:180:{\rx} and {\ry}) -- cycle;
+  \draw[blue!20!black,dashed,very thin,opacity=0.50] (-\rx,\y) -- (-\rx,\h) (\rx,\y) -- (\rx,\h);
+  \draw[dark water,opacity=0.50] % top column
+    (0,\h) ellipse ({\rx} and {\ry});
+  \draw[blue!30!black]
+    (0,\h) ellipse ({\Rx} and {\Ry});
+  
+  % CONTAINER
+  \draw[thick]
+    (-\Rx,\H) -- (-\Rx,0) arc (180:360:{\Rx} and {\Ry}) -- (\Rx,\H);
+  \draw[thick]
+    (0,\H) ellipse ({\Rx} and {\Ry});
+  
+  % LABELS
+  \node[scale=0.98] at ({-0.45*(\Rx+\rx)},1.04*\h) {$P_\mathrm{atm}$}; %{\contour{watercol}{$P_\mathrm{atm}$}};
+  \node at ({-0.40*(\Rx+\rx)},{\y-0.5*\dy}) {$P$};
+  \node[above=-2] at (0,\y+\ry) {$A$};
+  \draw[<->] (1.4*\Rx,\y) --++ (0,\h-\y) node[midway,fill=white,inner sep=1] {$\Delta h$};
+  
+\end{tikzpicture}
+\end{center}
+
+\begin{formulabox}{Hydrostatic Pressure}
+
+The additional pressure on a submerged object is due to the weight of the fluid column above it. In the diagram this is a cylinder of Volume $A\Delta h$
+
+\begin{itemize}[itemsep=4pt]
+  \item Weight of column of fluid: $W = mg = \rho V g = \rho \times (A\,\Delta h) \times g$
+  \item Extra pressure on an Area $A$: $\Delta P = \dfrac{W}{A} = \dfrac{\rho A\,\Delta h\,g}{A}$
+\end{itemize}
+
+\begin{center}
+\Large $\Delta P = \rho g \Delta h$
+\end{center}
+\vspace{0.3em}
+\begin{tabular}{@{}ll@{}}
+$\Delta P$  & = increase in pressure with depth (Pa) \\
+$\rho$      & = density of the fluid (kg\,m$^{-3}$) \\
+$g$         & = gravitational field strength (N\,kg$^{-1}$) \\
+$\Delta h$  & = increase in depth below the surface (m) \\
+\end{tabular}
+\end{formulabox}
+
+\begin{keybox}{Key Points about Hydrostatic Pressure}
+\begin{itemize}[itemsep=2pt]
+  \item Pressure depends only on \textbf{depth} $\Delta h$, not on the shape or cross-sectional area of the container.
+  \item Pressure acts \textbf{equally in all directions} at a given depth.
+  \item In connected vessels, fluid reaches the same height regardless of the vessel shape (\emph{communicating vessels}).
+  \item Total absolute pressure at depth $h$: $P = P_\mathrm{atm} + \rho g h$ 
+\end{itemize}
+\end{keybox}
+
+
+\pagebreak
+
+% ===== SECTION 5: UPTHRUST AND ARCHIMEDES =====
+\section{Upthrust and Archimedes' Principle}
+
+\begin{definitionbox}{Origin of Upthrust}
+\textbf{Upthrust} (buoyancy force) acts on any object immersed in a fluid. It arises because the \textbf{hydrostatic pressure on the bottom face} of the object is greater than on the top face (since the bottom is at greater depth). The net upward pressure force is the upthrust.
+\end{definitionbox}
+
+\begin{formulabox}{Archimedes' Principle}
+\begin{center}
+\Large $F = \rho g V$
+\end{center}
+\vspace{0.3em}
+\begin{tabular}{@{}ll@{}}
+$F$   & = upthrust (N) \\
+$\rho$& = density of the fluid (kg\,m$^{-3}$) \\
+$g$   & = gravitational field strength (N\,kg$^{-1}$) \\
+$V$   & = volume of fluid displaced by the object (m$^3$) \\
+\end{tabular}
+
+\vspace{0.5em}
+\textit{Archimedes' Principle:} the upthrust equals the \textbf{weight of fluid displaced}.
+\end{formulabox}
+
+\begin{center}
+\begin{tikzpicture}[scale=0.85]
+  % Fluid container
+  \draw[darkblue, thick] (-2,0) -- (-2,3.8) -- (2,3.8) -- (2,0) -- cycle;
+  \fill[midblue!20] (-1.95,0.05) rectangle (1.95,3.75);
+  % Submerged block
+  \fill[darkblue!60] (-0.7,0.9) rectangle (0.7,2.1);
+  \draw[darkblue, thick] (-0.7,0.9) rectangle (0.7,2.1);
+  % Weight arrow
+  \draw[-latex, pinkframe, very thick] (0,1.5) -- (0,0.3);
+  \node[pinkframe, font=\small\bfseries, anchor=west] at (0,0.6) {$W = mg$};
+  % Upthrust arrow
+  \draw[-latex, midblue, very thick] (0,1.5) -- (0,2.9);
+  \node[midblue, font=\small\bfseries, anchor=west] at (0,2.5) {$F = \rho g V$};
+  % Pressure labels
+  \node[midblue, font=\scriptsize] at (-1.3,0.9) {high $p$};
+  \node[midblue, font=\scriptsize] at (-1.3,2.1) {low $p$};
+\end{tikzpicture}
+\end{center}
+
+\begin{keybox}{Floating and Sinking}
+\begin{itemize}[itemsep=2pt]
+  \item If $F > W$: net upward force — object \textbf{rises}.
+  \item If $F = W$: object is in equilibrium — \textbf{floats} (fully or partially submerged).
+  \item If $F < W$: net downward force — object \textbf{sinks} (rests on the bottom).
+  \item A floating object displaces fluid whose weight \textbf{equals} the object's weight.
+\end{itemize}
+\end{keybox}
+
+
+\pagebreak
+
+
+% ===== SECTION 6: WORKED EXAMPLES =====
+\section{Worked Examples}
+
+\subsection*{Example 1 — Principle of Moments}
+
+\textbf{Question:} A uniform beam of weight $120\ \text{N}$ and length $2.0\ \text{m}$ is pivoted at one end. A $200\ \text{N}$ load hangs $1.5\ \text{m}$ from the pivot. Calculate the vertical force $F$ needed at the free end to maintain equilibrium.
+
+\begin{examplebox}{Solution}
+\textbf{Solution:}\\
+Take moments about the pivot (left end):
+
+Clockwise moments: weight of beam acts at centre $(1.0\ \text{m})$ and load at $1.5\ \text{m}$:
+$$\sum M_\text{CW} = (120 \times 1.0) + (200 \times 1.5) = 120 + 300 = 420\ \text{N\,m}$$
+
+Anticlockwise moment from $F$ at $2.0\ \text{m}$:
+$$\sum M_\text{ACW} = F \times 2.0$$
+
+Setting equal: $F \times 2.0 = 420$, so $\boxed{F = 210\ \text{N}}$ (upwards).
+\end{examplebox}
+
+\subsection*{Example 2 — Hydrostatic Pressure}
+
+\textbf{Question:} A submarine is at a depth of $250\ \text{m}$ in seawater of density $1025\ \text{kg\,m}^{-3}$. Calculate the additional pressure at this depth compared with the surface. ($g = 9.81\ \text{N\,kg}^{-1}$)
+
+\begin{examplebox}{Solution}
+\textbf{Solution:}\\
+$$\Delta p = \rho g \Delta h = 1025 \times 9.81 \times 250$$
+$$\Delta p = 1025 \times 9.81 \times 250 = \mathbf{2.51 \times 10^6\ \text{Pa}}\ (= 2.51\ \text{MPa})$$
+
+This is roughly 25 times atmospheric pressure — illustrating the enormous pressures at depth.
+\end{examplebox}
+
+\subsection*{Example 3 — Upthrust (Archimedes' Principle)}
+
+\textbf{Question:} A solid aluminium sphere of radius $0.080\ \text{m}$ is fully submerged in water (density $1000\ \text{kg\,m}^{-3}$). Calculate the upthrust acting on the sphere.
+
+\begin{examplebox}{Solution}
+\textbf{Solution:}\\
+Volume of sphere: $V = \dfrac{4}{3}\pi r^3 = \dfrac{4}{3}\pi (0.080)^3 = 2.14 \times 10^{-3}\ \text{m}^3$
+
+$$F = \rho g V = 1000 \times 9.81 \times 2.14\times10^{-3} = \mathbf{21.0\ \text{N}}$$
+
+Density of aluminium $\approx 2700\ \text{kg\,m}^{-3}$, so its weight $= 2700 \times 9.81 \times 2.14\times10^{-3} \approx 56.6\ \text{N}$. Since $W > F$, the sphere sinks.
+\end{examplebox}
+
+% ===== SECTION 7: PRACTICE QUESTIONS =====
+\section{Practice Exam Questions}
+
+\subsection*{Section A — Short Answer Questions}
+
+\begin{tcolorbox}[colback=white, colframe=midblue, breakable]
+
+\begin{minipage}{\linewidth}
+\textbf{Q1.} Define the moment of a force and state its SI unit.
+\par\hfill\textit{[2 marks]}
+\vspace{2.5cm}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+\textbf{Q2.} State the two conditions that must be satisfied for a rigid body to be in equilibrium.
+\par\hfill\textit{[2 marks]}
+\vspace{2.5cm}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+\textbf{Q3.} Define density and pressure, giving the SI unit of each.
+\par\hfill\textit{[4 marks]}
+\vspace{3cm}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+\textbf{Q4.} Explain, using the concept of pressure, why upthrust acts on a submerged object.
+\par\hfill\textit{[2 marks]}
+\vspace{3cm}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+\textbf{Q5.} A couple consists of two forces, each of magnitude $35\ \text{N}$, separated by a perpendicular distance of $0.24\ \text{m}$. Calculate the torque of the couple.
+\par\hfill\textit{[2 marks]}
+\vspace{2.5cm}
+\end{minipage}
+
+\end{tcolorbox}
+
+\subsection*{Section B — Longer Structured Questions}
+
+\begin{tcolorbox}[colback=white, colframe=midblue, breakable]
+
+\begin{minipage}{\linewidth}
+\textbf{Q6.} A uniform plank of mass $8.0\ \text{kg}$ and length $3.0\ \text{m}$ is supported at each end by vertical forces $F_1$ (at the left) and $F_2$ (at the right). A person of mass $60\ \text{kg}$ stands $1.0\ \text{m}$ from the left end.
+\end{minipage}
+
+\begin{enumerate}[label=(\alph*)]
+  \item \begin{minipage}[t]{\linewidth}
+  Calculate the force $F_2$ at the right support.
+  \par\hfill\textit{[3 marks]}
+  \vspace{4cm}
+  \end{minipage}
+
+  \item \begin{minipage}[t]{\linewidth}
+  Calculate the force $F_1$ at the left support.
+  \par\hfill\textit{[2 marks]}
+  \vspace{3cm}
+  \end{minipage}
+
+  \item \begin{minipage}[t]{\linewidth}
+  The person moves towards the right end. Describe and explain what happens to $F_1$ and $F_2$.
+  \par\hfill\textit{[2 marks]}
+  \vspace{3.5cm}
+  \end{minipage}
+\end{enumerate}
+
+\begin{minipage}{\linewidth}
+\textbf{Q7.} A diving bell (a sealed metal container open at the bottom) is lowered into the sea. The interior of the bell initially contains air at atmospheric pressure $p_0 = 1.01 \times 10^5\ \text{Pa}$.
+\end{minipage}
+
+\begin{enumerate}[label=(\alph*)]
+  \item \begin{minipage}[t]{\linewidth}
+  Derive the equation $\Delta p = \rho g \Delta h$ for hydrostatic pressure, starting from the definitions of pressure and density.
+  \par\hfill\textit{[3 marks]}
+  \vspace{5cm}
+  \end{minipage}
+
+  \item \begin{minipage}[t]{\linewidth}
+  The bell is lowered to a depth of $180\ \text{m}$ in seawater of density $1025\ \text{kg\,m}^{-3}$. Calculate the total pressure at this depth.
+  \par\hfill\textit{[2 marks]}
+  \vspace{3.5cm}
+  \end{minipage}
+
+  \item \begin{minipage}[t]{\linewidth}
+  A steel sphere of volume $4.5 \times 10^{-3}\ \text{m}^3$ and mass $35\ \text{kg}$ is attached beneath the bell. Calculate the upthrust on the sphere and determine whether it floats or sinks when released.
+  \par\hfill\textit{[3 marks]}
+  \vspace{4.5cm}
+  \end{minipage}
+\end{enumerate}
+
+\end{tcolorbox}
+
+\pagebreak
+
+
+% ===== SECTION 8: MARK SCHEME =====
+\section{Mark Scheme and Answers}
+
+\begin{markscheme}
+
+\textbf{Q1.} The moment of a force is the product of the force and the perpendicular distance from the pivot to the line of action of the force [1]; unit: N\,m [1].
+
+\vspace{0.5em}\textbf{Q2.} The resultant force on the body is zero [1]; and the resultant torque (moment) about any point is zero [1].
+
+\vspace{0.5em}\textbf{Q3.} Density: mass per unit volume [1], kg\,m$^{-3}$ [1]. Pressure: (normal) force per unit area [1], Pa (or N\,m$^{-2}$) [1].
+
+\vspace{0.5em}\textbf{Q4.} The pressure increases with depth [1]; so the upward pressure force on the bottom face of the object is greater than the downward pressure force on the top face, giving a net upward force [1].
+
+\vspace{0.5em}\textbf{Q5.} $\tau = Fd = 35 \times 0.24 = \mathbf{8.4\ \text{N\,m}}$ [2].
+
+\vspace{0.5em}\textbf{Q6(a).} Take moments about left end. Clockwise: weight of plank $= 8.0 \times 9.81 = 78.5\ \text{N}$ at $1.5\ \text{m}$; person's weight $= 60 \times 9.81 = 589\ \text{N}$ at $1.0\ \text{m}$. Anticlockwise: $F_2$ at $3.0\ \text{m}$. Principle of moments: $F_2 \times 3.0 = (589 \times 1.0) + (78.5 \times 1.5)$ [1]; $F_2 \times 3.0 = 589 + 117.8 = 706.8$ [1]; $F_2 = \mathbf{236\ \text{N}}$ [1].
+
+\vspace{0.5em}\textbf{Q6(b).} $\sum F = 0$: $F_1 + F_2 = 589 + 78.5 = 667.5\ \text{N}$ [1]; $F_1 = 667.5 - 236 = \mathbf{432\ \text{N}}$ [1].
+
+\vspace{0.5em}\textbf{Q6(c).} As the person moves right, their moment about the left end increases, so $F_2$ increases [1]; and since the total must remain constant, $F_1$ decreases [1].
+
+\vspace{0.5em}\textbf{Q7(a).} Consider a horizontal slab of fluid, area $A$, depth $\Delta h$, density $\rho$ [1]. Weight of slab $= \rho A\,\Delta h\,g$ [1]; extra pressure $= W/A = \rho g\,\Delta h$ [1].
+
+\vspace{0.5em}\textbf{Q7(b).} $p = p_0 + \rho g h = 1.01\times10^5 + 1025 \times 9.81 \times 180$ [1]; $= 1.01\times10^5 + 1.81\times10^6 = \mathbf{1.91\times10^6\ \text{Pa}}$ [1].
+
+\vspace{0.5em}\textbf{Q7(c).} $F = \rho g V = 1025 \times 9.81 \times 4.5\times10^{-3} = \mathbf{45.2\ \text{N}}$ [1]; weight of sphere $= 35 \times 9.81 = 343\ \text{N}$ [1]; $W > F$, so the sphere \textbf{sinks} [1].
+
+\end{markscheme}
+
+% ===== SECTION 9: REVISION CHECKLIST =====
+\newpage
+\section{Revision Checklist}
+
+Use this checklist to track your understanding. Tick each box when you are confident:
+
+\begin{tcolorbox}[colback=white, colframe=darkblue, breakable]
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{@{} c p{10.5cm} r @{}}
+\toprule
+ & \textbf{Learning Objective} & \textbf{Confidence (1--3)} \\
+\midrule
+$\square$ & Explain what is meant by the centre of gravity of an object & \\
+$\square$ & Define and calculate the moment of a force about a point & \\
+$\square$ & Explain what a couple is and calculate the torque of a couple & \\
+$\square$ & State and apply the principle of moments & \\
+$\square$ & State the two conditions for equilibrium of a rigid body & \\
+$\square$ & Use a vector triangle to represent three coplanar forces in equilibrium & \\
+$\square$ & Define density and use \nf{\rho = m/V} & \\
+$\square$ & Define pressure and use \nf{p = F/A} & \\
+$\square$ & Derive and use the hydrostatic pressure equation \nf{\Delta p = \rho g \Delta h} & \\
+$\square$ & Explain the origin of upthrust in terms of pressure difference & \\
+$\square$ & Calculate upthrust using Archimedes' Principle \nf{F = \rho g V} & \\
+$\square$ & Determine whether an object floats or sinks by comparing weight and upthrust & \\
+\bottomrule
+\end{tabular}
+\vspace{0.5em}
+
+\textit{Key: 1 = Need more work \quad 2 = Getting there \quad 3 = Confident}
+\end{tcolorbox}
+
+\vspace{1em}
+\begin{motivationbox}
+\centering
+\textbf{\color{darkblue}Good luck with your revision!}\\[0.2em]
+{\color{darkgray}\small Remember: always check \emph{both} equilibrium conditions, and use perpendicular distances when calculating moments. Drawing a clear force diagram before each problem will save you marks.}
+\end{motivationbox}
