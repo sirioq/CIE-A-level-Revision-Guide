@@ -1,0 +1,586 @@
+% topic_06.tex — Content only. Compiled via main.tex.
+% ── No \documentclass, \begin{document} or \end{document} here ──
+
+\chapteropener{6}{Deformation of Solids}{%
+  \item Tensile and Compressive Forces
+  \item Hooke's Law and the Spring Constant
+  \item Stress, Strain and the Young Modulus
+  \item Measuring the Young Modulus
+  \item Elastic and Plastic Behaviour
+  \item Elastic Potential Energy
+}
+
+% ===== SECTION 1: FORCES AND DEFORMATION =====
+\section{Forces and Deformation}
+
+\begin{definitionbox}{Tensile and Compressive Forces}
+\textbf{Deformation} occurs when forces are applied to an object, changing its shape or size.
+\begin{itemize}[itemsep=2pt]
+  \item \textbf{Tensile forces} pull the object, causing an \textbf{extension} (stretching).
+  \item \textbf{Compressive forces} push the object, causing a \textbf{compression} (squashing).
+  \item Forces and deformations are assumed to act in \textbf{one dimension only}.
+  \item The applied force is often called the \textbf{load}, $F$ (units: N).
+\end{itemize}
+\end{definitionbox}
+
+\begin{center}
+\begin{tikzpicture}[scale=0.85]
+  % Tensile
+  \begin{scope}[xshift=-3.8cm]
+    \fill[darkblue!40] (-0.4,-0.3) rectangle (0.4,0.3);
+    \draw[darkblue, thick] (-0.4,-0.3) rectangle (0.4,0.3);
+    \draw[-latex, midblue, very thick] (-0.4,0) -- (-1.3,0);
+    \draw[-latex, midblue, very thick] (0.4,0)  -- (1.3,0);
+    \node[midblue, font=\small] at (-1.0,-0.4) {$F$};
+    \node[midblue, font=\small] at (1.0,-0.4)  {$F$};
+    \node[darkblue, font=\small\bfseries] at (0,-0.85) {Tensile (extension)};
+  \end{scope}
+  % Compressive
+  \begin{scope}[xshift=3.8cm]
+    \fill[darkblue!40] (-0.4,-0.3) rectangle (0.4,0.3);
+    \draw[darkblue, thick] (-0.4,-0.3) rectangle (0.4,0.3);
+    \draw[-latex, midblue, very thick] (-1.3,0) -- (-0.45,0);
+    \draw[-latex, midblue, very thick] (1.3,0)  -- (0.45,0);
+    \node[midblue, font=\small] at (-1.0,-0.4) {$F$};
+    \node[midblue, font=\small] at (1.0,-0.4)  {$F$};
+    \node[darkblue, font=\small\bfseries] at (0,-0.85) {Compressive (compression)};
+  \end{scope}
+\end{tikzpicture}
+\end{center}
+
+% ===== SECTION 2: HOOKE'S LAW =====
+\section{Hooke's Law and the Spring Constant}
+
+\begin{formulabox}{Hooke's Law}
+For a spring (or elastic material) deformed within its \textbf{limit of proportionality}, the extension is directly proportional to the applied load:
+\begin{center}
+\Large $F = kx$
+\end{center}
+\vspace{0.3em}
+\begin{tabular}{@{}ll@{}}
+$F$ & = applied load / force (N) \\
+$k$ & = spring constant (N\,m$^{-1}$) \\
+$x$ & = extension or compression from the natural length (m) \\
+\end{tabular}
+\end{formulabox}
+
+\begin{definitionbox}{Key Terms}
+\begin{itemize}[itemsep=3pt]
+  \item \textbf{Spring constant} $k$: the force per unit extension; a measure of stiffness. $k = F/x$ (N\,m$^{-1}$).
+  \item \textbf{Limit of proportionality}: the point beyond which $F \not\propto x$; Hooke's law no longer holds.
+  \item \textbf{Elastic limit}: the point beyond which the material will not return to its original shape when the load is removed. (May be close to, but is not the same as, the limit of proportionality.)
+\end{itemize}
+\end{definitionbox}
+
+\subsubsection*{Force--Extension Graph}
+
+\begin{center}
+\begin{tikzpicture}[xscale=1.5, yscale=1.1]
+  % Axes
+  \draw[->, darkblue, thick] (0,0) -- (4.8,0) node[right, font=\small] {Extension $x$};
+  \draw[->, darkblue, thick] (0,0) -- (0,4.5) node[above, font=\small] {Force $F$};
+  \node[darkgray, font=\small, anchor=north east] at (0,0) {$0$};
+
+  % Linear (Hooke's law) region
+  \draw[midblue, very thick] (0,0) -- (2.5,3.5);
+
+  % Beyond limit of proportionality — curve
+  \draw[midblue, very thick] (2.5,3.5) .. controls (3.2,4.0) and (3.8,4.1) .. (4.4,4.0);
+
+  % Limit of proportionality marker
+  \fill[pinkframe] (2.5,3.5) circle (2.5pt);
+  \draw[dashed, darkgray] (2.5,0) -- (2.5,3.5);
+  \draw[dashed, darkgray] (0,3.5) -- (2.5,3.5);
+  \node[pinkframe, font=\scriptsize, anchor=west] at (2.55,3.4) {Limit of proportionality};
+
+  % Gradient label
+  \node[midblue, font=\scriptsize] at (1.1,2.5) {gradient $= k$};
+  %\draw[->, midblue, thin] (1.3,2.3) -- (1.7,1.7);
+
+  % Region label
+  \node[midblue, font=\scriptsize] at (3.8,3.75) {non-linear};
+\end{tikzpicture}
+\end{center}
+
+\begin{keybox}{Gradient of the Force--Extension Graph}
+The gradient of the linear (Hooke's law) region equals the \textbf{spring constant} $k$. A steeper gradient means a stiffer spring.
+\end{keybox}
+
+% ===== SECTION 3: STRESS, STRAIN, YOUNG MODULUS =====
+\section{Stress, Strain and the Young Modulus}
+
+\begin{definitionbox}{Stress \texorpdfstring{$\sigma$}{σ}}
+\textbf{Stress} is the force applied per unit cross-sectional area:
+$$\sigma = \frac{F}{A} \qquad \text{units: Pa} \equiv \text{N\,m}^{-2}$$
+\begin{tabular}{@{}ll@{}}
+$\sigma$ & = stress (Pa) \\
+$F$      & = applied force / load (N) \\
+$A$      & = cross-sectional area (m$^2$) \\
+\end{tabular}
+\end{definitionbox}
+
+\begin{definitionbox}{Strain \texorpdfstring{$\varepsilon$}{ε}}
+\textbf{Strain} is the fractional change in length (extension per unit original length):
+$$\varepsilon = \frac{x}{L_0} \qquad \text{(no units — it is a ratio)}$$
+\begin{tabular}{@{}ll@{}}
+$\varepsilon$ & = strain (dimensionless) \\
+$x$           & = extension (m) \\
+$L_0$         & = original (unstretched) length (m) \\
+\end{tabular}
+\end{definitionbox}
+
+\pagebreak
+
+\begin{formulabox}{Young Modulus \texorpdfstring{$E$}{E}}
+The \textbf{Young modulus} is the ratio of stress to strain within the limit of proportionality:
+\begin{center}
+\Large $E = \dfrac{\sigma}{\varepsilon} = \dfrac{F L_0}{A x}$
+\end{center}
+\vspace{0.3em}
+\begin{tabular}{@{}ll@{}}
+$E$ & = Young modulus (Pa) \\
+$\sigma$ & = stress (Pa) \\
+$\varepsilon$ & = strain (dimensionless) \\
+\end{tabular}
+
+\vspace{0.5em}
+The Young modulus is a property of the \textbf{material}, not of a particular sample — it does not depend on the dimensions of the specimen.
+\end{formulabox}
+
+\begin{warningbox}{Stress vs Pressure}
+Stress and pressure share the same unit (Pa) and formula ($F/A$), but \textbf{stress} refers specifically to internal forces within a solid material along a defined direction, whereas pressure acts equally in all directions in a fluid.
+\end{warningbox}
+
+\begin{warningbox}{Cross Sectional Area}
+Be careful to check whether you are given the diameter or the radius of the wire. Also remember  1  mm$^2$ is 1 $\times 10^{-6}$m$^2$.}
+\end{warningbox}
+
+\pagebreak
+
+% ===== SECTION 4: YOUNG MODULUS EXPERIMENT =====
+\section{Experiment: Young Modulus of a Metal Wire}
+
+\begin{keybox}{Method}
+\begin{enumerate}[itemsep=3pt]
+  \item Use a long, thin metal wire (e.g.\ copper or steel) clamped at one end and hung vertically.
+  \item Measure the \textbf{original length} $L_0$ with a metre rule.
+  \item Measure the \textbf{diameter} $d$ of the wire with a micrometer screw gauge at several points; calculate $A = \pi (d/2)^2$.
+  \item Attach a \textbf{reference marker} (e.g.\ sticky tape) and measure extension $x$ against a millimetre scale as known masses ($m$) are added.
+  \item Record $F$ ($mg$) and corresponding $x$;
+  \item Plot a \textbf{Stress--Strain graph}.
+  \item Young modulus: $E = \text{gradient}$.
+\end{enumerate}
+\end{keybox}
+
+\begin{center}
+\begin{tikzpicture}[scale=1.4]
+  
+  % Wire
+  \draw[darkblue, very thick] (0,4.2) -- (0,0.6);
+  % Masses
+  \fill[darkblue!50] (-0.5,0.0) rectangle (0.5,0.6);
+  \draw[darkblue, thick] (-0.5,0.0) rectangle (0.5,0.6);
+  \node[white, font=\small\bfseries] at (0,0.3) {$m$};
+  % Length brace
+  \draw[-|, darkgray, thick] (0.8,1.3) -- (0.8,4.2);
+  \node[darkgray, font=\small, anchor=west] at (0.9,2.6) {$L_0$};
+  %Extension x
+  \draw[|-|, darkgray, thick] (0.8,1.3) -- (0.8,1.1);
+  \node[darkgray, font=\small, anchor=west] at (0.9,1.2) {$x$};
+  % Marker
+  \fill[pinkframe] (-0.87,1.05) rectangle (0.03,1.1);
+  \node[pinkframe, font=\scriptsize, anchor=west] at (-1.8,1.1) {marker};
+  % Millimetre rule (schematic)
+  \draw[darkgray, thick] (-0.9,0.5) -- (-0.9,4.3);
+  \foreach \y in {0.6,0.9,...,4.2}{
+    \draw[darkgray] (-0.9,\y) -- (-0.75,\y);
+  }
+  \node[darkgray, font=\scriptsize, rotate=90, anchor=south] at (-1,2.4) {mm scale};
+  % Ceiling clamp
+  \fill[darkgray!60] (-1.0,4.2) rectangle (1.0,4.6);
+  \draw[darkgray, thick] (-1.0,4.2) rectangle (1.0,4.6);
+  % Micrometer hint
+ % \node[darkblue, font=\scriptsize, text width=2.8cm, align=center] at (3.0,3.2) {measure $d$ here with micrometer};
+%  \draw[->, darkgray, thin] (1.7,3.2) -- (0.1,3.2);
+\end{tikzpicture}
+\end{center}
+
+\begin{keybox}{Sources of Uncertainty and Improvements}
+\begin{itemize}[itemsep=2pt]
+  \item \textbf{Diameter measurement}: the wire may not be perfectly uniform — measure at several positions and take an average.
+  \item \textbf{Parallax}: read the millimetre scale at eye level.
+  \item \textbf{Long wire}: a longer wire gives a larger, more easily measured extension, reducing \% uncertainty in $x$.
+  \item \textbf{Control wire}: use a second, identical wire alongside (with no load) to correct for thermal expansion and sagging of the support.
+  \item Do not exceed the elastic limit — the wire must return to its original length on unloading.
+\end{itemize}
+\end{keybox}
+
+% ===== SECTION 5: ELASTIC AND PLASTIC BEHAVIOUR =====
+\section{Elastic and Plastic Behaviour}
+
+\begin{definitionbox}{Elastic and Plastic Deformation}
+\begin{itemize}[itemsep=3pt]
+  \item \textbf{Elastic deformation}: the material returns to its \textbf{original shape and size} when the deforming force is removed. No permanent change occurs.
+  \item \textbf{Plastic deformation}: the material is \textbf{permanently deformed}; it does not return to its original shape when the load is removed.
+  \item \textbf{Elastic limit}: the maximum stress (or load) up to which a material behaves elastically. Beyond this point, deformation becomes plastic.
+\end{itemize}
+\end{definitionbox}
+
+\subsubsection*{Stress--Strain Graph for a Ductile Metal (e.g.\ Mild Steel)}
+
+\vspace{4em}
+
+\begin{center}
+\begin{tikzpicture}[xscale=2.4, yscale=1.6]
+  % Axes
+  \draw[->, darkblue, thick] (0,0) -- (3.8,0) node[right, font=\small] {Strain $\varepsilon$};
+  \draw[->, darkblue, thick] (0,0) -- (0,4.2) node[above, font=\small] {Stress $\sigma$};
+  \node[darkgray, font=\small, anchor=north east] at (0,0) {$0$};
+
+ 
+
+
+
+  % Elastic limit
+  \fill[darkblue] (0.95,3.3) circle (1pt);
+  \node[darkblue, font=\scriptsize, anchor=west] at (0.85,3.5) {elastic limit};
+
+  % Yield point
+  \draw[midblue, very thick] (0.8,3.0) .. controls (0.88,3.2) .. (0.95,3.3);
+  \draw[midblue, very thick] (0.95,3.3) .. controls (1.1,3.55) and (1.0,3.1) .. (1.3,3.2);
+
+  % Plastic region
+  \draw[midblue, very thick] (1.3,3.2) .. controls (2.0,3.3) and (2.4,4) .. (3.2,3.2);
+
+  % Ultimate tensile stress
+  \fill[darkblue] (3.2,3.2) circle (1pt);
+ % \draw[darkblue!60, very thick] (3.2,3.5) -- (3.5,2.8);
+  \node[darkblue, font=\scriptsize, anchor=south west] at (3.2,3.2) {breaking point};
+
+  % Gradient label
+  \node[midblue, font=\scriptsize] at (0.32,2.5) {grad $= E$};
+
+  % Region shading labels
+  \node[midblue!70, font=\scriptsize] at (0.4,0.4) {elastic};
+  \node[darkblue!50, font=\scriptsize] at (2.2,0.4) {plastic};
+  \draw[dashed, darkgray, thin] (0.95,0) -- (0.95,3.3);
+  
+    % Limit of proportionality
+ 
+  \node[pinkframe, font=\scriptsize, anchor=west, fill=white] at (0.75,2.8) {limit of proportionality};
+   % Linear region
+  \draw[midblue, very thick] (0,0) -- (0.8,3.0);
+   \fill[pinkframe] (0.8,3.0) circle (1pt);
+  
+\end{tikzpicture}
+\end{center}
+
+\pagebreak
+
+% ===== SECTION 6: ELASTIC POTENTIAL ENERGY =====
+\section{Elastic Potential Energy}
+
+\begin{definitionbox}{Work Done = Area Under Force--Extension Graph}
+When a force deforms a material, work is done on the material. This is equal to the \textbf{area under the force--extension graph}.
+
+For a material obeying Hooke's law, this area is a \textbf{triangle}:
+$$W = \tfrac{1}{2} F x$$
+This energy is stored as \textbf{elastic potential energy} $E_P$ in the material, provided deformation is within the elastic limit.
+\end{definitionbox}
+
+\begin{formulabox}{Elastic Potential Energy }
+\begin{center}
+\Large $E_P = \tfrac{1}{2}Fx = \tfrac{1}{2}kx^2$
+\end{center}
+\vspace{0.3em}
+\begin{tabular}{@{}ll@{}}
+$E_P$ & = elastic potential energy stored (J) \\
+$F$   & = applied force at extension $x$ (N) \\
+$k$   & = spring constant (N\,m$^{-1}$) \\
+$x$   & = extension from natural length (m) \\
+\end{tabular}
+
+\vspace{0.5em}
+\textit{Valid only within the limit of proportionality}, where $F = kx$ holds.
+\end{formulabox}
+
+\begin{center}
+\begin{tikzpicture}[xscale=3, yscale=1.6]
+  % Axes
+  \draw[->, darkblue, thick] (0,0) -- (2.5,0) node[right, font=\small] {Extension $x$};
+  \draw[->, darkblue, thick] (0,0) -- (0,3.2) node[above, font=\small] {Force $F$};
+  % Linear graph
+  \draw[midblue, very thick] (0,0) -- (2.0,2.8);
+  % Shaded triangle
+  \fill[midblue!20] (0,0) -- (2.0,0) -- (2.0,2.8) -- cycle;
+  % Dashed lines
+  \draw[dashed, darkgray] (2.0,0) -- (2.0,2.8);
+  \draw[dashed, darkgray] (0,2.8) -- (2.0,2.8);
+  % Labels
+  \node[darkgray, font=\small, anchor=north] at (2.0,-0.05) {$x$};
+  \node[darkgray, font=\small, anchor=east]  at (-0.05,2.8) {$F$};
+  \node[midblue, font=\small\bfseries] at (1.3,0.9) {Area $= \tfrac{1}{2}Fx = E_P$};
+\end{tikzpicture}
+\end{center}
+
+\begin{warningbox}{Beyond the Elastic Limit}
+If the material is stretched beyond its elastic limit, not all the work done is stored as recoverable elastic potential energy. Some energy is dissipated as \textbf{heat} due to plastic (permanent) deformation. The formula $E_P = \tfrac{1}{2}kx^2$ no longer applies.
+\end{warningbox}
+
+\pagebreak
+
+% ===== SECTION 7: WORKED EXAMPLES =====
+\section{Worked Examples}
+
+\subsection*{Example 1 — Spring Constant}
+
+\textbf{Question:} A spring of natural length $0.25\ \text{m}$ extends to $0.31\ \text{m}$ when a $4.2\ \text{N}$ load is applied. Calculate the spring constant and verify that Hooke's law is being obeyed.
+
+\begin{examplebox}{Solution}
+\textbf{Solution:}\\
+Extension: $x = 0.31 - 0.25 = 0.060\ \text{m}$
+
+$$k = \frac{F}{x} = \frac{4.2}{0.060} = \mathbf{70\ \text{N\,m}^{-1}}$$
+
+To verify Hooke's law, further loads should be applied and extension measured; if $F$ vs $x$ is linear through the origin, Hooke's law holds up to that point.
+\end{examplebox}
+
+\subsection*{Example 2 — Young Modulus}
+
+\textbf{Question:} A steel wire of length $1.80\ \text{m}$ and diameter $0.56\ \text{mm}$ extends by $1.4\ \text{mm}$ when a load of $85\ \text{N}$ is applied. Calculate the Young modulus of the steel.
+
+\begin{examplebox}{Solution}
+\textbf{Solution:}\\
+$A = \pi\left(\dfrac{0.56\times10^{-3}}{2}\right)^2 = \pi \times (2.8\times10^{-4})^2 = 2.46\times10^{-7}\ \text{m}^2$
+
+$$\sigma = \frac{F}{A} = \frac{85}{2.46\times10^{-7}} = 3.46\times10^{8}\ \text{Pa}$$
+
+$$\varepsilon = \frac{x}{L_0} = \frac{1.4\times10^{-3}}{1.80} = 7.78\times10^{-4}$$
+
+$$E = \frac{\sigma}{\varepsilon} = \frac{3.46\times10^8}{7.78\times10^{-4}} = \mathbf{2.0\times10^{11}\ \text{Pa}}\ (= 200\ \text{GPa})$$
+
+This is consistent with the accepted Young modulus of steel ($\approx 200\ \text{GPa}$).
+\end{examplebox}
+
+\subsection*{Example 3 — Elastic Potential Energy}
+
+\textbf{Question:} A spring with $k = 70\ \text{N\,m}^{-1}$ is compressed by $0.040\ \text{m}$ within its limit of proportionality. Calculate the elastic potential energy stored.
+
+\begin{examplebox}{Solution}
+\textbf{Solution:}\\
+$$E_P = \tfrac{1}{2}kx^2 = \tfrac{1}{2} \times 70 \times (0.040)^2 = \tfrac{1}{2} \times 70 \times 1.6\times10^{-3} = \mathbf{0.056\ \text{J}}$$
+
+Alternatively: $F = kx = 70 \times 0.040 = 2.8\ \text{N}$, so $E_P = \tfrac{1}{2}Fx = \tfrac{1}{2} \times 2.8 \times 0.040 = 0.056\ \text{J}$. \checkmark
+\end{examplebox}
+
+% ===== SECTION 8: PRACTICE QUESTIONS =====
+\section{Practice Exam Questions}
+
+\subsection*{Section A — Short Answer Questions}
+
+\begin{tcolorbox}[colback=white, colframe=midblue, breakable]
+
+\begin{minipage}{\linewidth}
+\textbf{Q1.} State Hooke's law and identify the condition under which it applies.
+\par\hfill\textit{[2 marks]}
+\vspace{2.5cm}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+\textbf{Q2.} Define stress and strain, giving the unit of each.
+\par\hfill\textit{[4 marks]}
+\vspace{3cm}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+\textbf{Q3.} Distinguish between the limit of proportionality and the elastic limit.
+\par\hfill\textit{[2 marks]}
+\vspace{2.5cm}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+\textbf{Q4.} Explain why the elastic potential energy stored in a stretched spring is equal to the area under its force--extension graph.
+\par\hfill\textit{[2 marks]}
+\vspace{3cm}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+\textbf{Q5.} A rubber band and a steel spring are both stretched by the same load. Sketch, on the same axes, a force--extension graph for each, and comment on how their behaviours differ.
+\par\hfill\textit{[3 marks]}
+\vspace{5cm}
+\end{minipage}
+
+\end{tcolorbox}
+
+\subsection*{Section B — Longer Structured Questions}
+
+\begin{tcolorbox}[colback=white, colframe=midblue, breakable]
+
+\begin{minipage}{\linewidth}
+\textbf{Q6.} A copper wire of length $2.00\ \text{m}$ and cross-sectional area $1.5 \times 10^{-7}\ \text{m}^2$ is suspended vertically from a fixed support. The Young modulus of copper is $1.3 \times 10^{11}\ \text{Pa}$.
+\end{minipage}
+
+\begin{enumerate}[label=(\alph*)]
+  \item \begin{minipage}[t]{\linewidth}
+  A load of $60\ \text{N}$ is applied to the lower end. Calculate the stress in the wire.
+  \par\hfill\textit{[2 marks]}
+  \vspace{3cm}
+  \end{minipage}
+
+  \item \begin{minipage}[t]{\linewidth}
+  Calculate the extension of the wire produced by this load.
+  \par\hfill\textit{[3 marks]}
+  \vspace{3.5cm}
+  \end{minipage}
+
+  \item \begin{minipage}[t]{\linewidth}
+  Calculate the elastic potential energy stored in the wire.
+  \par\hfill\textit{[2 marks]}
+  \vspace{3cm}
+  \end{minipage}
+
+  \item \begin{minipage}[t]{\linewidth}
+  The load is doubled. State \textbf{one} assumption needed for the formula $E_P = \tfrac{1}{2}kx^2$ to remain valid.
+  \par\hfill\textit{[1 mark]}
+  \vspace{2cm}
+  \end{minipage}
+\end{enumerate}
+
+\begin{minipage}{\linewidth}
+\textbf{Q7.} A student performs an experiment to determine the Young modulus of a steel wire. The wire has a diameter of $0.48\ \text{mm}$ and an original length of $1.60\ \text{m}$. The table below shows the results.
+
+\vspace{0.5em}
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{|c|c|}
+\hline
+\textbf{Load / N} & \textbf{Extension / mm} \\
+\hline
+0   & 0.0 \\
+10  & 0.4 \\
+20  & 0.8 \\
+30  & 1.2 \\
+40  & 1.6 \\
+\hline
+\end{tabular}
+\end{center}
+\vspace{0.5em}
+\end{minipage}
+
+\begin{enumerate}[label=(\alph*)]
+  \item \begin{minipage}[t]{\linewidth}
+  Plot a force--extension graph for this wire and determine the spring constant $k$.
+  \par\hfill\textit{[3 marks]}
+  \vspace{0.4cm}
+  \begin{center}
+  \begin{tikzpicture}[x=0.9cm, y=0.9cm]
+    % --- minor grid (light) ---
+    \draw[gray!30, very thin, step=0.9cm]
+      (0,0) grid (10.8, 9.0);   % 12 cols × 10 rows of minor squares
+    % --- major grid (every 2 minor = every 0.2 mm or 10 N) ---
+    \draw[gray!65, thin]
+      (0,0) grid[xstep=1.8cm, ystep=1.8cm] (10.8, 9.0);
+    % --- axes ---
+    \draw[->, darkblue, thick] (0,0) -- (11.2,0)
+      node[right, font=\small] {Extension / mm};
+    \draw[->, darkblue, thick] (0,0) -- (0,9.4)
+      node[above, font=\small] {Force / N};
+    % --- x-axis labels: 0.0 to 2.0 mm in steps of 0.4 mm ---
+    \foreach \i/\lbl in {0/0.0, 2/0.4, 4/0.8, 6/1.2, 8/1.6, 10/2.0}{
+      \draw[darkblue, thin] (\i*1, 0) -- (\i*1, -0.18);
+      \node[darkblue, font=\scriptsize, anchor=north] at (\i*1, -0.25) {\lbl};
+    }
+    % --- y-axis labels: 0 to 50 N in steps of 10 N ---
+    \foreach \j/\lbl in {0/0, 2/10, 4/20, 6/30, 8/40}{
+      \draw[darkblue, thin] (0, \j*1) -- (-0.18, \j*1);
+      \node[darkblue, font=\scriptsize, anchor=east] at (-0.25, \j*1) {\lbl};
+    }
+  \end{tikzpicture}
+  \end{center}
+  \vspace{0.2cm}
+  \end{minipage}
+
+  \item \begin{minipage}[t]{\linewidth}
+  Use your value of $k$ to determine the Young modulus of the steel.
+  \par\hfill\textit{[3 marks]}
+  \vspace{4cm}
+  \end{minipage}
+
+  \item \begin{minipage}[t]{\linewidth}
+  Suggest \textbf{two} improvements the student could make to reduce uncertainty in the result.
+  \par\hfill\textit{[2 marks]}
+  \vspace{3cm}
+  \end{minipage}
+\end{enumerate}
+
+\end{tcolorbox}
+
+\pagebreak
+
+% ===== SECTION 9: MARK SCHEME =====
+\section{Mark Scheme and Answers}
+
+\begin{markscheme}
+
+\textbf{Q1.} The extension (or compression) of a spring is directly proportional to the applied force [1]; provided the limit of proportionality is not exceeded [1].
+
+\vspace{0.5em}\textbf{Q2.} Stress: force per unit cross-sectional area [1]; unit Pa (or N\,m$^{-2}$) [1]. Strain: extension per unit original length (or fractional change in length) [1]; dimensionless / no unit [1].
+
+\vspace{0.5em}\textbf{Q3.} The limit of proportionality is the point at which $F \propto x$ (Hooke's law) no longer holds [1]; the elastic limit is the maximum load beyond which permanent deformation occurs — the material will not return to its original shape on unloading [1]. (The elastic limit is typically at a slightly greater stress than the limit of proportionality.)
+
+\vspace{0.5em}\textbf{Q4.} Work done $= F \times x$ at each small increment [1]; since $F$ varies linearly with $x$ (Hooke's law), the total work done equals the area of the triangle $= \tfrac{1}{2}Fx$, which equals the elastic potential energy stored [1].
+
+\vspace{0.5em}\textbf{Q5.} Steel spring: straight line through origin (Hooke's law) [1]. Rubber band: non-linear — curved from the outset, does not obey Hooke's law [1]; rubber is much more extensible (larger extension for same load) and has a lower effective spring constant at small loads [1].
+
+\vspace{0.5em}\textbf{Q6(a).} $\sigma = F/A = 60 / (1.5\times10^{-7}) = \mathbf{4.0\times10^8\ \text{Pa}}$ [2].
+
+\vspace{0.5em}\textbf{Q6(b).} $\varepsilon = \sigma/E = 4.0\times10^8 / 1.3\times10^{11} = 3.08\times10^{-3}$ [1]; $x = \varepsilon \times L_0 = 3.08\times10^{-3} \times 2.00 = \mathbf{6.2\times10^{-3}\ \text{m}}$ $(6.2\ \text{mm})$ [2].
+
+\vspace{0.5em}\textbf{Q6(c).} $E_P = \tfrac{1}{2}Fx = \tfrac{1}{2} \times 60 \times 6.2\times10^{-3} = \mathbf{0.186\ \text{J}}$ [2].
+
+\vspace{0.5em}\textbf{Q6(d).} The wire must remain within its limit of proportionality / must not exceed its elastic limit [1].
+
+\vspace{0.5em}\textbf{Q7(a).} Graph: straight line through origin [1]. Gradient $= 10\ \text{N} / (0.4\times10^{-3}\ \text{m}) = \mathbf{2.5\times10^4\ \text{N\,m}^{-1}}$ [2].
+
+\vspace{0.5em}\textbf{Q7(b).} $A = \pi(0.24\times10^{-3})^2 = 1.81\times10^{-7}\ \text{m}^2$ [1]; $E = kL_0/A = (2.5\times10^4 \times 1.60) / 1.81\times10^{-7}$ [1] $= \mathbf{2.2\times10^{11}\ \text{Pa}}$ [1].
+
+\vspace{0.5em}\textbf{Q7(c).} Any two from: use a longer wire to increase extension (reducing \% uncertainty in $x$) [1]; use a travelling microscope / vernier scale to measure extension more precisely [1]; measure wire diameter at several points along its length and average [1]; use a control wire alongside to correct for thermal expansion [1].
+
+\end{markscheme}
+
+% ===== SECTION 10: REVISION CHECKLIST =====
+\newpage
+\section{Revision Checklist}
+
+Use this checklist to track your understanding. Tick each box when you are confident:
+
+\begin{tcolorbox}[colback=white, colframe=darkblue, breakable]
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{@{} c p{10.5cm} r @{}}
+\toprule
+ & \textbf{Learning Objective} & \textbf{Confidence (1--3)} \\
+\midrule
+$\square$ & Distinguish between tensile and compressive forces, and define load, extension and compression & \\
+$\square$ & State Hooke's law and identify the limit of proportionality on a $F$--$x$ graph & \\
+$\square$ & Define the spring constant and calculate it from $k = F/x$ & \\
+$\square$ & Define stress and strain with correct units & \\
+$\square$ & Define the Young modulus and use \nf{E = \sigma/\varepsilon = FL_0/(Ax)} & \\
+$\square$ & Describe the experiment to measure the Young modulus of a metal wire & \\
+$\square$ & Identify sources of uncertainty and suggest improvements to the experiment & \\
+$\square$ & Distinguish between elastic and plastic deformation and define the elastic limit & \\
+$\square$ & Explain why the area under a force--extension graph equals work done & \\
+$\square$ & Calculate elastic potential energy using \nf{E_P = \tfrac{1}{2}Fx = \tfrac{1}{2}kx^2} & \\
+$\square$ & Interpret stress--strain graphs for ductile, brittle and polymeric materials & \\
+\bottomrule
+\end{tabular}
+\vspace{0.5em}
+
+\textit{Key: 1 = Need more work \quad 2 = Getting there \quad 3 = Confident}
+\end{tcolorbox}
+
+\vspace{1em}
+\begin{motivationbox}
+\centering
+\textbf{\color{darkblue}Good luck with your revision!}\\[0.2em]
+{\color{darkgray}\small Remember: the Young modulus is a property of the \emph{material}, not the sample. Always check units carefully — a common slip is leaving extension in mm rather than converting to metres.}
+\end{motivationbox}
