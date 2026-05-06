@@ -1,0 +1,580 @@
+% topic_02.tex — Content only. Compiled via main.tex.
+% ── No \documentclass, \begin{document} or \end{document} here ──
+
+\chapteropener{2}{Kinematics}{%
+  \item Distance, Displacement, Speed, Velocity and Acceleration
+  \item Graphs of Motion
+  \item Equations of Uniform Acceleration (SUVAT)
+  \item Free Fall and Measuring $g$
+  \item Projectile Motion
+}
+
+% ===== SECTION 1: DEFINITIONS =====
+\section{Core Definitions}
+
+\begin{definitionbox}{Scalar and Vector Quantities}
+\begin{itemize}[itemsep=3pt]
+  \item \textbf{Distance} (scalar): the total length of path travelled, regardless of direction. Units: m.
+  \item \textbf{Displacement} $s$ (vector): the straight-line distance from start to finish \emph{in a specified direction}. Units: m.
+  \item \textbf{Speed} (scalar): distance travelled per unit time. Units: m\,s$^{-1}$.
+  \item \textbf{Velocity} $v$ (vector): rate of change of displacement. Units: m\,s$^{-1}$.
+  \item \textbf{Acceleration} $a$ (vector): rate of change of velocity. Units: m\,s$^{-2}$.
+\end{itemize}
+\end{definitionbox}
+
+\begin{formulabox}{Defining Equations}
+\begin{center}
+\large
+$v = \dfrac{\Delta s}{\Delta t}$ \qquad\qquad $a = \dfrac{\Delta v}{\Delta t}$
+\end{center}
+\vspace{0.3em}
+\begin{tabular}{@{}ll@{}}
+$\Delta s$ & = change in displacement (m) \\
+$\Delta v$ & = change in velocity (m\,s$^{-1}$) \\
+$\Delta t$ & = time interval (s) \\
+\end{tabular}
+\end{formulabox}
+
+\begin{warningbox}{Distance vs Displacement}
+A car that travels $400\ \text{m}$ north then $400\ \text{m}$ south has a total \textbf{distance} of $800\ \text{m}$ but a \textbf{displacement} of zero. Always identify whether the question asks for a scalar or vector quantity before calculating.
+\end{warningbox}
+
+% ===== SECTION 2: GRAPHS OF MOTION =====
+\section{Graphs of Motion}
+
+\begin{keybox}{Reading Motion Graphs}
+\textbf{Displacement--time ($s$--$t$) graph:}
+\begin{itemize}[itemsep=2pt]
+  \item Gradient $=$ instantaneous velocity.
+  \item Horizontal line $\Rightarrow$ stationary.
+  \item Straight line $\Rightarrow$ constant (uniform) velocity.
+  \item Curve $\Rightarrow$ changing velocity (acceleration present).
+\end{itemize}
+\vspace{0.4em}
+\textbf{Velocity--time ($v$--$t$) graph:}
+\begin{itemize}[itemsep=2pt]
+  \item Gradient $=$ instantaneous acceleration.
+  \item Area under the graph $=$ displacement.
+  \item Horizontal line $\Rightarrow$ constant velocity (zero acceleration).
+  \item Straight line $\Rightarrow$ uniform acceleration.
+\end{itemize}
+\end{keybox}
+
+\begin{center}
+\begin{tikzpicture}
+  % ── s–t graph ──
+  \begin{scope}[xshift=-4.5cm, xscale=1.3, yscale=1.1]
+    \draw[->, darkblue, thick] (0,0) -- (3.5,0) node[right, font=\scriptsize] {$t$};
+    \draw[->, darkblue, thick] (0,0) -- (0,3.5) node[above, font=\scriptsize] {$s$};
+    \node[darkgray, font=\scriptsize, anchor=north east] at (0,0) {$0$};
+    % stationary
+    \draw[midblue, very thick] (0,0.6) -- (0.8,0.6);
+    % constant velocity
+    \draw[midblue, very thick] (0.8,0.6) -- (2.0,2.4);
+    % accelerating curve
+    \draw[midblue, very thick] (2.0,2.4) .. controls (2.5,2.8) and (3.0,3.3) .. (3.2,3.4);
+    % gradient triangle
+    \draw[dashed,pinkframe, thin] (0.8,0.6) -- (2.0,0.6) -- (2.0,2.4);
+    \node[pinkframe, font=\scriptsize] at (2.8,1.1) {gradient $= v$};
+    \node[darkblue, font=\small\bfseries] at (1.6,-0.5) {Displacement--time};
+  \end{scope}
+  % ── v–t graph ──
+  \begin{scope}[xshift=2.2cm, xscale=1.3, yscale=1.1]
+      % shaded area
+    \fill[midblue!15] (1.2,0) -- (1.2,1.5) -- (3.2,3.2) -- (3.2,0) -- cycle;
+    \draw[->, darkblue, thick] (0,0) -- (3.5,0) node[right, font=\scriptsize] {$t$};
+    \draw[->, darkblue, thick] (0,0) -- (0,3.5) node[above, font=\scriptsize] {$v$};
+    \node[darkgray, font=\scriptsize, anchor=north east] at (0,0) {$0$};
+    % constant velocity region
+    \draw[midblue, very thick] (0,1.5) -- (1.2,1.5);
+    % uniform acceleration region
+    \draw[midblue, very thick] (1.2,1.5) -- (3.2,3.2);
+
+    % gradient triangle
+    \draw[dashed, pinkframe, thin] (1.2,1.5) -- (2.5,1.5) -- (2.5,2.56);
+    \node[pinkframe, font=\scriptsize] at (3.4,2.05) {gradient $= a$};
+    \node[midblue!80, font=\scriptsize] at (2.3,0.5) {area $= s$};
+    \node[darkblue, font=\small\bfseries] at (1.6,-0.5) {Velocity--time};
+  \end{scope}
+\end{tikzpicture}
+\end{center}
+
+% ===== SECTION 3: SUVAT EQUATIONS =====
+\section{Equations of Uniform Acceleration (SUVAT)}
+
+\begin{formulabox}{Derivation}
+
+For \textbf{constant} acceleration, starting from the definitions of velocity and acceleration:
+
+\begin{enumerate}[itemsep=5pt]
+  \item From $a = \Delta v / \Delta t$: \quad $a = (v - u)/t$
+  \quad $\Rightarrow$ \quad $\boxed{v = u + at}$
+
+  \item Mean velocity $\times$ time: \quad $s = \dfrac{u+v}{2} \times t$
+  \quad $\Rightarrow$ \quad $\boxed{s = \tfrac{1}{2}(u+v)t}$
+
+  \item Substitute equation (1) into (2):
+  $s = \dfrac{u + u + at}{2}\,t$
+  \quad $\Rightarrow$ \quad $\boxed{s = ut + \tfrac{1}{2}at^2}$
+
+  \item Eliminate $t$: from (1), $t = (v-u)/a$; substitute into (2):
+  \quad $\Rightarrow$ \quad $\boxed{v^2 = u^2 + 2as}$
+\end{enumerate}
+
+\end{formulabox}
+
+\begin{formulabox}{The SUVAT Equations}
+\begin{center}
+\renewcommand{\arraystretch}{1.6}
+\begin{tabular}{@{}lc@{}}
+\toprule
+\textbf{Equation} & \textbf{Variable not present} \\
+\midrule
+$v = u + at$                  & $s$ \\
+$s = ut + \tfrac{1}{2}at^2$   & $v$ \\
+$v^2 = u^2 + 2as$             & $t$ \\
+$s = \tfrac{1}{2}(u+v)t$      & $a$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+\vspace{0.5em}
+\begin{tabular}{@{}ll@{}}
+$s$ & = displacement (m) \qquad $u$ = initial velocity (m\,s$^{-1}$) \\
+$v$ & = final velocity (m\,s$^{-1}$) \qquad $a$ = acceleration (m\,s$^{-2}$) \qquad $t$ = time (s) \\
+\end{tabular}
+
+\vspace{0.5em}
+\textit{Valid only for \textbf{uniform} (constant) acceleration in a straight line.}
+\end{formulabox}
+
+\begin{keybox}{SUVAT Problem Strategy}
+\begin{enumerate}[itemsep=2pt]
+  \item Write down the five variables: $s,\ u,\ v,\ a,\ t$.
+  \item Fill in the known values; identify what you are finding.
+  \item Choose the equation that contains those four variables (three known + one unknown).
+  \item Solve; check units and sign conventions.
+\end{enumerate}
+Positive direction must be defined clearly at the start — be consistent throughout.
+\end{keybox}
+
+
+
+% ===== SECTION 4: FREE FALL =====
+\section{Free Fall and Measuring \texorpdfstring{$g$}{g}}
+
+\begin{definitionbox}{Free Fall}
+\textbf{Free fall} is the motion of an object under gravity alone, with no air resistance. The object accelerates uniformly downwards at the \textbf{acceleration of free fall}:
+$$g = 9.81\ \text{m\,s}^{-2} \quad \text{(near Earth's surface)}$$
+Free fall is uniform acceleration, so all four SUVAT equations apply with $a = g$.
+\end{definitionbox}
+
+\pagebreak
+
+\subsection{Experiment: Determining \texorpdfstring{$g$}{g} Using a Falling Object}
+
+\begin{keybox}{Method — Electromagnetic Release and Trapdoor Timer}
+\begin{enumerate}[itemsep=3pt]
+  \item A steel ball is held by an electromagnet at a measured height $h$ above a trapdoor switch.
+  \item The circuit is broken simultaneously: the ball is released and a millisecond timer starts.
+  \item When the ball hits the pressure plate the timer stops, giving the time of fall $t$.
+  \item Use $h = \tfrac{1}{2}gt^2$ (with $u = 0$) to find $g$:
+  $$g = \frac{2h}{t^2}$$
+  \item Repeat for several values of $h$; plot $h$ against $t^2$ — the gradient equals $g/2$.
+\end{enumerate}
+\end{keybox}
+
+\begin{center}
+\begin{tikzpicture}[scale=1.5]
+  % Electromagnet
+  \fill[darkgray!70] (-0.5,4.0) rectangle (0.5,4.5);
+  \draw[darkgray, thick] (-0.5,4.0) rectangle (0.5,4.5);
+  \node[darkgray, font=\small] at (0,4.8) {electromagnet};
+    % g arrow
+  \draw[-latex, pinkframe, very thick] (0,3.2) -- (0,1.5);
+  \node[pinkframe, font=\small, anchor=west] at (0.1,2.6) {$g$};
+  % Ball
+  \fill[darkblue!60] (0,3.4) circle (0.22);
+  \draw[darkblue, thick] (0,3.4) circle (0.22);
+  % Height arrow
+  \draw[|-latex, darkgray, thick] (0.7,0.5) -- (0.7,4);
+  \node[darkgray, font=\small, anchor=west] at (0.8,2.7) {$h$};
+  % Trapdoor
+  \fill[darkblue!40] (-0.8,0.35) rectangle (0.8,0.5);
+  \draw[darkblue, thick] (-0.8,0.35) rectangle (0.8,0.5);
+  \node[darkblue, font=\small] at (0,0.15) {pressure plate};
+
+  % Wires (schematic)
+  \draw[darkgray, thin] (0.5,4.25) -- (3.2,4.25) -- (3.2,0.9);
+  \draw[darkgray, thin] (0.8,0.42) -- (1.6,0.42) -- (1.6,0.6);
+    % Timer box
+  \draw[darkblue, thick, rounded corners=3pt] (1.6,0.2) rectangle (3.2,1.0);
+  \node[darkblue, font=\small] at (2.4,0.6) {timer};
+
+\end{tikzpicture}
+\end{center}
+
+\begin{keybox}{Sources of Uncertainty and Improvements}
+\begin{itemize}[itemsep=2pt]
+  \item \textbf{Reaction time}: eliminated by electronic (not manual) timing.
+  \item \textbf{Residual magnetism}: the ball may not release instantly —  add a thin bit of tape between the ball and the magnet.
+  \item \textbf{Air resistance}: use a dense, compact sphere to minimise drag.
+  \item \textbf{Height measurement}: measure from the \emph{bottom} of the ball to the pressure plate; use a ruler held vertically alongside.
+  \item \textbf{Graph method}: plotting $h$ vs $t^2$ and finding the gradient $= g/2$ averages over many measurements, reducing random error.
+\end{itemize}
+\end{keybox}
+
+% ===== SECTION 5: PROJECTILE MOTION =====
+\section{Projectile Motion}
+
+\begin{definitionbox}{Projectile Motion}
+A \textbf{projectile} moves under gravity alone after launch. Its motion resolves into two \textbf{independent} components:
+\begin{itemize}[itemsep=3pt]
+  \item \textbf{Horizontal}: uniform velocity (no force, so no acceleration).
+  \item \textbf{Vertical}: uniform acceleration downwards at $g = 9.81\ \text{m\,s}^{-2}$.
+\end{itemize}
+The two components share the same time $t$ but are otherwise treated separately.
+\end{definitionbox}
+
+\begin{formulabox}{Projectile Equations }
+For a projectile launched with speed $u$ at an angle $\theta$ to the horizontal :
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{@{}lll@{}}
+\toprule
+ & \textbf{Horizontal} & \textbf{Vertical} \\
+\midrule
+Initial velocity & $u_x = u cos\theta$ & $u_y = usin\theta$ \\
+Acceleration     & $0$ & $g$ (downwards) \\
+Velocity at time $t$ & $v_x = u cos\theta$ & $v_y = usin\theta - gt$ \\
+Displacement at time $t$ & $x = utcos\theta$ & $y = utsin\theta-\tfrac{1}{2}gt^2$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+\vspace{0.5em}
+Resultant speed: $v = \sqrt{v_x^2 + v_y^2}$ \qquad
+Angle from horizontal: $\theta = \arctan\!\left(\dfrac{v_y}{v_x}\right)$
+\end{formulabox}
+
+
+\vspace{3em}
+
+\def\angle{70} % launch angle
+\def\v{6}   % initial velocity
+\def\g{9.8} % gravitational acceleration
+\def\r{0.04} % ball radius
+
+\begin{tikzpicture}[
+    scale=4,
+    axis/.style={-stealth},
+]
+
+    \pgfmathsetmacro{\tGround}{{2*\v*sin(\angle)/\g}}
+    \newcommand{\Ballx}[1]{{\v*#1*\tGround*cos(\angle)}}
+    \newcommand{\Bally}[1]{{-0.5*\g*#1*#1*\tGround*\tGround+\v*#1*\tGround*sin(\angle)}}
+    
+    % Axis
+    \draw[axis, darkblue] (-0.3,0) -- ($1.2*(\Ballx{1},0)$) node[right] {$x$};
+    \draw[axis, darkblue] (0,-0.3) -- ($1.2*(0,\Bally{0.5})$) node[above] {$y$};
+
+    % Angle
+    \filldraw[opacity=0.5] (\r*1.6,0) arc(0:\angle:\r*1.6)node[opacity=1,midway,above right]{$\theta$} -- (0,0) -- cycle;
+
+    % Ball
+    \newcommand{\DrawBall}[2][midblue]{
+        \filldraw[ball color=#1!25!] (\Ballx{#2},\Bally{#2}) circle(\r);
+        \draw[-stealth,#1] (\Ballx{#2},\Bally{#2})
+            --++({0.1*\v*cos(\angle)}, {-0.1*\g*#2*\tGround + 0.1*\v*sin(\angle)}); % velocity
+    }
+
+    \foreach \t in {0,0.2,0.8,1} {
+        \DrawBall[pinkframe]{\t}
+    }
+    
+    \draw[densely dotted] (\Ballx{0.2},0) node[below] {$x=ut\cos\theta$}
+        -- (\Ballx{0.2},\Bally{0.2})
+        -- (0,\Bally{0.2}) node[left] {$\displaystyle y=ut\sin\theta-\frac{1}{2}gt^2$};
+    
+    \DrawBall[pinkframe]{0.5}
+    
+    % Trajectory
+    \draw[samples=256,densely dotted,domain=0:1,variable=\t, midblue] plot(\Ballx{\t},\Bally{\t});
+
+\end{tikzpicture}
+
+\vspace{3em}
+
+\begin{warningbox}{Common Mistakes in Projectile Problems}
+\begin{itemize}[itemsep=2pt]
+  \item Never mix horizontal and vertical quantities in the same SUVAT equation.
+  \item The horizontal velocity \textbf{does not change} (no air resistance assumed).
+  \item Time is the same for both components — find $t$ from the vertical motion first.
+  \item For a  horizontal launch: $u_x = u$, $u_y = 0$.
+\end{itemize}
+\end{warningbox}
+
+\pagebreak
+
+% ===== SECTION 6: WORKED EXAMPLES =====
+\section{Worked Examples}
+
+\subsection*{Example 1 — SUVAT: Braking Car}
+
+\textbf{Question:} A car travelling at $30\ \text{m\,s}^{-1}$ brakes uniformly and stops in $4.5\ \text{s}$. Calculate (a) the deceleration and (b) the stopping distance.
+
+\begin{examplebox}{Solution}
+\textbf{Known:} $u = 30\ \text{m\,s}^{-1}$, $v = 0$, $t = 4.5\ \text{s}$
+
+\textbf{(a)} Use $v = u + at$:
+$$0 = 30 + a \times 4.5 \quad \Rightarrow \quad a = \frac{-30}{4.5} = \mathbf{-6.7\ \text{m\,s}^{-2}}$$
+
+\textbf{(b)} Use $s = \tfrac{1}{2}(u+v)t$:
+$$s = \tfrac{1}{2}(30 + 0)(4.5) = \mathbf{67.5\ \text{m}}$$
+\end{examplebox}
+
+\subsection*{Example 2 — Free Fall}
+
+\textbf{Question:} A stone is dropped from rest off a cliff and hits the water $3.2\ \text{s}$ later. Calculate (a) the height of the cliff and (b) the speed on impact.
+
+\begin{examplebox}{Solution}
+\textbf{Known:} $u = 0$, $a = 9.81\ \text{m\,s}^{-2}$, $t = 3.2\ \text{s}$
+
+\textbf{(a)} Use $s = ut + \tfrac{1}{2}at^2$:
+$$s = 0 + \tfrac{1}{2}(9.81)(3.2)^2 = \tfrac{1}{2} \times 9.81 \times 10.24 = \mathbf{50.2\ \text{m}}$$
+
+\textbf{(b)} Use $v = u + at$:
+$$v = 0 + 9.81 \times 3.2 = \mathbf{31.4\ \text{m\,s}^{-1}}$$
+\end{examplebox}
+
+\subsection*{Example 3 — Projectile Motion}
+
+\textbf{Question:} A ball is launched horizontally at $15\ \text{m\,s}^{-1}$ from a platform $20\ \text{m}$ above the ground. Calculate (a) the time of flight and (b) the horizontal range.
+
+\begin{examplebox}{Solution}
+\textbf{(a) Vertical motion} ($u_y = 0$, $a = 9.81\ \text{m\,s}^{-2}$, $s = 20\ \text{m}$):
+$$20 = \tfrac{1}{2}(9.81)t^2 \quad \Rightarrow \quad t^2 = \frac{20}{4.905} \quad \Rightarrow \quad t = \mathbf{2.02\ \text{s}}$$
+
+\textbf{(b) Horizontal motion} ($u_x = 15\ \text{m\,s}^{-1}$, constant):
+$$x = u_x \times t = 15 \times 2.02 = \mathbf{30.3\ \text{m}}$$
+\end{examplebox}
+
+\pagebreak
+
+% ===== SECTION 7: PRACTICE QUESTIONS =====
+\section{Practice Exam Questions}
+
+\subsection*{Section A — Short Answer Questions}
+
+\begin{tcolorbox}[colback=white, colframe=midblue, breakable]
+
+\begin{minipage}{\linewidth}
+\textbf{Q1.} Distinguish between \emph{distance} and \emph{displacement}, and between \emph{speed} and \emph{velocity}.
+\par\hfill\textit{[4 marks]}
+\vspace{3cm}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+\textbf{Q2.} The velocity--time graph below shows the motion of an object. Describe the motion in each labelled region and state what the shaded area represents.
+
+\vspace{0.4em}
+\begin{center}
+\begin{tikzpicture}[x=1.1cm, y=0.9cm]
+\fill[midblue!20] (2,0) -- (2,2.5) -- (4,2.5) -- (4,0) -- cycle;
+  \draw[->, darkblue, thick] (0,0) -- (6.5,0) node[right, font=\small] {Time / s};
+  \draw[->, darkblue, thick] (0,0) -- (0,4.0) node[above, font=\small] {Velocity / m\,s$^{-1}$};
+  \foreach \x/\lbl in {1/1,2/2,3/3,4/4,5/5,6/6}{
+    \draw[darkblue,thin] (\x,0.06) -- (\x,-0.06);
+    \node[darkblue,font=\scriptsize,anchor=north] at (\x,-0.1) {\lbl};
+  }
+  \foreach \y/\lbl in {1/5,2/10,3/15}{
+    \draw[darkblue,thin] (0.06,\y) -- (-0.06,\y);
+    \node[darkblue,font=\scriptsize,anchor=east] at (-0.1,\y) {\lbl};
+  }
+  \draw[midblue, very thick] (0,0) -- (2,2.5) -- (4,2.5) -- (6,0);
+  \node[darkgray, font=\scriptsize\bfseries] at (1.0,0.65) {A};
+  \node[darkgray, font=\scriptsize\bfseries] at (3.0,1) {B};
+  \node[darkgray, font=\scriptsize\bfseries] at (5,0.65) {C};
+  
+\end{tikzpicture}
+\end{center}
+\par\hfill\textit{[4 marks]}
+\vspace{3cm}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+\textbf{Q3.} Define acceleration and state its SI unit.
+\par\hfill\textit{[2 marks]}
+\vspace{2cm}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+\textbf{Q4.} State the two conditions under which the SUVAT equations are valid.
+\par\hfill\textit{[2 marks]}
+\vspace{2cm}
+\end{minipage}
+
+\end{tcolorbox}
+
+\subsection*{Section B — Longer Structured Questions}
+
+\begin{tcolorbox}[colback=white, colframe=midblue, breakable]
+
+\begin{minipage}{\linewidth}
+\textbf{Q5.} A student drops a ball bearing from rest and measures the time $t$ it takes to fall a height $h$. The results are shown in the table below.
+\vspace{0.5em}
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{Height $h$ / m} & \textbf{Time $t$ / s} & \textbf{$t^2$ / s$^2$} \\
+\hline
+0.20 & 0.202 & \\
+0.40 & 0.285 & \\
+0.60 & 0.350 & \\
+0.80 & 0.404 & \\
+1.00 & 0.451 & \\
+\hline
+\end{tabular}
+\end{center}
+\vspace{0.5em}
+\end{minipage}
+
+\begin{enumerate}[label=(\alph*)]
+  \item \begin{minipage}[t]{\linewidth}
+  Complete the $t^2$ column in the table above.
+  \par\hfill\textit{[1 mark]}
+  \vspace{0.5cm}
+  \end{minipage}
+
+  \item \begin{minipage}[t]{\linewidth}
+  Plot a graph of $h$ (y-axis) against $t^2$ (x-axis) on the grid below and draw a best-fit straight line.
+  \par\hfill\textit{[3 marks]}
+  \vspace{0.4cm}
+  \begin{center}
+  \begin{tikzpicture}[x=0.9cm, y=0.9cm]
+    % Minor grid
+    \draw[gray!30, very thin, step=0.9cm] (0,0) grid (10.8,9.0);
+    % Major grid
+    \draw[gray!65, thin] (0,0) grid[xstep=1.8cm, ystep=1.8cm] (10.8,9.0);
+    % Axes
+    \draw[->, darkblue, thick] (0,0) -- (11.2,0)
+      node[right, font=\small] {$t^2$ / s$^2$};
+    \draw[->, darkblue, thick] (0,0) -- (0,9.4)
+      node[above, font=\small] {$h$ / m};
+    % x labels: 0.00 to 0.20 in steps of 0.04
+    \foreach \i/\lbl in {0/0.00,2/0.04,4/0.08,6/0.12,8/0.16,10/0.20}{
+      \draw[darkblue,thin] (\i*0.9,0) -- (\i*0.9,-0.18);
+      \node[darkblue,font=\scriptsize,anchor=north] at (\i*0.9,-0.25) {\lbl};
+    }
+    % y labels: 0.0 to 1.0 in steps of 0.2
+    \foreach \j/\lbl in {0/0.0,2/0.2,4/0.4,6/0.6,8/0.8,10/1.0}{
+      \draw[darkblue,thin] (0,\j*0.9) -- (-0.18,\j*0.9);
+      \node[darkblue,font=\scriptsize,anchor=east] at (-0.25,\j*0.9) {\lbl};
+    }
+  \end{tikzpicture}
+  \end{center}
+  \vspace{0.2cm}
+  \end{minipage}
+
+  \item \begin{minipage}[t]{\linewidth}
+  Determine the gradient of your line and use it to calculate $g$.
+  \par\hfill\textit{[3 marks]}
+  \vspace{4cm}
+  \end{minipage}
+
+  \item \begin{minipage}[t]{\linewidth}
+  Suggest one source of systematic error in this experiment and explain how it would affect the value of $g$ obtained.
+  \par\hfill\textit{[2 marks]}
+  \vspace{3cm}
+  \end{minipage}
+\end{enumerate}
+
+\begin{minipage}{\linewidth}
+\textbf{Q6.} A ball is kicked horizontally from the top of a vertical cliff at a speed of $12\ \text{m\,s}^{-1}$. The ball lands $35\ \text{m}$ from the base of the cliff.
+\end{minipage}
+
+\begin{enumerate}[label=(\alph*)]
+  \item \begin{minipage}[t]{\linewidth}
+  Show that the time of flight is approximately $2.9\ \text{s}$.
+  \par\hfill\textit{[2 marks]}
+  \vspace{3.5cm}
+  \end{minipage}
+
+  \item \begin{minipage}[t]{\linewidth}
+  Calculate the height of the cliff.
+  \par\hfill\textit{[2 marks]}
+  \vspace{3cm}
+  \end{minipage}
+
+  \item \begin{minipage}[t]{\linewidth}
+  Calculate the speed and direction of the ball just before it hits the ground.
+  \par\hfill\textit{[3 marks]}
+  \vspace{4cm}
+  \end{minipage}
+\end{enumerate}
+
+\end{tcolorbox}
+
+% ===== SECTION 8: MARK SCHEME =====
+\section{Mark Scheme and Answers}
+
+\begin{markscheme}
+
+\textbf{Q1.} Distance is a scalar — the total length of path travelled [1]; displacement is a vector — the straight-line distance in a specified direction from start to finish [1]. Speed is the scalar rate of change of distance [1]; velocity is the vector rate of change of displacement [1].
+
+\vspace{0.5em}\textbf{Q2.} Region A: uniform acceleration (straight line, positive gradient) [1]; Region B: constant velocity (horizontal line, zero acceleration) [1]; Region C: uniform deceleration to rest (straight line, negative gradient) [1]; shaded area = displacement during region B [1].
+
+\vspace{0.5em}\textbf{Q3.} Acceleration is the rate of change of velocity [1]; SI unit: m\,s$^{-2}$ [1].
+
+\vspace{0.5em}\textbf{Q4.} Acceleration must be \textbf{uniform} (constant) [1]; motion must be in a \textbf{straight line} [1].
+
+\vspace{0.5em}\textbf{Q5(a).} $t^2$ values (3 s.f.): $0.0408$, $0.0812$, $0.1225$, $0.1632$, $0.2034\ \text{s}^2$ [1].
+
+\vspace{0.5em}\textbf{Q5(b).} Points plotted correctly to within half a small square [1]; sensible scale used [1]; best-fit straight line through or close to the origin [1].
+
+\vspace{0.5em}\textbf{Q5(c).} Gradient $= \Delta h / \Delta t^2$ read from the line using a large triangle [1]; since $h = \tfrac{1}{2}g\,t^2$, gradient $= g/2$ [1]; $g = 2 \times \text{gradient} \approx \mathbf{9.8\ \text{m\,s}^{-2}}$ [1].
+
+\vspace{0.5em}\textbf{Q5(d).} Any valid systematic error, e.g.\ residual magnetism delays the ball's release, so the ball already has a small downward velocity when the timer starts [1]; this makes the measured $t$ smaller than the true fall time, so $t^2$ is underestimated, the gradient is too large, and the calculated value of $g$ is \textbf{too high} [1].
+
+\vspace{0.5em}\textbf{Q6(a).} Horizontal: $x = u_x t$, so $t = 35/12 = 2.92\ \text{s} \approx 2.9\ \text{s}$ [2].
+
+\vspace{0.5em}\textbf{Q6(b).} $h = \tfrac{1}{2}g\,t^2 = \tfrac{1}{2} \times 9.81 \times (2.92)^2 = \mathbf{41.8\ \text{m}}$ [2].
+
+\vspace{0.5em}\textbf{Q6(c).} $v_y = g\,t = 9.81 \times 2.92 = 28.6\ \text{m\,s}^{-1}$ [1]; resultant speed $= \sqrt{12^2 + 28.6^2} = \mathbf{31.0\ \text{m\,s}^{-1}}$ [1]; angle below horizontal $= \arctan(28.6/12) = \mathbf{67.2°}$ [1].
+
+\end{markscheme}
+
+% ===== SECTION 9: REVISION CHECKLIST =====
+\newpage
+\section{Revision Checklist}
+
+Use this checklist to track your understanding. Tick each box when you are confident:
+
+\begin{tcolorbox}[colback=white, colframe=darkblue, breakable]
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{@{} c p{10.5cm} r @{}}
+\toprule
+ & \textbf{Learning Objective} & \textbf{Confidence (1--3)} \\
+\midrule
+$\square$ & Define and distinguish distance, displacement, speed, velocity and acceleration & \\
+$\square$ & Determine velocity from the gradient of a displacement--time graph & \\
+$\square$ & Determine acceleration from the gradient of a velocity--time graph & \\
+$\square$ & Determine displacement from the area under a velocity--time graph & \\
+$\square$ & Derive the four SUVAT equations from the definitions of $v$ and $a$ & \\
+$\square$ & Select and apply the correct SUVAT equation to solve problems & \\
+$\square$ & Describe the free-fall experiment and identify sources of uncertainty & \\
+$\square$ & Use \nf{h = \tfrac{1}{2}gt^2} and a graph of $h$ vs $t^2$ to determine $g$ & \\
+$\square$ & Resolve projectile motion into independent horizontal and vertical components & \\
+$\square$ & Calculate range, time of flight, and velocity components for a projectile & \\
+\bottomrule
+\end{tabular}
+\vspace{0.5em}
+
+\textit{Key: 1 = Need more work \quad 2 = Getting there \quad 3 = Confident}
+\end{tcolorbox}
+
+\vspace{1em}
+\begin{motivationbox}
+\centering
+\textbf{\color{darkblue}Good luck with your revision!}\\[0.2em]
+{\color{darkgray}\small Remember: always define a positive direction before starting a SUVAT problem, and keep horizontal and vertical components completely separate in projectile questions.}
+\end{motivationbox}
