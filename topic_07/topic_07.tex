@@ -1,0 +1,865 @@
+% topic_07.tex — Content only. Compiled via main.tex.
+% ── No \documentclass, \begin{document} or \end{document} here ──
+
+\chapteropener{7}{Waves}{%
+  \item Progressive Waves and Wave Properties
+  \item The Wave Equation and Intensity
+  \item Transverse and Longitudinal Waves
+  \item The Doppler Effect
+  \item The Electromagnetic Spectrum
+  \item Polarisation and Malus's Law
+}
+
+% ===== SECTION 1: PROGRESSIVE WAVES =====
+\section{Progressive Waves}
+
+\begin{definitionbox}{Wave Motion}
+A \textbf{progressive wave} transfers energy from one place to another by means of oscillations, without any net transfer of matter. The particles of the medium vibrate about their equilibrium positions.
+
+Examples: waves in ropes, springs, ripple tanks, sound waves, electromagnetic waves.
+\end{definitionbox}
+
+\begin{definitionbox}{Key Wave Terms}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{@{} l p{9.5cm} @{}}
+\textbf{Displacement} ($x$) & Distance of a particle from its equilibrium position at a given instant; can be positive or negative. Unit: m. \\
+\textbf{Amplitude} ($A$) & Maximum displacement from equilibrium. Unit: m. \\
+\textbf{Period} ($T$) & Time for one complete oscillation. Unit: s. \\
+\textbf{Frequency} ($f$) & Number of complete oscillations per unit time; $f = 1/T$. Unit: Hz. \\
+\textbf{Wavelength} ($\lambda$) & Distance between two adjacent points in phase (e.g.\ crest to crest). Unit: m. \\
+\textbf{Wave speed} ($v$) & Speed at which the wave profile travels through the medium. Unit: m s$^{-1}$. \\
+\textbf{Phase difference} ($\phi$) & Difference in the stage of oscillation between two points. Unit: radians or degrees. \\
+\end{tabular}
+\end{definitionbox}
+
+\subsubsection*{Displacement--distance graph}
+
+\begin{center}
+\begin{tikzpicture}[xscale=1.3, yscale=1.1]
+  \draw[->, darkblue, thick] (-0.2,0) -- (7.0,0) node[anchor=north, font=\small] {distance};
+  \draw[->, darkblue, thick] (0,-1.4) -- (0,1.6) node[anchor=east, font=\small] {displacement};
+  % Wave
+  \draw[midblue, thick, domain=0:6.5, samples=200, smooth]
+    plot (\x, {1.1*sin(deg(pi*\x/1.5))});
+  % Amplitude
+  \draw[<->, pinkframe, thick] (0.75,0) -- (0.75,1.1);
+  \node[pinkframe, anchor=west, font=\small] at (0.78,0.55) {$A$};
+  % Wavelength
+  \draw[<->, darkgray, thick] (1.5,-1.35) -- (4.5,-1.35);
+  \node[darkgray, anchor=north, font=\small] at (3,-1.38) {$\lambda$};
+  % Phase difference label
+  \draw[dashed, darkgray, thin] (1.5,0) -- (1.5,1.1);
+  \draw[dashed, darkgray, thin] (4.5,0) -- (4.5,1.1);
+  \node[darkgray, font=\small, anchor=south] at (3.0,1.12) {in phase ($\phi = 2\pi$)};
+\end{tikzpicture}
+\end{center}
+
+\begin{keybox}{Phase Difference}
+Two points separated by a distance $d$ along the direction of travel of a wave of wavelength $\lambda$ have a phase difference:
+$$\phi = \frac{2\pi d}{\lambda} \quad \text{(in radians)} \qquad \text{or} \qquad \phi = \frac{360^\circ \cdot d}{\lambda}$$
+\begin{itemize}[itemsep=2pt]
+  \item Points separated by $\lambda$ (or $n\lambda$): $\phi = 2\pi$ — \textbf{in phase}.
+  \item Points separated by $\lambda/2$ (or $(2n-1)\lambda/2$): $\phi = \pi$ — \textbf{in antiphase}.
+\end{itemize}
+\end{keybox}
+
+% ===== SECTION 2: CRO, WAVE EQUATION AND INTENSITY =====
+\section{\texorpdfstring{CRO, Wave Equation and Intensity}{CRO, Wave Equation and Intensity}}
+
+\begin{keybox}{Using a Cathode-Ray Oscilloscope (CRO)}
+A CRO displays voltage against time. Two controls are used:
+\begin{itemize}[itemsep=2pt]
+  \item \textbf{Time-base} (s div$^{-1}$): sets the time represented by each horizontal division. Period $T = $ (number of divisions per cycle) $\times$ (time-base setting). Then $f = 1/T$.
+  \item \textbf{$y$-gain} (V div$^{-1}$): sets the voltage per vertical division. Amplitude $= $ (number of divisions from centre to peak) $\times$ ($y$-gain setting).
+\end{itemize}
+\end{keybox}
+
+\begin{center}
+\begin{tikzpicture}[xscale=0.9, yscale=0.85]
+  % CRO screen grid
+  \draw[darkblue, thick, rounded corners=4pt] (-0.15,-2.15) rectangle (8.15,2.15);
+  \fill[darkblue!5, rounded corners=4pt] (-0.15,-2.15) rectangle (8.15,2.15);
+  \foreach \x in {0,1,...,8} \draw[darkgray!40, thin] (\x,-2) -- (\x,2);
+  \foreach \y in {-2,-1,...,2} \draw[darkgray!40, thin] (0,\y) -- (8,\y);
+  % Sine wave: period = 4 divisions
+  \draw[pinkframe, thick, domain=0:8, samples=200, smooth]
+    plot (\x, {1.5*sin(deg(pi*\x/2))});
+  % Annotations
+  \draw[<->, midblue, thick] (8.4,-1.5) -- (8.4,1.5);
+  \node[midblue, anchor=west, font=\footnotesize] at (8.5,0) {$2A = 3\ \text{div}$};
+  \draw[<->, midblue, thick] (0,-2.4) -- (4,-2.4);
+  \node[midblue, anchor=north, font=\footnotesize] at (2,-2.45) {$T = 4\ \text{div}$};
+\end{tikzpicture}
+\end{center}
+
+\begin{formulabox}{The Wave Equation}
+\textit{Derivation:} In one period $T$, the wave travels a distance of one wavelength $\lambda$. Speed $=$ distance/time:
+$$v = \frac{\lambda}{T} = f\lambda \qquad \text{since } f = \frac{1}{T}$$
+\begin{center}
+\Large $v = f\lambda$
+\end{center}
+\end{formulabox}
+
+\begin{formulabox}{Intensity}
+The \textbf{intensity} of a wave is the power transmitted per unit area perpendicular to the direction of propagation:
+$$I = \frac{P}{A} \qquad \text{Unit: W m}^{-2}$$
+For a progressive wave, intensity is proportional to the square of the amplitude:
+$$I \propto (\text{amplitude})^2$$
+So doubling the amplitude quadruples the intensity.
+\end{formulabox}
+
+\begin{warningbox}{Common Mistake}
+$I \propto A^2$ means intensity is proportional to amplitude \emph{squared}. Halving the amplitude reduces intensity to one quarter — not one half. This relationship holds for all types of progressive wave.
+\end{warningbox}
+
+% ===== SECTION 3: TRANSVERSE AND LONGITUDINAL =====
+\section{Transverse and Longitudinal Waves}
+
+\begin{definitionbox}{Transverse Waves}
+In a \textbf{transverse wave}, the oscillations of particles are \textbf{perpendicular} to the direction of energy transfer (wave propagation).
+
+Examples: waves on a rope, water ripples, all electromagnetic waves.
+\end{definitionbox}
+
+\begin{definitionbox}{Longitudinal Waves}
+In a \textbf{longitudinal wave}, the oscillations of particles are \textbf{parallel} to the direction of energy transfer (wave propagation). The wave consists of alternating \textbf{compressions} (regions of high pressure/density) and \textbf{rarefactions} (regions of low pressure/density).
+
+Examples: sound waves, compression waves in a spring.
+\end{definitionbox}
+
+\begin{center}
+\begin{tikzpicture}[scale=1.0, every node/.style={font=\small}]
+  % --- Transverse wave ---
+  \node[darkblue, font=\small, anchor=west] at (0, 3.5) {Transverse wave};
+  \draw[->, darkblue] (0,2.5) -- (7.5,2.5) node[anchor=west]{direction of travel};
+  \draw[midblue, thick, domain=0:7.0, samples=200, smooth]
+    plot (\x, {2.5 + 0.7*sin(deg(2*pi*\x/2.0))});
+  % Oscillation arrow
+  \draw[<->, pinkframe, thick] (0, 1.8) -- (0, 3.2);
+  \node[pinkframe, font=\small, anchor=west] at (-2.4, 2.5) {oscillations};
+
+  % --- Longitudinal wave ---
+  \node[darkblue, font=\small\bfseries, anchor=west] at (0, 0.8) {Longitudinal wave};
+  \draw[->, darkblue] (0,0) -- (7.5,0) node[anchor=west]{direction of travel};
+  % Draw compressions and rarefactions as vertical lines varying in spacing
+  \foreach \phase in {0,0.1,...,6.9} {
+    \pgfmathsetmacro{\xpos}{\phase + 0.35*sin(deg(2*pi*\phase/2.0))}
+    \draw[midblue] (\xpos, -0.45) -- (\xpos, 0.45);
+  }
+  % Labels
+  \node[darkgray, font=\small] at (1.0,-0.75) {compression};
+  \node[darkgray, font=\small] at (4.0,-0.75) {rarefaction};
+  \draw[<->, pinkframe, thick] (-0.5,0) -- (0,0);
+  \node[pinkframe, font=\small, anchor=west] at (-2.4,0) {oscillation};
+\end{tikzpicture}
+\end{center}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{@{} l p{4.5cm} p{4.5cm} @{}}
+\toprule
+ & \textbf{Transverse} & \textbf{Longitudinal} \\
+\midrule
+Oscillation direction & Perpendicular to wave travel & Parallel to wave travel \\
+Can be polarised? & \textbf{Yes} & No \\
+Examples & EM waves, rope waves & Sound, spring compressions \\
+Graphical representation & Sinusoidal displacement--distance graph & Displacement--distance graph (same shape, but displacement is along wave direction) \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\pagebreak
+
+
+
+% ===== SECTION 4: DOPPLER EFFECT =====
+\section{The Doppler Effect}
+
+\begin{definitionbox}{Doppler Effect}
+The \textbf{Doppler effect} is the change in observed frequency of a wave when the source moves relative to a stationary observer. When the source moves \textbf{towards} the observer, the observed frequency is \textbf{higher} than the source frequency; when it moves \textbf{away}, the observed frequency is \textbf{lower}.
+\end{definitionbox}
+
+\begin{formulabox}{Doppler Formula for a Moving Source}
+\begin{center}
+\Large $f_o = \dfrac{f_s v}{v \pm v_s}$
+\end{center}
+\vspace{0.3em}
+\begin{itemize}[itemsep=2pt]
+  \item $f_o$: observed frequency (Hz).
+  \item $f_s$: source frequency (Hz).
+  \item $v$: speed of sound in the medium (m s$^{-1}$).
+  \item $v_s$: speed of the source (m s$^{-1}$).
+  \item Use $\mathbf{-}$ when the source moves \textbf{towards} the observer ($f_o > f_s$).
+  \item Use $\mathbf{+}$ when the source moves \textbf{away} from the observer ($f_o < f_s$).
+\end{itemize}
+\vspace{0.3em}
+\textit{Note: this formula applies to a \textbf{moving source} and stationary observer only. The Doppler effect for a stationary source and moving observer is not required.}
+\end{formulabox}
+
+\begin{center}
+% MOVING - DOPPLER SHIFT
+\tikzset{>=latex} % for LaTeX arrow head
+
+\colorlet{myblue}{blue!60!black}
+\colorlet{myred}{red!80!black}
+\colorlet{vcol}{green!60!black}
+\tikzstyle{vvec}=[-{Latex[length=4,width=3]},thick,vcol,line cap=round]
+\tikzstyle{myarr}=[-{Latex[length=3,width=2]}]
+\tikzstyle{mydoublearr}=[{Latex[length=3,width=2]}-{Latex[length=3,width=2]}]
+\tikzset{
+  pics/eye/.style={
+    code={
+      \draw (#1-180:0.5) to[out=#1,in=#1-240,looseness=0.9] (#1-90:0.25)
+            (#1-180:0.5) to[out=#1,in=#1-130,looseness=0.9] (#1-270:0.25);
+      \clip (#1-180:0.47) to[out=#1,in=#1-240,looseness=0.9] (#1-90:0.24) --
+            (#1-270:0.242) to[out=#1-130,in=#1,looseness=0.9] cycle;
+      \draw[very thin,top color=white,bottom color=pinklight,shading angle=#1-120]
+         (#1-180:0.48) circle(0.45);
+      \fill[darkgray,rotate=#1-180]
+        (0.07,0) ellipse({0.05} and 0.12);
+      \fill[black,rotate=#1-180]
+        (0.05,0) ellipse({0.03} and 0.06);
+  }},
+  pics/eye/.default=180
+}
+
+
+\def\R{1.5}      % radius
+\def\N{5}        % number of wave fronts
+\def\lam{\R/\N}  % wavelength
+\def\angmin{30}  % min. angle velocity arrow
+\def\angmax{330} % min. angle velocity arrow
+\def\waves#1{
+  \foreach \i in {1,...,\N}{
+    \draw[midblue,thick] ({-(\i-0.25)*#1*\lam},0) circle ({\lam*(\i-0.25)});
+  }
+%  \foreach \a in {\angmin,90,150,210,270,\angmax}{
+%    \draw[myarr,vcol] ({-(\N-0.25)*#1*\lam},0)++(\a:\R-0.50*\lam) --++ (\a:\lam);
+%  }
+  \fill[myred] (0,0) circle (0.06);
+}
+
+
+\begin{tikzpicture}[scale=1.58]
+  \def\s{0.61}
+  \draw[pinkframe,dashed,very thin,dash pattern=on 1 off 1]
+    ({-(\N-0.25)*\s*\lam},0) -- (0,0);
+  \fill[pinkframe] ({-(\N-0.25)*\s*\lam},0) circle (0.06);
+  \waves{\s}
+  %\node[vcol] at (30:{1.15*\R-\s*\R} and 1.2*\R) {$c$};
+
+
+  \pic at ( 1.25*\R-\s*\R,0) {eye={180}};
+  \pic at (-1.15*\R-\s*\R,0) {eye={0}};
+  \draw[-{Latex[length=4.8,width=3.8]},darkgray,line width=1]
+    (0.05,0) -- (0.22*\R+0.02,0);
+  \fill[pinkframe] (0,0) circle (0.06);
+  %\draw[-{Latex[length=4,width=3]},thick,vcol,line cap=round]
+  % (0.05,0) -- (0.22*\R,0); node[right=-1] {$v$};
+
+  \node[darkgray, font=\footnotesize] at (1.8,-0.5) {increased frequency};
+
+  \node[darkgray, font=\footnotesize] at (-3.5,-0.5) {decreased frequency};
+  
+\end{tikzpicture}
+
+
+\end{center}
+
+\begin{warningbox}{Sign Convention}
+The $\pm$ in $v \pm v_s$ is a common source of error. A useful check: if the source moves towards the observer, the denominator must be \emph{smaller} (so use $-$), making $f_o$ \emph{larger}. If the source moves away, the denominator is \emph{larger} (use $+$), making $f_o$ \emph{smaller}. Always sanity-check your answer against this logic.
+\end{warningbox}
+
+% ===== SECTION 5: ELECTROMAGNETIC SPECTRUM =====
+\section{The Electromagnetic Spectrum}
+
+\begin{keybox}{Properties of Electromagnetic Waves}
+All electromagnetic (EM) waves:
+\begin{itemize}[itemsep=2pt]
+  \item Are \textbf{transverse} waves.
+  \item Travel at the \textbf{same speed} in free space (vacuum): $c = 3.0 \times 10^8\ \text{m s}^{-1}$.
+  \item Require \textbf{no medium} — they can travel through a vacuum.
+  \item Obey $v = f\lambda$ (with $v = c$ in free space).
+\end{itemize}
+\end{keybox}
+
+\begin{center}
+% EM Spectrum diagram
+\colorlet{wavecol}{darkgray}
+\colorlet{freqcol}{darkblue}
+\colorlet{enercol}{blue!35!black}
+\pgfdeclareverticalshading{rainbow}{100bp}{
+  color(0bp)=(red); color(25bp)=(red); color(35bp)=(yellow);
+  color(45bp)=(green); color(55bp)=(cyan); color(65bp)=(blue);
+  color(75bp)=(violet); color(100bp)=(violet)
+}
+
+
+
+
+
+% ELECTROMAGNETIC SPECTRUM
+\begin{tikzpicture}[xscale=0.9]
+  \def\h{1.2}
+  \def\radio{-4}
+  \def\micro{0}
+  \def\IR{3}
+  \def\red{6.10}  % log(700e-9) = -6.15490196
+  \def\blue{6.40} % log(400e-9) = -6.39794001
+  \def\UV{6.40}
+  \def\Xray{8}
+  \def\gamm{11}
+  \def\last{12}
+  \def\radiof{-5}
+  \def\dx{0.6}
+  \def\yE{-1.1*\h}
+  
+  \def\tick#1#2#3{\draw[thick,#2] (#1+.08) --++ (0,-.16) node[below=-2pt,scale=1] {\strut #3};}
+  \def\ticka#1#2#3{\draw[thick,#2] (#1+.08) --++ (0,-.16) node[above=2pt,scale=1] {\strut #3};}
+  
+  % MIDDLE
+  \fill[pinkframe!70!black!10] (\radio-0.82*\dx,0) rectangle (\IR,\h);
+  \fill[pinkframe!80!black!15] (\micro,0) rectangle (\IR,\h);
+  \fill[pinkframe!90!black!20] (\IR,0) rectangle (\red,\h);
+  \fill[midblue!60!violet!80!black!10] (\UV,0) rectangle (\Xray,\h);
+  \fill[midblue!50!black!15] (\Xray,0) rectangle (\gamm,\h);
+  \fill[midblue!40!black!25] (\gamm,0) rectangle (\last+0.8*\dx,\h);
+  \shade[shading=rainbow,shading angle=-90] (\red,0) rectangle (\blue,\h);
+  \node at ({(\radio+\micro)/2},\h/2) {\strut radio};
+  \node at ({(\micro+\IR)/2},   \h/2) {\strut micro};
+  \node at ({(\IR+\red)/2},     \h/2) {\strut IR};
+  %\node at (\red,  \h/2) {red};
+  %\node at (\red,  \h/2) {blue};
+  \node at ({(\UV+\Xray)/2},    \h/2) {\strut UV};
+  \node at ({(\Xray+\gamm)/2},  \h/2) {\strut X ray};
+  \node at ({(\gamm+\last+0.8*\dx)/2},  \h/2) {\strut gamma};
+  
+  % WAVELENGTH
+  \draw[->,thick,wavecol] (\last+\dx,\h) -- (\radio-1.5*\dx,\h) node[above left=-3,scale=1.1] {$\lambda$ [\si{m}]};
+  \foreach \x [evaluate={\i=int(-\x)}] in {\radio,...,\last}{
+    \ifthenelse{\i=0}{ \ticka{\x,\h}{wavecol}{$1$} }
+                     { \ticka{\x,\h}{wavecol}{$10^{\i}$} }
+  }
+  \node[wavecol,scale=1] at (-3,1.71*\h) {\strut km};
+  \node[wavecol,scale=1] at ( 0,1.71*\h) {\strut m};
+  \node[wavecol,scale=1] at ( 3,1.71*\h) {\strut mm};
+  \node[wavecol,scale=1] at ( 6,1.71*\h) {\strut \si{\mu m}};
+  \node[wavecol,scale=1] at ( 9,1.71*\h) {\strut nm};
+  \node[wavecol,scale=1] at (12,1.71*\h) {\strut pm};
+  %\node[wavecol,scale=1] at (15,1.71*\h) {\strut fm};
+  
+  % FREQUENCY
+  % log(f) = log(c) - log(lambda)
+  % log(c) = log(2.997e8) = 8.4766867429
+  \draw[->,thick,freqcol] (\radio-\dx,0) -- (\last+1.5*\dx,0) node[below right=-3,scale=1.1] {$f$ [\si{Hz}]};
+  \foreach \x [evaluate={\i=int(\x+9);\X=\x+0.53}] in {\radiof,...,\last}{
+    \tick{\X,0}{freqcol}{$10^{\i}$}
+  }
+  %\node[freqcol,scale=1] at (-8.47+ 3,-0.65*\h) {\strut kHz};
+  \node[freqcol,scale=1] at (-8.47+ 6,-0.71*\h) {\strut MHz};
+  \node[freqcol,scale=1] at (-8.47+ 9,-0.71*\h) {\strut GHz};
+  \node[freqcol,scale=1] at (-8.47+12,-0.71*\h) {\strut THz};
+  \node[freqcol,scale=1] at (-8.47+15,-0.71*\h) {\strut PHz};
+  \node[freqcol,scale=1] at (-8.47+18,-0.71*\h) {\strut EHz};
+  
+
+  
+\end{tikzpicture}
+
+
+\end{center}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{@{} l l l @{}}
+\toprule
+\textbf{Region} & \textbf{Approx.\ wavelength (m)} & \textbf{Approx.\ frequency (Hz)} \\
+\midrule
+Radio waves      & $> 10^{-1}$               & $< 3\times10^{9}$ \\
+Microwaves       & $10^{-3}$ to $10^{-1}$    & $3\times10^{9}$ to $3\times10^{11}$ \\
+Infrared         & $7\times10^{-7}$ to $10^{-3}$ & $3\times10^{11}$ to $4\times10^{14}$ \\
+Visible          & $4\times10^{-7}$ to $7\times10^{-7}$ & $4\times10^{14}$ to $7.5\times10^{14}$ \\
+Ultraviolet      & $10^{-8}$ to $4\times10^{-7}$ & $7.5\times10^{14}$ to $3\times10^{16}$ \\
+X-rays           & $10^{-13}$ to $10^{-8}$   & $3\times10^{16}$ to $3\times10^{21}$ \\
+Gamma rays       & $< 10^{-13}$              & $> 3\times10^{21}$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{keybox}{Visible Light}
+The visible spectrum occupies wavelengths from approximately \textbf{400 nm} (violet) to \textbf{700 nm} (red) in free space.
+$$400\ \text{nm} = 4\times10^{-7}\ \text{m} \qquad 700\ \text{nm} = 7\times10^{-7}\ \text{m}$$
+\end{keybox}
+
+\pagebreak
+
+% ===== SECTION 6: POLARISATION =====
+\section{Polarisation and Malus's Law}
+
+\begin{definitionbox}{Polarisation}
+\textbf{Polarisation} is a phenomenon associated with \textbf{transverse waves only}. An unpolarised transverse wave has oscillations in all planes perpendicular to the direction of travel. A \textbf{plane-polarised} wave has oscillations confined to a single plane.
+
+Longitudinal waves \emph{cannot} be polarised — their oscillations are already along one axis (the direction of travel).
+\end{definitionbox}
+
+
+
+
+\usetikzlibrary{angles,quotes}
+\tikzset{>=latex} % for LaTeX arrow head
+
+\usetikzlibrary{calc}
+\usetikzlibrary{arrows,arrows.meta}
+
+\colorlet{crystal}{blue!75}
+\colorlet{vcol}{midblue}
+\colorlet{Ecol}{pinkframe}
+\colorlet{EWcol}{pinkframe}
+\colorlet{EVcol}{pinklight}
+\def\zangle{-20}
+\def\xangle{20}
+\tikzstyle{platecol}=[midblue!70!]
+\tikzstyle{platetopcol}=[blue!90!black!50,opacity=0.8]
+\tikzstyle{platesidEcol}=[blue!70!black!50,opacity=0.8]
+\tikzstyle{mydashed}=[dash pattern=on 1.2 off 0.7,line width=0.3]
+\tikzstyle{Evec}=[EVcol,-{Stealth[length=1.8,width=1.2]},line width=0.2]
+%\tikzstyle{Evec}=[EVcol,-stealth,line width=0.2]
+%\tikzstyle{Evec}=[EVcol,-{>[scale=0.2]},line width=0.2]
+%\tikzstyle{Evec}=[EVcol,-latexnew,arrowhead=1,line width=0.2]
+
+% RIGHT ANGLE
+\newcommand\rightAngle[4]{
+  \pgfmathanglebetweenpoints{\pgfpointanchor{#2}{center}}{\pgfpointanchor{#3}{center}}
+  \coordinate (tmpRA) at ($(#2)+(\pgfmathresult+45:#4)$);
+  \draw[white,line width=0.6] ($(#2)!(tmpRA)!(#1)$) -- (tmpRA) -- ($(#2)!(tmpRA)!(#3)$);
+  \draw[blue!40!black] ($(#2)!(tmpRA)!(#1)$) -- (tmpRA) -- ($(#2)!(tmpRA)!(#3)$);
+}
+
+% POLARIZER
+\def\W{3.5}  % width polarizer
+\def\w{0.05} % width slit
+\def\l{2.9}  % length slit
+\def\t{0.05}
+\def\N{7}    % number of slits
+\tikzset{
+  plate/.pic={
+%    \fill[platetopcol]
+%      (-\W/2,\W/2,0) --++ (\W,0,0) --++ (0,0,-\t) --++ (-\W,0,0) -- cycle;
+%    \fill[platesidEcol]
+%      (-\W/2,-\W/2,0) --++ (0,\W,0) --++ (0,0,-\t) --++ (0,-\W,0) -- cycle;
+%    \fill[platecol,even odd rule]
+%      (-\W/2,-\W/2,0) --++ (\W,0,0) --++ (0,\W,0) --++ (-\W,0,0) -- cycle
+%      \foreach \i [evaluate={\x=-\W/2+\i*\W/(\N+1);}] in {1,...,\N}{
+%        (\x-\w/2,-\l/2) --++ (0,\l) --++ (\w,0) --++ (0,-\l) -- cycle
+%      };
+    \ifnumless{45}{#1}{
+      \def\topang{#1}
+    }{
+      \def\topang{#1+90}
+    }
+    \fill[platetopcol]
+      (\topang:\W/2)++(\topang-90:\W/2) --++ (0,0,-\t) --++ (\topang+90:\W) --++ (0,0,\t) -- cycle;
+    \fill[platesidEcol]
+      (\topang+90:\W/2)++(\topang:\W/2) --++ (0,0,-\t) --++ (\topang+180:\W) --++ (0,0,\t) -- cycle;
+    \fill[platecol]
+      (#1:\W/2)++(#1-90:\W/2) --++ (#1-180:\W) --++ (#1+90:\W) --++ (#1:\W) -- cycle
+      \foreach \i [evaluate={\x=-\W/2+\i*\W/(\N+1);}] in {1,...,\N}{
+        (#1:\l/2)++(#1+90:\x+\w/2) --++ (#1-180:\l) --++ (#1-90:\w) --++ (#1:\l) -- cycle
+      };
+  }
+}
+
+
+
+
+
+% POLARIZATION: 90, theta
+\begin{center}
+\begin{tikzpicture}[x=(15:0.5), y=(90:0.6), z=(-20:2.2)]
+  
+  \def\A{1.4}
+  \def\L{3.2}
+  \def\M{4.5}
+  \def\nwave{4}
+  \def\k{(360*\nwave/\M)} % 2pi*n / L = 360*n / L
+  %\def\dx{90/\k}
+  \def\nvec{40} % per wavelength
+  
+  % SECTION 1
+  \draw[thick] (0,0,0) -- (0,0,0.4*\L);
+  \foreach \ang in {45,90,...,360}{
+    \draw[<->,very thick,Ecol] (0,0,0.4*\L)++(\ang:\A) --++ (\ang+180:2*\A);
+  }
+  %\node[Ecol,above] at (45:\A) {$\vb{E}$};
+  \draw[thick] (0,0,0.4*\L) -- (0,0,\L);
+  \draw[->,very thick,vcol] (0,0,0.4*\L)++(60:1.1*\A) --++ (0,0,0.2*\L) node[right] {$\vb{v}$};
+  \node[scale=0.9,yslant=tan(-10)] at (0,-1.4*\A,0.4*\L) {unpolarised};
+  
+  % SECTION 2
+  \begin{scope}[shift={(0,0,\L)}]
+    \pic at (0,0) {plate={90}};
+    \node[scale=0.9,yslant=tan(-10),right=7,below] at (-135:0.7*\W) {polariser};
+    \draw[thick] (0,0,0) -- (0,0,\M/2);
+    \draw[<->,very thick,Ecol] (0,0,\M/2)++(90:\A) --++ (-90:2*\A); %-\dx
+   % \draw[EWcol,samples=100,smooth,variable=\z,domain=0:\M]
+    %  plot(0,{\A*cos(\k*\z)},\z);
+    \foreach \i [evaluate={\z=\i*\M/\nvec; \c=int(\i!=\nvec/2);}] in {0,...,\nvec}{
+      \ifnum\c=1
+        \draw[Evec] (0,0,\z) --++ (90:{\A*cos(\k*\z)});
+      \fi
+    }
+    
+     \draw[EWcol,samples=100,smooth,variable=\z,domain=0:\M]
+      plot(0,{\A*cos(\k*\z)},\z);
+    
+    \draw[thick] (0,0,\M/2) -- (0,0,\M);
+    \node[scale=0.9,yslant=tan(-10),below=-7,align=center] at (0,-1.4*\A,0.45*\M)
+      {linearly polarised\\$E_0$};
+      \draw[thick] (0,0,0) -- (0,0,\M/2);
+    \draw[<->,very thick,Ecol] (0,0,\M/2)++(90:\A) --++ (-90:2*\A); %-\dx
+  \end{scope}
+  
+  % SECTION 3
+  \begin{scope}[shift={(0,0,\L+\M)}]
+    \pic at (0,0) {plate={45}};
+    \node[scale=0.9,yslant=tan(-10),left=7,below] at (-90:0.7*\W) {analyser};
+    \draw[->,thick] (0,0,0) -- (0,0,1.2*\L);
+    \draw[<->,very thick,Ecol] (0,0,\M/2)++(45:{\A*cos(45)}) --++ (-135:{2*\A*cos(45)}); %-\dx
+    \draw[Ecol!50!black!90,mydashed]
+      (90:\A) -- (45:{\A*cos(45)});
+   % \draw[EWcol,samples=100,smooth,variable=\z,domain=0:0.74*\M]
+   %   plot({\A*cos(\k*\z)*cos(45)^2},{\A*cos(\k*\z)*cos(45)^2},\z);
+    \foreach \i [evaluate={\z=\i*\M/\nvec; \c=int(\i!=\nvec/2 && \i<23);}] in {0,...,\nvec}{
+      \ifnum\c=1
+        \draw[Evec] (0,0,\z) --++ (45:{\A*cos(\k*\z)*cos(45)});
+      \fi
+    }
+    
+      \draw[EWcol,samples=100,smooth,variable=\z,domain=0:0.74*\M]
+     plot({\A*cos(\k*\z)*cos(45)^2},{\A*cos(\k*\z)*cos(45)^2},\z);
+    
+    
+    \node[scale=0.9,yslant=tan(-10),below=-7,align=center] at (0,-1.4*\A,0.55*\L)
+      {linearly polarised\\$E_0\cos\theta$};
+  \end{scope}
+  
+\end{tikzpicture}
+
+
+
+% POLARIZER projection
+
+\begin{tikzpicture}
+
+  \def\W{2.5}  % width polarizer
+  \def\w{0.05} % width slit
+  \def\l{2.3}  % length slit
+  \def\N{7}    % number of slits
+  \def\A{1.5}  % amplitude/size E vector
+  \def\ang{45} % angle polarizer
+  \coordinate (O) at (0,0);
+  \coordinate (E0) at (90:\A);
+  \coordinate (E) at (45:{\A*cos(45)});
+  
+  \fill[midblue!80!black!15,shift={(45:0.11*\W)}]
+    (\ang:\W/2)++(\ang-90:\W/2) --++ (\ang-180:\W) --++ (\ang+90:\W) --++ (\ang:\W) -- cycle
+    \foreach \i [evaluate={\x=-\W/2+\i*\W/(\N+1);}] in {1,...,\N}{
+      (\ang:\l/2)++(\ang+90:\x+\w/2) --++ (\ang-180:\l) --++ (\ang-90:\w) --++ (\ang:\l) -- cycle
+    };
+  
+  \draw[Ecol!50!black!90,dashed] (-135:0.75*\A) -- (45:1.2*\A) coordinate (T);
+  \draw[Ecol!50!black!90,dashed] (90:\A) -- (45:{\A*cos(45)});
+  \rightAngle{O}{E}{E0}{0.38}
+  \draw[->,Ecol,very thick] (0,0) -- (E0) node[midway,left] {$E_0$};
+  \draw[->,Ecol,very thick] (0,0) -- (E) node[midway,below right=-2] {$E_0 \cos\theta$}; %45\degree
+  \draw pic[<-,"$\theta$"{anchor=-85},draw=black,angle radius=16,angle eccentricity=1] {angle = E--O--E0};
+  
+\end{tikzpicture}
+
+\end{center}
+
+
+
+  
+ 
+
+
+
+
+
+\begin{formulabox}{Malus's Law}
+When a plane-polarised electromagnetic wave of intensity $I_0$ passes through a polarising filter at angle $\theta$ to the plane of polarisation:
+\begin{center}
+\Large $I = I_0 \cos^2\theta$
+\end{center}
+\begin{itemize}[itemsep=2pt]
+  \item $\theta = 0^\circ$ (filter aligned with polarisation): $I = I_0$ — maximum transmission.
+  \item $\theta = 90^\circ$ (filter perpendicular): $I = 0$ — complete extinction.
+  \item $\theta = 45^\circ$: $I = \tfrac{1}{2}I_0$ — half the intensity transmitted.
+  \item \textbf{Note:} the effect of a polarising filter on an \emph{unpolarised} wave is not required (but for reference, it halves the intensity).
+\end{itemize}
+\end{formulabox}
+
+\begin{warningbox}{Common Mistake}
+Malus's law ($I = I_0\cos^2\theta$) only applies to \textbf{already plane-polarised} light incident on a second filter. It does not apply to the first polarising filter acting on unpolarised light. Also remember $\theta$ is measured from the \emph{transmission axis} of the filter to the plane of polarisation of the incoming wave — not between the two filters themselves unless the incoming wave was polarised along the first filter's axis.
+\end{warningbox}
+
+% ===== SECTION 7: FORMULA SUMMARY =====
+\section{Formula Summary Sheet}
+
+\begin{minipage}{\linewidth}
+\begin{tcolorbox}[colback=lightgold, colframe=accentgold]
+\renewcommand{\arraystretch}{1.8}
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Formula} & \textbf{Quantity} & \textbf{Units} \\
+\midrule
+$v = f\lambda$ & Wave equation & m s$^{-1}$ \\
+$f = 1/T$ & Frequency--period & Hz \\
+$\phi = 2\pi d/\lambda$ & Phase difference & rad \\
+$I = P/A$ & Intensity & W m$^{-2}$ \\
+$I \propto (\text{amplitude})^2$ & Intensity--amplitude & --- \\
+$f_o = f_s v/(v \pm v_s)$ & Doppler effect & Hz \\
+$I = I_0 \cos^2\theta$ & Malus's law & W m$^{-2}$ \\
+\bottomrule
+\end{tabular}
+\end{tcolorbox}
+
+\vspace{0.5em}
+\begin{tcolorbox}[colback=lightblue, colframe=darkblue]
+\textbf{Key facts to recall:}\\[0.3em]
+All EM waves travel at $c = 3.0\times10^8\ \text{m s}^{-1}$ in free space and are transverse.\\[0.2em]
+Visible light: $400\ \text{nm}$ (violet) to $700\ \text{nm}$ (red).\\[0.2em]
+Only \textbf{transverse} waves can be polarised.\\[0.2em]
+Doppler: source approaching $\Rightarrow$ use $-$ in denominator; receding $\Rightarrow$ use $+$.
+\end{tcolorbox}
+\end{minipage}
+
+
+\pagebreak
+
+
+% ===== SECTION 8: WORKED EXAMPLES =====
+\section{Worked Examples}
+
+\subsection*{Example 1 --- Wave Properties from a CRO}
+
+\textbf{Question:} A CRO displays a wave with a period of 2.5 divisions. The time-base is set to $4.0\ \text{ms div}^{-1}$ and the $y$-gain to $0.50\ \text{V div}^{-1}$. The wave has a peak-to-peak height of 3.0 divisions. Find (a) the frequency and (b) the amplitude.
+
+\begin{examplebox}{Solution}
+\textbf{(a)} $T = 2.5 \times 4.0 \times 10^{-3} = 1.0\times10^{-2}\ \text{s}$; \quad
+$f = 1/T = 1/(1.0\times10^{-2}) = \mathbf{100\ \text{Hz}}$
+
+\vspace{0.3em}
+\textbf{(b)} Peak-to-peak $= 3.0\ \text{div}$, so amplitude $= 1.5\ \text{div}$.
+$A = 1.5 \times 0.50 = \mathbf{0.75\ \text{V}}$
+\end{examplebox}
+
+\subsection*{Example 2 --- Intensity and Amplitude}
+
+\textbf{Question:} A loudspeaker produces a sound wave of amplitude $2.4\times10^{-3}\ \text{m}$ and intensity $1.8\ \text{W m}^{-2}$. The amplitude is increased to $6.0\times10^{-3}\ \text{m}$. Calculate the new intensity.
+
+\begin{examplebox}{Solution}
+Since $I \propto A^2$:
+$$\frac{I_2}{I_1} = \left(\frac{A_2}{A_1}\right)^2 = \left(\frac{6.0\times10^{-3}}{2.4\times10^{-3}}\right)^2 = (2.5)^2 = 6.25$$
+$$I_2 = 6.25 \times 1.8 = \mathbf{11.3\ \text{W m}^{-2}}$$
+\end{examplebox}
+
+\subsection*{Example 3 --- Doppler Effect}
+
+\textbf{Question:} An ambulance siren emits sound at $f_s = 850\ \text{Hz}$. The ambulance approaches a stationary observer at $22\ \text{m s}^{-1}$. The speed of sound is $340\ \text{m s}^{-1}$. Calculate the frequency heard by the observer (a) as the ambulance approaches and (b) as it recedes.
+
+\begin{examplebox}{Solution}
+\textbf{(a)} Approaching (use $-$):
+$$f_o = \frac{f_s v}{v - v_s} = \frac{850 \times 340}{340 - 22} = \frac{289\,000}{318} = \mathbf{909\ \text{Hz}}$$
+
+\textbf{(b)} Receding (use $+$):
+$$f_o = \frac{f_s v}{v + v_s} = \frac{850 \times 340}{340 + 22} = \frac{289\,000}{362} = \mathbf{798\ \text{Hz}}$$
+\end{examplebox}
+
+\subsection*{Example 4 --- Malus's Law}
+
+\textbf{Question:} Plane-polarised light of intensity $24\ \text{W m}^{-2}$ is incident on a polarising filter. The filter's transmission axis makes an angle of $35^\circ$ with the plane of polarisation. Calculate the transmitted intensity.
+
+\begin{examplebox}{Solution}
+$$I = I_0\cos^2\theta = 24 \times \cos^2(35^\circ) = 24 \times (0.819)^2 = 24 \times 0.671 = \mathbf{16.1\ \text{W m}^{-2}}$$
+\end{examplebox}
+
+% ===== SECTION 9: PRACTICE QUESTIONS =====
+\section{Practice Exam Questions}
+
+\subsection*{Section A --- Short Answer Questions}
+
+\begin{tcolorbox}[colback=white, colframe=midblue, breakable]
+
+\begin{minipage}{\linewidth}
+\textbf{Q1.} Define the terms (a) amplitude, (b) frequency, (c) wavelength and (d) phase difference.
+\par\hfill\textit{[4 marks]}
+\vspace{4cm}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+\textbf{Q2.} A water wave has frequency $3.5\ \text{Hz}$ and wavelength $0.24\ \text{m}$. Calculate its speed. Two points on the wave are separated by $0.18\ \text{m}$ in the direction of travel. Calculate the phase difference between them.
+\par\hfill\textit{[4 marks]}
+\vspace{4cm}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+\textbf{Q3.} Distinguish between transverse and longitudinal waves. Give one example of each. Explain why polarisation is evidence that light is a transverse wave.
+\par\hfill\textit{[4 marks]}
+\vspace{8cm}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+\textbf{Q4.} State three properties common to all electromagnetic waves. Sketch the electromagnetic spectrum, labelling each region and giving an approximate wavelength range for visible light.
+\par\hfill\textit{[5 marks]}
+\vspace{12cm}
+\end{minipage}
+
+\end{tcolorbox}
+
+\pagebreak
+
+\subsection*{Section B --- Longer Structured Questions}
+
+\begin{tcolorbox}[colback=white, colframe=midblue, breakable]
+
+\begin{minipage}{\linewidth}
+\textbf{Q5.} A source of sound has frequency $640\ \text{Hz}$ and moves towards a stationary observer at $15\ \text{m s}^{-1}$. The speed of sound in air is $340\ \text{m s}^{-1}$.
+\end{minipage}
+
+\begin{enumerate}[label=(\alph*)]
+  \item \begin{minipage}[t]{\linewidth}
+  Calculate the frequency heard by the observer.
+  \par\hfill\textit{[2 marks]}
+  \vspace{3cm}
+  \end{minipage}
+
+  \item \begin{minipage}[t]{\linewidth}
+  The source then moves away from the observer at the same speed. Calculate the new observed frequency and the change in observed frequency between the two situations.
+  \par\hfill\textit{[3 marks]}
+  \vspace{3.5cm}
+  \end{minipage}
+
+  \item \begin{minipage}[t]{\linewidth}
+  Explain in terms of wavefronts why the observed frequency is higher when the source approaches.
+  \par\hfill\textit{[2 marks]}
+  \vspace{3cm}
+  \end{minipage}
+\end{enumerate}
+
+\begin{minipage}{\linewidth}
+\textbf{Q6.} A plane-polarised beam of light of intensity $I_0$ is incident on a polarising filter.
+
+\begin{enumerate}[label=(\alph*)]
+  \item The filter's transmission axis is at $50^\circ$ to the plane of polarisation. Calculate the transmitted intensity as a fraction of $I_0$.
+  \par\hfill\textit{[2 marks]}
+  \vspace{3cm}
+
+  \item The filter is rotated to $90^\circ$. State the transmitted intensity and explain your answer.
+  \par\hfill\textit{[2 marks]}
+  \vspace{3cm}
+
+  \item The intensity of the incident beam is now doubled to $2I_0$ and the filter is returned to $50^\circ$. Calculate the new transmitted intensity.
+  \par\hfill\textit{[1 mark]}
+  \vspace{2.5cm}
+\end{enumerate}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+\textbf{Q7.} A loudspeaker emits sound of frequency $500\ \text{Hz}$ and produces an intensity of $3.2\times10^{-3}\ \text{W m}^{-2}$ at a distance of $4.0\ \text{m}$.
+
+\begin{enumerate}[label=(\alph*)]
+  \item The amplitude of the sound wave at this distance is $A_1$. The speaker power is increased so that the amplitude doubles to $2A_1$. Calculate the new intensity.
+  \par\hfill\textit{[2 marks]}
+  \vspace{3cm}
+
+  \item Calculate the wavelength of the sound wave. (Speed of sound $= 340\ \text{m s}^{-1}$.)
+  \par\hfill\textit{[2 marks]}
+  \vspace{2.5cm}
+
+  \item Two points in the sound wave are $0.51\ \text{m}$ apart along the direction of travel. Calculate the phase difference between them.
+  \par\hfill\textit{[2 marks]}
+  \vspace{3cm}
+\end{enumerate}
+\end{minipage}
+
+\end{tcolorbox}
+
+\pagebreak
+
+
+% ===== SECTION 10: MARK SCHEME =====
+\section{Mark Scheme and Answers}
+
+\begin{markscheme}
+
+\textbf{Q1(a).} Maximum displacement of a particle from its equilibrium position [1].\\
+\textbf{Q1(b).} Number of complete oscillations per unit time [1].\\
+\textbf{Q1(c).} Distance between two adjacent points that are in phase [1].\\
+\textbf{Q1(d).} Difference in the stage of oscillation between two points on a wave [1].
+
+\vspace{0.5em}\textbf{Q2.} $v = f\lambda = 3.5 \times 0.24 = \mathbf{0.84\ \text{m s}^{-1}}$ [2]. Phase difference: $\phi = 2\pi d/\lambda = 2\pi \times 0.18/0.24 = 2\pi \times 0.75 = \mathbf{1.5\pi\ \text{rad}}$ ($= 270^\circ$) [2].
+
+\vspace{0.5em}\textbf{Q3.} Transverse: oscillations perpendicular to direction of travel [1]; e.g.\ EM waves / rope [1]. Longitudinal: oscillations parallel to direction of travel [1]; e.g.\ sound [1]. Light can be polarised $\Rightarrow$ oscillations must be perpendicular to direction of travel $\Rightarrow$ transverse [bonus/mark scheme dependent on question wording].
+
+\vspace{0.5em}\textbf{Q4.} Any three of: all transverse; travel at $c = 3\times10^8\ \text{m s}^{-1}$ in free space; require no medium; obey $v = f\lambda$ [3]. Spectrum with correct order (radio $\to$ $\gamma$) [1]; visible $400$--$700\ \text{nm}$ [1].
+
+\vspace{0.5em}\textbf{Q5(a).} $f_o = 640\times340/(340-15) = 217\,600/325 = \mathbf{669\ \text{Hz}}$ [2].
+
+\vspace{0.5em}\textbf{Q5(b).} $f_o = 640\times340/(340+15) = 217\,600/355 = \mathbf{613\ \text{Hz}}$ [2]; change $= 669 - 613 = \mathbf{56\ \text{Hz}}$ [1].
+
+\vspace{0.5em}\textbf{Q5(c).} As the source approaches, successive wavefronts are emitted closer together [1]; the observer encounters more wavefronts per second, so the observed frequency is higher [1].
+
+\vspace{0.5em}\textbf{Q6(a).} $I = I_0\cos^2(50^\circ) = I_0\times(0.643)^2 = \mathbf{0.413\ I_0}$ [2].
+
+\vspace{0.5em}\textbf{Q6(b).} $I = I_0\cos^2(90^\circ) = \mathbf{0}$ [1]; the transmission axis is perpendicular to the plane of polarisation so no light passes through [1].
+
+\vspace{0.5em}\textbf{Q6(c).} $I = 2I_0\cos^2(50^\circ) = 2\times0.413\,I_0 = \mathbf{0.826\ I_0}$ [1].
+
+\vspace{0.5em}\textbf{Q7(a).} $I \propto A^2$; amplitude doubles so $I$ increases by factor $4$: $I_2 = 4\times3.2\times10^{-3} = \mathbf{1.28\times10^{-2}\ \text{W m}^{-2}}$ [2].
+
+\vspace{0.5em}\textbf{Q7(b).} $\lambda = v/f = 340/500 = \mathbf{0.68\ \text{m}}$ [2].
+
+\vspace{0.5em}\textbf{Q7(c).} $\phi = 2\pi d/\lambda = 2\pi\times0.51/0.68 = 2\pi\times0.75 = \mathbf{1.5\pi\ \text{rad}}$ ($270^\circ$) [2].
+
+\end{markscheme}
+
+% ===== SECTION 11: REVISION CHECKLIST =====
+\newpage
+\section{Revision Checklist}
+
+Use this checklist to track your understanding. Tick each box when you are confident:
+
+\begin{tcolorbox}[colback=white, colframe=darkblue, breakable]
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{@{} c p{10.5cm} r @{}}
+\toprule
+ & \textbf{Learning Objective} & \textbf{Confidence (1--3)} \\
+\midrule
+$\square$ & Define displacement, amplitude, period, frequency, wavelength, phase difference & \\
+$\square$ & Use the CRO to determine frequency and amplitude & \\
+$\square$ & Derive and use $v = f\lambda$ & \\
+$\square$ & Use $I = P/A$ and $I \propto (\text{amplitude})^2$ & \\
+$\square$ & Distinguish transverse and longitudinal waves with examples & \\
+$\square$ & Sketch and interpret displacement--distance graphs for both wave types & \\
+$\square$ & Understand the Doppler effect for a moving source & \\
+$\square$ & Use $f_o = f_s v/(v \pm v_s)$ with correct sign convention & \\
+$\square$ & State properties common to all EM waves & \\
+$\square$ & Recall the EM spectrum regions and approximate wavelength ranges & \\
+$\square$ & Recall visible light wavelength range (400--700 nm) & \\
+$\square$ & Explain polarisation and why it is evidence for transverse waves & \\
+$\square$ & Apply Malus's law $I = I_0\cos^2\theta$ to plane-polarised light & \\
+\bottomrule
+\end{tabular}
+\vspace{0.5em}
+
+\textit{Key: 1 = Need more work \quad 2 = Getting there \quad 3 = Confident}
+\end{tcolorbox}
+
+\vspace{1em}
+\begin{motivationbox}
+\centering
+\textbf{\color{darkblue}Good luck with your revision!}\\[0.2em]
+{\color{darkgray}\small Waves is one of those topics where a clear mental picture goes a long way. Sketch the wave, label the amplitude and wavelength, decide whether oscillations are parallel or perpendicular to travel --- and most of the topic falls into place from there.}
+\end{motivationbox}
