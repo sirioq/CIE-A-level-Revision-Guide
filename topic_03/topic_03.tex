@@ -1,0 +1,590 @@
+% topic_03.tex — Content only. Compiled via main.tex.
+% ── No \documentclass, \begin{document} or \end{document} here ──
+
+\chapteropener{3}{Dynamics}{%
+  \item Mass, Force and Newton's Laws of Motion
+  \item Linear Momentum and Impulse
+  \item Non-Uniform Motion and Terminal Velocity
+  \item Conservation of Momentum
+  \item Elastic and Inelastic Collisions
+}
+
+% ===== SECTION 1: NEWTON'S LAWS =====
+\section{Mass, Force and Newton's Laws of Motion}
+
+\begin{definitionbox}{Mass}
+\textbf{Mass} is the property of an object that resists change in motion (inertia). It is a scalar quantity measured in kilograms (kg). A larger mass requires a larger force to produce the same acceleration.
+\end{definitionbox}
+
+\begin{definitionbox}{Newton's First Law}
+An object remains at rest or continues to move with \textbf{constant velocity} unless acted upon by a \textbf{resultant (net) force}.
+
+Equivalently: if the resultant force on an object is zero, its acceleration is zero.
+\end{definitionbox}
+
+\begin{definitionbox}{Newton's Second Law}
+The \textbf{resultant force} on an object is directly proportional to its \textbf{rate of change of momentum}, and acts in the same direction as the rate of change of momentum:
+$$F = \frac{\Delta p}{\Delta t} = \frac{\Delta(mv)}{\Delta t}$$
+For constant mass this simplifies to:
+$$F = ma$$
+\begin{itemize}[itemsep=2pt]
+  \item $F$: resultant force (N); \quad $m$: mass (kg); \quad $a$: acceleration (m s$^{-2}$).
+  \item The resultant force and acceleration are always in the \textbf{same direction}.
+  \item $1\ \text{N}$: the force that gives a mass of $1\ \text{kg}$ an acceleration of $1\ \text{m s}^{-2}$.
+\end{itemize}
+\end{definitionbox}
+
+\begin{definitionbox}{Newton's Third Law}
+If object A exerts a force on object B, then object B exerts an \textbf{equal and opposite force} on object A.
+
+These forces are:
+\begin{itemize}[itemsep=2pt]
+  \item Equal in magnitude.
+  \item Opposite in direction.
+  \item Of the \textbf{same type} (e.g.\ both gravitational, both contact).
+  \item Acting on \textbf{different objects} — they never cancel because they act on different bodies.
+\end{itemize}
+\end{definitionbox}
+
+\begin{warningbox}{Newton's Third Law Pairs}
+A common error is to confuse Newton's third law pairs with forces in equilibrium. Two forces balance (sum to zero) when they act on the \emph{same} object; Newton's third law pairs act on \emph{different} objects. For example: weight ($mg$ downward on book) and normal contact force ($N$ upward on book) are \emph{not} a Newton's third law pair — they are equilibrium forces on the same object. The Newton's third law pair of the book's weight is the gravitational pull the book exerts on the Earth.
+\end{warningbox}
+
+\begin{definitionbox}{Weight}
+The \textbf{weight} of an object is the gravitational force acting on it due to a gravitational field:
+$$W = mg$$
+\begin{itemize}[itemsep=2pt]
+  \item $g = 9.81\ \text{m s}^{-2}$: gravitational field strength / acceleration of free fall.
+  \item Weight acts at the object's \textbf{centre of gravity}.
+  \item Weight is a vector (downward); mass is a scalar.
+\end{itemize}
+\end{definitionbox}
+
+% ===== SECTION 2: MOMENTUM AND IMPULSE =====
+\section{Linear Momentum and Impulse}
+
+\begin{definitionbox}{Linear Momentum}
+The \textbf{linear momentum} of an object is the product of its mass and velocity:
+$$p = mv$$
+\begin{itemize}[itemsep=2pt]
+  \item Unit: kg m s$^{-1}$ (or N s).
+  \item Momentum is a \textbf{vector} — direction matters.
+  \item Always state or define the positive direction when solving problems.
+\end{itemize}
+\end{definitionbox}
+
+\begin{formulabox}{Force as Rate of Change of Momentum}
+Newton's second law in its most general form:
+\begin{center}
+\Large $F = \frac{\Delta p}{\Delta t}$
+\end{center}
+\vspace{0.2em}
+Rearranging: $F\,\Delta t = \Delta p$
+
+The product $F\,\Delta t$ is called the \textbf{impulse}:
+$$\text{Impulse} = F\,\Delta t = \Delta p = mv - mu$$
+\begin{itemize}[itemsep=2pt]
+  \item Unit: N s $\equiv$ kg m s$^{-1}$.
+  \item Impulse equals the \textbf{change in momentum}.
+  \item For a variable force, impulse $=$ area under a force--time graph.
+\end{itemize}
+\end{formulabox}
+
+\begin{center}
+\begin{tikzpicture}[xscale=4, yscale=3]
+
+  % Variable force curve
+  \fill[midblue!20, domain=0.1:1.2, samples=100]
+    (0.1,0) -- plot (\x, {0.9*sin(deg(pi*(\x-0.1)/1.1))}) -- (1.2,0) -- cycle;
+  \draw[midblue, thick, domain=0.1:1.2, samples=100, smooth]
+    plot (\x, {0.9*sin(deg(pi*(\x-0.1)/1.1))});
+  \node[midblue, font=\small] at (0.65, 0.35) {area $= \Delta p$};
+  \draw[dashed, darkgray] (0.1,0) node[anchor=north, font=\footnotesize] {$t_1$} -- (0.1,0.01);
+  \draw[dashed, darkgray] (1.2,0) node[anchor=north, font=\footnotesize] {$t_2$} -- (1.2,0.01);
+    \draw[->, darkblue, thick] (-0.1,0) -- (1.4,0) node[anchor=north, font=\small] {time $t$};
+  \draw[->, darkblue, thick] (0,-0.1) -- (0,1.3) node[anchor=east, font=\small] {force $F$};
+\end{tikzpicture}
+\end{center}
+
+% ===== SECTION 3: NON-UNIFORM MOTION =====
+\section{Non-Uniform Motion and Terminal Velocity}
+
+\begin{definitionbox}{Friction and Drag Forces}
+\begin{itemize}[itemsep=2pt]
+  \item \textbf{Friction}: contact force opposing relative motion between surfaces.
+  \item \textbf{Viscous drag / air resistance}: resistive force on an object moving through a fluid. A simple model: drag force \textbf{increases as speed increases}.
+  \item Both forces act opposite to the direction of motion.
+\end{itemize}
+\end{definitionbox}
+
+\begin{definitionbox}{Terminal Velocity}
+An object falling through a fluid \textbf{reaches terminal velocity} when the \textbf{drag force equals the driving force} (weight for a falling object). At this point the resultant force is zero and acceleration is zero — the object moves at constant velocity.
+\end{definitionbox}
+
+\vspace{2cm}
+
+\begin{center}
+\begin{tikzpicture}[scale=6]
+  % Velocity-time graph for falling object
+  \draw[->, darkblue, thick] (-0.08,0) -- (1.5,0) node[anchor=north, font=\small] {time};
+  \draw[->, darkblue, thick] (0,-0.08) -- (0,1.3) node[anchor=east, font=\small] {velocity};
+  % Curve approaching terminal velocity
+  \draw[midblue, very thick, domain=0:1.4, samples=150, smooth]
+    plot (\x, {1.1*(1 - exp(-3.5*\x))});
+  % Terminal velocity dashed line
+  \draw[dashed, pinkframe, thick] (0,1.1) node[anchor=east, font=\small] {$v_T$} -- (1.45,1.1);
+  % Annotations
+  \node[darkblue, font=\small] at (0.62, 0.75) {accelerating};
+  \node[darkgray, font=\small, anchor=west] at (1.0, 1.18) {terminal velocity};
+\end{tikzpicture}
+\end{center}
+
+\pagebreak
+
+\begin{keybox}{Stages of Free Fall with Air Resistance}
+\begin{enumerate}[itemsep=3pt]
+  \item \textbf{Initially}: velocity $= 0$, drag $= 0$. Resultant force $= mg$ downward. Acceleration $= g$.
+  \item \textbf{As speed increases}: drag increases. Resultant force decreases. Acceleration decreases (gradient of $v$--$t$ graph decreases).
+  \item \textbf{At terminal velocity} $v_T$: drag $= mg$. Resultant force $= 0$. Acceleration $= 0$. Constant velocity.
+\end{enumerate}
+
+For a parachutist who opens their parachute after reaching terminal velocity:
+\begin{itemize}[itemsep=2pt]
+  \item Drag suddenly increases greatly $\Rightarrow$ resultant force is now \emph{upward} $\Rightarrow$ deceleration.
+  \item Speed decreases $\Rightarrow$ drag decreases until a new, lower terminal velocity is reached.
+\end{itemize}
+\end{keybox}
+
+\vspace{2cm}
+
+\begin{center}
+\begin{tikzpicture}[xscale=6, yscale=5]
+  \draw[->, darkblue, thick] (-0.08,0) -- (1.8,0) node[anchor=north, font=\small] {time};
+  \draw[->, darkblue, thick] (0,-0.08) -- (0,1.4) node[anchor=east, font=\small] {velocity};
+  % Phase 1: accelerating to first terminal velocity
+  \draw[midblue, very thick, domain=0:0.85, samples=100, smooth]
+    plot (\x, {1.162*(1 - exp(-3.5*\x))});
+  % First terminal velocity line
+  \draw[dashed, pinkframe] (0,1.1) -- (0.85,1.1);
+  \node[pinkframe, font=\small, anchor=east] at (-0.02,1.1) {$v_{T1}$};
+  % Parachute opens — sudden drop
+  \draw[midblue, very thick, domain=0.85:1.75, samples=100, smooth]
+    plot (\x, {0.4 + 0.7*exp(-6*(\x-0.85))});
+  % Second terminal velocity
+  \draw[dashed, pinkframe] (0,0.4) -- (1.8,0.4);
+  \node[pinkframe, font=\small, anchor=east] at (-0.02,0.4) {$v_{T2}$};
+  % Parachute marker
+  \draw[lightgray, very thick] (0.85,-0.05) -- (0.85,1.1);
+  \node[darkgray, font=\small, anchor=north] at (0.85,-0.07) {parachute opens};
+\end{tikzpicture}
+\end{center}
+
+
+\pagebreak
+
+% ===== SECTION 4: CONSERVATION OF MOMENTUM =====
+\section{Conservation of Linear Momentum}
+
+\begin{definitionbox}{Principle of Conservation of Momentum}
+The \textbf{total linear momentum} of a system of objects remains constant provided \textbf{no external resultant force} acts on the system.
+$$\sum p_{\text{before}} = \sum p_{\text{after}}$$
+This follows directly from Newton's second and third laws.
+\end{definitionbox}
+
+\begin{keybox}{Applying Conservation of Momentum}
+\begin{enumerate}[itemsep=3pt]
+  \item Define a \textbf{positive direction}.
+  \item Write down total momentum \textbf{before} the collision/explosion.
+  \item Write down total momentum \textbf{after}, using $+$ or $-$ for direction.
+  \item Set before $=$ after and solve.
+\end{enumerate}
+For a two-body collision:
+$$m_1 u_1 + m_2 u_2 = m_1 v_1 + m_2 v_2$$
+For an explosion starting from rest (total initial momentum $= 0$):
+$$0 = m_1 v_1 + m_2 v_2 \implies m_1 v_1 = -m_2 v_2$$
+The two objects move in \textbf{opposite directions}.
+\end{keybox}
+\vspace{1cm}
+\begin{center}
+\begin{tikzpicture}[scale=1.5, every node/.style={font=\small}]
+  % Before collision
+  \node[darkblue, font=\small] at (2.5, 2.0) {Before};
+  \fill[midblue!30, draw=darkblue, thick, rounded corners=3pt]
+    (-1.0,0.8) rectangle (0.2,1.5);
+  \node at (-0.4,1.15) {$m_1$};
+  \draw[->, midblue, thick] (0.2,1.15) -- (1.2,1.15);
+  \node[midblue, anchor=south] at (0.7,1.2) {$u_1$};
+  \fill[pinkframe!30, draw=pinkframe, thick, rounded corners=3pt]
+    (4.8,0.8) rectangle (6.2,1.5);
+  \node at (5.5,1.15) {$m_2$};
+  \draw[->, pinkframe, thick] (4.8,1.15) -- (4,1.15);
+  \node[pinkframe, anchor=south] at (4.4,1.2) {$u_2$};
+
+  % Arrow down
+  \draw[->, darkgray, thick] (2.5,0.7) -- (2.5,0.1);
+  \node[darkgray, font=\small] at (3.2, 0.4) {collision};
+
+  % After collision
+  \node[darkblue, font=\small] at (2.5, -0.3) {After};
+  \fill[midblue!30, draw=darkblue, thick, rounded corners=3pt]
+    (0.5,-1.5) rectangle (1.7,-0.8);
+  \node at (1.1,-1.15) {$m_1$};
+  \fill[pinkframe!30, draw=pinkframe, thick, rounded corners=3pt]
+    (3.3,-1.5) rectangle (4.7,-0.8);
+  \node at (4.0,-1.15) {$m_2$};
+  \draw[->, pinkframe, thick] (4.7,-1.15) -- (5.7,-1.15);
+  \node[pinkframe, anchor=south] at (5.2,-1.1) {$v_2$};
+  \draw[->, midblue, thick] (0.5,-1.15) -- (-0.1,-1.15);
+  \node[midblue, anchor=south] at (0.2,-1.1) {$v_1$};
+
+  % Conservation equation
+  \node[darkblue, font=\small] at (2.5,-2.1)
+    {$m_1u_1 + m_2u_2 = m_1v_1 + m_2v_2$};
+\end{tikzpicture}
+\end{center}
+
+
+
+
+
+
+
+
+% ===== SECTION 5: ELASTIC AND INELASTIC COLLISIONS =====
+\section{Elastic and Inelastic Collisions}
+
+\begin{definitionbox}{Elastic Collision}
+In an \textbf{elastic collision}:
+\begin{itemize}[itemsep=2pt]
+  \item Total \textbf{momentum} is conserved (always).
+  \item Total \textbf{kinetic energy} is conserved.
+  \item The \textbf{relative speed of approach} equals the \textbf{relative speed of separation}:
+  $$u_1 - u_2 = v_2 - v_1$$
+\end{itemize}
+Perfectly elastic collisions are rare in practice (e.g.\ collisions between gas molecules, some subatomic particles).
+\end{definitionbox}
+
+\begin{definitionbox}{Inelastic Collision}
+In an \textbf{inelastic collision}:
+\begin{itemize}[itemsep=2pt]
+  \item Total \textbf{momentum} is conserved (always).
+  \item Total \textbf{kinetic energy is not conserved} — some is converted to heat, sound, or deformation.
+  \item In a \textbf{perfectly inelastic} collision, the objects \textbf{stick together} and move as one — maximum kinetic energy is lost (but momentum is still conserved).
+\end{itemize}
+\end{definitionbox}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{@{} l c c @{}}
+\toprule
+ & \textbf{Elastic} & \textbf{Inelastic} \\
+\midrule
+Momentum conserved & \textbf{Yes} & \textbf{Yes} \\
+Kinetic energy conserved & \textbf{Yes} & \textbf{No} \\
+Relative speed: approach = separation & \textbf{Yes} & No \\
+Objects stick together & No & Possibly (perfectly inelastic) \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+
+
+
+
+\begin{keybox}{Checking for Elastic Collision}
+To determine whether a collision is elastic:
+\begin{enumerate}[itemsep=2pt]
+  \item Apply conservation of momentum to find unknown velocities.
+  \item Calculate total KE before: $\sum \tfrac{1}{2}mv^2$ (using initial speeds).
+  \item Calculate total KE after: $\sum \tfrac{1}{2}mv^2$ (using final speeds).
+  \item If KE before $=$ KE after $\Rightarrow$ \textbf{elastic}. If KE is lost $\Rightarrow$ \textbf{inelastic}.
+  \item Alternatively, check if $u_1 - u_2 = v_2 - v_1$.
+\end{enumerate}
+\end{keybox}
+
+% ===== SECTION 6: FORMULA SUMMARY =====
+\section{Formula Summary Sheet}
+
+\begin{minipage}{\linewidth}
+\begin{tcolorbox}[colback=lightgold, colframe=accentgold]
+\renewcommand{\arraystretch}{1.8}
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Formula} & \textbf{Quantity} & \textbf{Units} \\
+\midrule
+$F = ma$ & Newton's second law (constant mass) & N \\
+$W = mg$ & Weight & N \\
+$p = mv$ & Linear momentum & kg m s$^{-1}$ \\
+$F = \Delta p / \Delta t$ & Force as rate of change of momentum & N \\
+$F\,\Delta t = \Delta p$ & Impulse & N s \\
+$\sum p_{\text{before}} = \sum p_{\text{after}}$ & Conservation of momentum & kg m s$^{-1}$ \\
+$u_1 - u_2 = v_2 - v_1$ & Elastic collision condition & m s$^{-1}$ \\
+\bottomrule
+\end{tabular}
+\end{tcolorbox}
+
+\vspace{0.5em}
+\begin{tcolorbox}[colback=lightblue, colframe=darkblue]
+\textbf{Newton's laws word-for-word:}\\[0.3em]
+\textbf{1st:} An object remains at rest or moves at constant velocity unless a resultant force acts.\\[0.2em]
+\textbf{2nd:} Resultant force equals rate of change of momentum ($F = \Delta p / \Delta t$).\\[0.2em]
+\textbf{3rd:} For every action there is an equal and opposite reaction (on a different object, same type of force).\\[0.3em]
+\textbf{Momentum is always conserved} in all collisions (elastic and inelastic).\\
+\textbf{Kinetic energy is only conserved} in elastic collisions.
+\end{tcolorbox}
+\end{minipage}
+
+\pagebreak
+
+
+% ===== SECTION 7: WORKED EXAMPLES =====
+\section{Worked Examples}
+
+\subsection*{Example 1 --- Newton's Second Law}
+
+\textbf{Question:} A car of mass $1200\ \text{kg}$ accelerates from $8.0\ \text{m s}^{-1}$ to $20\ \text{m s}^{-1}$ in $6.0\ \text{s}$. The total resistive force is $400\ \text{N}$. Calculate (a) the acceleration, (b) the driving force.
+
+\begin{examplebox}{Solution}
+\textbf{(a)} $a = \dfrac{v - u}{t} = \dfrac{20 - 8.0}{6.0} = \mathbf{2.0\ \text{m s}^{-2}}$
+
+\vspace{0.3em}
+\textbf{(b)} $F_{\text{net}} = ma = 1200 \times 2.0 = 2400\ \text{N}$
+
+$F_{\text{drive}} - F_{\text{resist}} = F_{\text{net}} \implies F_{\text{drive}} = 2400 + 400 = \mathbf{2800\ \text{N}}$
+\end{examplebox}
+
+\subsection*{Example 2 --- Impulse and Change in Momentum}
+
+\textbf{Question:} A ball of mass $0.40\ \text{kg}$ travelling at $12\ \text{m s}^{-1}$ hits a wall and rebounds at $9.0\ \text{m s}^{-1}$. The collision lasts $0.025\ \text{s}$. Calculate (a) the impulse, (b) the average force on the ball.
+
+\begin{examplebox}{Solution}
+Taking towards the wall as positive:
+
+\textbf{(a)} $\Delta p = mv - mu = 0.40\times(-9.0) - 0.40\times12 = -3.6 - 4.8 = \mathbf{-8.4\ \text{N s}}$
+
+Magnitude of impulse $= 8.4\ \text{N s}$ (directed away from wall).
+
+\vspace{0.3em}
+\textbf{(b)} $F = \Delta p / \Delta t = -8.4/0.025 = \mathbf{-336\ \text{N}}$
+
+The average force on the ball is $336\ \text{N}$ directed away from the wall.
+\end{examplebox}
+
+\subsection*{Example 3 --- Conservation of Momentum}
+
+\textbf{Question:} Trolley A (mass $2.0\ \text{kg}$, velocity $+4.0\ \text{m s}^{-1}$) collides with stationary trolley B (mass $3.0\ \text{kg}$). After the collision, A moves at $+1.0\ \text{m s}^{-1}$. Find the velocity of B and determine whether the collision is elastic.
+
+\begin{examplebox}{Solution}
+\textbf{Conservation of momentum} (taking right as positive):
+
+$p_{\text{before}} = 2.0\times4.0 + 3.0\times0 = 8.0\ \text{kg m s}^{-1}$
+
+$p_{\text{after}} = 2.0\times1.0 + 3.0\times v_B = 2.0 + 3.0v_B$
+
+$8.0 = 2.0 + 3.0v_B \implies v_B = \mathbf{2.0\ \text{m s}^{-1}}$
+
+\textbf{Check for elastic collision:}
+
+KE before $= \tfrac{1}{2}(2.0)(4.0)^2 + 0 = 16.0\ \text{J}$
+
+KE after $= \tfrac{1}{2}(2.0)(1.0)^2 + \tfrac{1}{2}(3.0)(2.0)^2 = 1.0 + 6.0 = 7.0\ \text{J}$
+
+KE is not conserved ($16.0 \neq 7.0$) $\Rightarrow$ the collision is \textbf{inelastic}.
+\end{examplebox}
+
+
+\pagebreak
+
+\subsection*{Example 4 --- Perfectly Inelastic Collision and Explosion}
+
+\textbf{Question:} (a) A bullet of mass $0.020\ \text{kg}$ travelling at $350\ \text{m s}^{-1}$ embeds in a stationary block of mass $1.98\ \text{kg}$. Find their common velocity after impact.
+
+(b) A stationary rocket of mass $800\ \text{kg}$ explodes into two fragments. Fragment A ($300\ \text{kg}$) moves at $+120\ \text{m s}^{-1}$. Find the velocity of fragment B.
+
+\begin{examplebox}{Solution}
+\textbf{(a)} Perfectly inelastic — objects stick together:
+
+$mu = (m + M)v \implies v = \dfrac{0.020\times350}{0.020 + 1.98} = \dfrac{7.0}{2.0} = \mathbf{3.5\ \text{m s}^{-1}}$
+
+\vspace{0.3em}
+\textbf{(b)} Total initial momentum $= 0$ (at rest):
+
+$0 = 300\times120 + 500\times v_B \implies v_B = \dfrac{-36000}{500} = \mathbf{-72\ \text{m s}^{-1}}$
+
+Fragment B moves at $72\ \text{m s}^{-1}$ in the opposite direction to A.
+\end{examplebox}
+
+\pagebreak
+
+
+% ===== SECTION 8: PRACTICE QUESTIONS =====
+\section{Practice Exam Questions}
+
+\subsection*{Section A --- Short Answer Questions}
+
+\begin{tcolorbox}[colback=white, colframe=midblue, breakable]
+
+\begin{minipage}{\linewidth}
+\textbf{Q1.} State Newton's three laws of motion. For each law, give a practical example.
+\par\hfill\textit{[6 marks]}
+\vspace{5.5cm}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+\textbf{Q2.} Define linear momentum and state its unit. Explain what is meant by the impulse of a force and state how it relates to momentum.
+\par\hfill\textit{[4 marks]}
+\vspace{3.5cm}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+\textbf{Q3.} A skydiver of mass $75\ \text{kg}$ (including equipment) falls from rest. Describe and explain the motion from the moment of jumping until a terminal velocity of $55\ \text{m s}^{-1}$ is reached. Include reference to the forces acting throughout.
+\par\hfill\textit{[5 marks]}
+\vspace{5cm}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+\textbf{Q4.} Distinguish between an elastic and an inelastic collision. State which quantities are conserved in each.
+\par\hfill\textit{[3 marks]}
+\vspace{3.5cm}
+\end{minipage}
+
+\end{tcolorbox}
+
+\subsection*{Section B --- Longer Structured Questions}
+
+\begin{tcolorbox}[colback=white, colframe=midblue, breakable]
+
+\begin{minipage}{\linewidth}
+\textbf{Q5.} A force--time graph for a golf club striking a ball (mass $0.046\ \text{kg}$, initially at rest) shows a peak force of $2400\ \text{N}$ over a contact time of $5.0\times10^{-4}\ \text{s}$. Assume the force--time graph is a triangle.
+\end{minipage}
+
+\begin{enumerate}[label=(\alph*)]
+  \item \begin{minipage}[t]{\linewidth}
+  Calculate the impulse given to the ball.
+  \par\hfill\textit{[2 marks]}
+  \vspace{3cm}
+  \end{minipage}
+
+  \item \begin{minipage}[t]{\linewidth}
+  Hence calculate the speed of the ball immediately after impact.
+  \par\hfill\textit{[2 marks]}
+  \vspace{2.5cm}
+  \end{minipage}
+
+  \item \begin{minipage}[t]{\linewidth}
+  Calculate the average force on the club from the ball during contact, and state its direction.
+  \par\hfill\textit{[2 marks]}
+  \vspace{3cm}
+  \end{minipage}
+\end{enumerate}
+
+\begin{minipage}{\linewidth}
+\textbf{Q6.} Two ice skaters, A (mass $60\ \text{kg}$) and B (mass $80\ \text{kg}$), stand at rest facing each other on a frictionless ice rink. They push off from each other. After the push, skater A moves at $2.4\ \text{m s}^{-1}$ to the left.
+\end{minipage}
+
+\begin{enumerate}[label=(\alph*)]
+  \item \begin{minipage}[t]{\linewidth}
+  Calculate the velocity of skater B after the push.
+  \par\hfill\textit{[3 marks]}
+  \vspace{3.5cm}
+  \end{minipage}
+
+  \item \begin{minipage}[t]{\linewidth}
+  Calculate the total kinetic energy after the push. Explain whether this is consistent with conservation of energy.
+  \par\hfill\textit{[3 marks]}
+  \vspace{4cm}
+  \end{minipage}
+\end{enumerate}
+
+\begin{minipage}{\linewidth}
+\textbf{Q7.} Ball P (mass $0.30\ \text{kg}$, velocity $+6.0\ \text{m s}^{-1}$) collides head-on with ball Q (mass $0.50\ \text{kg}$, velocity $-2.0\ \text{m s}^{-1}$). After the collision, ball P has velocity $-1.5\ \text{m s}^{-1}$.
+
+\begin{enumerate}[label=(\alph*)]
+  \item Use conservation of momentum to find the velocity of Q after the collision.
+  \par\hfill\textit{[3 marks]}
+  \vspace{3.5cm}
+
+  \item Calculate the kinetic energy before and after the collision and determine whether the collision is elastic or inelastic.
+  \par\hfill\textit{[3 marks]}
+  \vspace{4cm}
+
+  \item Verify your answer to (a) using the elastic collision condition $u_1 - u_2 = v_2 - v_1$.
+  \par\hfill\textit{[2 marks]}
+  \vspace{3cm}
+\end{enumerate}
+\end{minipage}
+
+\end{tcolorbox}
+
+
+\pagebreak
+
+% ===== SECTION 9: MARK SCHEME =====
+\section{Mark Scheme and Answers}
+
+\begin{markscheme}
+
+\textbf{Q1.} 1st: object at rest/constant velocity unless resultant force acts [1]; e.g.\ book on table [1]. 2nd: resultant force $=$ rate of change of momentum / $F = ma$ [1]; e.g.\ pushing a trolley [1]. 3rd: equal and opposite forces on different objects, same type [1]; e.g.\ swimmer pushing wall, wall pushes swimmer back [1].
+
+\vspace{0.5em}\textbf{Q2.} Momentum $= $ mass $\times$ velocity [1]; unit: kg m s$^{-1}$ or N s [1]. Impulse $=$ force $\times$ time $= F\Delta t$ [1]; impulse equals the change in momentum [1].
+
+\vspace{0.5em}\textbf{Q3.} Initially only weight acts; acceleration $= g = 9.81\ \text{m s}^{-2}$ downward [1]. As speed increases, air resistance increases [1]; resultant force decreases, acceleration decreases [1]; gradient of $v$--$t$ graph decreases [1]; at terminal velocity ($55\ \text{m s}^{-1}$): drag $= mg = 75\times9.81 = 736\ \text{N}$, resultant $= 0$, acceleration $= 0$ [1].
+
+\vspace{0.5em}\textbf{Q4.} Elastic: both momentum and kinetic energy conserved [1]. Inelastic: momentum conserved, kinetic energy not conserved (converted to heat/sound/deformation) [1]. In all collisions, momentum is always conserved [1].
+
+\vspace{0.5em}\textbf{Q5(a).} Triangular area: impulse $= \tfrac{1}{2}\times F_{\max}\times t = \tfrac{1}{2}\times2400\times5.0\times10^{-4} = \mathbf{0.60\ \text{N s}}$ [2].
+
+\vspace{0.5em}\textbf{Q5(b).} $v = \Delta p/m = 0.60/0.046 = \mathbf{13\ \text{m s}^{-1}}$ [2].
+
+\vspace{0.5em}\textbf{Q5(c).} By Newton's 3rd law, force on club $= 0.60/5.0\times10^{-4} = \mathbf{1200\ \text{N}}$ [1]; directed opposite to ball's motion (back toward the golfer) [1].
+
+\vspace{0.5em}\textbf{Q6(a).} Initial total momentum $= 0$; $0 = 60\times(-2.4) + 80\times v_B$ [1]; $80v_B = 144$ [1]; $v_B = \mathbf{+1.8\ \text{m s}^{-1}}$ (to the right) [1].
+
+\vspace{0.5em}\textbf{Q6(b).} KE $= \tfrac{1}{2}(60)(2.4)^2 + \tfrac{1}{2}(80)(1.8)^2 = 172.8 + 129.6 = \mathbf{302\ \text{J}}$ [2]. Initial KE $= 0$; energy is not conserved — the skaters' muscles do work (chemical energy converted to kinetic energy); this is an explosion, not a collision, so KE need not be conserved [1].
+
+\vspace{0.5em}\textbf{Q7(a).} $p_{\text{before}} = 0.30\times6.0 + 0.50\times(-2.0) = 1.8 - 1.0 = 0.80\ \text{kg m s}^{-1}$ [1]; $p_{\text{after}} = 0.30\times(-1.5) + 0.50\times v_Q = -0.45 + 0.50v_Q$ [1]; $0.80 = -0.45 + 0.50v_Q \implies v_Q = \mathbf{+2.5\ \text{m s}^{-1}}$ [1].
+
+\vspace{0.5em}\textbf{Q7(b).} KE before $= \tfrac{1}{2}(0.30)(6.0)^2 + \tfrac{1}{2}(0.50)(2.0)^2 = 5.4 + 1.0 = 6.4\ \text{J}$ [1]; KE after $= \tfrac{1}{2}(0.30)(1.5)^2 + \tfrac{1}{2}(0.50)(2.5)^2 = 0.3375 + 1.5625 = 1.9\ \text{J}$ [1]; KE not conserved $\Rightarrow$ \textbf{inelastic} [1].
+
+\vspace{0.5em}\textbf{Q7(c).} $u_1 - u_2 = 6.0 - (-2.0) = 8.0\ \text{m s}^{-1}$; $v_2 - v_1 = 2.5 - (-1.5) = 4.0\ \text{m s}^{-1}$ [1]; $8.0 \neq 4.0$ $\Rightarrow$ confirms the collision is \textbf{inelastic} (elastic condition not satisfied) [1].
+
+\end{markscheme}
+
+% ===== SECTION 10: REVISION CHECKLIST =====
+\newpage
+\section{Revision Checklist}
+
+\begin{tcolorbox}[colback=white, colframe=darkblue, breakable]
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{@{} c p{10.5cm} r @{}}
+\toprule
+ & \textbf{Learning Objective} & \textbf{Confidence (1--3)} \\
+\midrule
+$\square$ & Understand that mass is the property resisting change in motion & \\
+$\square$ & State and apply Newton's first law & \\
+$\square$ & Use $F = ma$ and $F = \Delta p/\Delta t$; know they are equivalent for constant mass & \\
+$\square$ & State and apply Newton's third law; identify Newton's third law pairs correctly & \\
+$\square$ & Define weight as $W = mg$ and locate it at the centre of gravity & \\
+$\square$ & Define momentum as $p = mv$ and state its unit & \\
+$\square$ & Define impulse as $F\Delta t = \Delta p$; find impulse from area under $F$--$t$ graph & \\
+$\square$ & Describe qualitatively frictional and drag forces & \\
+$\square$ & Explain terminal velocity in terms of forces and draw $v$--$t$ graph & \\
+$\square$ & Describe the motion of a parachutist opening their parachute & \\
+$\square$ & State the principle of conservation of momentum & \\
+$\square$ & Apply conservation of momentum to 1D and 2D collisions and explosions & \\
+$\square$ & Distinguish elastic and inelastic collisions by KE conservation & \\
+$\square$ & Use $u_1 - u_2 = v_2 - v_1$ to identify/verify an elastic collision & \\
+$\square$ & Understand that momentum is always conserved; KE only in elastic collisions & \\
+\bottomrule
+\end{tabular}
+\vspace{0.5em}
+\textit{Key: 1 = Need more work \quad 2 = Getting there \quad 3 = Confident}
+\end{tcolorbox}
+
+\vspace{1em}
+\begin{motivationbox}
+\centering
+\textbf{\color{darkblue}Good luck with your revision!}\\[0.2em]
+{\color{darkgray}\small Dynamics is Newton's three laws working together. Everything from terminal velocity to collisions follows from $F = \Delta p/\Delta t$ and the simple rule that momentum is always conserved. Get those two ideas solid and you have the whole topic.}
+\end{motivationbox}
+
