@@ -1,0 +1,683 @@
+% topic_01.tex — Content only. Compiled via main.tex.
+% ── No \documentclass, \begin{document} or \end{document} here ──
+
+\chapteropener{1}{Physical Quantities and Units}{%
+  \item Physical Quantities and Estimation
+  \item SI Base Units and Derived Units
+  \item Homogeneity of Equations
+  \item SI Prefixes
+  \item Errors, Uncertainties, Precision and Accuracy
+  \item Scalars and Vectors
+}
+
+% ===== SECTION 1: PHYSICAL QUANTITIES =====
+\section{Physical Quantities}
+
+\begin{definitionbox}{Physical Quantity}
+Every \textbf{physical quantity} consists of two parts:
+$$\text{physical quantity} = \text{numerical magnitude} \times \text{unit}$$
+For example: a length of $3.5\ \text{m}$ has magnitude $3.5$ and unit metres. A quantity without a unit (or with units that cancel) is \textbf{dimensionless}.
+\end{definitionbox}
+
+\begin{keybox}{Reasonable Estimates}
+The syllabus requires you to make sensible estimates of physical quantities. Useful benchmarks to memorise:
+
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{@{} l l l @{}}
+\toprule
+\textbf{Quantity} & \textbf{Estimate} & \textbf{Notes} \\
+\midrule
+Mass of a person & $70\ \text{kg}$ & \\
+Height of a person & $1.7\ \text{m}$ & \\
+Mass of a car & $1000\ \text{kg}$ & \\
+Speed of a car on motorway & $30\ \text{m s}^{-1}$ & ($\approx 110\ \text{km h}^{-1}$) \\
+Speed of sound in air & $340\ \text{m s}^{-1}$ & \\
+Speed of light & $3\times10^8\ \text{m s}^{-1}$ & \\
+Atmospheric pressure & $1\times10^5\ \text{Pa}$ & \\
+Density of water & $1000\ \text{kg m}^{-3}$ & \\
+Density of air & $1.2\ \text{kg m}^{-3}$ & \\
+Diameter of an atom & $\sim10^{-10}\ \text{m}$ & \\
+Diameter of a nucleus & $\sim10^{-15}\ \text{m}$ & \\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{keybox}
+
+
+\pagebreak
+
+% ===== SECTION 2: SI UNITS =====
+\section{SI Base Units}
+
+\begin{definitionbox}{SI Base Quantities and Units}
+The International System of Units (SI) defines \textbf{seven base quantities}. The five required for this syllabus are:
+
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{@{} l l l @{}}
+\toprule
+\textbf{Base quantity} & \textbf{SI unit} & \textbf{Symbol} \\
+\midrule
+Mass & kilogram & kg \\
+Length & metre & m \\
+Time & second & s \\
+Electric current & ampere & A \\
+Temperature & kelvin & K \\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{definitionbox}
+
+\begin{definitionbox}{Derived Units}
+All other units are \textbf{derived} from the base units by multiplication or division. Examples:
+
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{@{} l l l @{}}
+\toprule
+\textbf{Quantity} & \textbf{Derived unit} & \textbf{In base units} \\
+\midrule
+Force & newton (N) & kg m s$^{-2}$ \\
+Energy / Work & joule (J) & kg m$^2$ s$^{-2}$ \\
+Power & watt (W) & kg m$^2$ s$^{-3}$ \\
+Pressure & pascal (Pa) & kg m$^{-1}$ s$^{-2}$ \\
+Charge & coulomb (C) & A s \\
+Potential difference & volt (V) & kg m$^2$ s$^{-3}$ A$^{-1}$ \\
+Resistance & ohm ($\Omega$) & kg m$^2$ s$^{-3}$ A$^{-2}$ \\
+Frequency & hertz (Hz) & s$^{-1}$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{definitionbox}
+
+\pagebreak
+
+
+% ===== SECTION 3: HOMOGENEITY =====
+\section{Homogeneity of Physical Equations}
+
+\begin{definitionbox}{Homogeneity}
+A physical equation is \textbf{homogeneous} if the units (dimensions) on both sides are identical. Every valid physical equation must be homogeneous.
+
+\textbf{Method}: express every quantity in SI base units, then check both sides match.
+\end{definitionbox}
+
+\begin{keybox}{Using Homogeneity to Check Equations}
+\begin{enumerate}[itemsep=3pt]
+  \item Replace each symbol with its SI base units.
+  \item Simplify both sides independently.
+  \item If both sides have the same base units $\Rightarrow$ equation is \textbf{homogeneous} (possibly correct).
+  \item If the sides differ $\Rightarrow$ equation is \textbf{definitely wrong}.
+\end{enumerate}
+\textit{Important caveat}: homogeneity is a necessary but not sufficient condition. A homogeneous equation can still be wrong (e.g.\ a missing numerical factor of 2 would not be detected).
+\end{keybox}
+
+\begin{examplebox}{Worked Example — Homogeneity Check}
+Check whether $v^2 = u^2 + 2as$ is homogeneous.
+
+LHS: $[v^2] = (\text{m s}^{-1})^2 = \text{m}^2\ \text{s}^{-2}$
+
+RHS: $[u^2] = \text{m}^2\ \text{s}^{-2}$;\quad $[2as] = (\text{m s}^{-2})(\text{m}) = \text{m}^2\ \text{s}^{-2}$
+
+Both terms on the RHS and the LHS have units m$^2$ s$^{-2}$ $\Rightarrow$ equation is \textbf{homogeneous}. \checkmark
+\end{examplebox}
+
+\pagebreak
+
+% ===== SECTION 4: PREFIXES =====
+\section{SI Prefixes}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{@{} l l l r @{}}
+\toprule
+\textbf{Prefix} & \textbf{Symbol} & \textbf{Multiplier} & \textbf{Power of 10} \\
+\midrule
+tera  & T & 1\,000\,000\,000\,000 & $10^{12}$ \\
+giga  & G & 1\,000\,000\,000      & $10^{9}$  \\
+mega  & M & 1\,000\,000           & $10^{6}$  \\
+kilo  & k & 1\,000                & $10^{3}$  \\
+deci  & d & 0.1                   & $10^{-1}$ \\
+centi & c & 0.01                  & $10^{-2}$ \\
+milli & m & 0.001                 & $10^{-3}$ \\
+micro & $\mu$ & 0.000\,001        & $10^{-6}$ \\
+nano  & n & 0.000\,000\,001       & $10^{-9}$ \\
+pico  & p & 0.000\,000\,000\,001  & $10^{-12}$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{warningbox}{Common Prefix Errors}
+\begin{itemize}[itemsep=2pt]
+  \item $1\ \text{nm} = 1\times10^{-9}\ \text{m}$, \textbf{not} $10^{-6}\ \text{m}$ — don't confuse nano (n) with micro ($\mu$).
+  \item When squaring or cubing a unit with a prefix, the prefix is also raised to that power: $1\ \text{cm}^2 = (10^{-2}\ \text{m})^2 = 10^{-4}\ \text{m}^2$, not $10^{-2}\ \text{m}^2$.
+  \item $1\ \text{mm}^3 = (10^{-3}\ \text{m})^3 = 10^{-9}\ \text{m}^3$.
+\end{itemize}
+\end{warningbox}
+
+\pagebreak
+
+% ===== SECTION 5: ERRORS AND UNCERTAINTIES =====
+\section{Errors, Uncertainties, Precision and Accuracy}
+
+\begin{definitionbox}{Types of Error}
+\begin{itemize}[itemsep=4pt]
+  \item \textbf{Systematic error}: an error that affects all readings by the same amount in the same direction. The mean of repeated readings is shifted from the true value. Cannot be reduced by repeating measurements.
+  \begin{itemize}
+    \item Examples: zero error on an instrument; wrongly calibrated scale; parallax error if always reading from the same angle.
+  \end{itemize}
+  \item \textbf{Random error}: an error that causes readings to scatter unpredictably above and below the true value. Can be reduced by taking more readings and averaging.
+  \begin{itemize}
+    \item Examples: reaction time variation; reading a scale to the nearest division; electrical noise.
+  \end{itemize}
+  \item \textbf{Zero error}: a specific systematic error where an instrument reads non-zero when it should read zero. Corrected by subtracting the zero reading from all measurements.
+\end{itemize}
+\end{definitionbox}
+
+\begin{definitionbox}{Precision and Accuracy}
+\begin{itemize}[itemsep=4pt]
+  \item \textbf{Precision}: how close repeated measurements are to \emph{each other}. A precise instrument gives small random errors (small spread). Precision is about \textbf{repeatability}.
+  \item \textbf{Accuracy}: how close a measurement is to the \emph{true value}. An accurate instrument has small systematic error. Accuracy is about \textbf{closeness to truth}.
+\end{itemize}
+It is possible to be precise but inaccurate (systematic error shifts all readings the same way) or accurate but imprecise (readings scattered around the true value).
+\end{definitionbox}
+
+\begin{center}
+\begin{tikzpicture}[scale=1.5]
+  % Four target diagrams
+  \foreach \cx/\cy/\lab/\subl in {
+    0/0/{Precise, accurate}/{small random, small systematic},
+    4/0/{Precise, not accurate}/{small random, large systematic},
+    0/-3.5/{Not precise, accurate}/{large random, small systematic},
+    4/-3.5/{Not precise, not accurate}/{large random, large systematic}
+  }{
+    % Target rings
+    \foreach \r in {0.9,0.6,0.3}{
+      \draw[midblue, thin] (\cx,\cy) circle (\r);
+    }
+    % True value centre
+    \fill[darkblue] (\cx,\cy) circle (2.5pt);
+    \node[darkblue, font=\small, anchor=south] at (\cx, \cy+1.0) {\lab};
+   \node[darkgray, font=\small, anchor=north] at (\cx, \cy-1.05) {\subl};
+  }
+  % Dots for precise & accurate
+  \foreach \dx/\dy in {0.05/0.08,-0.07/0.04,0.04/-0.06,-0.03/0.09,0.06/-0.03}{
+    \fill[pinkframe] (0+\dx, 0+\dy) circle (2pt);
+  }
+  % Dots for precise, not accurate
+  \foreach \dx/\dy in {0.55/0.08,0.45/0.05,0.58/-0.04,0.52/0.09,0.47/-0.06}{
+    \fill[pinkframe] (4+\dx, 0+\dy) circle (2pt);
+  }
+  % Dots for not precise, accurate (scattered around centre)
+  \foreach \dx/\dy in {0.3/0.2,-0.4/0.1,0.1/-0.5,0.5/-0.3,-0.2/0.4,0.04/-.03}{
+    \fill[pinkframe] (0+\dx, -3.5+\dy) circle (2pt);
+  }
+  % Dots for not precise, not accurate
+  \foreach \dx/\dy in {0.5/0.4,-0.3/0.7,0.8/-0.3,-0.5/0.1,0.2/0.6}{
+    \fill[pinkframe] (4+\dx, -3.5+\dy) circle (2pt);
+  }
+\end{tikzpicture}
+\end{center}
+
+\begin{formulabox}{Combining Uncertainties}
+\begin{center}
+\renewcommand{\arraystretch}{1.6}
+\begin{tabular}{@{} l l @{}}
+\toprule
+\textbf{Operation} & \textbf{Rule for uncertainty} \\
+\midrule
+$z = x + y$ or $z = x - y$ & $\Delta z = \Delta x + \Delta y$ \quad (add \textbf{absolute} uncertainties) \\
+$z = xy$ or $z = x/y$ & $\dfrac{\Delta z}{z} = \dfrac{\Delta x}{x} + \dfrac{\Delta y}{y}$ \quad (add \textbf{percentage} uncertainties) \\
+$z = x^n$ & $\dfrac{\Delta z}{z} = \left|n\right| \dfrac{\Delta x}{x}$ \quad (multiply percentage uncertainty by $|n|$) \\
+\bottomrule
+\end{tabular}
+\end{center}
+\vspace{0.4em}
+\textbf{Absolute uncertainty} $\Delta x$: has the same unit as $x$.\\
+\textbf{Percentage uncertainty}: $\dfrac{\Delta x}{x} \times 100\%$ — dimensionless.
+\end{formulabox}
+
+\begin{warningbox}{Common Uncertainty Mistakes}
+\begin{itemize}[itemsep=2pt]
+  \item For \textbf{addition/subtraction}, always add \emph{absolute} uncertainties — never subtract.
+  \item For \textbf{powers}: $z = x^2$ gives $\Delta z / z = 2\,\Delta x/x$ — the power doubles the percentage uncertainty.
+  \item A constant with no uncertainty (e.g.\ $\pi$, $2$, $g$ if treated as exact) does not contribute to the uncertainty.
+  \item When reading an analogue scale, the uncertainty is typically $\pm$ half the smallest division.
+\end{itemize}
+\end{warningbox}
+
+\begin{examplebox}{Worked Example — Combining Uncertainties}
+A cylinder has radius $r = (1.50 \pm 0.02)\ \text{cm}$ and height $h = (4.00 \pm 0.05)\ \text{cm}$. Calculate the volume and its percentage uncertainty.
+
+$V = \pi r^2 h = \pi (1.50)^2(4.00) = 28.3\ \text{cm}^3$
+
+Percentage uncertainties:
+$$\frac{\Delta r}{r} = \frac{0.02}{1.50} = 1.33\%$$
+$$\frac{\Delta h}{h} = \frac{0.05}{4.00} = 1.25\%$$
+$$\frac{\Delta V}{V} = 2\times1.33\% + 1.25\% = 3.91\% \approx \mathbf{3.9\%}$$
+($r$ is squared so its percentage uncertainty is doubled; $\pi$ contributes nothing.)
+
+Absolute uncertainty: $\Delta V = 0.039 \times 28.3 = 1.1\ \text{cm}^3$
+
+$\therefore V = (28.3 \pm 1.1)\ \text{cm}^3$
+\end{examplebox}
+
+% ===== SECTION 6: SCALARS AND VECTORS =====
+\section{Scalars and Vectors}
+
+\begin{definitionbox}{Scalars and Vectors}
+\begin{itemize}[itemsep=4pt]
+  \item A \textbf{scalar} quantity has \textbf{magnitude only}.
+  \item A \textbf{vector} quantity has both \textbf{magnitude and direction}.
+\end{itemize}
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{@{} l l @{}}
+\toprule
+\textbf{Scalars} & \textbf{Vectors} \\
+\midrule
+distance, speed & displacement, velocity \\
+mass, density & acceleration, force, weight \\
+energy, power, work & momentum, impulse \\
+temperature, pressure & electric field strength \\
+time, frequency & gravitational field strength \\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{definitionbox}
+
+\begin{formulabox}{Adding Vectors}
+Vectors must be added \textbf{tip-to-tail}. The resultant $\vec{R} = \vec{A} + \vec{B}$ is the single vector drawn from the tail of $\vec{A}$ to the tip of $\vec{B}$.
+
+For two vectors at an angle $\theta$ to each other, the magnitude of the resultant:
+$$R = \sqrt{A^2 + B^2 + 2AB\cos\theta}$$
+For \textbf{perpendicular} vectors ($\theta = 90^\circ$): $R = \sqrt{A^2 + B^2}$, direction $= \arctan(B/A)$.
+\end{formulabox}
+
+\begin{formulabox}{Subtracting Vectors}
+To find $\vec{A} - \vec{B}$, reverse the direction of $\vec{B}$ to get $-\vec{B}$, then add tip-to-tail:
+$$\vec{A} - \vec{B} = \vec{A} + (-\vec{B})$$
+\begin{itemize}[itemsep=2pt]
+  \item $-\vec{B}$ has the \textbf{same magnitude} as $\vec{B}$ but \textbf{opposite direction}.
+  \item This is used whenever you need a \textbf{change in a vector quantity}, e.g.\ change in velocity $\Delta\vec{v} = \vec{v}_2 - \vec{v}_1$.
+  \item For perpendicular vectors: $|\vec{A} - \vec{B}| = \sqrt{A^2 + B^2}$ (same magnitude as addition, different direction).
+\end{itemize}
+\end{formulabox}
+
+\begin{center}
+\begin{tikzpicture}[scale=1.05, every node/.style={font=\small}]
+  % --- Vector addition ---
+  \begin{scope}[xshift=0cm]
+    \node[darkblue, font=\small] at (1.75, 2.6) {$\vec{A} + \vec{B}$};
+    \draw[-latex, midblue, very thick] (0,0) -- (2.5,0);
+    \node[midblue, anchor=north] at (1.25,-0.08) {$\vec{A}$};
+    \draw[-latex, pinkframe, very thick] (2.5,0) -- (3.5,1.8);
+    \node[pinkframe, anchor=west] at (3,0.9) {$\vec{B}$};
+    \draw[-latex, darkblue, very thick] (0,0) -- (3.5,1.8);
+    \node[darkblue, anchor=south east] at (1.55,1.05) {$\vec{R}$};
+  \end{scope}
+
+  % --- Vector subtraction ---
+  \begin{scope}[xshift=5.5cm]
+    \node[darkblue, font=\small] at (1.75, 2.6) {$\vec{A} - \vec{B}$};
+    % A
+    \draw[-latex, midblue, very thick] (0,0) -- (2.5,0);
+    \node[midblue, anchor=north] at (1.25,-0.08) {$\vec{A}$};
+    % Original B (dashed, for reference)
+    \draw[-latex, pinkframe!35, dashed, thick] (2.5,0) -- (3.5,1.8);
+    \node[pinkframe!60, anchor=west, font=\small] at (3,0.9) {$\vec{B}$};
+    % -B: reversed from tip of A
+    \draw[-latex, pinkframe, very thick] (2.5,0) -- (1.5,-1.8);
+    \node[pinkframe, anchor=west] at (1.95,-0.95) {$-\vec{B}$};
+    % Resultant of A + (-B)
+    \draw[-latex, darkblue, very thick] (0,0) -- (1.5,-1.8);
+    \node[darkblue, anchor=north east] at (0.65,-0.95) {$\vec{A}{-}\vec{B}$};
+  \end{scope}
+
+  % --- Vector triangle (equilibrium) ---
+  \begin{scope}[xshift=11.0cm]
+    \node[darkblue, font=\small] at (1.1, 2.6) {Equilibrium};
+    \draw[-latex, midblue, very thick] (0,0) -- (2.2,0);
+    \node[midblue, anchor=north] at (1.1,-0.08) {$\vec{F_1}$};
+    \draw[-latex, pinkframe, very thick] (2.2,0) -- (2.2,1.7);
+    \node[pinkframe, anchor=west] at (2.25,0.85) {$\vec{F_2}$};
+    \draw[-latex, lightgray, very thick] (2.2,1.7) -- (0,0);
+    \node[lightgray, anchor=south east] at (1.1,0.9) {$\vec{F_3}$};
+    \node[darkblue, font=\small, anchor=north] at (1.1,-0.5) {closed triangle};
+  \end{scope}
+\end{tikzpicture}
+\end{center}
+
+\begin{keybox}{Change in a Vector Quantity}
+A common application of vector subtraction is finding the \textbf{change in velocity} $\Delta\vec{v}$:
+$$\Delta\vec{v} = \vec{v}_2 - \vec{v}_1 = \vec{v}_2 + (-\vec{v}_1)$$
+Draw $\vec{v}_1$ and $\vec{v}_2$ from the same point. $\Delta\vec{v}$ is the vector from the tip of $\vec{v}_1$ to the tip of $\vec{v}_2$.
+
+\textit{Example}: a ball bouncing off a wall at the same speed. Although $|\vec{v}_1| = |\vec{v}_2|$, the direction has changed so $\Delta\vec{v} \neq 0$ — there is a non-zero acceleration (and therefore a resultant force).
+\end{keybox}
+
+\begin{formulabox}{Resolving a Vector into Components}
+Any vector $\vec{F}$ at angle $\theta$ to the horizontal can be split into two perpendicular components:
+\begin{center}
+\Large $F_x = F\cos\theta \qquad F_y = F\sin\theta$
+\end{center}
+
+\begin{center}
+\begin{tikzpicture}[scale=1.2, every node/.style={font=\small}]
+  % Vector
+  \draw[-latex, darkblue, very thick] (0,0) -- (3.0,2.0);
+  \node[accentgold, anchor=south west] at (1.5,1.0) {$F$};
+  % Horizontal component
+  \draw[-latex, midblue, thick] (0,0) -- (3.0,0);
+  \node[midblue, anchor=north] at (1.5,-0.05) {$F\cos\theta$};
+  % Vertical component
+  \draw[-latex, pinkframe, thick] (3.0,0) -- (3.0,2.0);
+  \node[pinkframe, anchor=west] at (3.05,1.0) {$F\sin\theta$};
+  % Dashed lines
+  \draw[dashed, darkgray] (0,2.0) -- (3.0,2.0);
+  \draw[dashed, darkgray] (0,0) -- (0,2.0);
+  % Angle arc
+  \draw[darkblue] (0.7,0) arc (0:33.7:0.7);
+  \node[darkblue] at (0.95,0.2) {$\theta$};
+\end{tikzpicture}
+\end{center}
+\end{formulabox}
+
+\begin{keybox}{Coplanar Forces in Equilibrium — Vector Triangle}
+Three coplanar forces in equilibrium can be represented by a \textbf{closed triangle}: draw the vectors tip-to-tail; if they form a closed triangle (the last tip meets the first tail), the system is in equilibrium. This provides a graphical method for finding unknown force magnitudes or directions.
+\end{keybox}
+
+% ===== SECTION 7: FORMULA SUMMARY =====
+\section{Formula Summary Sheet}
+
+\begin{minipage}{\linewidth}
+\begin{tcolorbox}[colback=lightgold, colframe=accentgold]
+\renewcommand{\arraystretch}{1.8}
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Formula / Rule} & \textbf{Use} & \\
+\midrule
+$z = A + B \Rightarrow \Delta z = \Delta A + \Delta B$ & Add/subtract: add absolute uncertainties & \\
+$z = AB \Rightarrow \Delta z/z = \Delta A/A + \Delta B/B$ & Multiply/divide: add percentage uncertainties & \\
+$z = A^n \Rightarrow \Delta z/z = |n|\,\Delta A/A$ & Powers: multiply \% uncertainty by $|n|$ & \\
+$F_x = F\cos\theta$ & Horizontal component of vector & \\
+$F_y = F\sin\theta$ & Vertical component of vector & \\
+$R = \sqrt{A^2+B^2}$ & Resultant of two perpendicular vectors & \\
+\bottomrule
+\end{tabular}
+\end{tcolorbox}
+
+\vspace{0.5em}
+\begin{tcolorbox}[colback=lightblue, colframe=darkblue]
+\textbf{Key facts:}\\[0.3em]
+SI base units: kg, m, s, A, K.\\[0.2em]
+\textbf{Systematic error}: shifts all readings same way; not reduced by repeating.\\[0.2em]
+\textbf{Random error}: causes scatter; reduced by averaging more readings.\\[0.2em]
+\textbf{Precision}: repeatability (small spread). \textbf{Accuracy}: closeness to true value.\\[0.2em]
+\textbf{Homogeneity}: units must match on both sides of any valid equation.
+\end{tcolorbox}
+\end{minipage}
+
+\pagebreak
+
+% ===== SECTION 8: WORKED EXAMPLES =====
+\section{Worked Examples}
+
+\subsection*{Example 1 --- Derived Units in Base Units}
+
+\textbf{Question:} Show that the unit of pressure (Pa) is equivalent to kg m$^{-1}$ s$^{-2}$.
+
+\begin{examplebox}{Solution}
+Pressure $= $ Force / Area. Force has units N $=$ kg m s$^{-2}$. Area has units m$^2$.
+$$[\text{Pa}] = \frac{\text{N}}{\text{m}^2} = \frac{\text{kg m s}^{-2}}{\text{m}^2} = \text{kg m}^{-1}\ \text{s}^{-2} \quad \checkmark$$
+\end{examplebox}
+
+\subsection*{Example 2 --- Homogeneity Check}
+
+\textbf{Question:} The period of a simple pendulum is given by $T = 2\pi\sqrt{L/g}$. Check this equation for homogeneity.
+
+\begin{examplebox}{Solution}
+LHS: $[T] = \text{s}$
+
+RHS: $2\pi$ is dimensionless. $[L/g] = \text{m} / (\text{m s}^{-2}) = \text{s}^2$
+
+$[\sqrt{L/g}] = \sqrt{\text{s}^2} = \text{s}$
+
+Both sides have units of seconds $\Rightarrow$ equation is \textbf{homogeneous}. \checkmark
+\end{examplebox}
+
+\subsection*{Example 3 --- Combining Uncertainties}
+
+\textbf{Question:} The resistance of a wire is found using $R = V/I$, where $V = (6.0 \pm 0.2)\ \text{V}$ and $I = (0.30 \pm 0.01)\ \text{A}$. Calculate $R$ and its percentage uncertainty.
+
+\begin{examplebox}{Solution}
+$R = V/I = 6.0/0.30 = \mathbf{20\ \Omega}$
+
+Since this is division, add percentage uncertainties:
+$$\frac{\Delta R}{R} = \frac{\Delta V}{V} + \frac{\Delta I}{I} = \frac{0.2}{6.0} + \frac{0.01}{0.30} = 3.33\% + 3.33\% = \mathbf{6.7\%}$$
+
+Absolute uncertainty: $\Delta R = 0.067 \times 20 = 1.3\ \Omega$
+
+$R = (20 \pm 1)\ \Omega$
+\end{examplebox}
+
+\subsection*{Example 4 --- Resolving and Adding Vectors}
+
+\textbf{Question:} Two forces act on a point: $F_1 = 8.0\ \text{N}$ horizontally and $F_2 = 6.0\ \text{N}$ vertically upward. Find the magnitude and direction of the resultant.
+
+\begin{examplebox}{Solution}
+Since the forces are perpendicular:
+$$R = \sqrt{F_1^2 + F_2^2} = \sqrt{8.0^2 + 6.0^2} = \sqrt{64 + 36} = \sqrt{100} = \mathbf{10\ \text{N}}$$
+
+Direction above the horizontal:
+$$\theta = \arctan\!\left(\frac{F_2}{F_1}\right) = \arctan\!\left(\frac{6.0}{8.0}\right) = \arctan(0.75) = \mathbf{36.9^\circ}$$
+
+Resultant: $10\ \text{N}$ at $36.9^\circ$ above the horizontal.
+\end{examplebox}
+
+\subsection*{Example 5 --- Vector Subtraction (Change in Velocity)}
+
+\textbf{Question:} A ball of mass $0.20\ \text{kg}$ travels at $6.0\ \text{m s}^{-1}$ due East. It then travels at $6.0\ \text{m s}^{-1}$ due North. Find (a) the magnitude and direction of the change in velocity $\Delta\vec{v}$, and (b) the magnitude of the average force if this change takes $0.30\ \text{s}$.
+
+\begin{examplebox}{Solution}
+\textbf{(a)} $\Delta\vec{v} = \vec{v}_2 - \vec{v}_1$. Reverse $\vec{v}_1$ to get $-\vec{v}_1 = 6.0\ \text{m s}^{-1}$ due West, then add $\vec{v}_2 = 6.0\ \text{m s}^{-1}$ due North tip-to-tail:
+
+\begin{center}
+\begin{tikzpicture}[scale=0.9, every node/.style={font=\small}]
+
+  % Right angle marker
+  \draw[darkgray, thin] (-1.85,0) -- (-1.85,0.15) -- (-2.0,0.15);
+  % v2 (North) from tip of -v1
+  \draw[-latex, midblue, very thick] (-2.0,0) -- (-2.0,2.0);
+  \node[midblue, anchor=east] at (-2.08,1.0) {$\vec{v}_2$\ (N)};
+    % -v1 (West)
+  \draw[-latex, pinkframe, very thick] (0,0) -- (-2.0,0);
+  \node[pinkframe, anchor=north] at (-1.0,-0.08) {$-\vec{v}_1$\ (W)};
+  % Delta v resultant
+  \draw[-latex, darkblue, very thick] (0,0) -- (-2.0,2.0);
+  \node[darkblue, anchor=south east] at (-0.2,1) {$\Delta\vec{v}$};
+
+\end{tikzpicture}
+\end{center}
+
+$$|\Delta\vec{v}| = \sqrt{6.0^2 + 6.0^2} = \sqrt{72} = \mathbf{8.49\ \text{m s}^{-1}}$$
+
+Direction: $\arctan(6.0/6.0) = 45^\circ$ North of West (i.e.\ North-West).
+
+\vspace{0.3em}
+\textbf{(b)} $F = \dfrac{m\,|\Delta\vec{v}|}{\Delta t} = \dfrac{0.20 \times 8.49}{0.30} = \mathbf{5.7\ \text{N}}$ (directed North-West).
+\end{examplebox}
+
+\pagebreak
+
+% ===== SECTION 9: PRACTICE QUESTIONS =====
+\section{Practice Exam Questions}
+
+\subsection*{Section A --- Short Answer Questions}
+
+\begin{tcolorbox}[colback=white, colframe=midblue, breakable]
+
+\begin{minipage}{\linewidth}
+\textbf{Q1.} State the five SI base quantities required for this syllabus and give the name and symbol of each unit.
+\par\hfill\textit{[5 marks]}
+\vspace{4cm}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+\textbf{Q2.} Show that the unit of the Young modulus (stress / strain) is equivalent to Pa, and express this in SI base units.
+\par\hfill\textit{[3 marks]}
+\vspace{3.5cm}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+\textbf{Q3.} Distinguish between systematic and random errors. Explain how each can be reduced or identified.
+\par\hfill\textit{[4 marks]}
+\vspace{4cm}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+\textbf{Q4.} Explain the difference between precision and accuracy. A thermometer consistently reads $0.5\ ^\circ\text{C}$ too high. State whether this represents a systematic or random error, and whether the readings are precise, accurate, or both.
+\par\hfill\textit{[4 marks]}
+\vspace{4cm}
+\end{minipage}
+
+\end{tcolorbox}
+
+\subsection*{Section B --- Longer Structured Questions}
+
+\begin{tcolorbox}[colback=white, colframe=midblue, breakable]
+
+\begin{minipage}{\linewidth}
+\textbf{Q5.} The speed $v$ of a wave on a string is given by $v = \sqrt{T/\mu}$, where $T$ is tension and $\mu$ is mass per unit length.
+\end{minipage}
+
+\begin{enumerate}[label=(\alph*)]
+  \item \begin{minipage}[t]{\linewidth}
+  Check the equation for homogeneity by expressing both sides in SI base units.
+  \par\hfill\textit{[3 marks]}
+  \vspace{4cm}
+  \end{minipage}
+
+  \item \begin{minipage}[t]{\linewidth}
+  In an experiment, $T = (4.5 \pm 0.2)\ \text{N}$ and $\mu = (8.0 \pm 0.4)\times10^{-3}\ \text{kg m}^{-1}$. Calculate $v$ and its percentage uncertainty.
+  \par\hfill\textit{[4 marks]}
+  \vspace{4.5cm}
+  \end{minipage}
+\end{enumerate}
+
+\begin{minipage}{\linewidth}
+\textbf{Q6.} A ship travels $40\ \text{km}$ due North, then $30\ \text{km}$ due East.
+
+\begin{enumerate}[label=(\alph*)]
+  \item Calculate the magnitude of the resultant displacement.
+  \par\hfill\textit{[2 marks]}
+  \vspace{3cm}
+
+  \item Calculate the direction of the resultant displacement as a bearing.
+  \par\hfill\textit{[2 marks]}
+  \vspace{3cm}
+
+  \item State the difference between the total distance travelled and the magnitude of displacement. What type of quantity (scalar or vector) is each?
+  \par\hfill\textit{[2 marks]}
+  \vspace{2.5cm}
+\end{enumerate}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+\textbf{Q7.} A force of $50\ \text{N}$ acts at $30^\circ$ above the horizontal.
+
+\begin{enumerate}[label=(\alph*)]
+  \item Resolve the force into its horizontal and vertical components.
+  \par\hfill\textit{[2 marks]}
+  \vspace{3cm}
+
+  \item A second force of $20\ \text{N}$ acts horizontally in the same direction. Find the magnitude and direction of the resultant of the two forces.
+  \par\hfill\textit{[3 marks]}
+  \vspace{4cm}
+
+  \item A third force is added so that the system of three forces is in equilibrium. Describe this third force.
+  \par\hfill\textit{[2 marks]}
+  \vspace{3cm}
+\end{enumerate}
+\end{minipage}
+
+\end{tcolorbox}
+
+\pagebreak
+
+% ===== SECTION 10: MARK SCHEME =====
+\section{Mark Scheme and Answers}
+
+\begin{markscheme}
+
+\textbf{Q1.} Mass/kilogram/kg [1]; length/metre/m [1]; time/second/s [1]; electric current/ampere/A [1]; temperature/kelvin/K [1].
+
+\vspace{0.5em}\textbf{Q2.} Stress $=$ force/area $\Rightarrow$ N m$^{-2}$ = Pa [1]. Strain $=$ extension/length $\Rightarrow$ dimensionless [1]. Young modulus $=$ Pa $=$ kg m$^{-1}$ s$^{-2}$ [1].
+
+\vspace{0.5em}\textbf{Q3.} Systematic: affects all readings the same way [1]; identified by comparing with a known standard; reduced by recalibration or improved technique [1]. Random: causes scatter above and below true value [1]; reduced by taking more readings and averaging [1].
+
+\vspace{0.5em}\textbf{Q4.} Precision: how repeatable/consistent readings are [1]; accuracy: how close readings are to the true value [1]. Constant offset of $+0.5^\circ$C $\Rightarrow$ \textbf{systematic error} [1]; readings are \textbf{precise} (consistent with each other) but \textbf{not accurate} (all shifted from true value) [1].
+
+\vspace{0.5em}\textbf{Q5(a).} LHS: $[v] = $ m s$^{-1}$ [1]. RHS: $[T/\mu] = \text{N}/(\text{kg m}^{-1}) = \text{kg m s}^{-2}/(\text{kg m}^{-1}) = \text{m}^2\ \text{s}^{-2}$ [1]; $[\sqrt{T/\mu}] = $ m s$^{-1}$ $\Rightarrow$ homogeneous \checkmark [1].
+
+\vspace{0.5em}\textbf{Q5(b).} $v = \sqrt{4.5/(8.0\times10^{-3})} = \sqrt{562.5} = \mathbf{23.7\ \text{m s}^{-1}}$ [1].
+
+$\%$ unc in $T$: $0.2/4.5 = 4.44\%$; $\%$ unc in $\mu$: $0.4/8.0 = 5.00\%$ [1].
+
+$\%$ unc in $v = \tfrac{1}{2}(4.44 + 5.00)\% = \tfrac{1}{2}(9.44)\% = \mathbf{4.7\%}$ [2] (halved because of square root).
+
+\vspace{0.5em}\textbf{Q6(a).} $R = \sqrt{40^2 + 30^2} = \sqrt{2500} = \mathbf{50\ \text{km}}$ [2].
+
+\vspace{0.5em}\textbf{Q6(b).} $\theta = \arctan(30/40) = 36.9^\circ$ East of North $\Rightarrow$ bearing $= \mathbf{037^\circ}$ [2].
+
+\vspace{0.5em}\textbf{Q6(c).} Distance $= 40 + 30 = 70\ \text{km}$ (scalar) [1]; displacement $= 50\ \text{km}$ at $037^\circ$ (vector) [1].
+
+\vspace{0.5em}\textbf{Q7(a).} $F_x = 50\cos30^\circ = \mathbf{43.3\ \text{N}}$ (horizontal) [1]; $F_y = 50\sin30^\circ = \mathbf{25\ \text{N}}$ (vertical) [1].
+
+\vspace{0.5em}\textbf{Q7(b).} Total horizontal $= 43.3 + 20 = 63.3\ \text{N}$; total vertical $= 25\ \text{N}$ [1]. $R = \sqrt{63.3^2 + 25^2} = \sqrt{4007 + 625} = \sqrt{4632} = \mathbf{68.1\ \text{N}}$ [1]; $\theta = \arctan(25/63.3) = \mathbf{21.5^\circ}$ above horizontal [1].
+
+\vspace{0.5em}\textbf{Q7(c).} Third force must be equal in magnitude ($68.1\ \text{N}$) [1] and opposite in direction ($21.5^\circ$ below horizontal, pointing left) to the resultant of the first two [1].
+
+\end{markscheme}
+
+% ===== SECTION 11: REVISION CHECKLIST =====
+\newpage
+\section{Revision Checklist}
+
+\begin{tcolorbox}[colback=white, colframe=darkblue, breakable]
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{@{} c p{11cm} r @{}}
+\toprule
+ & \textbf{Learning Objective} & \textbf{Confidence (1--3)} \\
+\midrule
+$\square$ & State that a physical quantity = magnitude $\times$ unit & \\
+$\square$ & Make reasonable estimates of common physical quantities & \\
+$\square$ & Recall the five SI base quantities and their units (kg, m, s, A, K) & \\
+$\square$ & Express derived units in SI base units (N, J, W, Pa, V, $\Omega$, C) & \\
+$\square$ & Use base units to check homogeneity of an equation & \\
+$\square$ & Recall all ten SI prefixes (T, G, M, k, d, c, m, $\mu$, n, p) with values & \\
+$\square$ & Convert correctly when units are raised to powers (e.g.\ cm$^2$ to m$^2$) & \\
+$\square$ & Distinguish systematic and random errors with examples & \\
+$\square$ & Define and distinguish precision and accuracy & \\
+
+$\square$ & Combine absolute uncertainties for addition/subtraction & \\
+$\square$ & Combine percentage uncertainties for multiplication/division/powers & \\
+$\square$ & Distinguish scalars and vectors; give examples of each & \\
+$\square$ & Add and subtract coplanar vectors (tip-to-tail / component method) & \\
+$\square$ & Subtract vectors by reversing direction of the second vector ($\vec{A}-\vec{B} = \vec{A}+(-\vec{B})$) & \\
+$\square$ & Use vector subtraction to find the change in a vector quantity (e.g.\ $\Delta\vec{v}$) & \\
+$\square$ & Resolve a vector into two perpendicular components ($F\cos\theta$, $F\sin\theta$) & \\
+$\square$ & Use a closed vector triangle to represent coplanar forces in equilibrium & \\
+\bottomrule
+\end{tabular}
+\vspace{0.5em}
+\textit{Key: 1 = Need more work \quad 2 = Getting there \quad 3 = Confident}
+\end{tcolorbox}
+
+\vspace{1em}
+\begin{motivationbox}
+\centering
+\textbf{\color{darkblue}Good luck with your revision!}\\[0.2em]
+{\color{darkgray}\small Topic 1 underpins everything else in the course. Get comfortable with unit conversions, uncertainty rules and vector resolution now — you will use all three in every other topic.}
+\end{motivationbox}
