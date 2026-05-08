@@ -1,0 +1,1216 @@
+% topic_08.tex — Content only. Compiled via main.tex.
+% ── No \documentclass, \begin{document} or \end{document} here ──
+
+\chapteropener{8}{Superposition}{%
+  \item The Principle of Superposition
+  \item Stationary Waves: Formation and Properties
+  \item Stationary Waves in Strings and Air Columns
+  \item Diffraction
+  \item Two-Source Interference and Coherence
+  \item The Diffraction Grating
+}
+
+% ===== SECTION 1: SUPERPOSITION =====
+\section{The Principle of Superposition}
+
+\begin{definitionbox}{Principle of Superposition}
+When two or more waves meet at a point, the \textbf{resultant displacement} at that point is equal to the \textbf{vector sum} of the individual displacements of each wave at that point.
+\end{definitionbox}
+
+\vspace{6em}
+
+
+\tikzstyle{wave}=[myblue,thick]
+\tikzstyle{mydashed}=[black!70,dashed,thin]
+\tikzstyle{mymeas}=[{Latex[length=3,width=2]}-{Latex[length=3,width=2]},thin]
+
+
+
+
+
+% DESTRUCTIVE INTERFERENCE
+\def\A{0.5}
+\def\k{360}
+\def\xmin{-0.3}
+\def\xmax{4.4}
+\def\h{2.3}
+\def\lang{90}
+\def\rang{270} % 720+270 = 990
+\def\nsamples{200}
+
+\colorlet{myblue}{midblue}
+\colorlet{myred}{pinkframe}
+\colorlet{mypurple}{darkblue}
+\colorlet{mylightgreen}{green!60!black!70}
+\colorlet{mygreen}{midblue}
+\colorlet{myredgrey}{darkgray}
+
+\begin{tikzpicture}[scale=1.5]
+
+  %\def\angg{asin(\na/\ng*sin(\anga))}
+  %\coordinate (O) at (0,0);
+  \node[darkblue, font=\small, anchor=west] at (-0.3,1.1) {Destructive interference (antiphase)};
+  % WAVE 1
+  \draw[->,black]
+    (\xmin,0) -- (1.06*\xmax,0);
+  \draw[wave,variable=\x,samples=\nsamples,smooth,domain=\xmin:\xmax]
+    plot(\x,{\A*sin(\k*\x)});
+  \node at (\xmax/2,-\h/2) {$+$};
+  
+  % WAVE 2
+  \begin{scope}[shift={(0,-\h)}]
+    \draw[->,black]
+      (\xmin,0) -- (1.06*\xmax,0);
+    \draw[wave,myred,variable=\x,samples=\nsamples,smooth,variable=\x,domain=\xmin:\xmax]
+      plot(\x,{\A*sin(\k*\x+180)});
+  \end{scope}
+  \node at (\xmax/2,-1.5*\h) {$=$};
+  
+  % WAVE 3
+  \begin{scope}[shift={(0,-2*\h)}]
+    \draw[->,black]
+      (\xmin,0) -- (1.06*\xmax,0);
+    \draw[wave,mypurple]
+      (\xmin,0) -- (\xmax,0);
+  \end{scope}
+  
+  % DASHED
+  \draw[mydashed]
+    (\lang/\k,1.25*\A) -- (\lang/\k,-2*\h-2.3*\A);
+  \draw[mydashed]
+    (\rang/\k,1.25*\A) -- (\rang/\k,-2*\h-2.3*\A);
+  \draw[mymeas,myredgrey]
+    (\lang/\k,-2.22*\A) --++ (180/\k,0)
+    node[pos=0.48,below=3pt,scale=0.8,inner sep=-1pt,fill=white]
+      {{$\Delta \phi=\pi$}};
+  
+  
+
+
+
+
+
+% CONSTRUCTIVE INTERFERENCE
+
+  
+\begin{scope}[xshift=6cm]
+
+ \node[darkblue, font=\small, anchor=west] at (-0.3,1.1) {Constructive interference (in phase)};
+
+  % WAVE 1
+  \draw[->,black]
+    (\xmin,0) -- (1.06*\xmax,0);
+  \draw[wave,variable=\x,samples=\nsamples,smooth,domain=\xmin:\xmax]
+    plot(\x,{\A*sin(\k*\x)});
+  \node at (\xmax/2,-\h/2) {$+$};
+  
+  
+  
+    % DASHED
+  \draw[mydashed]
+    (\lang/\k,1.25*\A) -- (\lang/\k,-2*\h-2.3*\A);
+  \draw[mydashed]
+    (\rang/\k+0.5,1.25*\A) -- (\rang/\k+0.5,-2*\h-2.3*\A);
+  \draw[mymeas]
+    (0.7*\xmin,-2*\h) --++ (0,2*\A)
+    node[fill=white,midway,inner sep=1,scale=0.8] {$2A$};
+    
+     \draw[mymeas,myredgrey]
+    (\lang/\k,-2.22*\A) --++ (360/\k,0)
+    node[pos=0.48,below=3pt,scale=0.8,inner sep=-1pt,fill=white]
+      {{$\Delta \phi=2 \pi$}};
+    
+  
+  \end{scope}
+  % WAVE 2
+  \begin{scope}[shift={(6,-\h)}]
+    \draw[->,black]
+      (\xmin,0) -- (1.06*\xmax,0);
+    \draw[wave,myred,variable=\x,samples=\nsamples,smooth,domain=\xmin:\xmax]
+      plot(\x,{\A*sin(\k*\x)});
+ 
+  \node at (\xmax/2,-1.4*\h) {$=$};
+   \end{scope}
+  % WAVE 3
+  \begin{scope}[shift={(6,-2*\h)}]
+    \draw[->,black]
+      (\xmin,0) -- (1.06*\xmax,0);
+    \draw[wave,mypurple,variable=\x,samples=\nsamples,smooth,domain=\xmin:\xmax]
+      plot(\x,{2*\A*sin(\k*\x)});
+\end{scope}
+  
+
+
+\end{tikzpicture}
+
+
+\pagebreak
+
+% ===== SECTION 2: STATIONARY WAVES =====
+\section{Stationary Waves: Formation and Properties}
+
+\begin{definitionbox}{Stationary (Standing) Wave}
+A \textbf{stationary wave} is formed when two progressive waves of the \textbf{same frequency}, \textbf{same amplitude} and travelling in \textbf{opposite directions} superpose. The result is a wave pattern that does not travel — energy is stored rather than transmitted.
+\end{definitionbox}
+
+\begin{definitionbox}{Nodes and Antinodes}
+\begin{itemize}[itemsep=2pt]
+  \item \textbf{Node}: a point of \textbf{zero amplitude} — particles are permanently at rest. Destructive superposition occurs here at all times.
+  \item \textbf{Antinode}: a point of \textbf{maximum amplitude} — particles oscillate with the greatest displacement. Constructive superposition here.
+  \item Adjacent nodes are separated by $\lambda/2$.
+  \item Adjacent antinodes are also separated by $\lambda/2$.
+  \item A node and an adjacent antinode are separated by $\lambda/4$.
+\end{itemize}
+\end{definitionbox}
+
+\subsubsection*{Formation of a stationary wave }
+
+
+
+\tikzset{>=latex} % for LaTeX arrow head
+\tikzstyle{vvec}=[->,vcol,very thick,line cap=round]
+\tikzstyle{node}=[xcol,scale=0.8]
+\tikzstyle{metal}=[draw=metalcol!10!black,rounded corners=0.1,
+  top color=metalcol,bottom color=metalcol!80!black,shading angle=10]
+\tikzstyle{ring}=[metalcol!20!black,double=metalcol!70!black,double distance=1.2,line width=0.3]
+\tikzstyle{rope}=[brown!20!black,double=brown!70!black,
+  double distance=1.2,line width=0.6] %very thick,line cap=round
+\tikzstyle{wood}=[draw=brown!80!black,rounded corners=0.1,
+  top color=brown!80,bottom color=brown!80!black!80,shading angle=10]
+\def\tick#1#2{\draw[thick] (#1) ++ (#2:0.1) --++ (#2-180:0.2)}
+\tikzstyle{myarr}=[-{Latex[length=3,width=2]},vcol!40]
+\tikzstyle{mydoublearr}=[{Latex[length=3,width=2]}-{Latex[length=3,width=2]},vcol!40]
+\def\tick#1#2{\draw[thick] (#1) ++ (#2:0.1) --++ (#2-180:0.2)}
+
+\colorlet{xcol}{blue!70!black}
+\colorlet{vcol}{lightgray}
+
+
+\begin{center}
+% SUM TRAVELING WAVE = STANDING WAVE
+\begin{tikzpicture}[scale=1.5]
+  \def\xmax{3.5}
+  \def\ymax{0.80}
+  \def\A{0.50}      % amplitude
+  \def\lam{1.7}     % wavelength
+  \def\s{1.5*\xmax} % shift
+  
+  % RIGHT-TRAVELING
+  \draw[->,thick] (-0.2*\ymax,0) -- (0.4+\xmax,0) node[right=4,below left=1] {$x$};
+  \draw[->,thick] (0,-\ymax) -- (0,1.1*\ymax) node[below=2,above left=-3] {$y$};
+  \tick{0,\A}{0} node[scale=0.9,left=-1] {$A$};
+  \tick{0,-\A}{0} node[scale=0.9,left=-1] {$-A$};
+  \draw[myblue,very thick,samples=100,smooth,variable=\x,domain=0:\xmax]
+    plot(\x,{\A*sin(360/\lam*\x)});
+  \draw[vvec] (1.3*\lam,0.55*\A) --++ (0.38*\lam,0) node[above=1,right=-2] {$v$};
+ % \node[above,myblue] at (0.54*\xmax,\A) {$y(t)=A\sin(kx-\omega t)$};
+  \node at ({0.505*(\xmax)},-1) {$+$};
+  
+  % LEFT-TRAVELING
+  \begin{scope}[shift={(0,-2.3)}]
+    \draw[->,thick] (-0.2*\ymax,0) -- (0.4+\xmax,0) node[right=4,below left=1] {$x$};
+    \draw[->,thick] (0,-\ymax) -- (0,1.1*\ymax) node[below=2,above left=-3] {$y$};
+    \tick{0,\A}{0} node[scale=0.9,left=-1] {$A$};
+    \tick{0,-\A}{0} node[scale=0.9,left=-1] {$-A$};
+    \draw[myred,very thick,samples=100,smooth,variable=\x,domain=0:\xmax]
+      plot(\x,{\A*sin(360/\lam*\x)});
+    \draw[vvec] (1.2*\lam,0.55*\A) --++ (-0.38*\lam,0) node[above=1,left=-2] {$v$};
+  %  \node[above,myred] at (0.54*\xmax,\A) {$y(t)=A\sin(kx+\omega t)$};
+    \node at ({0.505*(\xmax)},-1) {$=$};
+  \end{scope}
+  
+  % STANDING WAVE
+  \begin{scope}[shift={(0,-5)}]
+    \draw[->,thick] (-0.2*\ymax,0) -- (0.4+\xmax,0) node[right=4,below left=1] {$x$};
+    \draw[->,thick] (0,-1.6*\ymax) -- (0,1.7*\ymax) node[below=2,above left=-3] {$y$};
+    \tick{0,2*\A}{0} node[scale=0.9,left=-1] {$2A$};
+    \tick{0,-2*\A}{0} node[scale=0.9,left=-1] {$-2A$};
+    \draw[mypurple,very thick,samples=100,smooth,variable=\x,domain=0:\xmax]
+      plot(\x,{2*\A*sin(360/\lam*\x)});
+    \draw[mypurple,dashed,samples=100,smooth,variable=\x,domain=0:\xmax]
+      plot(\x,{-2*\A*sin(360/\lam*\x)});
+    \node[vcol,left=1,below=0] at (\lam,-2*\A) {$v_x=0$};
+%    \node[above,mypurple,scale=0.9] at (0.57*\xmax,2*\A) {$y(t)=2A\sin(kx)\sin(\omega t)$};
+    \foreach \i in {1,...,4}{
+      \draw[mydoublearr] ({2*\i-1)*\lam/4},1.4*\A) --++ (0,-2.8*\A);
+    }
+  \end{scope}
+  
+\end{tikzpicture}
+\end{center}
+
+\begin{keybox}{Differences: Stationary vs Progressive Waves}
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{@{} l p{4.5cm} p{4.5cm} @{}}
+\toprule
+ & \textbf{Progressive wave} & \textbf{Stationary wave} \\
+\midrule
+Energy & Transferred in direction of travel & Stored; not transferred \\
+Amplitude & Same for all particles & Varies from 0 (node) to max (antinode) \\
+Phase & Varies continuously along wave & All particles between two nodes are in phase; adjacent segments are in antiphase \\
+Wavelength & Distance between adjacent in-phase points & Twice the node-to-node distance \\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{keybox}
+
+\begin{keybox}{Determining Wavelength from a Stationary Wave}
+Since adjacent nodes are separated by $\lambda/2$:
+$$\lambda = 2 \times (\text{node-to-node distance})$$
+Measure the distance across several node spacings for greater accuracy.
+\end{keybox}
+
+% ===== SECTION 3: STATIONARY WAVES IN STRINGS AND AIR COLUMNS =====
+\section{Stationary Waves in Strings and Air Columns}
+
+\subsubsection*{Stretched string (both ends fixed)}
+
+\begin{center}
+\begin{tikzpicture}[xscale=1.0, yscale=0.9]
+  \def\L{6}
+  % Fundamental (1st harmonic)
+  \begin{scope}[yshift=3.8cm]
+    \node[darkblue, font=\small, anchor=east] at (-0.1,0) {1st harmonic};
+    \draw[midblue, very thick, domain=0:\L, samples=200, smooth]
+      plot (\x, {0.65*sin(deg(pi*\x/\L))});
+    \draw[midblue, very thick, domain=0:\L, samples=200, smooth]
+      plot (\x, {-0.65*sin(deg(pi*\x/\L))});
+    \filldraw[darkgray] (0,0) circle (2.5pt); \filldraw[darkgray] (\L,0) circle (2.5pt);
+%    \filldraw[midblue] (3,0) circle (2.5pt);
+    \node[darkgray, font=\small] at (7,0) {$\lambda_1 = 2L$};
+   
+  \end{scope}
+  % 2nd harmonic
+  \begin{scope}[yshift=1.8cm]
+    \node[darkblue, font=\small, anchor=east] at (-0.1,0) {2nd harmonic};
+    \draw[midblue, very thick, domain=0:\L, samples=200, smooth]
+      plot (\x, {0.65*sin(deg(2*pi*\x/\L))});
+    \draw[midblue, very thick, domain=0:\L, samples=200, smooth]
+      plot (\x, {-0.65*sin(deg(2*pi*\x/\L))});
+    \foreach \xn in {0,3,6} \filldraw[darkgray] (\xn,0) circle (2.5pt);
+ %   \foreach \xa in {1.5,4.5} \filldraw[midblue] (\xa,0) circle (2.5pt);
+  %  \node[darkgray, font=\small] at (3,-0.85) {$\lambda_2 = L$,\quad $f_2 = v/L = 2f_1$};
+      \node[darkgray, font=\small] at (6.9,0) {$\lambda_2 = L$};
+
+  \end{scope}
+  % 3rd harmonic
+  \begin{scope}[yshift=0cm]
+    \node[darkblue, font=\footnotesize, anchor=east] at (-0.1,0) {3rd harmonic};
+    \draw[midblue, very thick, domain=0:\L, samples=200, smooth]
+      plot (\x, {0.65*sin(deg(3*pi*\x/\L))});
+    \draw[midblue, very thick, domain=0:\L, samples=200, smooth]
+      plot (\x, {-0.65*sin(deg(3*pi*\x/\L))});
+    \foreach \xn in {0,2,4,6} \filldraw[darkgray] (\xn,0) circle (2.5pt);
+%    \foreach \xa in {1,3,5} \filldraw[midblue] (\xa,0) circle (2.5pt);
+%    \node[darkgray, font=\small] at (3,-0.85) {$\lambda_3 = 2L/3$,\quad $f_3 = 3v/2L = 3f_1$};
+     \node[darkgray, font=\small] at (7.14,0) {$\lambda_3 = 2L/3$};
+  \end{scope}
+  % Wall indicators
+  \fill[darkgray!40] (-0.15,-1.0) rectangle (0,4.8);
+  \fill[darkgray!40] (6,-1.0) rectangle (6.15,4.8);
+\end{tikzpicture}
+\end{center}
+
+\begin{keybox}{Harmonics in a String}
+For a string of length $L$ fixed at both ends, the $n$th harmonic has:
+$$\lambda_n = \frac{2L}{n} \qquad f_n = \frac{nv}{2L} = nf_1$$
+The \textbf{fundamental} (1st harmonic) has one antinode and $f_1 = v/2L$.
+\end{keybox}
+
+\subsubsection*{Air columns}
+
+\begin{center}
+\begin{tikzpicture}[xscale=0.95, yscale=0.9]
+  % --- Closed pipe (node at closed end, antinode at open end) ---
+  \begin{scope}[xshift=0cm]
+    \node[darkblue, font=\small] at (1.0, 5.5) {Closed pipe};
+    \node[darkgray, font=\small] at (1.0, 5.1) {(node–antinode)};
+    % Pipe walls
+    \draw[darkblue,thick] (0,0) -- (2,0);
+    \draw[darkblue, thick] (0,0) -- (0,4.8);
+    \draw[darkblue, thick] (2,0) -- (2,4.8);
+    % Fundamental: quarter wavelength
+    \draw[midblue, very thick, domain=0:4.8, samples=200, smooth]
+      plot ({1.0 + 0.95*sin(deg(pi*\x/(2*4.7)))}, \x);
+    \draw[midblue, very thick, domain=0:4.8, samples=200, smooth]
+      plot ({1.0 - 0.95*sin(deg(pi*\x/(2*4.7)))}, \x);
+    \filldraw[darkgray] (1.0,0) circle (2.5pt);
+ %   \node[darkgray, font=\tiny, anchor=east] at (0.2,0) {N};
+  %  \filldraw[accentgold] (1.0,4.7) circle (2.5pt);
+  %  \node[accentgold, font=\tiny, anchor=west] at (1.8,4.7) {A};
+    \node[darkgray, font=\footnotesize] at (1.0,-0.5) {$L = \lambda/4$};
+   % \node[darkgray, font=\footnotesize] at (1.0,-0.9) {$f_1 = v/4L$};
+  \end{scope}
+  % --- Open pipe (antinodes at both ends) ---
+  \begin{scope}[xshift=4.5cm]
+    \node[darkblue, font=\small] at (1.0, 5.5) {Open pipe};
+    \node[darkgray, font=\small] at (1.0, 5.1) {(antinode–antinode)};
+    \draw[darkblue, thick] (0,0) -- (0,4.8);
+    \draw[darkblue, thick] (2,0) -- (2,4.8);
+    % Fundamental: half wavelength
+    \draw[midblue, very thick, domain=0:4.8, samples=200, smooth]
+      plot ({1.0 + 0.95*sin(deg(pi*\x/4.7+pi/2))}, \x);
+    \draw[midblue, very thick, domain=0:4.8, samples=200, smooth]
+      plot ({1.0 - 0.95*sin(deg(pi*\x/4.7+pi/2))}, \x);
+    %\filldraw[accentgold] (1.0,0) circle (2.5pt);
+  %  \node[accentgold, font=\tiny, anchor=east] at (0.2,0) {A};
+  %  \filldraw[darkgray] (1.0,2.35) circle (2.5pt);
+  %  \node[darkgray, font=\tiny, anchor=east] at (0.2,2.35) {N};
+  %  \filldraw[accentgold] (1.0,4.7) circle (2.5pt);
+  %  \node[accentgold, font=\tiny, anchor=west] at (1.8,4.7) {A};
+    \node[darkgray, font=\footnotesize] at (1.0,-0.5) {$L = \lambda/2$};
+  %  \node[darkgray, font=\footnotesize] at (1.0,-0.9) {$f_1 = v/2L$};
+  \end{scope}
+\end{tikzpicture}
+\end{center}
+
+\begin{keybox}{Standing Waves in Air}
+
+Standing waves in air are created in a similar way. Waves are reflected from the ends of a tube and the waves travelling in opposite directions superpose to form a standing wave as long as the boundary conditions are satisfied.
+\begin{itemize}[itemsep=2pt]
+\item For a closed pipe: A \textbf{Node} at the closed end and an \textbf{Antinode} at the open end.
+\item For an open pipe: An \textbf{Antinode} at both ends. 
+\end{itemize}
+\end{keybox}
+
+% ===== SECTION 4: DIFFRACTION =====
+\section{Diffraction}
+
+\begin{definitionbox}{Diffraction}
+\textbf{Diffraction} is the spreading of a wave as it passes through a gap or around an obstacle. It is a property of all waves.
+\begin{itemize}[itemsep=2pt]
+  \item Diffraction is most pronounced when the \textbf{gap width} $\approx$ \textbf{wavelength}.
+  \item When gap width $\gg \lambda$: very little spreading — the wave passes through with little diffraction.
+  \item When gap width $\approx \lambda$: maximum spreading — the wave spreads out as a near-semicircle.
+  \item When gap width $< \lambda$: the gap acts almost like a point source.
+\end{itemize}
+\end{definitionbox}
+
+
+% DIFFRACTION - large slit - circular
+\def\H{5.4}     % total wall height
+\def\h{4.4}     % plane wave height
+\def\t{0.18}    % wall thickness
+\def\a{2.3}     % slit size
+\def\lambd{0.4} % wavelength
+\def\N{14}      % number of waves
+\def\dN{30}     % number shift
+\def\ang{6}    % angle of diffraction
+
+
+\colorlet{wall}{darkgray!80}
+
+
+
+\begin{tikzpicture}[scale=.7]
+
+  \message{Diffraction, circular^^J}
+  
+  \def\lambd{0.4} % wavelength
+  
+  % WAVES
+  \foreach \i [evaluate={\r=0.9*\i*\lambd;\R=(\i+\dN)*\lambd;}] in {1,...,\N}{
+    \ifodd\i
+      \draw[myblue,line width=0.8] (\r,{\R*sin(\ang)}) arc (\ang:-\ang:\R);
+    \else
+      \ifnumless{\i}{\N}{
+        \draw[myblue!80,line width=0.1] (\r,{\R*sin(\ang)}) arc (\ang:-\ang:\R);
+      }{}
+    \fi
+  }
+  \foreach \i [evaluate={\xp=-2*(\i-0.5)*\lambd; \xm=-2*(\i-1)*\lambd;}] in {1,...,2}{
+    \draw[myblue,line width=0.8] (\xp,-\h/2) -- (\xp,\h/2);
+    \draw[myblue,line width=0.1] (\xm,-\h/2) -- (\xm,\h/2);
+  }
+  
+  % WALL
+  \fill[wall]
+    (\t/2,\a/2) rectangle (-\t/2,\H/2)
+    (\t/2,-\a/2) rectangle (-\t/2,-\H/2);
+  
+    \node[darkblue, font=\small, anchor=north] at (1,-3.2) {gap $\gg \lambda$};
+
+
+% DIFFRACTION - large slit - straight
+\begin{scope}[xshift=8cm]
+\def\ang{10} % angle of diffraction
+
+  \message{Diffraction, straight^^J}
+  
+  % WAVES
+  \foreach \i [evaluate={\r=\i*\lambd;}] in {1,...,\N}{
+    \ifodd\i
+      \draw[myblue,line width=0.8] (\r,{\a/2+\r*sin(\ang)}) arc(\ang:0:\r) --++ (0,-\a) arc(0:-\ang:\r);
+    \else
+      \ifnumless{\i}{\N}{
+        \draw[myblue,line width=0.1] (\r,{\a/2+\r*sin(\ang)}) arc(\ang:0:\r) --++ (0,-\a) arc(0:-\ang:\r);
+      }{}
+    \fi
+  }
+  \foreach \i [evaluate={\xp=-2*(\i-0.5)*\lambd; \xm=-2*(\i-1)*\lambd;}] in {1,...,2}{
+    \draw[myblue,line width=0.8] (\xp,-\h/2) -- (\xp,\h/2);
+    \draw[myblue,line width=0.1] (\xm,-\h/2) -- (\xm,\h/2);
+  }
+  
+  % WALL
+  \fill[wall]
+    (\t/2,\a/2) rectangle (-\t/2,\H/2)
+    (\t/2,-\a/2) rectangle (-\t/2,-\H/2);
+  
+
+\end{scope}
+
+
+
+% DIFFRACTION - small slit
+\begin{scope}[xshift=16cm]
+  \message{Diffraction, small slit^^J}
+  
+  \def\H{5.5}     % total wall height
+  \def\h{4.0}     % plane wave height
+  \def\t{0.18}    % wall thickness
+  \def\a{0.68}    % slit distance
+  \def\N{7}       % number of waves
+  \def\lambd{0.4} % wavelength
+  \def\ang{40}
+  
+  % WAVES
+  \foreach \i [evaluate={\Rp=2*\i*\lambd; \Rm=2*(\i+0.5)*\lambd;}] in {1,...,\N}{
+    \draw[myblue,line width=0.8] (-0.9*\lambd,0)++(\ang:\Rp) arc (\ang:-\ang:\Rp);
+    \ifnumless{\i}{\N}{
+      \draw[myblue!80,line width=0.1] (-0.9*\lambd,0)++(\ang:\Rm) arc (\ang:-\ang:\Rm);
+    }{}
+  }
+  \foreach \i [evaluate={\xp=-2*(\i-0.5)*\lambd; \xm=-2*(\i-1)*\lambd;}] in {1,...,2}{
+    \draw[myblue,line width=0.8] (\xp,-\h/2) -- (\xp,\h/2);
+    \draw[myblue,line width=0.1] (\xm,-\h/2) -- (\xm,\h/2);
+  }
+  
+  % WALL
+  \fill[wall]
+    (\t/2,\a/2) rectangle (-\t/2,\H/2)
+    (\t/2,-\a/2) rectangle (-\t/2,-\H/2);
+        \node[darkblue, font=\small, anchor=north] at (1,-3.2) {gap $\approx \lambda$};
+  \end{scope}
+\end{tikzpicture}
+
+
+% ===== SECTION 5: INTERFERENCE AND COHERENCE =====
+\section{Two-Source Interference and Coherence}
+
+\begin{definitionbox}{Coherence}
+Two sources are \textbf{coherent} if they have:
+\begin{itemize}[itemsep=2pt]
+  \item The \textbf{same frequency} (and hence wavelength).
+  \item A \textbf{constant phase difference} (not necessarily zero).
+\end{itemize}
+Coherence is essential for a stable interference pattern to be observed.
+\end{definitionbox}
+
+\begin{definitionbox}{Interference}
+\textbf{Interference} is the superposition of waves from two coherent sources, producing a pattern of \textbf{maxima} (constructive) and \textbf{minima} (destructive).
+\begin{itemize}[itemsep=2pt]
+  \item \textbf{Constructive interference}: path difference $= n\lambda$ ($n = 0, 1, 2, \ldots$); waves arrive in phase.
+  \item \textbf{Destructive interference}: path difference $= (n + \tfrac{1}{2})\lambda$; waves arrive in antiphase.
+\end{itemize}
+\end{definitionbox}
+
+\begin{keybox}{Conditions for Observable Two-Source Fringes}
+\begin{enumerate}[itemsep=2pt]
+  \item Sources must be \textbf{coherent} (same frequency, constant phase difference).
+  \item Sources must have \textbf{similar amplitudes} (for clear minima — zero intensity at destructive points).
+  \item For light: sources must be \textbf{monochromatic} or fringes from different wavelengths overlap and blur.
+  \item The \textbf{slit separation} $a$ must be comparable to $\lambda$ (much larger $\Rightarrow$ fringes too close together to resolve).
+\end{enumerate}
+\end{keybox}
+
+\begin{formulabox}{Double-Slit Fringe Spacing: \texorpdfstring{$\lambda = ax/D$}{lambda = ax/D}}
+\begin{center}
+\Large $\lambda = \frac{ax}{D}$
+\end{center}
+\vspace{0.3em}
+\begin{itemize}[itemsep=2pt]
+  \item $a$: slit separation (m) — centre to centre.
+  \item $x$: fringe spacing (m) — distance between adjacent bright fringes.
+  \item $D$: distance from slits to screen (m).
+  \item Valid when $D \gg a$ (small-angle approximation).
+\end{itemize}
+\end{formulabox}
+
+
+
+
+
+\newcommand\rightAngle[4]{
+  \pgfmathanglebetweenpoints{\pgfpointanchor{#2}{center}}{\pgfpointanchor{#3}{center}}
+  \coordinate (tmpRA) at ($(#2)+(\pgfmathresult+45:#4)$);
+  \draw[white,line width=0.6] ($(#2)!(tmpRA)!(#1)$) -- (tmpRA) -- ($(#2)!(tmpRA)!(#3)$);
+  \draw[mydarkred] ($(#2)!(tmpRA)!(#1)$) -- (tmpRA) -- ($(#2)!(tmpRA)!(#3)$);
+}
+\newcommand\lineend[2]{
+  \def\w{0.1} \def\c{30}
+  \draw[mygreen] (#1)++(#2:\w) to[out=#2-180-\c,in=#2+\c] (#1)
+                               to[out=#2+\c-180,in=#2-\c]++ (#2-180:\w);
+}
+\def\tick#1#2{\draw[thick] (#1) ++ (#2:0.1) --++ (#2-180:0.2)}
+
+
+
+
+
+  \colorlet{myshadow}{darkblue}
+  \colorlet{mydarkred}{darkgray}
+
+\usetikzlibrary{angles,quotes} % for pic (angle labels)
+\tikzstyle{mysmallarr}=[-{Latex[length=3,width=2]}]
+
+
+% TWO SPLIT
+\begin{center}
+\begin{tikzpicture}[
+    nodal/.style={lightgray,dashed,very thin},
+    declare function={
+      %xnode(\n,\dn,\lam,\f) = sqrt( (\n^2+(\n+\dn)^2)*\lambd^2/2 - (\n^2-(\n+\dn)^2)^2*\lambd^4/(4*\a^2) - \a^2/4 );
+      xnode(\n,\dn,\lam,\f) = \lam/\f*sqrt( \n^2*(\f^2-\dn^2)+\n*\dn*(\f^2-\dn^2)+\dn^2*\f^2/2-(\f^4+\dn^4)/4 );
+      ynode(\n,\dn,\lam,\a) = (2*\n*\dn+\dn^2)*\lam/(2*\f);
+      intensity(\y,\lam,\a,\L) = cos(180*\a*\y/(2*\lam*sqrt(\L*\L+\y*\y)))^2;
+    }
+  ]
+  
+  \def\L{3.8}       % distance between walls
+  \def\H{5.4}       % total wall height
+  \def\h{2.8}       % plane wave height
+  \def\t{0.15}      % wall thickness
+  \def\a{1.15}      % slit distance
+  \def\d{0.20}      % slit size
+  \def\N{21}        % number of waves
+  \def\lambd{0.20}  % wavelength
+  \def\R{\N*\lambd} % wave radius
+  \def\Nlines{3}    % number of nodal lines
+  \def\A{1.6}       % amplitude
+  %\def\r{0.06}      % point source radius
+  %\def\nmax{10}
+  \def\nsamples{100}
+  \def\ang{62}
+
+  
+  \begin{scope}
+    \clip (-\t/2,-\H/2) rectangle (\L,\H/2);
+    %\clip (-\t/2,0.7*\a) -- (0.6*\L,\H/2) -- (\L,\H/2) --
+    %      (\L,-\H/2) -- (0.6*\L,-\H/2) -- (-\t/2,-0.7*\a) -- cycle;
+    
+    % NODAL LINES
+    \draw[nodal]
+      (0.08*\N*\lambd,0) -- (1.06*\R,0);
+    \coordinate (NP0) at (\L,0);  % to avoid "Dimension too large error"
+    \foreach \dn [evaluate={
+                   \f=\a/\lambd;
+                   \nmin=2.5+0.2*\dn; %0.501*(-\dn+\f)
+                   \nmax=10; %(NP0)
+                   \c=int(\dn<\f);
+                   \y=\L/sqrt((\a/(\lambd*\dn))^2-1);
+                 }] in {1,...,\Nlines}{
+      \coordinate (NP+\dn) at (\L,\y);  % to avoid "Dimension too large error"
+      \coordinate (NP-\dn) at (\L,-\y); % to avoid "Dimension too large error"
+      \ifnum\c=1
+        \draw[nodal,variable=\n,samples=\nsamples,smooth]
+          plot[domain=\nmin:\nmax] ({xnode(\n,\dn,\lambd,\f)},{ynode(\n,\dn,\lambd,\f)})
+          -- (NP+\dn);
+        \draw[nodal,variable=\n,samples=\nsamples,smooth]
+          plot[domain=\nmin:\nmax] ({xnode(\n,\dn,\lambd,\f)},{-ynode(\n,\dn,\lambd,\f)})
+          -- (NP-\dn);
+      \fi
+    }
+    
+    % WAVES
+    \foreach \i [evaluate={\R=\i*\lambd;}] in {1,...,\N}{
+      \ifodd\i
+        \draw[myblue,line width=0.8] (0,\a/2)++(\ang:\R) arc (\ang:-\ang:\R);
+        \draw[myred,line width=0.8] (0,-\a/2)++(\ang:\R) arc (\ang:-\ang:\R);
+      \else
+        \draw[myblue!80,line width=0.1] (0,\a/2)++(\ang:\R) arc (\ang:-\ang:\R);
+        \draw[myred!80,line width=0.1] (0,-\a/2)++(\ang:\R) arc (\ang:-\ang:\R);
+      \fi
+    }
+  \end{scope}
+  
+  % PLANE WAVES
+  \foreach \i [evaluate={\x=-\i*\lambd;}] in {0,...,5}{
+    \ifodd\i
+      \draw[myblue,line width=0.8] (\x,-\h/2) -- (\x,\h/2);
+    \else
+      \draw[myblue,line width=0.1] (\x,-\h/2) -- (\x,\h/2);
+    \fi
+  }
+  
+  % WALL
+  \fill[wall]
+    (\t/2,\a/2-\d/2) rectangle (-\t/2,-\a/2+\d/2)
+    (\t/2,\a/2+\d/2) rectangle (-\t/2,\H/2)
+    (\t/2,-\a/2-\d/2) rectangle (-\t/2,-\H/2)
+    (\L,-\H/2) rectangle (\L+\t,\H/2);
+  
+  % SHADES
+  \begin{scope}[shift={(1.08*\L,0)}]
+    \def\yz{\L/sqrt((\a/\lambd)^2-1)} % m = +- 1/2
+    \def\yZ{\L/sqrt((\a/\lambd/2)^2-1)} % m = +- 1
+    \clip (0,-\H/2) rectangle (1.1*\A,\H/2);
+    \fill[white] (0,-\H/2) rectangle++ (\A,\H); % to fill seams
+    \foreach \i [evaluate={\n=0.5*\i;\yn=\L/sqrt((\a/(2*\lambd*\n))^2-1);
+                 }] in {1,...,\Nlines}{
+      \ifodd\i % if even
+        \fill[myshadow] (0,{-\yn-0.1}) rectangle++ (\A,0.2); % to fill seams
+        \fill[myshadow] (0,{ \yn-0.1}) rectangle++ (\A,0.2); % to fill seams
+      \fi
+    }
+    \path[left color=myshadow,right color=myshadow,middle color=white,shading angle={180}]
+      (0,{-\yz}) rectangle (\A,{\yz});
+    \foreach \i [evaluate={
+                  \n=0.5*\i;
+                  \m=0.5*(\i+1);
+                  \yn=\L/sqrt((\a/(2*\lambd*\n))^2-1);
+                  \ym=\L/sqrt((\a/(2*\lambd*\m))^2-1);
+                  \dang=mod(\i,2)*180;
+                 }] in {1,...,\Nlines}{
+      \path[left color=myshadow,right color=white,shading angle={\dang}]
+        (0,\yn) rectangle (\A,\ym);
+      \path[left color=myshadow,right color=white,shading angle={180+\dang}]
+        (0,-\yn) rectangle (\A,-\ym);
+    }
+  \end{scope}
+  
+  % INTENSITY
+  \begin{scope}[shift={(1.1*\L+1.1*\A,0)}]
+    \draw[->,thick] (-0.08*\A,0) -- (1.3*\A,0) node[right=-2] {$\expval{I}$}; % I axis
+    \draw[->,thick] (0,-0.52*\H) -- (0,0.54*\H) node[right] {$y$}; % y axis
+    \draw[nodal] (NP0) --++ (0.15*\L+2.1*\A,0); % green nodal lines
+    \foreach \i [evaluate={\y=\L/sqrt((\a/(\lambd*\i))^2-1)}] in {1,...,\Nlines}{ % green nodal lines
+      \draw[nodal] (NP+\i) --++ ({0.15*\L+1.1*\A+\A*intensity(\y,\lambd,\a,\L)},0);
+      \draw[nodal] (NP-\i) --++ ({0.15*\L+1.1*\A+\A*intensity(\y,\lambd,\a,\L)},0);
+    }
+    \draw[myred,thick,variable=\y,samples=\nsamples,smooth,domain=-\H/2:\H/2]
+      plot({\A*intensity(\y,\lambd,\a,\L)},\y);
+    \foreach \i [evaluate={ % ticks
+        \modd=\i; %int(\i);
+        \meven=int(\i-1);
+        \y=\L/sqrt((\a/(\lambd*\i))^2-1);
+                }] in {1,...,\Nlines}{
+      \ifodd\i
+        \tick{0,-\y}{180} node[right=0,scale=0.85] {$n=-\frac{\modd}{2}$};
+        \tick{0,\y}{180} node[right=0,scale=0.85] {$n=+\frac{\modd}{2}$};
+      \else
+        \tick{0,-\y}{180} node[right=0,scale=0.85] {$n=-\meven$};
+        \tick{0,\y}{180} node[right=0,scale=0.85] {$n=+\meven$};
+      \fi
+    }
+  \end{scope}
+  
+\end{tikzpicture}
+\end{center}
+
+% TWO SLIT PATH DIFFERENCE
+\begin{tikzpicture}
+  \begin{scope}[xshift=2cm]
+  \def\L{5.9}       % distance between walls
+  \def\H{3.0}       % total wall height
+  \def\f{0.9}       % fractional height of projection point
+  \def\ang{atan((\f*\H+\a)/\L/2)} % theta
+  \def\t{0.15}      % wall thickness
+  \def\a{1.5}       % slit distance
+  \def\d{0.20}      % slit size
+  \coordinate (T) at (0,\a/2);
+  \coordinate (B) at (0,-\a/2);
+  \coordinate (L) at (0,0);
+  \coordinate (R) at (\L,0);
+  \coordinate (P) at (\L,\f*\H/2);
+  \coordinate (M) at ($(B)!(T)!(P)$);
+  
+  % LINES
+  \draw[mygreen,thick] (T) -- (P) node[midway,above=-1] {$r_1$};
+  \draw[mygreen,thick] (B) -- (P) node[midway,below=3,right=6] {$r_2$}; %right=6,below right=-4
+  \draw[dashed] (L) -- (P);
+  \draw[dashed,black!60] (L) -- (R);
+  \draw[mydarkred,dashed] (M) -- (T);
+  
+  % ANGLES
+  \draw pic[mysmallarr,"$\theta'$",mydarkred,draw=mydarkred,angle radius=26,angle eccentricity=1.25, font =\small]
+    {angle = B--T--M};
+  \draw pic[mysmallarr,"$\theta$",mydarkred,draw=mydarkred,angle radius=38,angle eccentricity=1.14]
+    {angle = R--L--P};
+  \rightAngle{T}{M}{P}{0.3}
+  
+  % MEASURES
+  \draw[<->,black] (0,-0.47*\H) --++ (\L,0) node[midway,fill=white,inner sep=1] {$D$};
+  \draw[<->,black] (-2.1*\t,-\a/2) --++ (0,\a) node[midway,fill=white,inner sep=1] {$a$};
+  \draw[<->,black] ([shift={({\ang-90}:0.1)}]B) -- ([shift={({\ang-90}:0.1)}]M)
+    node[midway,above=1,below right=-3]{$a\sin\theta'$};
+  \draw[<->,black] ([shift={(2.1*\t,0)}]P) -- ([shift={(2.1*\t,0)}]R)
+    node[midway,fill=white,inner sep=1]{$x$};
+  
+  % WALL
+  \fill[wall]
+    (0,\a/2-\d/2) rectangle (-\t,-\a/2+\d/2)
+    (0,\a/2+\d/2) rectangle (-\t,\H/2)
+    (0,-\a/2-\d/2) rectangle (-\t,-\H/2)
+    (\L,-\H/2) rectangle (\L+\t,\H/2);
+  \fill[mygreen!80!black] (P) circle (0.3*\t) node[right=1,above left=-2] {P};
+  
+
+\end{scope}
+
+% TWO SLIT PATH DIFFERENCE close up
+\begin{scope}[xshift=12cm]
+  
+  \def\L{5.5}       % distance between walls
+  \def\l{3.8}       % distance between walls
+  \def\H{3.5}       % total wall height
+  \def\f{0.9}       % fractional height of projection point
+  \def\t{0.15}      % wall thickness
+  \def\a{1.6}       % slit distance
+  \def\d{0.20}      % slit size
+  \def\ang{27}      % angle
+  \coordinate (T) at (0,\a/2);
+  \coordinate (B) at (0,-\a/2);
+  \coordinate (L) at (0,0);
+  \coordinate (R) at (\L,0);
+  \coordinate (I) at ({\a/2/tan(\ang)},0);
+  
+  % LINES
+  \draw[mygreen,thick] (T) --++ (\ang:.8*\l) coordinate (PT) node[midway,below=1,above left=-2] {$r_1$};
+  \draw[mygreen,thick] (B) --++ (\ang:\l) coordinate (PB) node[midway,left=2,below right=-1] {$r_2$};
+  \draw[mydarkred,dashed] (T) -- ($(B)!(T)!(PB)$) coordinate (M);
+  \draw[black!60,dashed] (L) --++ (\ang:.9*\l) coordinate (PR);
+  %\draw[black!60,dashed] (T) --++ (.20*\L,0) coordinate (TR);
+  \draw[black!60,dashed] (L) --++ (.6*\L,0) coordinate (LR);
+  %\draw[black!60,dashed] (B) --++ (.20*\L,0) coordinate (BR);
+  
+  % LINE END
+  \lineend{PT}{\ang+70}
+  \lineend{PB}{\ang+70}
+  
+  % ANGLES
+  \draw pic[mysmallarr,"{$\theta$}",mydarkred,draw=mydarkred,angle radius=26.5,angle eccentricity=1.25 ]
+    {angle = B--T--M};
+ 
+  %\draw pic[->,"$\theta$",mydarkred,draw=mydarkred,angle radius=16,angle eccentricity=1.41]
+  %  {angle = TR--T--PT};
+  %\draw pic[->,"$\theta$",mydarkred,draw=mydarkred,angle radius=16,angle eccentricity=1.41]
+  %  {angle = BR--B--PB};
+  \draw pic[mysmallarr,"$\theta$",mydarkred,draw=mydarkred,angle radius=22,angle eccentricity=1.25,font =\small]
+    {angle = LR--L--PR};
+  \draw pic[mysmallarr,"$\theta$",mydarkred,draw=mydarkred,angle radius=22,angle eccentricity=1.30]
+    {angle = LR--I--PB};
+  \rightAngle{T}{M}{PB}{0.3}
+  
+  % MEASURES
+  \draw[<->,black] (-2.2*\t,-\a/2) --++ (0,\a) node[midway,fill=white,inner sep=1.5] {$a$};
+  \draw[<->,black] ([shift={({\ang-90}:0.1)}]B) -- ([shift={({\ang-90}:0.1)}]M)
+    node[midway,above=1,below right=-3]{$a\sin\theta$};
+  
+  % WALL
+  \fill[wall]
+    (0,\a/2-\d/2) rectangle (-\t,-\a/2+\d/2)
+    (0,\a/2+\d/2) rectangle (-\t,\H/2)
+    (0,-\a/2-\d/2) rectangle (-\t,-\H/2);
+ \end{scope}
+\end{tikzpicture}
+
+\vspace{6em}
+
+
+\begin{formulabox}{Derivation of Double Slit formula}
+
+\vspace{0.3em}
+\begin{itemize}[itemsep=2pt]
+  \item For small angles $r_1 \approx r_2$; $\theta' \approx \theta$
+  \item Path difference = $a\sin\theta$
+  \item For the first maximum: Path difference = $\lambda = a\sin\theta$
+  \item By similar triangles and $\tan\theta \approx \sin\theta$: $\frac{x}{D}$ = $\frac{a\sin\theta}{a}$ 
+ 
+\end{itemize}
+\begin{center}
+\Large $\lambda = \frac{ax}{D}$
+\end{center}
+\end{formulabox}
+
+
+
+
+
+
+\begin{warningbox}{Common Mistakes with \texorpdfstring{$\lambda = ax/D$}{lambda = ax/D}}
+\begin{itemize}[itemsep=2pt]
+  \item $a$ is the \textbf{slit separation}, not the slit width.
+  \item $x$ is the fringe \textbf{spacing} (centre of one fringe to the centre of the next), not the total width of the pattern.
+  \item Increasing $D$ or decreasing $a$ \emph{increases} fringe spacing $x$ — fringes spread out.
+  \item The formula requires $D \gg a$; if this is not satisfied, the small-angle approximation breaks down.
+\end{itemize}
+\end{warningbox}
+
+% ===== SECTION 6: DIFFRACTION GRATING =====
+\section{The Diffraction Grating}
+
+\begin{definitionbox}{Diffraction Grating}
+A \textbf{diffraction grating} consists of many equally-spaced parallel slits. When light is incident normally, each slit diffracts the light, and the diffracted beams from all slits interfere. Sharp, bright maxima (orders) are produced at specific angles.
+\end{definitionbox}
+
+\begin{formulabox}{Grating Equation}
+\begin{center}
+\Large $d\sin\theta = n\lambda$
+\end{center}
+\vspace{0.3em}
+\begin{itemize}[itemsep=2pt]
+  \item $d$: grating spacing — distance between adjacent slits (m). If a grating has $N$ lines per metre, then $d = 1/N$.
+  \item $\theta$: angle of the $n$th order maximum to the straight-through (zero-order) direction.
+  \item $n$: order number ($n = 0, \pm1, \pm2, \ldots$).
+  \item $\lambda$: wavelength of light (m).
+  \item Maximum possible order: $n_{\max} = \lfloor d/\lambda \rfloor$ (since $\sin\theta \leq 1$).
+\end{itemize}
+\end{formulabox}
+
+\begin{center}
+
+
+
+%Styles
+
+%%Arrow in the Middle
+\tikzset{midarrow1/.style = {postaction=decorate, decoration={markings,mark=at position .24 with \arrow{stealth}}}}
+\tikzset{midarrow2/.style = {postaction=decorate, decoration={markings,mark=at position .76 with \arrow{stealth}}}}
+\tikzset{midarrow/.style={midarrow1,midarrow2}}
+
+% Define Color
+\colorlet{richelectricblue}{darkgray}
+\colorlet{lust}{midblue}
+
+% Define Lengths
+\def\X{4}
+\def\Y{7.5}
+\def\dY{0.6}
+\def\dy{0.1}
+
+
+
+\begin{tikzpicture}[scale=1.2]
+		% Grid
+%		\draw[help lines] (0,0) grid (10,10);
+		
+		% Dashed Line
+		\draw[dashed] (\X, \Y-\dY-\dy/2) coordinate(B) -- ++(3,0) coordinate(C); 
+		
+		% Slits	
+		%% Top	
+		\draw[line width = 2, color = richelectricblue] (\X,\Y) -- (\X, \Y-\dY) ;
+		%% Bottom
+		\draw[line width = 2, color = richelectricblue] (\X,\Y-6*\dY-6*\dy) -- (\X, \Y-6*\dY-\dY-6*\dy) ;
+	
+		% Slits And Rays
+		\foreach \i in {0, ..., 5}
+		{
+			% Blue Walls
+			\draw[line width = 2, color = richelectricblue] (\X,\Y-\i*\dY-\i*\dy) -- (\X, \Y-\i*\dY-\dY-\i*\dy) ;
+			% Rays
+			\draw[line width = 1.2, color = lust,  midarrow] (1, \Y-\i*\dY-\dY-\i*\dy-\dy/2) -- ++(\X-1, 0) -- ++(3, -1);
+		}
+		%% First Ray
+		\draw[line width = 1.2, color = lust, angle eccentricity = 1.9] (1, \Y-\dY-\dy/2) -- ++(\X-1, 0) -- ++(3, -1) coordinate(A);
+		
+		%Angle
+		\pic[line width = 0.6, draw, "\small$\theta$", black, angle radius=1.3cm, angle eccentricity = 1.2] {angle=A--B--C};
+		
+		% Node 
+		\draw[line width = 0.6, black, latex-latex] (\X-1, 6.85) -- ++(0, -0.7) node [midway, left] {$d$};
+	\end{tikzpicture}
+	
+
+\end{center}
+
+
+
+
+
+
+\begin{keybox}{Using a Diffraction Grating to Measure Wavelength}
+\begin{enumerate}[itemsep=2pt]
+  \item Direct light normally at the grating.
+  \item Measure the angle $\theta_n$ to the $n$th order maximum using a protractor or spectrometer scale.
+  \item Apply $d\sin\theta_n = n\lambda$ to find $\lambda$.
+  \item Repeat for several orders and take a mean for greater accuracy.
+  \item The grating spacing $d$ is found from $d = 1/N$ where $N$ is the number of lines per metre (usually stated as lines per mm on the grating — convert carefully).
+\end{enumerate}
+\end{keybox}
+
+\begin{warningbox}{Common Mistakes with the Grating Equation}
+\begin{itemize}[itemsep=2pt]
+  \item Lines per mm must be converted: e.g.\ $300\ \text{lines mm}^{-1} = 3\times10^5\ \text{lines m}^{-1}$, so $d = 1/(3\times10^5)\ \text{m}$.
+  \item $\sin\theta$ cannot exceed 1, so check that your calculated $n_{\max}$ is physically possible.
+  \item The grating produces sharper, more widely spaced maxima than double slits — do not confuse the two formulae.
+\end{itemize}
+\end{warningbox}
+
+% ===== SECTION 7: FORMULA SUMMARY =====
+\section{Formula Summary Sheet}
+
+\begin{minipage}{\linewidth}
+\begin{tcolorbox}[colback=lightgold, colframe=accentgold]
+\renewcommand{\arraystretch}{1.8}
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Formula} & \textbf{Quantity} & \textbf{Units} \\
+\midrule
+$\lambda = 2 \times$ (node spacing) & Wavelength from stationary wave & m \\
+$f_n = nv/2L$ & $n$th harmonic in a string & Hz \\
+$\lambda = ax/D$ & Double-slit fringe spacing & m \\
+$d\sin\theta = n\lambda$ & Diffraction grating & m \\
+$d = 1/N$ & Grating spacing from line density & m \\
+\bottomrule
+\end{tabular}
+\end{tcolorbox}
+
+\vspace{0.5em}
+\begin{tcolorbox}[colback=lightblue, colframe=darkblue]
+\textbf{Key facts:}\\[0.3em]
+\textbf{Superposition:} resultant displacement $=$ vector sum of individual displacements.\\[0.2em]
+\textbf{Nodes} separated by $\lambda/2$; \textbf{antinodes} separated by $\lambda/2$.\\[0.2em]
+\textbf{Constructive}: path difference $= n\lambda$;\quad \textbf{Destructive}: path difference $= (n+\tfrac{1}{2})\lambda$.\\[0.2em]
+\textbf{Coherence}: same frequency + constant phase difference.\\[0.2em]
+\textbf{Diffraction} is maximum when gap width $\approx \lambda$.
+\end{tcolorbox}
+\end{minipage}
+
+
+\pagebreak
+
+
+% ===== SECTION 8: WORKED EXAMPLES =====
+\section{Worked Examples}
+
+\subsection*{Example 1 --- Wavelength from a Stationary Wave}
+
+\textbf{Question:} A stretched string vibrates in its third harmonic. The distance between the first and last nodes is $72\ \text{cm}$. Find the wavelength.
+
+\begin{examplebox}{Solution}
+The third harmonic has 4 nodes and 3 loops. Distance from first to last node $= 3 \times (\lambda/2)$:
+$$72\ \text{cm} = 3 \times \frac{\lambda}{2} \implies \lambda = \frac{2 \times 72}{3} = \mathbf{48\ \text{cm}} = 0.48\ \text{m}$$
+\end{examplebox}
+
+\subsection*{Example 2 --- Double-Slit Interference}
+
+\textbf{Question:} In a Young's double-slit experiment, the slit separation is $0.45\ \text{mm}$, the screen is $1.8\ \text{m}$ from the slits, and the fringe spacing is $2.4\ \text{mm}$. Calculate the wavelength of light used.
+
+\begin{examplebox}{Solution}
+$$\lambda = \frac{ax}{D} = \frac{(0.45\times10^{-3})(2.4\times10^{-3})}{1.8}
+= \frac{1.08\times10^{-6}}{1.8} = \mathbf{6.0\times10^{-7}\ \text{m}} = 600\ \text{nm}$$
+\end{examplebox}
+
+\subsection*{Example 3 --- Diffraction Grating}
+
+\textbf{Question:} A diffraction grating has $400$ lines per mm. Light of wavelength $589\ \text{nm}$ is incident normally. Find (a) the grating spacing, (b) the angle of the second-order maximum, and (c) the highest order observable.
+
+\begin{examplebox}{Solution}
+\textbf{(a)} $d = \dfrac{1}{400\times10^3\ \text{m}^{-1}} = 2.5\times10^{-6}\ \text{m}$
+
+\vspace{0.3em}
+\textbf{(b)} $d\sin\theta = n\lambda \implies \sin\theta = \dfrac{2\times589\times10^{-9}}{2.5\times10^{-6}} = \dfrac{1.178\times10^{-6}}{2.5\times10^{-6}} = 0.4712$
+
+$\theta = \arcsin(0.4712) = \mathbf{28.1^\circ}$
+
+\vspace{0.3em}
+\textbf{(c)} $n_{\max} = \dfrac{d}{\lambda} = \dfrac{2.5\times10^{-6}}{589\times10^{-9}} = 4.24 \implies n_{\max} = \mathbf{4}$ (must be a whole number $\leq 4.24$)
+\end{examplebox}
+
+\subsection*{Example 4 --- Path Difference and Interference}
+
+\textbf{Question:} Two coherent sources of sound ($\lambda = 0.40\ \text{m}$) are placed $1.5\ \text{m}$ apart. A detector at a point P has path differences of $1.00\ \text{m}$ from the two sources. State whether P is a maximum or minimum and explain why.
+
+\begin{examplebox}{Solution}
+Path difference $= 1.00\ \text{m}$.
+
+$1.00/\lambda = 1.00/0.40 = 2.5$
+
+Path difference $= 2.5\lambda = (2 + \tfrac{1}{2})\lambda$ — this is a half-integer multiple of $\lambda$.
+
+Therefore P is a \textbf{minimum} (destructive interference): the waves arrive in antiphase.
+\end{examplebox}
+
+
+
+
+% ===== SECTION 9: PRACTICE QUESTIONS =====
+\section{Practice Exam Questions}
+
+\subsection*{Section A --- Short Answer Questions}
+
+\begin{tcolorbox}[colback=white, colframe=midblue, breakable]
+
+\begin{minipage}{\linewidth}
+\textbf{Q1.} State the principle of superposition. Distinguish between constructive and destructive interference in terms of path difference.
+\par\hfill\textit{[4 marks]}
+\vspace{4cm}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+\textbf{Q2.} Explain what is meant by (a) a node and (b) an antinode in a stationary wave. State the distance between adjacent nodes in terms of wavelength.
+\par\hfill\textit{[3 marks]}
+\vspace{3.5cm}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+\textbf{Q3.} Explain what is meant by diffraction. State the condition on gap width relative to wavelength for maximum diffraction to occur.
+\par\hfill\textit{[3 marks]}
+\vspace{3.5cm}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+\textbf{Q4.} Define coherence. State three conditions required for a stable two-source interference pattern to be observed using light.
+\par\hfill\textit{[4 marks]}
+\vspace{4cm}
+\end{minipage}
+
+\end{tcolorbox}
+
+\subsection*{Section B --- Longer Structured Questions}
+
+\begin{tcolorbox}[colback=white, colframe=midblue, breakable]
+
+\begin{minipage}{\linewidth}
+\textbf{Q5.} A stationary wave is set up on a stretched string of length $0.90\ \text{m}$ fixed at both ends. The string vibrates in its second harmonic. The speed of waves on the string is $120\ \text{m s}^{-1}$.
+\end{minipage}
+
+\begin{enumerate}[label=(\alph*)]
+  \item \begin{minipage}[t]{\linewidth}
+  Sketch the stationary wave pattern, labelling all nodes and antinodes.
+  \par\hfill\textit{[2 marks]}
+  \vspace{4cm}
+  \end{minipage}
+
+  \item \begin{minipage}[t]{\linewidth}
+  Calculate the wavelength and frequency of this harmonic.
+  \par\hfill\textit{[3 marks]}
+  \vspace{3.5cm}
+  \end{minipage}
+
+  \item \begin{minipage}[t]{\linewidth}
+  Describe how the stationary wave is formed, referring to the two progressive waves involved.
+  \par\hfill\textit{[3 marks]}
+  \vspace{3.5cm}
+  \end{minipage}
+\end{enumerate}
+
+\begin{minipage}{\linewidth}
+\textbf{Q6.} In a Young's double-slit experiment using light of wavelength $540\ \text{nm}$, the slit separation is $0.30\ \text{mm}$.
+
+\begin{enumerate}[label=(\alph*)]
+  \item Calculate the fringe spacing when the screen is $2.0\ \text{m}$ from the slits.
+  \par\hfill\textit{[2 marks]}
+  \vspace{3cm}
+
+  \item The screen is moved further from the slits. State and explain the effect on the fringe spacing.
+  \par\hfill\textit{[2 marks]}
+  \vspace{3cm}
+
+  \item The experiment is repeated with white light. Describe and explain the appearance of the fringe pattern.
+  \par\hfill\textit{[3 marks]}
+  \vspace{3.5cm}
+\end{enumerate}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+\textbf{Q7.} A diffraction grating with $600$ lines per mm is illuminated normally by monochromatic light.
+
+\begin{enumerate}[label=(\alph*)]
+  \item Calculate the grating spacing $d$.
+  \par\hfill\textit{[1 mark]}
+  \vspace{2.5cm}
+
+  \item The second-order maximum is observed at $\theta = 43.2^\circ$. Calculate the wavelength of the light.
+  \par\hfill\textit{[2 marks]}
+  \vspace{3cm}
+
+  \item Show that the third-order maximum cannot be observed for this wavelength and grating.
+  \par\hfill\textit{[2 marks]}
+  \vspace{3.5cm}
+
+  \item Explain why the maxima from a diffraction grating are much sharper than the fringes from a double slit.
+  \par\hfill\textit{[2 marks]}
+  \vspace{3cm}
+\end{enumerate}
+\end{minipage}
+
+\end{tcolorbox}
+
+% ===== SECTION 10: MARK SCHEME =====
+\section{Mark Scheme and Answers}
+
+\begin{markscheme}
+
+\textbf{Q1.} Resultant displacement at any point equals the vector sum of the individual displacements [1]. Constructive: path difference $= n\lambda$; waves arrive in phase; amplitude/intensity is maximum [2]. Destructive: path difference $= (n+\tfrac{1}{2})\lambda$; waves arrive in antiphase; amplitude/intensity is minimum (zero if amplitudes equal) [1].
+
+\vspace{0.5em}\textbf{Q2(a).} Node: point of zero (minimum) amplitude in a stationary wave; particles permanently at rest [1].\\
+\textbf{Q2(b).} Antinode: point of maximum amplitude; particles oscillate with greatest displacement [1].\\
+Distance between adjacent nodes $= \lambda/2$ [1].
+
+\vspace{0.5em}\textbf{Q3.} Diffraction: spreading of a wave as it passes through a gap or around an obstacle [2]. Maximum diffraction when gap width $\approx \lambda$ [1].
+
+\vspace{0.5em}\textbf{Q4.} Coherence: two sources with same frequency and constant phase difference [1]. Conditions for light fringes: sources coherent [1]; sources monochromatic [1]; slit separation comparable to $\lambda$ [1].
+
+\vspace{0.5em}\textbf{Q5(a).} Second harmonic: 3 nodes (at both ends + centre), 2 antinodes (at quarter-points) [2].
+
+\vspace{0.5em}\textbf{Q5(b).} $\lambda_2 = L = 0.90\ \text{m}$ [1] (for 2nd harmonic, $L = \lambda$); $f = v/\lambda = 120/0.90 = \mathbf{133\ \text{Hz}}$ [2].
+
+\vspace{0.5em}\textbf{Q5(c).} Two progressive waves of same frequency and amplitude travel in opposite directions [1]; they superpose according to the principle of superposition [1]; the resultant produces fixed nodes and antinodes — the pattern does not travel [1].
+
+\vspace{0.5em}\textbf{Q6(a).} $x = \lambda D/a = (540\times10^{-9}\times2.0)/(0.30\times10^{-3}) = 1.08\times10^{-6}/3\times10^{-4} = \mathbf{3.6\times10^{-3}\ \text{m}} = 3.6\ \text{mm}$ [2].
+
+\vspace{0.5em}\textbf{Q6(b).} Fringe spacing \textbf{increases} [1]; from $x = \lambda D/a$, increasing $D$ increases $x$ directly [1].
+
+\vspace{0.5em}\textbf{Q6(c).} Central fringe is white [1]; coloured fringes either side — violet (shortest $\lambda$, smallest $x$) closest to centre, red (longest $\lambda$) furthest [1]; fringes overlap at large distances giving white/blurred pattern [1].
+
+\vspace{0.5em}\textbf{Q7(a).} $d = 1/(600\times10^3) = \mathbf{1.67\times10^{-6}\ \text{m}}$ [1].
+
+\vspace{0.5em}\textbf{Q7(b).} $\lambda = d\sin\theta/n = (1.67\times10^{-6}\times\sin43.2^\circ)/2 = (1.67\times10^{-6}\times0.684)/2 = \mathbf{5.71\times10^{-7}\ \text{m}} \approx 571\ \text{nm}$ [2].
+
+\vspace{0.5em}\textbf{Q7(c).} For $n=3$: $\sin\theta = 3\lambda/d = 3\times5.71\times10^{-7}/1.67\times10^{-6} = 1.026 > 1$ [1]; since $\sin\theta$ cannot exceed 1, the third order does not exist [1].
+
+\vspace{0.5em}\textbf{Q7(d).} The grating has many slits [1]; for a maximum to form, all slits must constructively interfere simultaneously — any slight deviation from the exact angle causes destructive interference from the large number of slits, producing very sharp peaks [1].
+
+\end{markscheme}
+
+% ===== SECTION 11: REVISION CHECKLIST =====
+\newpage
+\section{Revision Checklist}
+
+\begin{tcolorbox}[colback=white, colframe=darkblue, breakable]
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{@{} c p{10.5cm} r @{}}
+\toprule
+ & \textbf{Learning Objective} & \textbf{Confidence (1--3)} \\
+\midrule
+$\square$ & State and apply the principle of superposition & \\
+$\square$ & Explain formation of a stationary wave graphically & \\
+$\square$ & Identify nodes and antinodes; state their separation ($\lambda/2$) & \\
+$\square$ & Describe stationary wave experiments: strings, air columns, microwaves & \\
+$\square$ & Determine wavelength from node/antinode positions & \\
+$\square$ & Explain the differences between stationary and progressive waves & \\
+$\square$ & Define diffraction and explain the effect of gap width relative to $\lambda$ & \\
+$\square$ & Define coherence (same frequency + constant phase difference) & \\
+$\square$ & State conditions required to observe two-source interference fringes & \\
+$\square$ & Use $\lambda = ax/D$ for double-slit interference & \\
+$\square$ & Distinguish constructive and destructive interference by path difference & \\
+$\square$ & Use $d\sin\theta = n\lambda$ for the diffraction grating & \\
+$\square$ & Calculate grating spacing from lines per mm & \\
+$\square$ & Find the maximum order observable ($\sin\theta \leq 1$) & \\
+$\square$ & Describe how a grating is used to measure wavelength & \\
+\bottomrule
+\end{tabular}
+\vspace{0.5em}
+\textit{Key: 1 = Need more work \quad 2 = Getting there \quad 3 = Confident}
+\end{tcolorbox}
+
+\vspace{1em}
+\begin{motivationbox}
+\centering
+\textbf{\color{darkblue}Good luck with your revision!}\\[0.2em]
+{\color{darkgray}\small Superposition is the single idea that unifies this whole topic. Stationary waves, interference fringes and grating maxima are all just superposition playing out in different geometries. Get the path difference conditions clear in your mind and the rest follows naturally.}
+\end{motivationbox}
