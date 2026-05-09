@@ -1,0 +1,62 @@
+\documentclass[12pt,a4paper]{report}
+\input{housestyle}
+
+% =============================================================================
+% main_AS.tex — AS Level only: Topics 1–11.
+% Compiles to main_AS.pdf for download from the website.
+% =============================================================================
+
+\begin{document}
+
+\newcommand{\linkitem}[2]{%
+  \item \hyperref[topic:#1]{\color{darkblue}#2}%
+}
+
+\maketitlepage{}{CIE AS-Level Physics}{
+  \linkitem{01}{Topic 1 — Physical Quantities and Units}
+  \linkitem{02}{Topic 2 — Kinematics}
+  \linkitem{03}{Topic 3 — Dynamics}
+  \linkitem{04}{Topic 4 — Forces, Density and Pressure}
+  \linkitem{05}{Topic 5 — Work, Energy and Power}
+  \linkitem{06}{Topic 6 — Deformation of Solids}
+  \linkitem{07}{Topic 7 — Waves}
+  \linkitem{08}{Topic 8 — Superposition}
+  \linkitem{09}{Topic 9 — Electricity}
+  \linkitem{10}{Topic 10 — D.C. Circuits}
+  \linkitem{11}{Topic 11 — Particle Physics}
+}
+
+\renewcommand{\bookletheader}{Topic 1 — Physical Quantities and Units}
+\include{topic_01/topic_01}
+
+\renewcommand{\bookletheader}{Topic 2 — Kinematics}
+\include{topic_02/topic_02}
+
+\renewcommand{\bookletheader}{Topic 3 — Dynamics}
+\include{topic_03/topic_03}
+
+\renewcommand{\bookletheader}{Topic 4 — Forces, Density and Pressure}
+\include{topic_04/topic_04}
+
+\renewcommand{\bookletheader}{Topic 5 — Work, Energy and Power}
+\include{topic_05/topic_05}
+
+\renewcommand{\bookletheader}{Topic 6 — Deformation of Solids}
+\include{topic_06/topic_06}
+
+\renewcommand{\bookletheader}{Topic 7 — Waves}
+\include{topic_07/topic_07}
+
+\renewcommand{\bookletheader}{Topic 8 — Superposition}
+\include{topic_08/topic_08}
+
+\renewcommand{\bookletheader}{Topic 9 — Electricity}
+\include{topic_09/topic_09}
+
+\renewcommand{\bookletheader}{Topic 10 — D.C. Circuits}
+\include{topic_10/topic_10}
+
+\renewcommand{\bookletheader}{Topic 11 — Particle Physics}
+\include{topic_11/topic_11}
+
+\end{document}

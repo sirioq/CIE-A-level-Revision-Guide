@@ -1,0 +1,66 @@
+\documentclass[12pt,a4paper]{report}
+\input{housestyle}
+
+% =============================================================================
+% main_A2.tex — A Level only: Topics 12–25.
+% Compiles to main_A2.pdf for download from the website.
+% =============================================================================
+
+\begin{document}
+
+\newcommand{\linkitem}[2]{%
+  \item \hyperref[topic:#1]{\color{darkblue}#2}%
+}
+
+\maketitlepage{}{CIE A-Level Physics — Year 13}{
+  \linkitem{12}{Topic 12 — Motion in a Circle}
+  \linkitem{13}{Topic 13 — Gravitational Fields}
+  \linkitem{1416}{Topics 14, 15 \& 16 — Thermal Physics}
+  \linkitem{17}{Topic 17 — Oscillations}
+  \linkitem{18}{Topic 18 — Electric Fields}
+  \linkitem{19}{Topic 19 — Capacitance}
+  \linkitem{20}{Topic 20 — Magnetic Fields}
+  \linkitem{21}{Topic 21 — Alternating Currents}
+  \linkitem{22}{Topic 22 — Quantum Physics}
+  \linkitem{23}{Topic 23 — Nuclear Physics}
+  \linkitem{24}{Topic 24 — Medical Physics}
+  \linkitem{25}{Topic 25 — Astronomy and Cosmology}
+}
+
+\renewcommand{\bookletheader}{Topic 12 — Motion in a Circle}
+\include{topic_12/topic_12}
+
+\renewcommand{\bookletheader}{Topic 13 — Gravitational Fields}
+\include{topic_13/topic_13}
+
+\renewcommand{\bookletheader}{Topics 14--16 — Thermal Physics}
+\include{topics_14_15_16/topics_14_15_16}
+
+\renewcommand{\bookletheader}{Topic 17 — Oscillations}
+\include{topic_17/topic_17}
+
+\renewcommand{\bookletheader}{Topic 18 — Electric Fields}
+\include{topic_18/topic_18}
+
+\renewcommand{\bookletheader}{Topic 19 — Capacitance}
+\include{topic_19/topic_19}
+
+\renewcommand{\bookletheader}{Topic 20 — Magnetic Fields}
+\include{topic_20/topic_20}
+
+\renewcommand{\bookletheader}{Topic 21 — Alternating Currents}
+\include{topic_21/topic_21}
+
+\renewcommand{\bookletheader}{Topic 22 — Quantum Physics}
+\include{topic_22/topic_22}
+
+\renewcommand{\bookletheader}{Topic 23 — Nuclear Physics}
+\include{topic_23/topic_23}
+
+\renewcommand{\bookletheader}{Topic 24 — Medical Physics}
+\include{topic_24/topic_24}
+
+\renewcommand{\bookletheader}{Topic 25 — Astronomy and Cosmology}
+\include{topic_25/topic_25}
+
+\end{document}
