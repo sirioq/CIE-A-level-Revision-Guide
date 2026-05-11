@@ -12,11 +12,100 @@ jobs:
       - name: Set up Git repository
         uses: actions/checkout@v4
 
-      # ── Combined PDF ──────────────────────────────────────────────────────────
-      - name: Compile combined PDF (main.tex)
+      # ── AS Combined PDF ──────────────────────────────────────────────────────
+      - name: Compile AS combined PDF (main_AS.tex)
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: main_AS.tex
+
+      # ── A2 Combined PDF ──────────────────────────────────────────────────────
+      - name: Compile A2 combined PDF (main_A2.tex)
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: main_A2.tex
+
+      # ── Full Combined PDF (all topics) ───────────────────────────────────────
+      - name: Compile full combined PDF (main.tex)
         uses: xu-cheng/latex-action@v3
         with:
           root_file: main.tex
+
+      # ── Topic 1 — Physical Quantities and Units ──────────────────────────────
+      - name: Compile Topic 01 standalone PDF
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: topic_01_standalone.tex
+          working_directory: topic_01
+
+      # ── Topic 2 — Kinematics ─────────────────────────────────────────────────
+      - name: Compile Topic 02 standalone PDF
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: topic_02_standalone.tex
+          working_directory: topic_02
+
+      # ── Topic 3 — Dynamics ───────────────────────────────────────────────────
+      - name: Compile Topic 03 standalone PDF
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: topic_03_standalone.tex
+          working_directory: topic_03
+
+      # ── Topic 4 — Forces, Density and Pressure ───────────────────────────────
+      - name: Compile Topic 04 standalone PDF
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: topic_04_standalone.tex
+          working_directory: topic_04
+
+      # ── Topic 5 — Work, Energy and Power ────────────────────────────────────
+      - name: Compile Topic 05 standalone PDF
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: topic_05_standalone.tex
+          working_directory: topic_05
+
+      # ── Topic 6 — Deformation of Solids ─────────────────────────────────────
+      - name: Compile Topic 06 standalone PDF
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: topic_06_standalone.tex
+          working_directory: topic_06
+
+      # ── Topic 7 — Waves ──────────────────────────────────────────────────────
+      - name: Compile Topic 07 standalone PDF
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: topic_07_standalone.tex
+          working_directory: topic_07
+
+      # ── Topic 8 — Superposition ──────────────────────────────────────────────
+      - name: Compile Topic 08 standalone PDF
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: topic_08_standalone.tex
+          working_directory: topic_08
+
+      # ── Topic 9 — Electricity ────────────────────────────────────────────────
+      - name: Compile Topic 09 standalone PDF
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: topic_09_standalone.tex
+          working_directory: topic_09
+
+      # ── Topic 10 — D.C. Circuits ─────────────────────────────────────────────
+      - name: Compile Topic 10 standalone PDF
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: topic_10_standalone.tex
+          working_directory: topic_10
+
+      # ── Topic 11 — Particle Physics ──────────────────────────────────────────
+      - name: Compile Topic 11 standalone PDF
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: topic_11_standalone.tex
+          working_directory: topic_11
 
       # ── Topic 12 — Motion in a Circle ────────────────────────────────────────
       - name: Compile Topic 12 standalone PDF
@@ -46,21 +135,21 @@ jobs:
           root_file: topic_17_standalone.tex
           working_directory: topic_17
 
-      # ── Topic 18 — Electric Fields ────────────────────────────────────────────
+      # ── Topic 18 — Electric Fields ───────────────────────────────────────────
       - name: Compile Topic 18 standalone PDF
         uses: xu-cheng/latex-action@v3
         with:
           root_file: topic_18_standalone.tex
           working_directory: topic_18
 
-      # ── Topic 19 — Capacitance ────────────────────────────────────────────────
+      # ── Topic 19 — Capacitance ───────────────────────────────────────────────
       - name: Compile Topic 19 standalone PDF
         uses: xu-cheng/latex-action@v3
         with:
           root_file: topic_19_standalone.tex
           working_directory: topic_19
 
-      # ── Topic 20 — Magnetic Fields ────────────────────────────────────────────
+      # ── Topic 20 — Magnetic Fields ───────────────────────────────────────────
       - name: Compile Topic 20 standalone PDF
         uses: xu-cheng/latex-action@v3
         with:
@@ -74,21 +163,21 @@ jobs:
           root_file: topic_21_standalone.tex
           working_directory: topic_21
 
-      # ── Topic 22 — Quantum Physics ────────────────────────────────────────────
+      # ── Topic 22 — Quantum Physics ───────────────────────────────────────────
       - name: Compile Topic 22 standalone PDF
         uses: xu-cheng/latex-action@v3
         with:
           root_file: topic_22_standalone.tex
           working_directory: topic_22
 
-      # ── Topic 23 — Nuclear Physics ────────────────────────────────────────────
+      # ── Topic 23 — Nuclear Physics ───────────────────────────────────────────
       - name: Compile Topic 23 standalone PDF
         uses: xu-cheng/latex-action@v3
         with:
           root_file: topic_23_standalone.tex
           working_directory: topic_23
 
-      # ── Topic 24 — Medical Physics ────────────────────────────────────────────
+      # ── Topic 24 — Medical Physics ───────────────────────────────────────────
       - name: Compile Topic 24 standalone PDF
         uses: xu-cheng/latex-action@v3
         with:
@@ -102,9 +191,20 @@ jobs:
           root_file: topic_25_standalone.tex
           working_directory: topic_25
 
-      # ── Deploy ────────────────────────────────────────────────────────────────
+      # ── Deploy ───────────────────────────────────────────────────────────────
       - name: Prepare files for deployment
         run: |
+          mkdir -p public/topic_01
+          mkdir -p public/topic_02
+          mkdir -p public/topic_03
+          mkdir -p public/topic_04
+          mkdir -p public/topic_05
+          mkdir -p public/topic_06
+          mkdir -p public/topic_07
+          mkdir -p public/topic_08
+          mkdir -p public/topic_09
+          mkdir -p public/topic_10
+          mkdir -p public/topic_11
           mkdir -p public/topic_12
           mkdir -p public/topic_13
           mkdir -p public/topics_14_15_16
@@ -118,7 +218,20 @@ jobs:
           mkdir -p public/topic_24
           mkdir -p public/topic_25
           cp main.pdf public/
+          cp main_AS.pdf public/
+          cp main_A2.pdf public/
           cp index.html public/
+          cp topic_01/topic_01_standalone.pdf public/topic_01/topic_01.pdf
+          cp topic_02/topic_02_standalone.pdf public/topic_02/topic_02.pdf
+          cp topic_03/topic_03_standalone.pdf public/topic_03/topic_03.pdf
+          cp topic_04/topic_04_standalone.pdf public/topic_04/topic_04.pdf
+          cp topic_05/topic_05_standalone.pdf public/topic_05/topic_05.pdf
+          cp topic_06/topic_06_standalone.pdf public/topic_06/topic_06.pdf
+          cp topic_07/topic_07_standalone.pdf public/topic_07/topic_07.pdf
+          cp topic_08/topic_08_standalone.pdf public/topic_08/topic_08.pdf
+          cp topic_09/topic_09_standalone.pdf public/topic_09/topic_09.pdf
+          cp topic_10/topic_10_standalone.pdf public/topic_10/topic_10.pdf
+          cp topic_11/topic_11_standalone.pdf public/topic_11/topic_11.pdf
           cp topic_12/topic_12_standalone.pdf public/topic_12/topic_12.pdf
           cp topic_13/topic_13_standalone.pdf public/topic_13/topic_13.pdf
           cp topics_14_15_16/topics_14_15_16_standalone.pdf public/topics_14_15_16/topics_14_15_16.pdf
