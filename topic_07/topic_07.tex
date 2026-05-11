@@ -427,13 +427,7 @@ Longitudinal waves \emph{cannot} be polarised — their oscillations are already
 %\tikzstyle{Evec}=[EVcol,-{>[scale=0.2]},line width=0.2]
 %\tikzstyle{Evec}=[EVcol,-latexnew,arrowhead=1,line width=0.2]
 
-% RIGHT ANGLE
-\newcommand\rightAngle[4]{
-  \pgfmathanglebetweenpoints{\pgfpointanchor{#2}{center}}{\pgfpointanchor{#3}{center}}
-  \coordinate (tmpRA) at ($(#2)+(\pgfmathresult+45:#4)$);
-  \draw[white,line width=0.6] ($(#2)!(tmpRA)!(#1)$) -- (tmpRA) -- ($(#2)!(tmpRA)!(#3)$);
-  \draw[blue!40!black] ($(#2)!(tmpRA)!(#1)$) -- (tmpRA) -- ($(#2)!(tmpRA)!(#3)$);
-}
+
 
 % POLARIZER
 \def\W{3.5}  % width polarizer
