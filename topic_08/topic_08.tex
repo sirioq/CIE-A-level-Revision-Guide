@@ -542,13 +542,13 @@ Coherence is essential for a stable interference pattern to be observed.
 
 
 
-\newcommand\rightAngle[4]{
+\renewcommand\rightAngle[4]{
   \pgfmathanglebetweenpoints{\pgfpointanchor{#2}{center}}{\pgfpointanchor{#3}{center}}
   \coordinate (tmpRA) at ($(#2)+(\pgfmathresult+45:#4)$);
   \draw[white,line width=0.6] ($(#2)!(tmpRA)!(#1)$) -- (tmpRA) -- ($(#2)!(tmpRA)!(#3)$);
   \draw[mydarkred] ($(#2)!(tmpRA)!(#1)$) -- (tmpRA) -- ($(#2)!(tmpRA)!(#3)$);
 }
-\newcommand\lineend[2]{
+\providecommand\lineend[2]{
   \def\w{0.1} \def\c{30}
   \draw[mygreen] (#1)++(#2:\w) to[out=#2-180-\c,in=#2+\c] (#1)
                                to[out=#2+\c-180,in=#2-\c]++ (#2-180:\w);
