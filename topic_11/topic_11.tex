@@ -240,7 +240,7 @@ Neutron & udd & $\tfrac{2}{3}e - \tfrac{1}{3}e - \tfrac{1}{3}e$ & $0$ \\
 \begin{tikzpicture}[scale=1.0]
   % --- Proton ---
   \draw[thick, darkblue] (0,0) circle (1.1);
-  \node[darkblue, font=\small\bfseries, anchor=south] at (0,1.15) {Proton ($+e$)};
+  \node[darkblue, font=\small, anchor=south] at (0,1.15) {Proton ($+e$)};
   % u quark top-left
   \filldraw[fill=midblue!30, draw=midblue, thick] (-0.45, 0.45) circle (0.3);
   \node[font=\small\bfseries] at (-0.45, 0.45) {u};
@@ -253,7 +253,7 @@ Neutron & udd & $\tfrac{2}{3}e - \tfrac{1}{3}e - \tfrac{1}{3}e$ & $0$ \\
 
   % --- Neutron ---
   \draw[thick, darkblue] (3.5,0) circle (1.1);
-  \node[darkblue, font=\small\bfseries, anchor=south] at (3.5,1.15) {Neutron ($0$)};
+  \node[darkblue, font=\small, anchor=south] at (3.5,1.15) {Neutron ($0$)};
   % u quark top
   \filldraw[fill=midblue!30, draw=midblue, thick] (3.5, 0.45) circle (0.3);
   \node[font=\small\bfseries] at (3.5, 0.45) {u};
@@ -266,9 +266,9 @@ Neutron & udd & $\tfrac{2}{3}e - \tfrac{1}{3}e - \tfrac{1}{3}e$ & $0$ \\
 
   % Legend
   \filldraw[fill=midblue!30, draw=midblue] (5.5,0.45) circle (0.2);
-  \node[font=\footnotesize, anchor=west] at (5.75, 0.45) {u quark ($+\tfrac{2}{3}e$)};
+  \node[font=\small, anchor=west] at (5.75, 0.45) {u quark ($+\tfrac{2}{3}e$)};
   \filldraw[fill=pinkframe!30, draw=pinkframe] (5.5,-0.1) circle (0.2);
-  \node[font=\footnotesize, anchor=west] at (5.75, -0.1) {d quark ($-\tfrac{1}{3}e$)};
+  \node[font=\small, anchor=west] at (5.75, -0.1) {d quark ($-\tfrac{1}{3}e$)};
 \end{tikzpicture}
 \end{center}
 
@@ -334,7 +334,7 @@ $\beta^+$ & $\mathrm{u} \to \mathrm{d}$ & Proton $\to$ Neutron & $\mathrm{e}^+$ 
 \begin{center}
 \begin{tikzpicture}[scale=1.0, every node/.style={font=\small}]
   % Neutron: udd
-  \node[darkblue, font=\small\bfseries] at (-2.5, 1.8) {Neutron (udd)};
+  \node[darkblue, font=\small] at (-2.5, 2.1) {Neutron (udd)};
   \draw[thick, darkblue] (-2.5,0.8) circle (1.0);
   \filldraw[fill=midblue!30, draw=midblue, thick] (-2.5, 1.3) circle (0.28);
   \node[font=\small\bfseries] at (-2.5,1.3) {u};
@@ -344,11 +344,11 @@ $\beta^+$ & $\mathrm{u} \to \mathrm{d}$ & Proton $\to$ Neutron & $\mathrm{e}^+$ 
   \node[font=\small\bfseries] at (-2.1,0.5) {d};
 
   % Arrow
-  \draw[->, very thick, darkblue] (-1.2, 0.8) -- (0.2, 0.8)
-    node[midway, above, font=\footnotesize] {$\beta^-$ decay};
+  \draw[-latex, very thick, darkblue] (-1.2, 0.8) -- (0.2, 0.8)
+    node[midway, above, font=\small] {$\beta^-$ decay};
 
   % Proton: uud
-  \node[darkblue, font=\small\bfseries] at (1.5, 1.8) {Proton (uud)};
+  \node[darkblue, font=\small] at (1.5, 2.1) {Proton (uud)};
   \draw[thick, darkblue] (1.5,0.8) circle (1.0);
   \filldraw[fill=midblue!30, draw=midblue, thick] (1.5, 1.3) circle (0.28);
   \node[font=\small\bfseries] at (1.5,1.3) {u};
@@ -358,15 +358,15 @@ $\beta^+$ & $\mathrm{u} \to \mathrm{d}$ & Proton $\to$ Neutron & $\mathrm{e}^+$ 
   \node[font=\small\bfseries] at (1.9,0.5) {d};
 
   % Products: e- and antineutrino
-  \draw[->, pinkframe, thick] (2.7,0.8) -- (3.8,1.4);
+  \draw[-latex, pinkframe, thick] (2.7,0.8) -- (3.8,1.4);
   \node[pinkframe, anchor=west] at (3.85,1.4) {$\mathrm{e}^-$};
-  \draw[->, darkgray, thick] (2.7,0.7) -- (3.8,0.1);
+  \draw[-latex, darkgray, thick] (2.7,0.7) -- (3.8,0.1);
   \node[darkgray, anchor=west] at (3.85,0.1) {$\bar{\nu}_e$};
 
   % Changed quark annotation
-  \draw[accentgold, dashed, thick, ->, rounded corners]
+  \draw[lightgray, dashed, thick, -latex, rounded corners]
     (-2.1, 0.22) .. controls (-1.0,-0.5) .. (1.1, 0.22);
-  \node[accentgold, font=\footnotesize] at (-0.5,-0.65) {d $\to$ u};
+  \node[darkgray, font=\small] at (-0.5,-0.65) {d $\to$ u};
 \end{tikzpicture}
 \end{center}
 
