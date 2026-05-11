@@ -95,6 +95,15 @@
   colback=lightgold, colframe=accentgold,
   breakable, arc=4pt, boxrule=1.5pt}
 
+% ── Right-angle marker (TikZ) ────────────────────────────────
+%  Usage: \rightAngle{A}{vertex}{B}{size}
+\providecommand\rightAngle[4]{%
+  \pgfmathanglebetweenpoints{\pgfpointanchor{#2}{center}}{\pgfpointanchor{#3}{center}}%
+  \coordinate (tmpRA) at ($(#2)+(\pgfmathresult+45:#4)$);%
+  \draw[white,line width=0.6] ($(#2)!(tmpRA)!(#1)$) -- (tmpRA) -- ($(#2)!(tmpRA)!(#3)$);%
+  \draw[blue!40!black] ($(#2)!(tmpRA)!(#1)$) -- (tmpRA) -- ($(#2)!(tmpRA)!(#3)$);%
+}
+
 % ── Non-breaking inline formula ─────────────────────────────
 \newcommand{\nf}[1]{\mbox{$#1$}}
 
