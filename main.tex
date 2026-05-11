@@ -4,7 +4,7 @@
 % =============================================================================
 % main.tex — Master file: compiles ALL topic booklets into one document.
 % To add a new topic:
-%   1. Create topic_XX/topic_XX.tex  (content only, no \documentclass,
+%   1. Create topic_XX/topic_XX.tex (content only, no \documentclass,
 %      no \begin{document}, no \end{document})
 %   2. Add a \renewcommand and \include line below.
 %   3. Add the matching \linkitem line in \maketitlepage below.
@@ -19,6 +19,19 @@
 }
 
 \maketitlepage{}{CIE A-Level Physics}{
+  % ── AS Level ──
+  \linkitem{01}{Topic 1 — Physical Quantities and Units}
+  \linkitem{02}{Topic 2 — Kinematics}
+  \linkitem{03}{Topic 3 — Dynamics}
+  \linkitem{04}{Topic 4 — Forces, Density and Pressure}
+  \linkitem{05}{Topic 5 — Work, Energy and Power}
+  \linkitem{06}{Topic 6 — Deformation of Solids}
+  \linkitem{07}{Topic 7 — Waves}
+  \linkitem{08}{Topic 8 — Superposition}
+  \linkitem{09}{Topic 9 — Electricity}
+  \linkitem{10}{Topic 10 — D.C. Circuits}
+  \linkitem{11}{Topic 11 — Particle Physics}
+  % ── A Level ──
   \linkitem{12}{Topic 12 — Motion in a Circle}
   \linkitem{13}{Topic 13 — Gravitational Fields}
   \linkitem{1416}{Topics 14, 15 \& 16 — Thermal Physics}
@@ -32,6 +45,50 @@
   \linkitem{24}{Topic 24 — Medical Physics}
   \linkitem{25}{Topic 25 — Astronomy and Cosmology}
 }
+
+% ── Topic 1 — Physical Quantities and Units ───────────────────────────────────
+\renewcommand{\bookletheader}{Topic 1 — Physical Quantities and Units}
+\include{topic_01/topic_01}
+
+% ── Topic 2 — Kinematics ──────────────────────────────────────────────────────
+\renewcommand{\bookletheader}{Topic 2 — Kinematics}
+\include{topic_02/topic_02}
+
+% ── Topic 3 — Dynamics ────────────────────────────────────────────────────────
+\renewcommand{\bookletheader}{Topic 3 — Dynamics}
+\include{topic_03/topic_03}
+
+% ── Topic 4 — Forces, Density and Pressure ───────────────────────────────────
+\renewcommand{\bookletheader}{Topic 4 — Forces, Density and Pressure}
+\include{topic_04/topic_04}
+
+% ── Topic 5 — Work, Energy and Power ─────────────────────────────────────────
+\renewcommand{\bookletheader}{Topic 5 — Work, Energy and Power}
+\include{topic_05/topic_05}
+
+% ── Topic 6 — Deformation of Solids ──────────────────────────────────────────
+\renewcommand{\bookletheader}{Topic 6 — Deformation of Solids}
+\include{topic_06/topic_06}
+
+% ── Topic 7 — Waves ───────────────────────────────────────────────────────────
+\renewcommand{\bookletheader}{Topic 7 — Waves}
+\include{topic_07/topic_07}
+
+% ── Topic 8 — Superposition ───────────────────────────────────────────────────
+\renewcommand{\bookletheader}{Topic 8 — Superposition}
+\include{topic_08/topic_08}
+
+% ── Topic 9 — Electricity ─────────────────────────────────────────────────────
+\renewcommand{\bookletheader}{Topic 9 — Electricity}
+\include{topic_09/topic_09}
+
+% ── Topic 10 — D.C. Circuits ──────────────────────────────────────────────────
+\renewcommand{\bookletheader}{Topic 10 — D.C. Circuits}
+\include{topic_10/topic_10}
+
+% ── Topic 11 — Particle Physics ───────────────────────────────────────────────
+\renewcommand{\bookletheader}{Topic 11 — Particle Physics}
+\include{topic_11/topic_11}
 
 % ── Topic 12 — Motion in a Circle ────────────────────────────────────────────
 \renewcommand{\bookletheader}{Topic 12 — Motion in a Circle}

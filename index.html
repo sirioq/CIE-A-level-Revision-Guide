@@ -1,501 +1,852 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CIE A-Level Physics — Westminster School</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --darkblue:   #003366;
-      --midblue:    #0066CC;
-      --lightblue:  #DCF0FF;
-      --pink:       #F77E9D;
-      --pinklight:  #FDE5EB;
-      --gold:       #B48C00;
-      --lightgold:  #FFF8DC;
-      --silver:     #EBEBEB;
-      --darkgray:   #505050;
-      --white:      #FFFFFF;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CIE Physics — Westminster School</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --darkblue: #003366;
+  --midblue: #0066CC;
+  --lightblue: #DCF0FF;
+  --pink: #F77E9D;
+  --pinklight: #FDE5EB;
+  --gold: #B48C00;
+  --lightgold: #FFF8DC;
+  --silver: #EBEBEB;
+  --darkgray: #505050;
+  --white: #FFFFFF;
+}
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    body {
-      font-family: 'Source Sans 3', sans-serif;
-      background: var(--darkblue);
-      color: var(--white);
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
+body {
+  font-family: 'Source Sans 3', sans-serif;
+  background: var(--darkblue);
+  color: var(--white);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
 
-    /* ── Banner ── */
-    header {
-      position: relative;
-      padding: 0;
-      overflow: hidden;
-    }
+/* ── Banner ── */
+header { position: relative; padding: 0; overflow: hidden; }
 
-    .banner-top {
-      background: var(--darkblue);
-      padding: 3rem 2rem 1.5rem;
-      text-align: center;
-      position: relative;
-      z-index: 1;
-    }
+.banner-top {
+  background: var(--darkblue);
+  padding: 3rem 2rem 0;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
 
-    .school-name {
-      font-family: 'Source Sans 3', sans-serif;
-      font-weight: 300;
-      font-size: 0.95rem;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.65);
-      margin-bottom: 1rem;
-    }
+.school-name {
+  font-family: 'Source Sans 3', sans-serif;
+  font-weight: 300;
+  font-size: 0.95rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.65);
+  margin-bottom: 1rem;
+}
 
-    h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2rem, 5vw, 3.4rem);
-      font-weight: 900;
-      line-height: 1.1;
-      color: var(--white);
-      margin-bottom: 0.4rem;
-    }
+h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 5vw, 3.4rem);
+  font-weight: 900;
+  line-height: 1.1;
+  color: var(--white);
+  margin-bottom: 0.4rem;
+}
 
-    h1 span {
-      color: var(--pink);
-    }
+h1 span { color: var(--pink); }
 
-    .subtitle {
-      font-size: 1rem;
-      font-weight: 300;
-      color: rgba(255,255,255,0.6);
-      letter-spacing: 0.05em;
-      margin-top: 0.5rem;
-    }
+.subtitle {
+  font-size: 1rem;
+  font-weight: 300;
+  color: rgba(255,255,255,0.6);
+  letter-spacing: 0.05em;
+  margin-top: 0.5rem;
+}
 
-    .banner-stripe {
-      height: 6px;
-      background: var(--silver);
-    }
-    .banner-pink {
-      height: 4px;
-      background: var(--pink);
-    }
+/* ── Tab strip ── */
+.tab-row {
+  display: flex;
+  justify-content: center;
+  padding: 1.8rem 1.5rem 0;
+}
 
-    /* ── Main content ── */
-    main {
-      background: #f7f7f7;
-      color: var(--darkgray);
-      padding: 3rem 1.5rem 4rem;
-    }
+.tab-strip {
+  display: inline-flex;
+  border-radius: 8px 8px 0 0;
+  overflow: hidden;
+  border: 1.5px solid rgba(255,255,255,0.25);
+  border-bottom: none;
+}
 
-    .intro {
-      max-width: 640px;
-      margin: 0 auto 3rem;
-      text-align: center;
-    }
+.tab-btn {
+  padding: 0.65rem 1.8rem;
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: none;
+  transition: background 0.15s, color 0.15s;
+}
 
-    .intro p {
-      font-size: 1.05rem;
-      line-height: 1.7;
-      color: #555;
-    }
+.tab-btn.active {
+  background: #f7f7f7;
+  color: var(--darkblue);
+}
 
-    /* ── Download cards ── */
-    .cards-section {
-      max-width: 900px;
-      margin: 0 auto;
-    }
+.tab-btn:not(.active) {
+  background: rgba(255,255,255,0.08);
+  color: rgba(255,255,255,0.7);
+}
 
-    .section-label {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.3rem;
-      font-weight: 700;
-      color: var(--darkblue);
-      margin-bottom: 1.2rem;
-      padding-bottom: 0.5rem;
-      border-bottom: 2px solid var(--pink);
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-    }
+.tab-btn:not(.active):hover {
+  background: rgba(255,255,255,0.15);
+  color: var(--white);
+}
 
-    .section-label svg {
-      flex-shrink: 0;
-    }
+.tab-divider {
+  width: 1px;
+  background: rgba(255,255,255,0.2);
+  align-self: stretch;
+}
 
-    /* Full guide card */
-    .full-guide-card {
-      background: var(--darkblue);
-      border-radius: 10px;
-      padding: 2rem 2.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1.5rem;
-      margin-bottom: 3rem;
-      box-shadow: 0 4px 20px rgba(0,51,102,0.18);
-      flex-wrap: wrap;
-    }
+.banner-stripe { height: 6px; background: var(--silver); }
+.banner-pink   { height: 4px; background: var(--pink); }
 
-    .full-guide-info h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.4rem;
-      color: var(--white);
-      margin-bottom: 0.3rem;
-    }
+/* ── Main content ── */
+main {
+  background: #f7f7f7;
+  color: var(--darkgray);
+  padding: 3rem 1.5rem 4rem;
+}
 
-    .full-guide-info p {
-      font-size: 0.9rem;
-      color: rgba(255,255,255,0.6);
-    }
+.intro {
+  max-width: 640px;
+  margin: 0 auto 2.5rem;
+  text-align: center;
+}
 
-    .pill {
-      display: inline-block;
-      background: var(--pink);
-      color: white;
-      font-size: 0.7rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      padding: 0.2rem 0.6rem;
-      border-radius: 20px;
-      margin-left: 0.5rem;
-      vertical-align: middle;
-    }
+.intro p {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: #555;
+}
 
-    /* Topic cards grid */
-    .topic-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 1.2rem;
-    }
+/* ── Tab panels ── */
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
 
-    .topic-card {
-      background: var(--white);
-      border-radius: 10px;
-      border: 1.5px solid var(--silver);
-      padding: 1.4rem 1.5rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.6rem;
-      transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
-      position: relative;
-      overflow: hidden;
-    }
+/* ── Cards section ── */
+.cards-section { max-width: 900px; margin: 0 auto; }
 
-    .topic-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 3px;
-      background: var(--pink);
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.2s ease;
-    }
+.section-label {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--darkblue);
+  margin-bottom: 1.2rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--pink);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
 
-    .topic-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 24px rgba(0,51,102,0.12);
-      border-color: var(--pink);
-    }
+.section-label svg { flex-shrink: 0; }
 
-    .topic-card:hover::before {
-      transform: scaleX(1);
-    }
+/* ── Combined guide cards ── */
+.guide-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+  margin-bottom: 3rem;
+}
 
-    .topic-number {
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--pink);
-    }
+.guide-card {
+  background: var(--darkblue);
+  border-radius: 10px;
+  padding: 1.6rem 1.8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
 
-    .topic-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.05rem;
-      font-weight: 700;
-      color: var(--darkblue);
-      line-height: 1.3;
-    }
+.guide-card.featured { border: 2px solid var(--pink); }
 
-    .topic-desc {
-      font-size: 0.82rem;
-      color: #888;
-      line-height: 1.5;
-      flex: 1;
-    }
+.guide-label {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.45);
+}
 
-    .coming-soon {
-      opacity: 0.45;
-      pointer-events: none;
-    }
+.guide-card h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.15rem;
+  color: var(--white);
+  line-height: 1.3;
+}
 
-    .coming-soon .topic-number {
-      color: #aaa;
-    }
+.guide-card p {
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.5;
+  flex: 1;
+}
 
-    .coming-soon-badge {
-      font-size: 0.7rem;
-      color: #aaa;
-      font-style: italic;
-    }
+.pill {
+  display: inline-block;
+  background: var(--pink);
+  color: white;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.18rem 0.55rem;
+  border-radius: 20px;
+  margin-left: 0.4rem;
+  vertical-align: middle;
+}
 
-    /* Buttons */
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      padding: 0.65rem 1.4rem;
-      border-radius: 6px;
-      font-family: 'Source Sans 3', sans-serif;
-      font-size: 0.88rem;
-      font-weight: 600;
-      text-decoration: none;
-      cursor: pointer;
-      transition: all 0.15s ease;
-      border: none;
-      white-space: nowrap;
-    }
+/* ── Topic cards grid ── */
+.topic-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.2rem;
+}
 
-    .btn-primary {
-      background: var(--pink);
-      color: white;
-    }
+.topic-card {
+  background: var(--white);
+  border-radius: 10px;
+  border: 1.5px solid var(--silver);
+  padding: 1.4rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+  position: relative;
+  overflow: hidden;
+}
 
-    .btn-primary:hover {
-      background: #e5607f;
-    }
+.topic-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--pink);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.2s ease;
+}
 
-    .btn-outline {
-      background: transparent;
-      color: var(--pink);
-      border: 1.5px solid var(--pink);
-      margin-top: auto;
-      align-self: flex-start;
-    }
+.topic-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0,51,102,0.12);
+  border-color: var(--pink);
+}
 
-    .btn-outline:hover {
-      background: var(--pinklight);
-    }
+.topic-card:hover::before { transform: scaleX(1); }
 
-    /* Footer */
-    footer {
-      background: var(--darkblue);
-      text-align: center;
-      padding: 1.5rem;
-      font-size: 0.78rem;
-      color: rgba(255,255,255,0.35);
-      letter-spacing: 0.05em;
-    }
+.topic-number {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--pink);
+}
 
-    /* Fade-in animation */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(16px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
+.topic-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--darkblue);
+  line-height: 1.3;
+}
 
-    .fade-up {
-      animation: fadeUp 0.5s ease both;
-    }
+.topic-desc {
+  font-size: 0.82rem;
+  color: #888;
+  line-height: 1.5;
+  flex: 1;
+}
 
-    .fade-up:nth-child(1)  { animation-delay: 0.05s; }
-    .fade-up:nth-child(2)  { animation-delay: 0.10s; }
-    .fade-up:nth-child(3)  { animation-delay: 0.15s; }
-    .fade-up:nth-child(4)  { animation-delay: 0.20s; }
-    .fade-up:nth-child(5)  { animation-delay: 0.25s; }
-    .fade-up:nth-child(6)  { animation-delay: 0.30s; }
-    .fade-up:nth-child(7)  { animation-delay: 0.35s; }
-    .fade-up:nth-child(8)  { animation-delay: 0.40s; }
-    .fade-up:nth-child(9)  { animation-delay: 0.45s; }
-    .fade-up:nth-child(10) { animation-delay: 0.50s; }
-    .fade-up:nth-child(11) { animation-delay: 0.55s; }
-    .fade-up:nth-child(12) { animation-delay: 0.60s; }
+/* ── Buttons ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.65rem 1.4rem;
+  border-radius: 6px;
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  border: none;
+  white-space: nowrap;
+}
 
-    @media (max-width: 600px) {
-      .full-guide-card { flex-direction: column; align-items: flex-start; }
-      .topic-grid { grid-template-columns: 1fr; }
-    }
-  </style>
+.btn-primary { background: var(--pink); color: white; }
+.btn-primary:hover { background: #e5607f; }
+
+.btn-outline {
+  background: transparent;
+  color: var(--pink);
+  border: 1.5px solid var(--pink);
+  margin-top: auto;
+  align-self: flex-start;
+}
+
+.btn-outline:hover { background: var(--pinklight); }
+
+/* ── Download icon SVG shorthand ── */
+.dl-icon { width:14px; height:14px; fill:none; stroke:currentColor; stroke-width:2.5; }
+
+/* ── Fade-up animation ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.topic-grid .topic-card { animation: fadeUp 0.45s ease both; }
+.topic-grid .topic-card:nth-child(1)  { animation-delay: 0.03s; }
+.topic-grid .topic-card:nth-child(2)  { animation-delay: 0.06s; }
+.topic-grid .topic-card:nth-child(3)  { animation-delay: 0.09s; }
+.topic-grid .topic-card:nth-child(4)  { animation-delay: 0.12s; }
+.topic-grid .topic-card:nth-child(5)  { animation-delay: 0.15s; }
+.topic-grid .topic-card:nth-child(6)  { animation-delay: 0.18s; }
+.topic-grid .topic-card:nth-child(7)  { animation-delay: 0.21s; }
+.topic-grid .topic-card:nth-child(8)  { animation-delay: 0.24s; }
+.topic-grid .topic-card:nth-child(9)  { animation-delay: 0.27s; }
+.topic-grid .topic-card:nth-child(10) { animation-delay: 0.30s; }
+.topic-grid .topic-card:nth-child(11) { animation-delay: 0.33s; }
+.topic-grid .topic-card:nth-child(12) { animation-delay: 0.36s; }
+.topic-grid .topic-card:nth-child(13) { animation-delay: 0.39s; }
+.topic-grid .topic-card:nth-child(14) { animation-delay: 0.42s; }
+.topic-grid .topic-card:nth-child(15) { animation-delay: 0.45s; }
+.topic-grid .topic-card:nth-child(16) { animation-delay: 0.48s; }
+.topic-grid .topic-card:nth-child(17) { animation-delay: 0.51s; }
+.topic-grid .topic-card:nth-child(18) { animation-delay: 0.54s; }
+.topic-grid .topic-card:nth-child(19) { animation-delay: 0.57s; }
+.topic-grid .topic-card:nth-child(20) { animation-delay: 0.60s; }
+.topic-grid .topic-card:nth-child(21) { animation-delay: 0.63s; }
+.topic-grid .topic-card:nth-child(22) { animation-delay: 0.66s; }
+.topic-grid .topic-card:nth-child(23) { animation-delay: 0.69s; }
+
+/* ── Footer ── */
+footer {
+  background: var(--darkblue);
+  text-align: center;
+  padding: 1.5rem;
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.35);
+  letter-spacing: 0.05em;
+}
+
+@media (max-width: 600px) {
+  .guide-row { grid-template-columns: 1fr; }
+  .topic-grid { grid-template-columns: 1fr; }
+  .tab-btn { padding: 0.65rem 1.1rem; font-size: 0.75rem; }
+}
+</style>
 </head>
 <body>
 
-  <!-- ── Header ── -->
-  <header>
-    <div class="banner-top">
-      <p class="school-name">Westminster School Physics Department</p>
-      <h1>CIE A-Level Physics<br><span>Revision Booklets</span></h1>
-      <p class="subtitle">Cambridge International A-Level · 9702 · 2025–2027 Syllabus</p>
+<!-- ── Header ── -->
+<header>
+  <div class="banner-top">
+    <p class="school-name">Westminster School Physics Department</p>
+    <h1>CIE Physics<br><span>Revision Booklets</span></h1>
+    <p class="subtitle">Cambridge International · 9702 · 2025–2027 Syllabus</p>
+
+    <div class="tab-row">
+      <div class="tab-strip">
+        <button class="tab-btn active" id="tab-as"   onclick="switchTab('as')">AS Level</button>
+        <div class="tab-divider"></div>
+        <button class="tab-btn"        id="tab-al"   onclick="switchTab('al')">A Level</button>
+        <div class="tab-divider"></div>
+        <button class="tab-btn"        id="tab-full" onclick="switchTab('full')">Full Course</button>
+      </div>
     </div>
-    <div class="banner-stripe"></div>
-    <div class="banner-pink"></div>
-  </header>
+  </div>
+  <div class="banner-stripe"></div>
+  <div class="banner-pink"></div>
+</header>
 
-  <!-- ── Main ── -->
-  <main>
-    <div class="intro">
-      <p>Complete revision booklets covering the full A-Level syllabus — definitions, formulae, worked examples, exam practice and mark schemes.</p>
-    </div>
+<!-- reusable SVG snippets via <use> -->
+<svg style="display:none">
+  <symbol id="icon-book" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+  </symbol>
+  <symbol id="icon-doc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+  </symbol>
+  <symbol id="icon-dl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+  </symbol>
+</svg>
 
-    <div class="cards-section">
+<!-- ── Main ── -->
+<main>
+  <div class="cards-section">
 
-      <!-- Full guide -->
-      <div class="section-label">
-        <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
-        Complete Guide
+    <!-- ══════════════════════════════════════════
+         AS LEVEL PANEL
+    ══════════════════════════════════════════ -->
+    <div class="tab-panel active" id="panel-as">
+
+      <div class="intro">
+        <p>Complete revision booklets for the AS Level syllabus — Topics 1–11. Definitions, formulae, worked examples, exam practice and mark schemes.</p>
       </div>
 
-      <div class="full-guide-card">
-        <div class="full-guide-info">
-          <h2>All Topics — Combined PDF <span class="pill">Recommended</span></h2>
-          <p>All booklets compiled into a single document — ideal for printing or offline study.</p>
+      <div class="section-label">
+        <svg width="18" height="18"><use href="#icon-book"/></svg>
+        Combined Guide
+      </div>
+
+      <div class="guide-row">
+        <div class="guide-card featured">
+          <span class="guide-label">Combined PDF</span>
+          <h2>AS Level — All Topics <span class="pill">Recommended</span></h2>
+          <p>All AS booklets compiled into a single document — ideal for printing or offline study.</p>
+          <a class="btn btn-primary" href="main_AS.pdf" style="margin-top:0.5rem;align-self:flex-start;">
+            <svg width="16" height="16"><use href="#icon-dl"/></svg>
+            Download PDF
+          </a>
         </div>
-        <a class="btn btn-primary" href="main.pdf">
-          <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
-          Download PDF
-        </a>
       </div>
 
-      <!-- Individual topics -->
       <div class="section-label">
-        <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+        <svg width="18" height="18"><use href="#icon-doc"/></svg>
         Individual Topics
       </div>
 
       <div class="topic-grid">
 
-        <div class="topic-card fade-up">
-          <span class="topic-number">Topic 12</span>
-          <div class="topic-title">Motion in a Circle</div>
-          <p class="topic-desc">Angular speed · centripetal acceleration · centripetal force · circular orbits</p>
-          <a class="btn btn-outline" href="topic_12/topic_12.pdf">
-            <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
-            Download
-          </a>
+        <div class="topic-card">
+          <span class="topic-number">Topic 1</span>
+          <div class="topic-title">Physical Quantities &amp; Units</div>
+          <p class="topic-desc">SI units · estimation · uncertainty · significant figures · vectors and scalars</p>
+          <a class="btn btn-outline" href="topic_01/topic_01.pdf"><svg class="dl-icon"><use href="#icon-dl"/></svg>Download</a>
         </div>
 
-        <div class="topic-card fade-up">
-          <span class="topic-number">Topic 13</span>
-          <div class="topic-title">Gravitational Fields</div>
-          <p class="topic-desc">Newton's law · field strength · gravitational potential · orbital motion · escape velocity</p>
-          <a class="btn btn-outline" href="topic_13/topic_13.pdf">
-            <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
-            Download
-          </a>
+        <div class="topic-card">
+          <span class="topic-number">Topic 2</span>
+          <div class="topic-title">Kinematics</div>
+          <p class="topic-desc">Displacement · velocity · acceleration · SUVAT equations · projectile motion</p>
+          <a class="btn btn-outline" href="topic_02/topic_02.pdf"><svg class="dl-icon"><use href="#icon-dl"/></svg>Download</a>
         </div>
 
-        <div class="topic-card fade-up">
-          <span class="topic-number">Topics 14, 15 &amp; 16</span>
-          <div class="topic-title">Thermal Physics</div>
-          <p class="topic-desc">Temperature · ideal gases · kinetic theory · internal energy · first law of thermodynamics</p>
-          <a class="btn btn-outline" href="topics_14_15_16/topics_14_15_16.pdf">
-            <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
-            Download
-          </a>
+        <div class="topic-card">
+          <span class="topic-number">Topic 3</span>
+          <div class="topic-title">Dynamics</div>
+          <p class="topic-desc">Newton's laws · linear momentum · impulse · conservation of momentum</p>
+          <a class="btn btn-outline" href="topic_03/topic_03.pdf"><svg class="dl-icon"><use href="#icon-dl"/></svg>Download</a>
         </div>
 
-        <div class="topic-card fade-up">
-          <span class="topic-number">Topic 17</span>
-          <div class="topic-title">Oscillations</div>
-          <p class="topic-desc">Simple harmonic motion · energy · damping · resonance</p>
-          <a class="btn btn-outline" href="topic_17/topic_17.pdf">
-            <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
-            Download
-          </a>
+        <div class="topic-card">
+          <span class="topic-number">Topic 4</span>
+          <div class="topic-title">Forces, Density and Pressure</div>
+          <p class="topic-desc">Moments · equilibrium · centre of gravity · density · pressure · upthrust</p>
+          <a class="btn btn-outline" href="topic_04/topic_04.pdf"><svg class="dl-icon"><use href="#icon-dl"/></svg>Download</a>
         </div>
 
-        <div class="topic-card fade-up">
-          <span class="topic-number">Topic 18</span>
-          <div class="topic-title">Electric Fields</div>
-          <p class="topic-desc">Coulomb's law · field strength · electric potential · equipotentials · uniform fields</p>
-          <a class="btn btn-outline" href="topic_18/topic_18.pdf">
-            <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
-            Download
-          </a>
+        <div class="topic-card">
+          <span class="topic-number">Topic 5</span>
+          <div class="topic-title">Work, Energy and Power</div>
+          <p class="topic-desc">Work done · kinetic and potential energy · power · efficiency · conservation of energy</p>
+          <a class="btn btn-outline" href="topic_05/topic_05.pdf"><svg class="dl-icon"><use href="#icon-dl"/></svg>Download</a>
         </div>
 
-        <div class="topic-card fade-up">
-          <span class="topic-number">Topic 19</span>
-          <div class="topic-title">Capacitance</div>
-          <p class="topic-desc">Capacitors · series and parallel · energy stored · discharge · time constant</p>
-          <a class="btn btn-outline" href="topic_19/topic_19.pdf">
-            <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
-            Download
-          </a>
+        <div class="topic-card">
+          <span class="topic-number">Topic 6</span>
+          <div class="topic-title">Deformation of Solids</div>
+          <p class="topic-desc">Hooke's law · Young modulus · stress · strain · elastic strain energy</p>
+          <a class="btn btn-outline" href="topic_06/topic_06.pdf"><svg class="dl-icon"><use href="#icon-dl"/></svg>Download</a>
         </div>
 
-        <div class="topic-card fade-up">
-          <span class="topic-number">Topic 20</span>
-          <div class="topic-title">Magnetic Fields</div>
-          <p class="topic-desc">Flux density · force on conductors and charges · Hall effect · electromagnetic induction · Faraday's and Lenz's laws</p>
-          <a class="btn btn-outline" href="topic_20/topic_20.pdf">
-            <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
-            Download
-          </a>
+        <div class="topic-card">
+          <span class="topic-number">Topic 7</span>
+          <div class="topic-title">Waves</div>
+          <p class="topic-desc">Transverse and longitudinal · intensity · polarisation · electromagnetic spectrum</p>
+          <a class="btn btn-outline" href="topic_07/topic_07.pdf"><svg class="dl-icon"><use href="#icon-dl"/></svg>Download</a>
         </div>
 
-        <div class="topic-card fade-up">
-          <span class="topic-number">Topic 21</span>
-          <div class="topic-title">Alternating Currents</div>
-          <p class="topic-desc">R.m.s. values · mean power · half-wave and full-wave rectification · smoothing</p>
-          <a class="btn btn-outline" href="topic_21/topic_21.pdf">
-            <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
-            Download
-          </a>
+        <div class="topic-card">
+          <span class="topic-number">Topic 8</span>
+          <div class="topic-title">Superposition</div>
+          <p class="topic-desc">Stationary waves · diffraction · two-source interference · diffraction gratings</p>
+          <a class="btn btn-outline" href="topic_08/topic_08.pdf"><svg class="dl-icon"><use href="#icon-dl"/></svg>Download</a>
         </div>
 
-        <div class="topic-card fade-up">
-          <span class="topic-number">Topic 22</span>
-          <div class="topic-title">Quantum Physics</div>
-          <p class="topic-desc">Photons · photoelectric effect · wave-particle duality · energy levels · line spectra</p>
-          <a class="btn btn-outline" href="topic_22/topic_22.pdf">
-            <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
-            Download
-          </a>
+        <div class="topic-card">
+          <span class="topic-number">Topic 9</span>
+          <div class="topic-title">Electricity</div>
+          <p class="topic-desc">Charge · current · potential difference · resistance · Ohm's law · I&ndash;V characteristics</p>
+          <a class="btn btn-outline" href="topic_09/topic_09.pdf"><svg class="dl-icon"><use href="#icon-dl"/></svg>Download</a>
         </div>
 
-        <div class="topic-card fade-up">
-          <span class="topic-number">Topic 23</span>
-          <div class="topic-title">Nuclear Physics</div>
-          <p class="topic-desc">Nuclear structure · radioactive decay · half-life · fission and fusion · mass-energy equivalence</p>
-          <a class="btn btn-outline" href="topic_23/topic_23.pdf">
-            <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
-            Download
-          </a>
+        <div class="topic-card">
+          <span class="topic-number">Topic 10</span>
+          <div class="topic-title">D.C. Circuits</div>
+          <p class="topic-desc">EMF · internal resistance · Kirchhoff's laws · potential divider</p>
+          <a class="btn btn-outline" href="topic_10/topic_10.pdf"><svg class="dl-icon"><use href="#icon-dl"/></svg>Download</a>
         </div>
 
-        <div class="topic-card fade-up">
-          <span class="topic-number">Topic 24</span>
-          <div class="topic-title">Medical Physics</div>
-          <p class="topic-desc">Ultrasound · acoustic impedance · X-rays · CT scanning · PET scanning · attenuation</p>
-          <a class="btn btn-outline" href="topic_24/topic_24.pdf">
-            <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
-            Download
-          </a>
-        </div>
-
-        <div class="topic-card fade-up">
-          <span class="topic-number">Topic 25</span>
-          <div class="topic-title">Astronomy &amp; Cosmology</div>
-          <p class="topic-desc">Stars · Hubble's law · cosmological redshift · dark matter · Big Bang</p>
-          <a class="btn btn-outline" href="topic_25/topic_25.pdf">
-            <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
-            Download
-          </a>
+        <div class="topic-card">
+          <span class="topic-number">Topic 11</span>
+          <div class="topic-title">Particle Physics</div>
+          <p class="topic-desc">Atomic structure · nuclear reactions · fundamental particles · antiparticles</p>
+          <a class="btn btn-outline" href="topic_11/topic_11.pdf"><svg class="dl-icon"><use href="#icon-dl"/></svg>Download</a>
         </div>
 
       </div>
-    </div>
-  </main>
+    </div><!-- /panel-as -->
 
-  <footer>
-    Westminster School Physics Department &nbsp;·&nbsp; CIE A-Level Physics 9702
-  </footer>
+
+    <!-- ══════════════════════════════════════════
+         A LEVEL PANEL
+    ══════════════════════════════════════════ -->
+    <div class="tab-panel" id="panel-al">
+
+      <div class="intro">
+        <p>Complete revision booklets for the A Level syllabus — Topics 12–25. Definitions, formulae, worked examples, exam practice and mark schemes.</p>
+      </div>
+
+      <div class="section-label">
+        <svg width="18" height="18"><use href="#icon-book"/></svg>
+        Combined Guide
+      </div>
+
+      <div class="guide-row">
+        <div class="guide-card featured">
+          <span class="guide-label">Combined PDF</span>
+          <h2>A Level — All Topics <span class="pill">Recommended</span></h2>
+          <p>All A Level booklets compiled into a single document — ideal for printing or offline study.</p>
+          <a class="btn btn-primary" href="main_A2.pdf" style="margin-top:0.5rem;align-self:flex-start;">
+            <svg width="16" height="16"><use href="#icon-dl"/></svg>
+            Download PDF
+          </a>
+        </div>
+      </div>
+
+      <div class="section-label">
+        <svg width="18" height="18"><use href="#icon-doc"/></svg>
+        Individual Topics
+      </div>
+
+      <div class="topic-grid">
+
+        <div class="topic-card">
+          <span class="topic-number">Topic 12</span>
+          <div class="topic-title">Motion in a Circle</div>
+          <p class="topic-desc">Angular speed · centripetal acceleration · centripetal force · circular orbits</p>
+          <a class="btn btn-outline" href="topic_12/topic_12.pdf"><svg class="dl-icon"><use href="#icon-dl"/></svg>Download</a>
+        </div>
+
+        <div class="topic-card">
+          <span class="topic-number">Topic 13</span>
+          <div class="topic-title">Gravitational Fields</div>
+          <p class="topic-desc">Newton's law · field strength · gravitational potential · orbital motion · escape velocity</p>
+          <a class="btn btn-outline" href="topic_13/topic_13.pdf"><svg class="dl-icon"><use href="#icon-dl"/></svg>Download</a>
+        </div>
+
+        <div class="topic-card">
+          <span class="topic-number">Topics 14, 15 &amp; 16</span>
+          <div class="topic-title">Thermal Physics</div>
+          <p class="topic-desc">Temperature · ideal gases · kinetic theory · internal energy · first law of thermodynamics</p>
+          <a class="btn btn-outline" href="topics_14_15_16/topics_14_15_16.pdf"><svg class="dl-icon"><use href="#icon-dl"/></svg>Download</a>
+        </div>
+
+        <div class="topic-card">
+          <span class="topic-number">Topic 17</span>
+          <div class="topic-title">Oscillations</div>
+          <p class="topic-desc">Simple harmonic motion · energy · damping · resonance</p>
+          <a class="btn btn-outline" href="topic_17/topic_17.pdf"><svg class="dl-icon"><use href="#icon-dl"/></svg>Download</a>
+        </div>
+
+        <div class="topic-card">
+          <span class="topic-number">Topic 18</span>
+          <div class="topic-title">Electric Fields</div>
+          <p class="topic-desc">Coulomb's law · field strength · electric potential · equipotentials · uniform fields</p>
+          <a class="btn btn-outline" href="topic_18/topic_18.pdf"><svg class="dl-icon"><use href="#icon-dl"/></svg>Download</a>
+        </div>
+
+        <div class="topic-card">
+          <span class="topic-number">Topic 19</span>
+          <div class="topic-title">Capacitance</div>
+          <p class="topic-desc">Capacitors · series and parallel · energy stored · discharge · time constant</p>
+          <a class="btn btn-outline" href="topic_19/topic_19.pdf"><svg class="dl-icon"><use href="#icon-dl"/></svg>Download</a>
+        </div>
+
+        <div class="topic-card">
+          <span class="topic-number">Topic 20</span>
+          <div class="topic-title">Magnetic Fields</div>
+          <p class="topic-desc">Flux density · force on conductors and charges · Hall effect · electromagnetic induction · Faraday's and Lenz's laws</p>
+          <a class="btn btn-outline" href="topic_20/topic_20.pdf"><svg class="dl-icon"><use href="#icon-dl"/></svg>Download</a>
+        </div>
+
+        <div class="topic-card">
+          <span class="topic-number">Topic 21</span>
+          <div class="topic-title">Alternating Currents</div>
+          <p class="topic-desc">R.m.s. values · mean power · half-wave and full-wave rectification · smoothing</p>
+          <a class="btn btn-outline" href="topic_21/topic_21.pdf"><svg class="dl-icon"><use href="#icon-dl"/></svg>Download</a>
+        </div>
+
+        <div class="topic-card">
+          <span class="topic-number">Topic 22</span>
+          <div class="topic-title">Quantum Physics</div>
+          <p class="topic-desc">Photons · photoelectric effect · wave-particle duality · energy levels · line spectra</p>
+          <a class="btn btn-outline" href="topic_22/topic_22.pdf"><svg class="dl-icon"><use href="#icon-dl"/></svg>Download</a>
+        </div>
+
+        <div class="topic-card">
+          <span class="topic-number">Topic 23</span>
+          <div class="topic-title">Nuclear Physics</div>
+          <p class="topic-desc">Mass defect · binding energy · radioactive decay · half-life · fission and fusion</p>
+          <a class="btn btn-outline" href="topic_23/topic_23.pdf"><svg class="dl-icon"><use href="#icon-dl"/></svg>Download</a>
+        </div>
+
+        <div class="topic-card">
+          <span class="topic-number">Topic 24</span>
+          <div class="topic-title">Medical Physics</div>
+          <p class="topic-desc">Ultrasound · acoustic impedance · X-rays · CT scanning · PET scanning · attenuation</p>
+          <a class="btn btn-outline" href="topic_24/topic_24.pdf"><svg class="dl-icon"><use href="#icon-dl"/></svg>Download</a>
+        </div>
+
+        <div class="topic-card">
+          <span class="topic-number">Topic 25</span>
+          <div class="topic-title">Astronomy &amp; Cosmology</div>
+          <p class="topic-desc">Standard candles · stellar radii · Wien's law · redshift · Hubble's law · Big Bang</p>
+          <a class="btn btn-outline" href="topic_25/topic_25.pdf"><svg class="dl-icon"><use href="#icon-dl"/></svg>Download</a>
+        </div>
+
+      </div>
+    </div><!-- /panel-al -->
+
+
+    <!-- ══════════════════════════════════════════
+         FULL COURSE PANEL
+    ══════════════════════════════════════════ -->
+    <div class="tab-panel" id="panel-full">
+
+      <div class="intro">
+        <p>The complete course — all 25 topics in one place. Download the full combined guide, or browse individual topic booklets below.</p>
+      </div>
+
+      <div class="section-label">
+        <svg width="18" height="18"><use href="#icon-book"/></svg>
+        Combined Guides
+      </div>
+
+      <div class="guide-row">
+        <div class="guide-card featured">
+          <span class="guide-label">Combined PDF — Topics 1–25</span>
+          <h2>Full Course <span class="pill">Recommended</span></h2>
+          <p>All AS and A Level booklets compiled into a single document — ideal for printing or offline study.</p>
+          <a class="btn btn-primary" href="main.pdf" style="margin-top:0.5rem;align-self:flex-start;">
+            <svg width="16" height="16"><use href="#icon-dl"/></svg>
+            Download PDF
+          </a>
+        </div>
+      </div>
+
+      <div class="section-label">
+        <svg width="18" height="18"><use href="#icon-doc"/></svg>
+        All Topics
+      </div>
+
+      <div class="topic-grid">
+
+        <div class="topic-card">
+          <span class="topic-number">Topic 1</span>
+          <div class="topic-title">Physical Quantities &amp; Units</div>
+          <p class="topic-desc">SI units · estimation · uncertainty · significant figures · vectors and scalars</p>
+          <a class="btn btn-outline" href="topic_01/topic_01.pdf"><svg class="dl-icon"><use href="#icon-dl"/></svg>Download</a>
+        </div>
+
+        <div class="topic-card">
+          <span class="topic-number">Topic 2</span>
+          <div class="topic-title">Kinematics</div>
+          <p class="topic-desc">Displacement · velocity · acceleration · SUVAT equations · projectile motion</p>
+          <a class="btn btn-outline" href="topic_02/topic_02.pdf"><svg class="dl-icon"><use href="#icon-dl"/></svg>Download</a>
+        </div>
+
+        <div class="topic-card">
+          <span class="topic-number">Topic 3</span>
+          <div class="topic-title">Dynamics</div>
+          <p class="topic-desc">Newton's laws · linear momentum · impulse · conservation of momentum</p>
+          <a class="btn btn-outline" href="topic_03/topic_03.pdf"><svg class="dl-icon"><use href="#icon-dl"/></svg>Download</a>
+        </div>
+
+        <div class="topic-card">
+          <span class="topic-number">Topic 4</span>
+          <div class="topic-title">Forces, Density and Pressure</div>
+          <p class="topic-desc">Moments · equilibrium · centre of gravity · density · pressure · upthrust</p>
+          <a class="btn btn-outline" href="topic_04/topic_04.pdf"><svg class="dl-icon"><use href="#icon-dl"/></svg>Download</a>
+        </div>
+
+        <div class="topic-card">
+          <span class="topic-number">Topic 5</span>
+          <div class="topic-title">Work, Energy and Power</div>
+          <p class="topic-desc">Work done · kinetic and potential energy · power · efficiency · conservation of energy</p>
+          <a class="btn btn-outline" href="topic_05/topic_05.pdf"><svg class="dl-icon"><use href="#icon-dl"/></svg>Download</a>
+        </div>
+
+        <div class="topic-card">
+          <span class="topic-number">Topic 6</span>
+          <div class="topic-title">Deformation of Solids</div>
+          <p class="topic-desc">Hooke's law · Young modulus · stress · strain · elastic strain energy</p>
+          <a class="btn btn-outline" href="topic_06/topic_06.pdf"><svg class="dl-icon"><use href="#icon-dl"/></svg>Download</a>
+        </div>
+
+        <div class="topic-card">
+          <span class="topic-number">Topic 7</span>
+          <div class="topic-title">Waves</div>
+          <p class="topic-desc">Transverse and longitudinal · intensity · polarisation · electromagnetic spectrum</p>
+          <a class="btn btn-outline" href="topic_07/topic_07.pdf"><svg class="dl-icon"><use href="#icon-dl"/></svg>Download</a>
+        </div>
+
+        <div class="topic-card">
+          <span class="topic-number">Topic 8</span>
+          <div class="topic-title">Superposition</div>
+          <p class="topic-desc">Stationary waves · diffraction · two-source interference · diffraction gratings</p>
+          <a class="btn btn-outline" href="topic_08/topic_08.pdf"><svg class="dl-icon"><use href="#icon-dl"/></svg>Download</a>
+        </div>
+
+        <div class="topic-card">
+          <span class="topic-number">Topic 9</span>
+          <div class="topic-title">Electricity</div>
+          <p class="topic-desc">Charge · current · potential difference · resistance · Ohm's law · I&ndash;V characteristics</p>
+          <a class="btn btn-outline" href="topic_09/topic_09.pdf"><svg class="dl-icon"><use href="#icon-dl"/></svg>Download</a>
+        </div>
+
+        <div class="topic-card">
+          <span class="topic-number">Topic 10</span>
+          <div class="topic-title">D.C. Circuits</div>
+          <p class="topic-desc">EMF · internal resistance · Kirchhoff's laws · potential divider</p>
+          <a class="btn btn-outline" href="topic_10/topic_10.pdf"><svg class="dl-icon"><use href="#icon-dl"/></svg>Download</a>
+        </div>
+
+        <div class="topic-card">
+          <span class="topic-number">Topic 11</span>
+          <div class="topic-title">Particle Physics</div>
+          <p class="topic-desc">Atomic structure · nuclear reactions · fundamental particles · antiparticles</p>
+          <a class="btn btn-outline" href="topic_11/topic_11.pdf"><svg class="dl-icon"><use href="#icon-dl"/></svg>Download</a>
+        </div>
+
+        <div class="topic-card">
+          <span class="topic-number">Topic 12</span>
+          <div class="topic-title">Motion in a Circle</div>
+          <p class="topic-desc">Angular speed · centripetal acceleration · centripetal force · circular orbits</p>
+          <a class="btn btn-outline" href="topic_12/topic_12.pdf"><svg class="dl-icon"><use href="#icon-dl"/></svg>Download</a>
+        </div>
+
+        <div class="topic-card">
+          <span class="topic-number">Topic 13</span>
+          <div class="topic-title">Gravitational Fields</div>
+          <p class="topic-desc">Newton's law · field strength · gravitational potential · orbital motion · escape velocity</p>
+          <a class="btn btn-outline" href="topic_13/topic_13.pdf"><svg class="dl-icon"><use href="#icon-dl"/></svg>Download</a>
+        </div>
+
+        <div class="topic-card">
+          <span class="topic-number">Topics 14, 15 &amp; 16</span>
+          <div class="topic-title">Thermal Physics</div>
+          <p class="topic-desc">Temperature · ideal gases · kinetic theory · internal energy · first law of thermodynamics</p>
+          <a class="btn btn-outline" href="topics_14_15_16/topics_14_15_16.pdf"><svg class="dl-icon"><use href="#icon-dl"/></svg>Download</a>
+        </div>
+
+        <div class="topic-card">
+          <span class="topic-number">Topic 17</span>
+          <div class="topic-title">Oscillations</div>
+          <p class="topic-desc">Simple harmonic motion · energy · damping · resonance</p>
+          <a class="btn btn-outline" href="topic_17/topic_17.pdf"><svg class="dl-icon"><use href="#icon-dl"/></svg>Download</a>
+        </div>
+
+        <div class="topic-card">
+          <span class="topic-number">Topic 18</span>
+          <div class="topic-title">Electric Fields</div>
+          <p class="topic-desc">Coulomb's law · field strength · electric potential · equipotentials · uniform fields</p>
+          <a class="btn btn-outline" href="topic_18/topic_18.pdf"><svg class="dl-icon"><use href="#icon-dl"/></svg>Download</a>
+        </div>
+
+        <div class="topic-card">
+          <span class="topic-number">Topic 19</span>
+          <div class="topic-title">Capacitance</div>
+          <p class="topic-desc">Capacitors · series and parallel · energy stored · discharge · time constant</p>
+          <a class="btn btn-outline" href="topic_19/topic_19.pdf"><svg class="dl-icon"><use href="#icon-dl"/></svg>Download</a>
+        </div>
+
+        <div class="topic-card">
+          <span class="topic-number">Topic 20</span>
+          <div class="topic-title">Magnetic Fields</div>
+          <p class="topic-desc">Flux density · force on conductors and charges · Hall effect · electromagnetic induction · Faraday's and Lenz's laws</p>
+          <a class="btn btn-outline" href="topic_20/topic_20.pdf"><svg class="dl-icon"><use href="#icon-dl"/></svg>Download</a>
+        </div>
+
+        <div class="topic-card">
+          <span class="topic-number">Topic 21</span>
+          <div class="topic-title">Alternating Currents</div>
+          <p class="topic-desc">R.m.s. values · mean power · half-wave and full-wave rectification · smoothing</p>
+          <a class="btn btn-outline" href="topic_21/topic_21.pdf"><svg class="dl-icon"><use href="#icon-dl"/></svg>Download</a>
+        </div>
+
+        <div class="topic-card">
+          <span class="topic-number">Topic 22</span>
+          <div class="topic-title">Quantum Physics</div>
+          <p class="topic-desc">Photons · photoelectric effect · wave-particle duality · energy levels · line spectra</p>
+          <a class="btn btn-outline" href="topic_22/topic_22.pdf"><svg class="dl-icon"><use href="#icon-dl"/></svg>Download</a>
+        </div>
+
+        <div class="topic-card">
+          <span class="topic-number">Topic 23</span>
+          <div class="topic-title">Nuclear Physics</div>
+          <p class="topic-desc">Mass defect · binding energy · radioactive decay · half-life · fission and fusion</p>
+          <a class="btn btn-outline" href="topic_23/topic_23.pdf"><svg class="dl-icon"><use href="#icon-dl"/></svg>Download</a>
+        </div>
+
+        <div class="topic-card">
+          <span class="topic-number">Topic 24</span>
+          <div class="topic-title">Medical Physics</div>
+          <p class="topic-desc">Ultrasound · acoustic impedance · X-rays · CT scanning · PET scanning · attenuation</p>
+          <a class="btn btn-outline" href="topic_24/topic_24.pdf"><svg class="dl-icon"><use href="#icon-dl"/></svg>Download</a>
+        </div>
+
+        <div class="topic-card">
+          <span class="topic-number">Topic 25</span>
+          <div class="topic-title">Astronomy &amp; Cosmology</div>
+          <p class="topic-desc">Standard candles · stellar radii · Wien's law · redshift · Hubble's law · Big Bang</p>
+          <a class="btn btn-outline" href="topic_25/topic_25.pdf"><svg class="dl-icon"><use href="#icon-dl"/></svg>Download</a>
+        </div>
+
+      </div>
+    </div><!-- /panel-full -->
+
+  </div><!-- /cards-section -->
+</main>
+
+<footer>
+  Westminster School Physics Department &nbsp;·&nbsp; CIE Physics 9702
+</footer>
+
+<script>
+function switchTab(tab) {
+  ['as', 'al', 'full'].forEach(function(t) {
+    document.getElementById('tab-'   + t).classList.toggle('active', t === tab);
+    document.getElementById('panel-' + t).classList.toggle('active', t === tab);
+  });
+}
+</script>
 
 </body>
 </html>
