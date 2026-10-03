@@ -319,7 +319,7 @@ A \textbf{null method} is a measurement technique in which the quantity being me
 \begin{center}
 \begin{circuitikz}[american, european resistors, scale=2, every node/.style={font=\small}]
   % Driver circuit: battery + Resistor
-  \draw (0,3) to[battery1] (2,3) to [R,l=R] (5,3)-- (5,2);
+  \draw (0,3) to[battery1] (2,3) -- (5,3)-- (5,2);
  
   % Wire AB
   \draw[very thick, midblue] (0,2) -- (5,2);
